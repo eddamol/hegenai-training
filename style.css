@@ -114,26 +114,35 @@ h3 {
 /* Slim pill, used for the sign-up link. */
 .pill-button {
     display: inline-block;
-    padding: 8px 24px;
+    padding: 6px 22px;
+    border: 2px solid var(--primary);
     border-radius: 999px;
     background-color: var(--primary);
     color: white;
     font-size: 1rem;
     font-weight: 400;
     text-decoration: none;
-    transition: background-color 0.15s ease;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
 }
 
 .pill-button:hover {
+    border-color: var(--primary-dark);
     background-color: var(--primary-dark);
     color: white;
     text-decoration: none;
+    transform: translateY(-2px);
 }
 
-.pill-button-disabled {
-    background-color: #e3e4e8;
-    color: var(--text-muted);
-    cursor: default;
+.pill-button:focus-visible {
+    outline-offset: 3px;
+}
+
+/* Pressed: blank pill with a red outline and red text. */
+.pill-button:active {
+    border-color: var(--primary);
+    background-color: white;
+    color: var(--primary);
+    transform: none;
 }
 
 
@@ -404,5 +413,9 @@ h3 {
     .pill-button,
     .site-title {
         transition: none;
+    }
+
+    .pill-button:hover {
+        transform: none;
     }
 }
