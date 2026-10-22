@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Modules – HEGenAI Training</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <a class="site-logo" href="index.html"><img src="assets/logo-w.svg" alt="HEGenAI Training, home"></a>
+
+    <header class="site-header">
+        <p class="site-title"><a href="index.html">HEGenAI Training</a></p>
+        <nav class="site-nav" aria-label="Main">
+            <a href="modules.html" aria-current="page">Modules</a>
+        </nav>
+    </header>
+
+    <main class="site-container">
+
+        <section class="section">
+            <h1 class="page-title">Modules</h1>
+            <p>Each module takes about an hour and stands on its own.</p>
+
+            <div id="module-list">
+                <noscript><p>The list of modules needs JavaScript to be shown. Please turn it on for this page.</p></noscript>
+            </div>
+
+            <div class="progress-note" id="progress-note" hidden>
+                <p>Your progress is stored only in this browser.</p>
+                <button type="button" class="pill-button pill-button-secondary" id="reset-button">Reset my progress</button>
+                <div class="reset-confirm" id="reset-confirm" hidden>
+                    <p>Remove all your progress from this browser? This cannot be undone.</p>
+                    <button type="button" class="pill-button" id="reset-yes">Yes, reset</button>
+                    <button type="button" class="pill-button pill-button-secondary" id="reset-cancel">Cancel</button>
+                </div>
+                <p class="reset-status" id="reset-status" role="status"></p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <!-- EU emblem goes here once assets/eu-emblem.svg or assets/eu-emblem.png exists (official artwork, unmodified), e.g.:
+        <img class="footer-emblem" src="assets/eu-emblem.svg" alt="Funded by the European Union">
+        -->
+        <p>This is a research and training pilot, not a formal degree programme.</p>
+        <p class="footer-links"><a href="modules.html">Modules</a> · <a href="about.html#credits">About &amp; credits</a> · <a href="privacy.html">Privacy notice</a></p>
+        <p class="funding-disclaimer">Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or Uddannelses- og Forskningsstyrelsen. Neither the European Union nor the granting authority can be held responsible for them.</p>
+    </footer>
+
+    <script src="modules-data.js"></script>
+    <script src="progress.js"></script>
+    <script src="modules.js"></script>
+</body>
+</html>
