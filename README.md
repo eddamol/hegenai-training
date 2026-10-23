@@ -20,6 +20,7 @@ and is never sent anywhere. Hosted on GitHub Pages; all links are relative.
 - `progress.js`: saves progress in the browser's localStorage under `hegenai:progress:v1`
 - `modules.js`: draws the module cards on `modules.html`
 - `module.js`: draws a module page from the data and handles "Mark as done"
+- `quiz.js`: draws the self-check questions in a block and saves the answers
 - `assets/`: `logo-w.svg`, `logo-b.svg`, `favicon.svg` (placeholders; replace with the real files under the same names)
 - `.nojekyll`: switches off Jekyll on GitHub Pages
 
@@ -42,7 +43,8 @@ All module content lives in `modules-data.js`, as `window.HEGENAI_MODULES`:
       number: 1,
       title: "Declaring GenAI use",
       cluster: null,               // group heading on modules.html, or null
-      outcome: "...",              // one sentence, shown on the card and under the module title
+      outcome: "...",              // one sentence, shown on the card and as the "Key learning outcome"
+      outcomeImage: { src: "assets/...", alt: "...", caption: "..." },   // optional picture beside the outcome; caption is optional
       minutes: 60,
       status: "available",         // or "soon": not linked, page shows "Coming soon"
       blocks: [
@@ -57,8 +59,37 @@ All module content lives in `modules-data.js`, as `window.HEGENAI_MODULES`:
 
 Block `html` may use headings (`h3`), paragraphs, lists, links and callouts
 (`<div class="callout">...</div>`). A block with `minutes: null` shows "Time to
-be confirmed"; a block left out shows a placeholder. A `quiz` field on a block
-is reserved for self-check questions and is not shown yet.
+be confirmed"; a block left out shows a placeholder.
+
+A block may have a self-check, shown after its content and before "Mark as done":
+
+```js
+quiz: {
+  title: "Self-check",             // heading above the questions
+  scored: true,                    // false = no right or wrong answer
+  questions: [
+    {
+      id: "m1-sc1",                // unique within the module; used to store the answer
+      prompt: "...",
+      options: [ { text: "...", note: "..." } ],   // note is optional feedback for that option
+      correct: 1,                  // index into options; leave out when scored is false
+      explanation: "..."           // shown after any answer when scored is true
+    }
+  ]
+}
+```
+
+All quiz text is plain text, not HTML. In option notes and explanations only
+`**bold**` is understood. If the bold phrase is exactly a block title (Intro,
+See it, Try it, Make it, Plan it) it becomes a bold link to that block on the
+same page, for example `see **Try it**`.
+
+Scored questions show "Correct" or "Not quite" with the note and explanation.
+A quiz with `scored: false` shows "Not scored. Your answer stays in your
+browser." under its title, and an option without a note shows "No right answer;
+this just shows where you start." Every answered question has a "Clear answer"
+button that removes that answer. Answering never marks a block as done and never
+locks anything. Answers are kept with the progress, in the visitor's browser only.
 
 ## Still to do
 

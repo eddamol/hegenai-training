@@ -24,13 +24,18 @@
         return 'About ' + minutes + ' minutes';
     }
 
+    function describeModuleLength(module) {
+        var text = describeLength(module.minutes);
+        return module.extraMinutes ? text + ' + ' + module.extraMinutes + ' min.' : text;
+    }
+
     function buildProgress(module) {
         var wrapper = create('div', 'module-progress');
         wrapper.hidden = true;
 
         var bar = create('div', 'progress-bar');
         bar.setAttribute('role', 'progressbar');
-        bar.setAttribute('aria-label', 'Progress in module ' + module.number);
+        bar.setAttribute('aria-label', 'Progress in ' + module.title);
         bar.setAttribute('aria-valuemin', '0');
         bar.setAttribute('aria-valuemax', String(totalBlocks));
         var fill = create('div', 'progress-bar-fill');
@@ -49,7 +54,7 @@
         var pageUrl = 'module.html?m=' + encodeURIComponent(module.id);
         var card = create('li', 'card module-card');
 
-        card.appendChild(create('p', 'module-number', 'Module ' + module.number));
+        card.appendChild(create('p', 'module-number', 'Module'));
 
         var heading = create('h3');
         if (isAvailable) {
@@ -69,7 +74,7 @@
         }
         card.appendChild(outcome);
 
-        card.appendChild(create('p', 'module-length', describeLength(module.minutes)));
+        card.appendChild(create('p', 'module-length', describeModuleLength(module)));
         card.appendChild(buildProgress(module));
 
         var footer = create('div', 'module-status');

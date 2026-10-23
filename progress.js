@@ -5,6 +5,7 @@
 // Stored shape, under "hegenai:progress:v1":
 //   { "<moduleId>": { blocks: { "<blockId>": "<ISO time>" },
 //                     answers: { "<questionId>": { picked: 2, correct: true } } } }
+//   (correct is null for a question with no right answer)
 (function () {
     var STORAGE_KEY = 'hegenai:progress:v1';
     var listeners = [];
@@ -98,9 +99,22 @@
         return nowDone;
     }
 
+    // correct is true or false for a scored question, and null for one with no right answer.
     function recordAnswer(moduleId, questionId, picked, correct) {
         var data = load();
-        section(moduleEntry(data, moduleId), 'answers')[questionId] = { picked: picked, correct: !!correct };
+        section(moduleEntry(data, moduleId), 'answers')[questionId] = {
+            picked: picked,
+            correct: correct === null || correct === undefined ? null : !!correct
+        };
+        save(data);
+    }
+
+    // Removes one saved answer, so the question can be answered afresh.
+    function clearAnswer(moduleId, questionId) {
+        var data = load();
+        if (!has(data, moduleId) || !data[moduleId].answers || !has(data[moduleId].answers, questionId)) return;
+        delete data[moduleId].answers[questionId];
+        dropEmpty(data, moduleId);
         save(data);
     }
 
@@ -137,6 +151,7 @@
         toggleBlock: toggleBlock,
         blocksDone: blocksDone,
         recordAnswer: recordAnswer,
+        clearAnswer: clearAnswer,
         getAnswers: getAnswers,
         reset: reset,
         onChange: onChange

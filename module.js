@@ -34,6 +34,11 @@
         return 'About ' + minutes + ' minutes';
     }
 
+    function describeModuleLength(module) {
+        var text = describeLength(module.minutes);
+        return module.extraMinutes ? text + ' + ' + module.extraMinutes + ' min.' : text;
+    }
+
     function toBeConfirmed(text) {
         return create('span', 'to-be-confirmed', text);
     }
@@ -76,24 +81,43 @@
         page.appendChild(message);
     }
 
+    function renderOutcomeCard(module, isAvailable) {
+        var image = module.outcomeImage;
+        var card = create('div', image && image.src ? 'card outcome-card has-image' : 'card outcome-card');
+
+        var text = create('div', 'outcome-text');
+        text.appendChild(create('p', 'outcome-label', 'Key learning outcome'));
+        var sentence = create('p', 'outcome-sentence');
+        if (module.outcome === 'To be confirmed') {
+            sentence.appendChild(toBeConfirmed(module.outcome));
+        } else {
+            sentence.textContent = module.outcome;
+        }
+        text.appendChild(sentence);
+
+        var time = create('p', 'outcome-time', 'Time: ' + describeModuleLength(module));
+        if (!isAvailable) time.appendChild(create('span', 'status-pill', 'Coming soon'));
+        text.appendChild(time);
+        card.appendChild(text);
+
+        if (image && image.src) {
+            var figure = create('figure', 'outcome-figure');
+            var picture = create('img');
+            picture.src = image.src;
+            picture.alt = image.alt || '';
+            figure.appendChild(picture);
+            if (image.caption) figure.appendChild(create('figcaption', '', image.caption));
+            card.appendChild(figure);
+        }
+        return card;
+    }
+
     function renderHeader(module, isAvailable) {
         var header = create('header', 'module-header');
-        header.appendChild(create('p', 'module-number', 'Module ' + module.number));
+        header.appendChild(create('p', 'module-number', 'Module'));
         header.appendChild(create('h1', 'page-title', module.title));
 
-        var summary = create('p', 'module-summary');
-        if (module.outcome === 'To be confirmed') {
-            summary.appendChild(toBeConfirmed(module.outcome));
-        } else {
-            summary.textContent = module.outcome;
-        }
-        header.appendChild(summary);
-
-        var meta = create('p', 'module-meta');
-        meta.appendChild(create('span', '', describeLength(module.minutes)));
-        meta.appendChild(create('span', isAvailable ? 'status-pill status-pill-available' : 'status-pill',
-            isAvailable ? 'Available' : 'Coming soon'));
-        header.appendChild(meta);
+        header.appendChild(renderOutcomeCard(module, isAvailable));
         return header;
     }
 
@@ -133,7 +157,7 @@
         entries.push({ id: SOURCES_ID, title: 'Sources and credits' });
 
         var mobileContents = create('details', 'card contents-mobile');
-        mobileContents.appendChild(create('summary', '', 'On this page'));
+        mobileContents.appendChild(create('summary', '', 'Module Blocks'));
         mobileContents.appendChild(buildContentsList(entries, view.contentsLinks));
         mobileContents.addEventListener('click', function (event) {
             if (event.target.tagName === 'A') mobileContents.open = false;
@@ -144,15 +168,15 @@
 
         var panel = create('nav', 'card contents-panel');
         panel.setAttribute('aria-labelledby', 'contents-panel-title');
-        var panelTitle = create('h2', 'contents-title', 'On this page');
+        var panelTitle = create('h2', 'contents-title', 'Module Blocks');
         panelTitle.id = 'contents-panel-title';
         panel.appendChild(panelTitle);
         panel.appendChild(buildContentsList(entries, view.contentsLinks));
 
-        // Where you stand
+        // Progress
         var standing = create('section', 'card standing');
         standing.setAttribute('aria-labelledby', 'standing-title');
-        var standingTitle = create('h2', 'standing-title', 'Where you stand');
+        var standingTitle = create('h2', 'standing-title', 'Progress');
         standingTitle.id = 'standing-title';
         standing.appendChild(standingTitle);
         view.standingCount = create('p', 'standing-count');
@@ -217,7 +241,7 @@
             section.appendChild(body);
 
             if (details.quiz) {
-                // Self-check questions are not shown yet.
+                section.appendChild(window.HEGenAIQuiz.build(module.id, details.quiz, blocks));
             }
 
             var actions = create('div', 'block-actions');
@@ -301,28 +325,39 @@
     }
 
     function renderPager(module) {
+        var pager = create('nav', 'module-pager');
+        pager.setAttribute('aria-label', 'Other modules');
+
+        function addLink(href, label, title, className) {
+            var anchor = link(href, '', 'pager-link ' + className);
+            anchor.appendChild(create('span', 'pager-label', label));
+            anchor.appendChild(create('span', 'pager-title', title));
+            pager.appendChild(anchor);
+        }
+
+        // A module outside a cluster stands on its own, so it points back to the list.
+        if (!module.cluster) {
+            addLink('modules.html', 'Next:', 'See more modules', 'pager-next');
+            return pager;
+        }
+
         var ordered = data.modules.slice().sort(function (a, b) {
             return a.number - b.number;
         });
         var index = ordered.indexOf(module);
-        var pager = create('nav', 'module-pager');
-        pager.setAttribute('aria-label', 'Other modules');
-
         [[ordered[index - 1], 'Previous module', 'pager-previous'],
          [ordered[index + 1], 'Next module', 'pager-next']].forEach(function (item) {
             var neighbour = item[0];
             if (!neighbour) return;
-            var anchor = link(moduleUrl(neighbour), '', 'pager-link ' + item[2]);
-            anchor.appendChild(create('span', 'pager-label', item[1]));
-            anchor.appendChild(create('span', 'pager-title',
+            addLink(moduleUrl(neighbour), item[1],
                 'Module ' + neighbour.number + ': ' + neighbour.title +
-                (neighbour.status === 'available' ? '' : ' (coming soon)')));
-            pager.appendChild(anchor);
+                (neighbour.status === 'available' ? '' : ' (coming soon)'),
+                item[2]);
         });
         return pager;
     }
 
-    // Marks the section in view, in the contents lists and the block strip.
+    // Marks the section in view in the contents lists.
     function watchSectionInView(entries, view) {
         if (!('IntersectionObserver' in window)) return;
         var visible = {};
@@ -333,11 +368,6 @@
                 anchor.classList.toggle('is-current', isCurrent);
                 if (isCurrent) anchor.setAttribute('aria-current', 'true');
                 else anchor.removeAttribute('aria-current');
-            });
-            Object.keys(view.strip).forEach(function (blockId) {
-                var pill = view.strip[blockId].pill;
-                if (sectionId(blockId) === currentId) pill.setAttribute('aria-current', 'true');
-                else pill.removeAttribute('aria-current');
             });
         }
 
