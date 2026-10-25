@@ -124,8 +124,6 @@
         var wrapper = create('div', 'quiz');
         if (!quiz || !Array.isArray(quiz.questions)) return wrapper;
         if (quiz.title) wrapper.appendChild(create('h3', 'quiz-title', quiz.title));
-        if (quiz.scored !== true) wrapper.appendChild(create('p', 'quiz-unscored', UNSCORED_LINE));
-
         var questions = quiz.questions.map(function (question) {
             var built = buildQuestion(moduleId, quiz, question, blocks || []);
             wrapper.appendChild(built.element);
@@ -138,6 +136,8 @@
                 question.update(answers[question.id]);
             });
         }
+
+        if (quiz.scored !== true) wrapper.appendChild(create('p', 'quiz-unscored', UNSCORED_LINE));
 
         refresh();
         progress.onChange(refresh);

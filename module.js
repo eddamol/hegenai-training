@@ -34,9 +34,12 @@
         return 'About ' + minutes + ' minutes';
     }
 
-    function describeModuleLength(module) {
-        var text = describeLength(module.minutes);
-        return module.extraMinutes ? text + ' + ' + module.extraMinutes + ' min.' : text;
+    function describeMinutes(minutes) {
+        if (minutes % 60 === 0) {
+            var hours = minutes / 60;
+            return hours + (hours === 1 ? ' hour' : ' hours');
+        }
+        return minutes + ' minutes';
     }
 
     function toBeConfirmed(text) {
@@ -95,9 +98,6 @@
         }
         text.appendChild(sentence);
 
-        var time = create('p', 'outcome-time', 'Time: ' + describeModuleLength(module));
-        if (!isAvailable) time.appendChild(create('span', 'status-pill', 'Coming soon'));
-        text.appendChild(time);
         card.appendChild(text);
 
         if (image && image.src) {
@@ -112,11 +112,28 @@
         return card;
     }
 
+    function renderMeta(module, isAvailable) {
+        var items = [['Module time', '~' + describeMinutes(module.minutes)]];
+        if (module.extraMinutes) items.push(['Post-module activity', '~' + describeMinutes(module.extraMinutes)]);
+        items.push(['For', 'Higher education educators']);
+        var meta = create('p', 'module-meta');
+        items.forEach(function (item, index) {
+            if (index > 0) meta.appendChild(create('span', 'module-meta-separator', '⋅'));
+            var entry = create('span');
+            entry.appendChild(create('strong', '', item[0] + ':'));
+            entry.appendChild(document.createTextNode(' ' + item[1]));
+            meta.appendChild(entry);
+        });
+        if (!isAvailable) meta.appendChild(create('span', 'status-pill', 'Coming soon'));
+        return meta;
+    }
+
     function renderHeader(module, isAvailable) {
         var header = create('header', 'module-header');
         header.appendChild(create('p', 'module-number', 'Module'));
         header.appendChild(create('h1', 'page-title', module.title));
 
+        header.appendChild(renderMeta(module, isAvailable));
         header.appendChild(renderOutcomeCard(module, isAvailable));
         return header;
     }

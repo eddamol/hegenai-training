@@ -30,7 +30,7 @@
 //                         **bold** is understood; if the bold phrase is exactly a block title
 //                         (Intro, See it, Try it, Make it, Plan it) it becomes a bold link to that block.
 //                         A quiz with scored: false shows "Not scored. Your answer stays in your browser."
-//                         under its title; an option without a note then shows "No right answer; this just
+//                         below the questions; an option without a note then shows "No right answer; this just
 //                         shows where you start." Every answered question gets a "Clear answer" button.
 //   sources  HTML for the "Sources and credits" section at the end of the module
 // The five blocks and their titles are the same for every module, so they are defined once.
@@ -58,7 +58,7 @@ window.HEGENAI_MODULES = {
                     minutes: null,
                     html: '<p><span class="to-be-confirmed">Intro content to be confirmed.</span></p>',
                     quiz: {
-                        title: "Where do you stand?",
+                        title: "Self-check",
                         scored: false,
                         questions: [
                             {
