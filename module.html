@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Module – HEGenAI Training</title>
+    <title>Module - HEGenAI Training: GenAI in Higher Education Assessment &amp; Feedback</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
     <link rel="stylesheet" href="style.css">
@@ -12,17 +12,26 @@
 
 <body>
 
-    <a class="site-logo" href="index.html"><img src="assets/logo-w.svg" alt="HEGenAI Training, home"></a>
+    <a class="skip-link" href="#main">Skip to main content</a>
 
     <header class="site-header">
-        <p class="site-title"><a href="index.html">HEGenAI Training</a></p>
-        <nav class="site-nav" aria-label="Main">
-            <a href="index.html">Home</a>
-            <a href="modules.html">Modules</a>
-        </nav>
+        <div class="site-header-inner">
+            <a class="site-logo" href="index.html" aria-label="HEGenAI Training, home">
+                <img src="assets/logo-w.svg" alt="">
+                <span class="site-wordmark">HEGenAI Training</span>
+            </a>
+            <button type="button" class="menu-button" aria-expanded="false" aria-controls="site-nav" hidden>
+                <span class="visually-hidden">Menu</span>
+                <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+            </button>
+            <nav class="site-nav" id="site-nav" aria-label="Main">
+                <a href="modules.html">Modules</a>
+                <a href="about.html">About &amp; Credits</a>
+            </nav>
+        </div>
     </header>
 
-    <main class="site-container">
+    <main id="main" class="site-container">
 
         <div id="module-page">
             <noscript>
@@ -42,6 +51,7 @@
         <p class="funding-disclaimer">Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or Uddannelses- og Forskningsstyrelsen. Neither the European Union nor the granting authority can be held responsible for them.</p>
     </footer>
 
+    <script src="site-header.js"></script>
     <script src="modules-data.js"></script>
     <script src="progress.js"></script>
     <script src="quiz.js"></script>

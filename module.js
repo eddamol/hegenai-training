@@ -6,7 +6,7 @@
     var page = document.getElementById('module-page');
     if (!data || !progress || !page) return;
 
-    var SITE_NAME = 'HEGenAI Training';
+    var SITE_NAME = 'HEGenAI Training: GenAI in Higher Education Assessment & Feedback';
     var SOURCES_ID = 'sources';
 
     function create(tag, className, text) {
@@ -47,7 +47,7 @@
     }
 
     function setTitle(text) {
-        document.title = text + ' – ' + SITE_NAME;
+        document.title = text + ' - ' + SITE_NAME;
     }
 
     function findModule(id) {
@@ -374,6 +374,13 @@
         return pager;
     }
 
+    // The strip at the top of the window that the sticky header covers,
+    // plus the same 16px margin as scroll-padding-top in style.css.
+    function headerClearance() {
+        var header = document.querySelector('.site-header');
+        return (header ? header.offsetHeight : 0) + 16;
+    }
+
     // Marks the section in view in the contents lists.
     function watchSectionInView(entries, view) {
         if (!('IntersectionObserver' in window)) return;
@@ -396,7 +403,7 @@
                 return visible[entry.id];
             })[0];
             if (current) mark(current.id);
-        }, { rootMargin: '-150px 0px -50% 0px' });
+        }, { rootMargin: '-' + headerClearance() + 'px 0px -50% 0px' });
 
         entries.forEach(function (entry) {
             var section = document.getElementById(entry.id);

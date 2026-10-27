@@ -15,7 +15,8 @@ and is never sent anywhere. Hosted on GitHub Pages; all links are relative.
 - `about.html`: about this site and credits
 - `privacy.html`: privacy notice
 - `style.css`: shared styling
-- `header-title.js`: fades the header title on the landing page
+- `site-header.js`: on narrow screens, folds the main navigation behind a menu button and hides the header while scrolling down
+- `home.js`: opens one block card at a time on the landing page
 - `modules-data.js`: the list of blocks and modules (see the comment at the top for how to add a module)
 - `progress.js`: saves progress in the browser's localStorage under `hegenai:progress:v1`
 - `modules.js`: draws the module cards on `modules.html`

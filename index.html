@@ -13,122 +13,187 @@
 
 <body>
 
-    <a class="site-logo" href="index.html"><img src="assets/logo-w.svg" alt="HEGenAI Training, home"></a>
+    <a class="skip-link" href="#main">Skip to main content</a>
 
     <header class="site-header">
-        <p class="site-title"><a href="index.html">HEGenAI Training</a></p>
-        <nav class="site-nav" aria-label="Main">
-            <a href="index.html" aria-current="page">Home</a>
-            <a href="modules.html">Modules</a>
-        </nav>
+        <div class="site-header-inner">
+            <a class="site-logo" href="index.html" aria-label="HEGenAI Training, home">
+                <img src="assets/logo-w.svg" alt="">
+                <span class="site-wordmark">HEGenAI Training</span>
+            </a>
+            <button type="button" class="menu-button" aria-expanded="false" aria-controls="site-nav" hidden>
+                <span class="visually-hidden">Menu</span>
+                <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+            </button>
+            <nav class="site-nav" id="site-nav" aria-label="Main">
+                <a href="modules.html">Modules</a>
+                <a href="about.html">About &amp; Credits</a>
+            </nav>
+        </div>
     </header>
 
-    <main class="site-container">
+    <main id="main" class="home">
 
-        <section class="hero">
-            <h1>HEGenAI Training</h1>
-            <p class="hero-tagline">Training for GenAI in Higher Education Assessment &amp; Feedback</p>
+        <div class="site-container home-top">
+            <section class="hero">
+                <div class="hero-text">
+                    <h1>GenAI Training for Higher-Education Educators.</h1>
+                    <p class="hero-subline">Self-paced online modules, about an hour each. Learn one practical way at a time to use GenAI in assessment or feedback and leave with something to use in your teaching.</p>
+                </div>
 
-            <a class="pill-button" href="https://www.survey-xact.dk/LinkCollector?key=PE5CLT7CJ5C2" target="_blank" rel="noopener noreferrer">Sign up</a>
+                <div class="start-tiles">
+                    <a class="start-tile" href="modules.html">
+                        <span class="start-tile-title">Start learning</span>
+                        <span class="start-tile-text">Browse available modules</span>
+                    </a>
+                    <!-- STUDY: remove when sign-ups close -->
+                    <!-- Then replace this tile with an "About the project" tile linking to about.html. -->
+                    <a class="start-tile start-tile-accent" href="#study">
+                        <span class="start-tile-title">Join the study</span>
+                        <span class="start-tile-text">Help test the training: 1-1.5 hours plus an optional 20-minute hand-in</span>
+                    </a>
+                    <!-- /STUDY -->
+                </div>
+            </section>
+        </div>
 
-        </section>
+        <div class="fact-band">
+            <ul class="fact-ribbon">
+                <li>Free, made for educators</li>
+                <li>~1 hour per module</li>
+                <li><span>~20 min. <span class="no-break">post-module</span> <span class="no-break">hand-in</span> for a certificate</span></li>
+                <li>Part of the EU-funded HEGenAI project</li>
+            </ul>
+        </div>
 
-        <section class="section">
-            <h2>About This Page</h2>
-            <p>
-                HEGenAI Training is a platform for short, practical training modules for educators in higher education, on using generative AI in assessment and feedback. It is for educators in higher education, from any institution or discipline. It is developed as a part of a research project, and two events are upcoming: A pilot and a training session.
-            </p>
-        </section>
+        <div class="site-container home-sections">
+            <section class="section">
+                <h2>What to expect in a module</h2>
+                <p>Each module is built around one practical method and takes about an hour. For a certificate, do a short hand-in activity after the module.</p>
 
-        <section class="section">
-            <h2>Why Participate?</h2>
-            <p>
-                As a higher education educator, you can make a small time investment that leads to something useful on both sides. You spend about an hour learning one practical way to use GenAI in a real assessment and feedback situation - something you should be able to use in practice after the hour. That is your benefit. And for the educators that follow, your participation and input can help shape the training modules before they roll out at a larger scale.
-            </p>
-            <div class="faq">
-                <details class="faq-item" name="faq">
-                    <summary>Who can participate?</summary>
-                    <p>Any higher education educator who is actively working with feedback and assessment or will do so within a year, from any discipline or country. No prior AI experience needed.</p>
-                </details>
-                <details class="faq-item" name="faq">
-                    <summary>Where will the sessions be?</summary>
-                    <p>Both sessions will most likely be hybrid, with some participants at DTU, Lyngby, and some online.</p>
-                </details>
-                <details class="faq-item" name="faq">
-                    <summary>Should I do the pilot or the training?</summary>
-                    <p>Pilot if you want to be among the first to react to a pilot training module (no follow-up work). Training if you want to be in the second round, apply what you learned, and hand in a simple work template.</p>
-                </details>
-                <details class="faq-item" name="faq">
-                    <summary>What exactly will I learn?</summary>
-                    <p>The topics have not been confirmed, but possible topics include &lsquo;disclosure of GenAI use in written assignments&rsquo; and &lsquo;GenAI for making effective multiple choice assessments.&rsquo; Got topic suggestions? Feel free to contact the researcher via email: <a href="mailto:s250265@dtu.dk">s250265@dtu.dk</a></p>
-                </details>
-            </div>
-        </section>
+                <!-- Without JavaScript every panel is shown; home.js turns the cards into an accordion. -->
+                <div class="block-flow">
+                    <h3 class="block-card-heading">
+                        <button type="button" class="block-card" id="block-card-intro" aria-expanded="true" aria-controls="block-panel-intro">
+                            <span class="block-card-title">Intro</span>
+                            <span class="block-card-chevron" aria-hidden="true"></span>
+                        </button>
+                    </h3>
+                    <div class="block-panel" id="block-panel-intro" role="region" aria-labelledby="block-card-intro">
+                        <p>The key learning outcome and a quick self-check on where you stand.</p>
+                    </div>
 
-        <section class="section">
-            <h2>The Pilot &amp; Training</h2>
-            <p>There are two ways to take part. Sign-up is open.</p>
-            <div class="cards">
-                <article class="card">
-                    <h3>Pilot</h3>
-                    <ul>
-                        <li>Try out a draft training module</li>
-                        <li>Give feedback in a short, anonymous survey</li>
-                        <li>No work to submit and no certification</li>
+                    <h3 class="block-card-heading">
+                        <button type="button" class="block-card" id="block-card-see" aria-expanded="true" aria-controls="block-panel-see">
+                            <span class="block-card-title">See it</span>
+                            <span class="block-card-chevron" aria-hidden="true"></span>
+                        </button>
+                    </h3>
+                    <div class="block-panel" id="block-panel-see" role="region" aria-labelledby="block-card-see">
+                        <p>See the method used on one real example.</p>
+                    </div>
+
+                    <h3 class="block-card-heading">
+                        <button type="button" class="block-card" id="block-card-try" aria-expanded="true" aria-controls="block-panel-try">
+                            <span class="block-card-title">Try it</span>
+                            <span class="block-card-chevron" aria-hidden="true"></span>
+                        </button>
+                    </h3>
+                    <div class="block-panel" id="block-panel-try" role="region" aria-labelledby="block-card-try">
+                        <p>Apply the method to your own material, using GenAI.</p>
+                    </div>
+
+                    <h3 class="block-card-heading">
+                        <button type="button" class="block-card" id="block-card-make" aria-expanded="true" aria-controls="block-panel-make">
+                            <span class="block-card-title">Make it</span>
+                            <span class="block-card-chevron" aria-hidden="true"></span>
+                        </button>
+                    </h3>
+                    <div class="block-panel" id="block-panel-make" role="region" aria-labelledby="block-card-make">
+                        <p>Finish a tool you can use in your own assessment or feedback work.</p>
+                    </div>
+
+                    <h3 class="block-card-heading">
+                        <button type="button" class="block-card" id="block-card-plan" aria-expanded="true" aria-controls="block-panel-plan">
+                            <span class="block-card-title">Plan it</span>
+                            <span class="block-card-chevron" aria-hidden="true"></span>
+                        </button>
+                    </h3>
+                    <div class="block-panel" id="block-panel-plan" role="region" aria-labelledby="block-card-plan">
+                        <p>Decide where it fits in your course, and when.</p>
+                    </div>
+
+                    <span class="block-flow-plus" aria-hidden="true">+</span>
+
+                    <h3 class="block-card-heading block-card-heading-optional">
+                        <button type="button" class="block-card block-card-optional" id="block-card-log" aria-expanded="true" aria-controls="block-panel-log">
+                            <span class="optional-tag">Optional</span>
+                            <span class="block-card-title">Practice log</span>
+                            <span class="block-card-chevron" aria-hidden="true"></span>
+                        </button>
+                    </h3>
+                    <div class="block-panel block-panel-optional" id="block-panel-log" role="region" aria-labelledby="block-card-log">
+                        <p>Use what you made in practice, fill out the short practice log provided in the module, and hand it in for certification.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STUDY: remove when sign-ups close -->
+            <section class="section" id="study">
+                <div class="study-card">
+                    <h2>Help test the training</h2>
+                    <p>HEGenAI Training is being developed and tested as part of a master's research study (more in <a href="about.html">About &amp; Credits</a>). Do you teach in higher education? Then we invite you to test a module on 2 or 16 November: take a module, share your feedback, and keep the tool you build.</p>
+
+                    <ul class="study-events">
+                        <li class="study-event">
+                            <time class="event-date" datetime="2026-11-02"><span class="event-day">2</span> <span class="event-month">Nov</span></time>
+                            <div>
+                                <h3>Pilot</h3>
+                                <p>About 1 hour + 10-minute survey</p>
+                            </div>
+                        </li>
+                        <li class="study-event">
+                            <time class="event-date" datetime="2026-11-16"><span class="event-day">16</span> <span class="event-month">Nov</span></time>
+                            <div>
+                                <h3>Training</h3>
+                                <p>About 1 hour + 15 minutes of surveys + an optional 20-minute activity</p>
+                            </div>
+                        </li>
                     </ul>
-                </article>
-                <article class="card">
-                    <h3>Training</h3>
-                    <ul>
-                        <li>Take the training session</li>
-                        <li>Use what you learned in your own teaching</li>
-                        <li>Submit a simple activity template</li>
-                        <li>Fill in a short survey before and after</li>
-                    </ul>
-                </article>
-            </div>
-        </section>
+                    <p>Online or in person.</p>
 
-        <section class="section" id="dates">
-            <h2>Dates</h2>
-            <p>Note: Dates and details may change.</p>
-            <ol class="timeline">
-                <li class="timeline-item">
-                    <h3>Sign-Ups and Confirmed Dates</h3>
-                    <p class="timeline-date">16-26 Oct 2026</p>
-                    <p>Sign up and receive your confirmed dates.</p>
-                </li>
-                <li class="timeline-item">
-                    <h3>Pilot</h3>
-                    <p class="timeline-date">Mon 2 Nov 2026</p>
-                    <p>Pilot session of about an hour.</p>
-                </li>
-                <li class="timeline-item">
-                    <h3>Training session</h3>
-                    <p class="timeline-date">Mon 16 Nov 2026</p>
-                    <p>Training session of about an hour.</p>
-                </li>
-                <li class="timeline-item">
-                    <h3>Activity window</h3>
-                    <p class="timeline-date">16-26 Nov 2026</p>
-                    <p>Time to use what you learned in your own teaching.</p>
-                </li>
-                <li class="timeline-item">
-                    <h3>Hand-in and post-survey</h3>
-                    <p class="timeline-date">Thu 26 Nov 2026</p>
-                    <p>Activity template and post-survey due.</p>
-                </li>
-            </ol>
-        </section>
-        <section class="section">
-            <h2>Who Is Behind This?</h2>
-            <p>
-                HEGenAI Training is run by Edda Möller, an MSc student at DTU, supervised by Md Saifuddin Khalid. It is a part of her thesis project, carried out alongside the Erasmus+ funded project HEGenAI. The full thesis title is <em>Design, Implementation, and Impact Evaluation of Generative AI Training for Assessment and Feedback in Higher Education: A Design-Based Research Study</em>. Both the pilot and the training feed back into the design of the training.
-            </p>
-            <p>
-                Questions? Write to Edda: <a href="mailto:s250265@dtu.dk">s250265@dtu.dk</a>
-            </p>
-        </section>
+                    <p><a class="pill-button" href="https://www.survey-xact.dk/LinkCollector?key=PE5CLT7CJ5C2" target="_blank" rel="noopener noreferrer">Sign up (1 min)</a></p>
+                </div>
+
+                <div class="faq">
+                    <details class="faq-item" name="faq">
+                        <summary>What does taking part involve?</summary>
+                        <p>Sign up with a short form, join one session, do a module, and answer short surveys before and after. In the training, you can also do a short activity to hand in afterwards.</p>
+                    </details>
+                    <details class="faq-item" name="faq">
+                        <summary>Who can join?</summary>
+                        <p>Anyone teaching in higher education, in any discipline and with any level of GenAI experience.</p>
+                    </details>
+                    <details class="faq-item" name="faq">
+                        <summary>What do I get?</summary>
+                        <p>Learn one practical way to use GenAI in assessment or feedback, and keep what you make with it.</p>
+                    </details>
+                    <details class="faq-item" name="faq">
+                        <summary>What happens to my data?</summary>
+                        <p>Taking part is voluntary and you can withdraw at any time. Progress and self-check answers stay in your own browser. Details are in the <a href="privacy.html">privacy notice</a>.</p>
+                    </details>
+                    <details class="faq-item" name="faq">
+                        <summary>Do I need to join the study to use the modules?</summary>
+                        <p>No. The study is a separate, optional way to take part.</p>
+                    </details>
+                    <details class="faq-item" name="faq">
+                        <summary>Who is behind this?</summary>
+                        <p>A master's thesis at DTU, part of the Erasmus+ HEGenAI project. More in <a href="about.html">About &amp; Credits</a>.</p>
+                    </details>
+                </div>
+            </section>
+            <!-- /STUDY -->
+        </div>
 
     </main>
 
@@ -141,6 +206,7 @@
         <p class="funding-disclaimer">Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or Uddannelses- og Forskningsstyrelsen. Neither the European Union nor the granting authority can be held responsible for them.</p>
     </footer>
 
-    <script src="header-title.js"></script>
+    <script src="site-header.js"></script>
+    <script src="home.js"></script>
 </body>
 </html>
