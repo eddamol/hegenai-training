@@ -38,6 +38,17 @@
         });
     }
 
+    // A button under the note that opens one of the module's materials (resources.js).
+    function appendAction(parent, action) {
+        var resources = window.HEGenAIResources;
+        if (!action.label || !resources || !resources.has(action.resource)) return;
+        var button = create('button', 'pill-button pill-button-secondary quiz-action', action.label);
+        button.type = 'button';
+        button.setAttribute('data-open-resource', action.resource);
+        button.setAttribute('aria-haspopup', 'dialog');
+        parent.appendChild(create('p')).appendChild(button);
+    }
+
     function buildQuestion(moduleId, quiz, question, blocks) {
         var scored = quiz.scored === true;
         var groupName = 'quiz-' + moduleId + '-' + question.id;
@@ -102,6 +113,7 @@
                 feedback.textContent = '';
                 if (picked !== -1) {
                     var note = question.options[picked].note;
+                    var action = question.options[picked].action;
                     if (scored) {
                         feedback.appendChild(create('p', isCorrect ? 'quiz-verdict is-correct' : 'quiz-verdict',
                             isCorrect ? '✓ Correct' : '✗ Not quite'));
@@ -112,6 +124,7 @@
                     } else {
                         feedback.appendChild(create('p', '', NO_NOTE_FALLBACK));
                     }
+                    if (action) appendAction(feedback, action);
                 }
             }
             clear.hidden = picked === -1;
@@ -124,6 +137,7 @@
         var wrapper = create('div', 'quiz');
         if (!quiz || !Array.isArray(quiz.questions)) return wrapper;
         if (quiz.title) wrapper.appendChild(create('h3', 'quiz-title', quiz.title));
+        if (quiz.intro) wrapper.appendChild(create('p', 'quiz-intro', quiz.intro));
         var questions = quiz.questions.map(function (question) {
             var built = buildQuestion(moduleId, quiz, question, blocks || []);
             wrapper.appendChild(built.element);

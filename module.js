@@ -84,9 +84,130 @@
         page.appendChild(message);
     }
 
+    function findResource(module, id) {
+        return (module.resources || []).filter(function (resource) {
+            return resource.id === id;
+        })[0];
+    }
+
+    // A small printed-page view of a module material. Selecting it opens the
+    // material in the resource panel (resources.js).
+    function renderPreview(preview, resource) {
+        var figure = create('figure', 'outcome-figure outcome-preview');
+        var frame = create('div', 'preview-frame');
+        var pageView = create('div', 'preview-page block-body');
+        pageView.innerHTML = resource.html;
+        pageView.setAttribute('aria-hidden', 'true');
+        pageView.inert = true;
+        frame.appendChild(pageView);
+        var open = create('button', 'preview-open');
+        open.type = 'button';
+        open.setAttribute('data-open-resource', resource.id);
+        open.setAttribute('aria-haspopup', 'dialog');
+        frame.appendChild(open);
+        figure.appendChild(frame);
+
+        var caption = create('figcaption', '', preview.caption || resource.title);
+        caption.id = 'preview-caption-' + resource.id;
+        open.setAttribute('aria-labelledby', caption.id);
+        figure.appendChild(caption);
+        return figure;
+    }
+
+    // Fills each <div data-text="<id>"> in a block with a prompt box or a draft
+    // box from module.texts. Lines are always set as text, never as HTML. Lines
+    // after showLines stay hidden until the toggle under the box is pressed.
+    function renderTexts(container, module) {
+        var slots = container.querySelectorAll('[data-text]');
+        Array.prototype.forEach.call(slots, function (slot) {
+            var id = slot.getAttribute('data-text');
+            var text = (module.texts || []).filter(function (item) {
+                return item.id === id;
+            })[0];
+            if (!text) return;
+            var isDraft = text.kind === 'draft';
+            var render = isDraft ? renderDraftLines : renderPromptLines;
+            slot.className = isDraft ? 'text-box draft-box' : 'text-box prompt-box';
+            slot.setAttribute('role', 'group');
+            if (isDraft) {
+                var label = create('p', 'draft-label', text.label);
+                label.id = 'text-' + id + '-label';
+                slot.setAttribute('aria-labelledby', label.id);
+                slot.appendChild(label);
+            } else if (text.label) {
+                slot.setAttribute('aria-label', text.label);
+            }
+
+            var lines = text.lines || [];
+            var shown = typeof text.showLines === 'number' ? text.showLines : lines.length;
+            var body = create('div', 'text-box-body');
+            body.appendChild(render(lines.slice(0, shown)));
+            slot.appendChild(body);
+            if (shown >= lines.length) return;
+
+            var moreLabel = text.moreLabel || 'Show all';
+            var more = render(lines.slice(shown));
+            more.id = 'text-' + id + '-more';
+            more.hidden = true;
+            body.appendChild(more);
+            body.classList.add('is-collapsed');
+            var toggle = create('button', 'text-box-toggle', moreLabel);
+            toggle.type = 'button';
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.setAttribute('aria-controls', more.id);
+            toggle.addEventListener('click', function () {
+                var opening = more.hidden;
+                more.hidden = !opening;
+                body.classList.toggle('is-collapsed', !opening);
+                toggle.setAttribute('aria-expanded', String(opening));
+                toggle.textContent = opening ? 'Show less' : moreLabel;
+            });
+            slot.appendChild(toggle);
+        });
+    }
+
+    // One paragraph per line; {{...}} marks a filled-in value.
+    function renderPromptLines(lines) {
+        var wrapper = create('div');
+        lines.forEach(function (line) {
+            var paragraph = create('p', 'prompt-line');
+            line.split(/\{\{|\}\}/).forEach(function (part, index) {
+                if (!part) return;
+                paragraph.appendChild(index % 2 === 1
+                    ? create('mark', 'prompt-value', part)
+                    : document.createTextNode(part));
+            });
+            wrapper.appendChild(paragraph);
+        });
+        return wrapper;
+    }
+
+    // "# " starts a heading, "- " a list item, anything else a paragraph.
+    function renderDraftLines(lines) {
+        var wrapper = create('div');
+        var list = null;
+        lines.forEach(function (line) {
+            if (line.indexOf('- ') === 0) {
+                if (!list) list = wrapper.appendChild(create('ul'));
+                list.appendChild(create('li', '', line.slice(2)));
+                return;
+            }
+            list = null;
+            if (line.indexOf('# ') === 0) {
+                wrapper.appendChild(create('h4', 'draft-heading', line.slice(2)));
+            } else {
+                wrapper.appendChild(create('p', '', line));
+            }
+        });
+        return wrapper;
+    }
+
     function renderOutcomeCard(module, isAvailable) {
         var image = module.outcomeImage;
-        var card = create('div', image && image.src ? 'card outcome-card has-image' : 'card outcome-card');
+        var preview = module.outcomePreview;
+        var previewResource = preview && findResource(module, preview.resource);
+        var card = create('div', 'card outcome-card' +
+            (previewResource ? ' has-preview' : image && image.src ? ' has-image' : ''));
 
         var text = create('div', 'outcome-text');
         text.appendChild(create('p', 'outcome-label', 'Key learning outcome'));
@@ -100,7 +221,9 @@
 
         card.appendChild(text);
 
-        if (image && image.src) {
+        if (previewResource) {
+            card.appendChild(renderPreview(preview, previewResource));
+        } else if (image && image.src) {
             var figure = create('figure', 'outcome-figure');
             var picture = create('img');
             picture.src = image.src;
@@ -115,7 +238,7 @@
     function renderMeta(module, isAvailable) {
         var items = [['Module time', '~' + describeMinutes(module.minutes)]];
         if (module.extraMinutes) items.push(['Post-module activity', '~' + describeMinutes(module.extraMinutes)]);
-        items.push(['For', 'Higher education educators']);
+        if (!module.audience) items.push(['For', 'Higher education educators']);
         var meta = create('p', 'module-meta');
         items.forEach(function (item, index) {
             if (index > 0) meta.appendChild(create('span', 'module-meta-separator', '⋅'));
@@ -134,12 +257,27 @@
         header.appendChild(create('h1', 'page-title', module.title));
 
         header.appendChild(renderMeta(module, isAvailable));
-        header.appendChild(renderOutcomeCard(module, isAvailable));
         return header;
+    }
+
+    // "Before you start": who the module is for and what to have ready. Sits
+    // above the contents panel and scrolls away, while the panel stays put.
+    function renderFacts(module) {
+        var card = create('section', 'card module-facts');
+        card.setAttribute('aria-label', 'Before you start');
+        var list = create('dl');
+        [['For', module.audience], ['What you need', module.needs]].forEach(function (item) {
+            if (!item[1]) return;
+            list.appendChild(create('dt', '', item[0] + ':'));
+            list.appendChild(create('dd', '', item[1]));
+        });
+        card.appendChild(list);
+        return card;
     }
 
     function renderComingSoon(module) {
         page.appendChild(renderHeader(module, false));
+        page.appendChild(renderOutcomeCard(module, false));
         var card = create('div', 'card');
         var message = create('p', '', 'This module is coming soon. ');
         message.appendChild(link('modules.html', 'See all modules'));
@@ -162,9 +300,30 @@
         return list;
     }
 
+    // Module materials open in the resource panel (resources.js), so they are
+    // buttons rather than links.
+    function buildMaterialsList(resources) {
+        var wrapper = create('div', 'contents-materials');
+        wrapper.appendChild(create('h3', 'contents-subtitle', 'Module materials'));
+        var list = create('ul', 'contents-list');
+        resources.forEach(function (resource) {
+            var item = create('li');
+            var button = create('button', 'contents-resource', resource.title);
+            button.type = 'button';
+            button.setAttribute('data-open-resource', resource.id);
+            button.setAttribute('aria-haspopup', 'dialog');
+            item.appendChild(button);
+            list.appendChild(item);
+        });
+        wrapper.appendChild(list);
+        return wrapper;
+    }
+
     function renderModule(module) {
         var blocks = data.blocks;
         var view = { strip: {}, toggles: {}, notes: {}, contentsLinks: [] };
+        var resources = Array.isArray(module.resources) ? module.resources : [];
+        if (window.HEGenAIResources) window.HEGenAIResources.setup(resources);
 
         page.appendChild(renderHeader(module, true));
 
@@ -176,6 +335,8 @@
         var mobileContents = create('details', 'card contents-mobile');
         mobileContents.appendChild(create('summary', '', 'Module Blocks'));
         mobileContents.appendChild(buildContentsList(entries, view.contentsLinks));
+        if (resources.length) mobileContents.appendChild(buildMaterialsList(resources));
+        // Opening a material leaves the menu open, so focus can return to its button.
         mobileContents.addEventListener('click', function (event) {
             if (event.target.tagName === 'A') mobileContents.open = false;
         });
@@ -189,6 +350,7 @@
         panelTitle.id = 'contents-panel-title';
         panel.appendChild(panelTitle);
         panel.appendChild(buildContentsList(entries, view.contentsLinks));
+        if (resources.length) panel.appendChild(buildMaterialsList(resources));
 
         // Progress
         var standing = create('section', 'card standing');
@@ -252,6 +414,7 @@
             var body = create('div', 'block-body');
             if (details.html) {
                 body.innerHTML = details.html;
+                renderTexts(body, module);
             } else {
                 body.appendChild(create('p')).appendChild(toBeConfirmed('Content to be confirmed.'));
             }
@@ -297,10 +460,15 @@
 
         content.appendChild(renderPager(module));
 
-        // The panel comes first so keyboard users reach it before the blocks;
-        // CSS places it in the right-hand column.
-        page.appendChild(mobileContents);
-        layout.appendChild(panel);
+        // Narrow screens follow this order: outcome, "Before you start", contents
+        // menu, blocks. Wide screens put the side column on the right, so keyboard
+        // users still reach the contents panel before the blocks.
+        var side = create('div', 'module-side');
+        if (module.audience || module.needs) side.appendChild(renderFacts(module));
+        side.appendChild(panel);
+        layout.appendChild(renderOutcomeCard(module, true));
+        layout.appendChild(side);
+        layout.appendChild(mobileContents);
         layout.appendChild(content);
         page.appendChild(layout);
 
