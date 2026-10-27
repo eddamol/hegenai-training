@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Privacy Notice – HEGenAI Training</title>
+    <title>Privacy Notice - HEGenAI Training: GenAI in Higher Education Assessment &amp; Feedback</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 
     <link rel="stylesheet" href="style.css">
@@ -12,15 +12,26 @@
 
 <body>
 
-    <a class="site-logo" href="index.html"><img src="assets/logo-w.svg" alt="HEGenAI Training, home"></a>
+    <a class="skip-link" href="#main">Skip to main content</a>
 
     <header class="site-header">
-        <p class="site-title"><a href="index.html">HEGenAI Training</a></p>
+        <div class="site-header-inner">
+            <a class="site-logo" href="index.html" aria-label="HEGenAI Training, home">
+                <img src="assets/logo-w.svg" alt="">
+                <span class="site-wordmark">HEGenAI Training</span>
+            </a>
+            <button type="button" class="menu-button" aria-expanded="false" aria-controls="site-nav" hidden>
+                <span class="visually-hidden">Menu</span>
+                <span class="menu-icon" aria-hidden="true"><span></span><span></span><span></span></span>
+            </button>
+            <nav class="site-nav" id="site-nav" aria-label="Main">
+                <a href="modules.html">Modules</a>
+                <a href="about.html">About &amp; Credits</a>
+            </nav>
+        </div>
     </header>
 
-    <main class="site-container">
-
-        <p class="back-link"><a href="index.html">Back to the start page</a></p>
+    <main id="main" class="site-container">
 
         <article class="notice">
             <h1>Privacy Notice</h1>
@@ -34,6 +45,8 @@
             <h2>This website</h2>
 
             <p>This website collects no personal data. It has no accounts, forms, cookies, or tracking. The hosting service may log visitors' IP addresses for security, but in that case, I do not have access to them. The sign-up button opens a SurveyXact survey in a new window. The website does not collect what you enter there.</p>
+
+            <p>The training pages remember which blocks you have marked as done and which self-check answers you gave, in your own browser only. This is never sent to me or anyone else, and I cannot see it. You can clear it with &ldquo;Reset my progress&rdquo; on the Modules page or by clearing your browser's site data.</p>
 
             <h2>What Is Collected from You as a Participant</h2>
 
@@ -79,10 +92,14 @@
     </main>
 
     <footer class="site-footer">
+        <!-- EU emblem goes here once assets/eu-emblem.svg or assets/eu-emblem.png exists (official artwork, unmodified), e.g.:
+        <img class="footer-emblem" src="assets/eu-emblem.svg" alt="Funded by the European Union">
+        -->
         <p>This is a research and training pilot, not a formal degree programme.</p>
-        <p><a href="privacy.html">Privacy notice</a></p>
-        <!-- EU emblem file goes in assets/ (use the official artwork), together with the funding text. -->
+        <p class="footer-links"><a href="modules.html">Modules</a> · <a href="about.html#credits">About &amp; credits</a> · <a href="privacy.html">Privacy notice</a></p>
+        <p class="funding-disclaimer">Funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or Uddannelses- og Forskningsstyrelsen. Neither the European Union nor the granting authority can be held responsible for them.</p>
     </footer>
 
+    <script src="site-header.js"></script>
 </body>
 </html>
