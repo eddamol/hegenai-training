@@ -4,6 +4,9 @@
 //                                    named in config.levelsFrom are looked up
 //   get(moduleId)                    the saved values as { key: "text" }; an empty string
 //                                    where nothing is saved. Level is "1" to "5" or "".
+//   set(moduleId, key, value)        saves one value next to the form's (used for ticks)
+//   readLevels(scope, summaryText)   the levels of a drop-down, as { dropdown, levels }
+// Every change, including "Clear", fires "hegenai:form-change" on document.
 // Values are saved as the visitor types, under "hegenai:form:<moduleId>:v1", and are
 // never sent anywhere. All text is set as text or as input values, never as HTML.
 (function () {
@@ -42,6 +45,18 @@
         } catch (error) {
             // Storage blocked or full: the values last until the page is closed.
         }
+    }
+
+    function notify(moduleId) {
+        document.dispatchEvent(new CustomEvent('hegenai:form-change', { detail: { moduleId: moduleId } }));
+    }
+
+    function set(moduleId, key, value) {
+        var values = load(moduleId);
+        if (value) values[key] = value;
+        else delete values[key];
+        save(moduleId, values);
+        notify(moduleId);
     }
 
     function get(moduleId) {
@@ -85,11 +100,20 @@
         var status = create('p', 'form-status');
         status.setAttribute('role', 'status');
 
+        // Saved values are read again each time, so ticks and other tabs are kept.
         function remember(key, value) {
-            values[key] = value;
-            save(moduleId, values);
+            set(moduleId, key, value);
+        }
+        function syncFromStorage() {
+            values = get(moduleId);
             refreshClear();
         }
+        document.addEventListener('hegenai:form-change', function (event) {
+            if (event.detail.moduleId === moduleId) syncFromStorage();
+        });
+        window.addEventListener('storage', function (event) {
+            if (event.key === storageKey(moduleId)) syncFromStorage();
+        });
 
         // Top buttons
         var tools = create('div', 'form-tools');
@@ -233,10 +257,9 @@
                 input.control.value = '';
                 if (input.refresh) input.refresh();
             });
-            values = {};
-            save(moduleId, values);
+            save(moduleId, {});
+            notify(moduleId);
             resetClear();
-            refreshClear();
             status.textContent = 'All fields cleared.';
             if (inputs.length) inputs[0].control.focus();
         });
@@ -252,12 +275,11 @@
                 input.control.value = input.spec.practice;
                 remember(input.spec.key, input.spec.practice);
             });
-            refreshClear();
             status.textContent = 'Steps 1 to 4 filled in with the practice case. The level is left for you to choose.';
         });
 
         return form;
     }
 
-    window.HEGenAIForm = { build: build, get: get };
+    window.HEGenAIForm = { build: build, get: get, set: set, readLevels: readLevels };
 })();

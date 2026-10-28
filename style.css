@@ -1690,6 +1690,61 @@ textarea.form-control {
     color: var(--primary-dark);
 }
 
+/* Numbered checklist with tick boxes (make-it.js). */
+.block-body .tick-list {
+    margin: 12px 0 16px;
+    padding: 0;
+    list-style: none;
+    counter-reset: tick;
+}
+
+.tick-list li {
+    margin: 0 0 8px;
+    counter-increment: tick;
+}
+
+.tick-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.tick-item::before {
+    content: counter(tick) ".";
+    flex: none;
+    min-width: 1.4em;
+    font-weight: 700;
+}
+
+.tick-item input {
+    flex: none;
+    width: 1.1em;
+    height: 1.1em;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+.tick-text {
+    flex: 1;
+}
+
+/* The live prompt in Make it. */
+.prompt-notice {
+    margin: 12px 0 0;
+    padding: 8px 12px;
+    border-left: 4px solid var(--primary);
+    background-color: var(--primary-tint);
+}
+
+.prompt-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 12px;
+    margin: 12px 0 0;
+}
+
 /* Prompt boxes and draft boxes (data-text). */
 .text-box {
     margin: 12px 0 0;

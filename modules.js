@@ -26,7 +26,8 @@
 
     function describeModuleLength(module) {
         var text = describeLength(module.minutes);
-        return module.extraMinutes ? text + ' + ' + module.extraMinutes + ' min.' : text;
+        return module.extraMinutes ? text + ' + ' + module.extraMinutes + ' min.' +
+            (module.extraLabel ? ' for the ' + module.extraLabel : '') : text;
     }
 
     function buildProgress(module) {

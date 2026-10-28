@@ -24,6 +24,8 @@ never sent anywhere. Hosted on GitHub Pages; all links are relative.
 - `module.js`: draws a module page from the data and handles "Mark as done"
 - `quiz.js`: draws the self-check questions in a block and saves the answers
 - `form.js`: draws a module's numbered form and keeps its values in the browser under `hegenai:form:<module-id>:v1`
+- `make-it.js`: draws the live prompt in a module's Make it block (built from the form's saved values, with a copy button) and adds tick boxes to a checklist
+- `downloads/`: files trainees download, such as `practice-log-module-1.docx`. The Word file is edited in Word from now on; it is no longer generated from a script
 - `resources.js`: opens a module's materials (for example a sample case) in a panel beside the blocks, or full screen on narrow screens
 - `assets/module-1/`: pictures used in Module 1 (`aias-figure-1.png`)
 - `assets/`: `logo-w.svg`, `logo-b.svg`, `favicon.svg` (placeholders; replace with the real files under the same names)
@@ -54,7 +56,8 @@ All module content lives in `modules-data.js`, as `window.HEGENAI_MODULES`:
       audience: "...",             // optional; "For" in the "Before you start" card
       needs: "...",                // optional; "What you need" in the same card
       minutes: 60,
-      extraMinutes: 20,            // optional post-module activity, in minutes
+      extraMinutes: 10,            // optional post-module activity, in minutes
+      extraLabel: "practice log", // optional; what it is for, shown as "+ 10 min. for the practice log"
       status: "available",         // or "soon": not linked, page shows "Coming soon"
       blocks: [
         { id: "intro", minutes: 10, html: "<p>...</p>" },   // id matches a shared block
@@ -176,6 +179,14 @@ browser." under its title, and an option without a note shows "No right answer;
 this just shows where you start." Every answered question has a "Clear answer"
 button that removes that answer. Answering never marks a block as done and never
 locks anything. Answers are kept with the progress, in the visitor's browser only.
+
+A `kind: "live-prompt"` text has no `lines`: `make-it.js` builds it from the
+form values and the level list in See it. Fields that are empty show as their
+`[placeholder]`, and a notice links to Try it while any is empty. A list written
+as `<ol class="tick-list" data-checklist>` gets tick boxes; each tick is saved as
+`check1`, `check2` and so on next to the form's values, so the form's Clear also
+removes them. `HEGenAIForm.set(moduleId, key, value)` saves one value and every
+change fires `hegenai:form-change` on `document`.
 
 ### Forms
 

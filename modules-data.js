@@ -17,6 +17,7 @@
 //   needs    optional; shown under "What you need" in the same card
 //   minutes  length in minutes (60 shows as "About 1 hour")
 //   extraMinutes  extra time on top, in minutes (20 adds " + 20 min."); optional
+//   extraLabel    optional; what the extra time is for, e.g. "practice log" (adds " for the practice log")
 //   status   "soon" (shown as "Coming soon", not linked) or "available"
 //   blocks   content for each block, by block id (see below); blocks left out show a placeholder
 //              id       one of the block ids defined at the top
@@ -108,7 +109,8 @@ window.HEGENAI_MODULES = {
             audience: "Higher education educators who set written assignments. No prior GenAI experience needed.",
             needs: "A GenAI tool. This module uses Microsoft Copilot as the example, and a free account is enough. Also, either an assignment you set or the practice case provided in the module.",
             minutes: 55,
-            extraMinutes: 20,
+            extraMinutes: 10,
+            extraLabel: "practice log",
             status: "available",
             blocks: [
                 {
@@ -314,12 +316,41 @@ window.HEGENAI_MODULES = {
                 {
                     id: "make",
                     minutes: 15,
-                    html: '<p><span class="to-be-confirmed">Make it content to be confirmed.</span></p>'
+                    html: '<p>In this block you let GenAI draft your policy and declaration guide, check it, and make it ready to use.</p>' +
+                        '<ol class="step-list" role="list">' +
+                        '<li>' +
+                        '<p><strong>Copy your prompt.</strong> The prompt is ready below, as it was in <a href="#block-see">See it</a> but with your information from <a href="#block-try">Try it</a>. Adjust the information in Try it or copy right away.</p>' +
+                        '<div data-text="make-prompt"></div>' +
+                        '</li>' +
+                        '<li><p><strong>Paste your prompt into a new conversation</strong> in a GenAI tool of your choice, for example Microsoft Copilot (a free account is enough).</p></li>' +
+                        '<li><p><strong>Check the draft.</strong> You should now have a drafted GenAI policy and declaration guide. Following the checklist below, fix what falls short: Edit the text yourself, or ask the tool to change one item.</p></li>' +
+                        '<li><p><strong>Save it.</strong> Paste the finalised policy and guide into a document and save it. Keep the credit line at the end.</p></li>' +
+                        '<li>' +
+                        '<p><strong>Add an example declaration.</strong> You can write it at the end of the document as in the finished sample policy and declaration guide.</p>' +
+                        '<p><button type="button" class="pill-button pill-button-secondary" data-open-resource="finished-guide" aria-haspopup="dialog">Open the finished sample policy and declaration guide</button></p>' +
+                        '</li>' +
+                        '</ol>' +
+                        '<h3>Checklist</h3>' +
+                        '<ol class="tick-list" data-checklist>' +
+                        '<li>The AI level (1-5) fits what the assignment assesses (Heaps, 2024).</li>' +
+                        '<li>The AI level (1-5) fits your institution’s rules (Heaps, 2024).</li>' +
+                        '<li>Nothing under “GenAI for…” does what a learning outcome asks students to show.</li>' +
+                        '<li>The declaration guide asks for the tool, the use, the prompts/links, the part of the work AI is used for, and the date, and it says where the declaration should be (UQ Library, 2026).</li>' +
+                        '</ol>'
                 },
                 {
                     id: "plan",
-                    minutes: null,
-                    html: '<p><span class="to-be-confirmed">Plan it content to be confirmed.</span></p>'
+                    minutes: 5,
+                    html: '<p>In this block you plan how students get your policy and declaration guide, and start the practice log.</p>' +
+                        '<ol class="step-list" role="list">' +
+                        '<li>' +
+                        '<p><strong>Download the practice log.</strong></p>' +
+                        '<p><a class="pill-button" href="downloads/practice-log-module-1.docx" download>Download the practice log (Word)</a></p>' +
+                        '</li>' +
+                        '<li><p><strong>Hand out your guide.</strong> It is ideal to raise GenAI in the first week of the course, and again when you set the assignment (Heaps, 2024). No course coming up? Give it to a peer or colleague, and ask them to write a declaration for an imagined use.</p></li>' +
+                        '<li><p><strong>Fill in the log:</strong> part 1 when you hand out the guide, parts 2 and 3 when you have one declaration back.</p></li>' +
+                        '<li><p><strong>On the certified track,</strong> email the log to the reviewer by the deadline.</p></li>' +
+                        '</ol>'
                 }
             ],
             resources: [
@@ -388,6 +419,10 @@ window.HEGENAI_MODULES = {
                 }
             ],
             texts: [
+                {
+                    id: "make-prompt",
+                    kind: "live-prompt"      // built from the Try it form by make-it.js
+                },
                 {
                     id: "see-prompt",
                     kind: "prompt",

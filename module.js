@@ -117,7 +117,7 @@
     // Fills each <div data-text="<id>"> in a block with a prompt box or a draft
     // box from module.texts. Lines are always set as text, never as HTML. Lines
     // after showLines stay hidden until the toggle under the box is pressed.
-    function renderTexts(container, module) {
+    function renderTexts(container, module, drawn) {
         var slots = container.querySelectorAll('[data-text]');
         Array.prototype.forEach.call(slots, function (slot) {
             var id = slot.getAttribute('data-text');
@@ -125,6 +125,10 @@
                 return item.id === id;
             })[0];
             if (!text) return;
+            if (text.kind === 'live-prompt') {
+                if (window.HEGenAIMakeIt) window.HEGenAIMakeIt.renderPrompt(slot, module.id, drawn);
+                return;
+            }
             var isDraft = text.kind === 'draft';
             var render = isDraft ? renderDraftLines : renderPromptLines;
             slot.className = isDraft ? 'text-box draft-box' : 'text-box prompt-box';
@@ -245,7 +249,7 @@
 
     function renderMeta(module, isAvailable) {
         var items = [['Module time', '~' + describeMinutes(module.minutes)]];
-        if (module.extraMinutes) items.push(['Post-module activity', '~' + describeMinutes(module.extraMinutes)]);
+        if (module.extraMinutes) items.push([module.extraLabel ? 'Practice log' : 'Post-module activity', '~' + describeMinutes(module.extraMinutes)]);
         if (!module.audience) items.push(['For', 'Higher education educators']);
         var meta = create('p', 'module-meta');
         items.forEach(function (item, index) {
@@ -422,7 +426,8 @@
             var body = create('div', 'block-body');
             if (details.html) {
                 body.innerHTML = details.html;
-                renderTexts(body, module);
+                renderTexts(body, module, content);
+                if (window.HEGenAIMakeIt) window.HEGenAIMakeIt.setupChecklists(body, module.id);
                 renderForm(body, module, details, content);
             } else {
                 body.appendChild(create('p')).appendChild(toBeConfirmed('Content to be confirmed.'));
