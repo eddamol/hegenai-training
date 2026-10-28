@@ -4,8 +4,9 @@ Site for the pilot and training on GenAI in assessment and feedback for higher
 education educators (MSc thesis, DTU Compute, within the Erasmus+ project
 HEGenAI). Plain HTML, CSS and a few small scripts, no third-party requests, no
 personal data collected. The module list remembers which blocks a visitor has
-marked as done; this is stored only in the visitor's own browser (localStorage)
-and is never sent anywhere. Hosted on GitHub Pages; all links are relative.
+marked as done, their self-check answers, and any text typed into a module's
+form; this is stored only in the visitor's own browser (localStorage) and is
+never sent anywhere. Hosted on GitHub Pages; all links are relative.
 
 ## Files
 
@@ -22,6 +23,7 @@ and is never sent anywhere. Hosted on GitHub Pages; all links are relative.
 - `modules.js`: draws the module cards on `modules.html`
 - `module.js`: draws a module page from the data and handles "Mark as done"
 - `quiz.js`: draws the self-check questions in a block and saves the answers
+- `form.js`: draws a module's numbered form and keeps its values in the browser under `hegenai:form:<module-id>:v1`
 - `resources.js`: opens a module's materials (for example a sample case) in a panel beside the blocks, or full screen on narrow screens
 - `assets/module-1/`: pictures used in Module 1 (`aias-figure-1.png`)
 - `assets/`: `logo-w.svg`, `logo-b.svg`, `favicon.svg` (placeholders; replace with the real files under the same names)
@@ -150,6 +152,7 @@ quiz: {
     {
       id: "m1-sc1",                // unique within the module; used to store the answer
       prompt: "...",
+      action: { label: "...", resource: "sample-case" },   // optional; a button under the prompt
       options: [ { text: "...", note: "...", action: { label: "...", resource: "sample-case" } } ],
                                    // note and action are optional
       correct: 1,                  // index into options; leave out when scored is false
@@ -173,6 +176,41 @@ browser." under its title, and an option without a note shows "No right answer;
 this just shows where you start." Every answered question has a "Clear answer"
 button that removes that answer. Answering never marks a block as done and never
 locks anything. Answers are kept with the progress, in the visitor's browser only.
+
+### Forms
+
+`<div data-form></div>` in block html shows the block's `form`, a numbered
+list of fields drawn by `form.js`. Each field is a step with a title, a
+guidance line and one or more inputs. Above the steps is "Open the practice
+case" (opens `practiceResource` in the side panel). Under the steps, "Click to
+clear answers" is styled like "Clear answer" in the self-checks, shows only
+when something is filled in, and needs a second click ("Click again to clear
+answers") before it empties everything.
+
+Setting `practiceFill: true` in the form adds a "Use the practice case" button
+that fills every input that has a `practice` value (never a level). It is off
+by default, so no field is pre-filled.
+
+```js
+form: {
+  practiceResource: "practice-case",
+  fields: [
+    { title: "Assignment", guidance: "...",
+      inputs: [ { key: "name", label: "Name", type: "line", practice: "..." },
+                { key: "description", label: "Description", type: "text", rows: 3, practice: "..." } ] },
+    { title: "Level", guidance: "...",
+      inputs: [ { key: "level", label: "Level", type: "level", levelsFrom: "The five levels" } ] }
+  ]
+}
+```
+
+Types are `line`, `text` and `level`. A `level` input is a select built from
+the `.level-list` of the drop-down whose summary is `levelsFrom` (so the level
+sentences are written once, in See it). The chosen level's sentence shows under
+the select, and the drop-down is repeated below it. Values are saved as the
+trainee types and are set as input values, never as HTML. Other code reads them
+with `window.HEGenAIForm.get(moduleId)`, which returns `{ key: "text" }`
+(`level` is `"1"` to `"5"` or an empty string).
 
 ## Module materials
 

@@ -54,6 +54,8 @@
         var groupName = 'quiz-' + moduleId + '-' + question.id;
         var fieldset = create('fieldset', 'quiz-question');
         fieldset.appendChild(create('legend', 'quiz-prompt', question.prompt));
+        // A question may offer a material to open before it is answered.
+        if (question.action) appendAction(fieldset, question.action);
 
         var optionsBox = create('div', 'quiz-options');
         var options = question.options.map(function (option, optionIndex) {

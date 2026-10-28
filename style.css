@@ -1394,6 +1394,97 @@ html {
     background-color: var(--primary-tint);
 }
 
+.callout > :first-child {
+    margin-top: 0;
+}
+
+.callout > :last-child {
+    margin-bottom: 0;
+}
+
+.callout-title {
+    margin: 0 0 8px;
+    font-size: 1.1rem;
+}
+
+/* The numbered form in a block (form.js). */
+.form-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    margin: 16px 0;
+}
+
+.form-steps {
+    margin-top: 8px;
+}
+
+.form-step-heading {
+    margin: 0 0 4px;
+}
+
+.form-step-title {
+    margin: 0;
+    font-weight: 700;
+}
+
+.form-guidance {
+    margin: 0 0 8px;
+}
+
+.form-label {
+    display: block;
+    margin: 12px 0 4px;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    max-width: 640px;
+    padding: 8px 12px;
+    border: 1px solid #767676;
+    border-radius: 8px;
+    background-color: white;
+    color: var(--text);
+    font: inherit;
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+.form-control:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.form-level-sentence {
+    max-width: 640px;
+}
+
+.form-level-sentence p {
+    margin: 8px 0 0;
+    padding-left: 12px;
+    border-left: 4px solid var(--primary);
+}
+
+.form-steps .dropdown {
+    max-width: 640px;
+}
+
+.form-footer {
+    margin-top: 24px;
+}
+
+.form-status {
+    min-height: 1.6em;
+    margin: 8px 0 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
 /* Drop-downs in block content: <details class="dropdown">. The chevron turns
    to show whether it is open. */
 .dropdown {

@@ -166,6 +166,14 @@
         });
     }
 
+    // Fills <div data-form> in a block with the block's form (form.js). Drop-downs
+    // the form repeats are looked up in the blocks drawn so far.
+    function renderForm(container, module, block, drawn) {
+        var slot = container.querySelector('[data-form]');
+        if (!slot || !block.form || !window.HEGenAIForm) return;
+        slot.parentNode.replaceChild(window.HEGenAIForm.build(module.id, block.form, drawn), slot);
+    }
+
     // One paragraph per line; {{...}} marks a filled-in value.
     function renderPromptLines(lines) {
         var wrapper = create('div');
@@ -415,6 +423,7 @@
             if (details.html) {
                 body.innerHTML = details.html;
                 renderTexts(body, module);
+                renderForm(body, module, details, content);
             } else {
                 body.appendChild(create('p')).appendChild(toBeConfirmed('Content to be confirmed.'));
             }

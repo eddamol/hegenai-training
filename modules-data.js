@@ -41,6 +41,7 @@
 //                           questions: [
 //                             { id: "m1-sc1",             unique within the module; used to store the answer
 //                               prompt: "...",
+//                               action: { label: "...", resource: "<resource id>" },   optional; a button under the prompt that opens the resource
 //                               options: [ { text: "...", note: "..." } ],   note is optional feedback for that option
 //                               correct: 1,               index into options; leave out when scored is false
 //                               explanation: "..." } ] }  shown after any answer when scored is true
@@ -53,6 +54,25 @@
 //                         An option may also have action: { label: "...", resource: "<resource id>" }; when
 //                         that option is chosen, a button with that label appears under the note and opens
 //                         the resource.
+//              form    optional; fills <div data-form></div> in the block html with a numbered form
+//                       whose values stay in the browser (see form.js). Later blocks can read them with
+//                       window.HEGenAIForm.get(moduleId), for example to build a prompt.
+//                         { practiceResource: "practice-case",   resource opened by "Open the practice case"
+//                           practiceFill: true,   optional, off unless set: adds a "Use the practice case" button that fills
+//                                                 every input that has a practice value (never a level)
+//                           fields: [ { title: "Assignment",      one numbered step per field
+//                                       guidance: "...",
+//                                       inputs: [ { key: "name",  key the value is stored under
+//                                                   label: "Name",   visible label
+//                                                   type: "line",    "line" (one line), "text" (several
+//                                                                    lines; rows: 3) or "level" (a select;
+//                                                                    levelsFrom is the summary of a
+//                                                                    drop-down in the page whose .level-list
+//                                                                    gives the levels; that drop-down is
+//                                                                    repeated under the select)
+//                                                   practice: "..." } ] } ] }   used only when practiceFill is true
+//                         A "level" input is never set by the practice case. Values are saved as the
+//                         trainee types, under "hegenai:form:<moduleId>:v1".
 //   resources  optional "Module materials": texts trainees can open beside the blocks, listed in the
 //            contents panel. [ { id: "sample-case", title: "...", html: "<p>...</p>" } ]
 //            Any element in block html with data-open-resource="<id>" opens that resource, for example
@@ -81,12 +101,12 @@ window.HEGENAI_MODULES = {
         {
             id: "declaring-genai-use",
             number: 1,
-            title: "Assignment-Level GenAI Use Policy and Declaration Guide",
+            title: "Making an Assignment-Level GenAI Use Policy and Declaration Guide",
             cluster: null,
             outcome: "After this module, you can set a GenAI use policy and a declaration guide for a written assignment, and you leave with a completed policy and guide for a given assignment.",
-            outcomePreview: { resource: "finished-guide", caption: "An example of the guide you leave with. Select to open it." },
+            outcomePreview: { resource: "finished-guide", caption: "An example of the policy and declaration guide you leave with. Select to open it." },
             audience: "Higher education educators who set written assignments. No prior GenAI experience needed.",
-            needs: "A GenAI tool. This module uses Microsoft Copilot as the example, and a free account is enough. Also, either an assignemtns you set or the sample case provided in the module.",
+            needs: "A GenAI tool. This module uses Microsoft Copilot as the example, and a free account is enough. Also, either an assignment you set or the practice case provided in the module.",
             minutes: 55,
             extraMinutes: 20,
             status: "available",
@@ -109,16 +129,16 @@ window.HEGENAI_MODULES = {
                                 options: [
                                     {
                                         text: "My own, and it already has GenAI rules.",
-                                        note: "Use it throughout the module. In **Try it**, you check your rules against four short checks."
+                                        note: "Use it throughout the module. In **Make it**, you check your rules against four short checks."
                                     },
                                     {
                                         text: "My own, but it has no GenAI rules yet.",
-                                        note: "Use it throughout the module. **Try it** gives you a prompt that drafts the guide for you."
+                                        note: "Use it throughout the module. **Make it** gives you a prompt that drafts the policy and declaration guide for you."
                                     },
                                     {
                                         text: "I have none coming up.",
-                                        note: "Use the sample case throughout the module. You can keep it for the practice log.",
-                                        action: { label: "Open the sample case", resource: "sample-case" }
+                                        note: "Use the practice case throughout the module. You can keep it for the practice log.",
+                                        action: { label: "Open the practice case", resource: "practice-case" }
                                     }
                                 ]
                             }
@@ -128,8 +148,8 @@ window.HEGENAI_MODULES = {
                 {
                     id: "see",
                     minutes: 15,
-                    html: '<p>In this block you see how one prompt can turn the sample case into a GenAI-use guide.</p>' +
-                        '<p>The GenAI-use guide has three parts:</p>' +
+                    html: '<p>In this block you see how one prompt can turn the sample case into a policy and declaration guide.</p>' +
+                        '<p>The policy and declaration guide has three parts:</p>' +
                         '<ol>' +
                         '<li><strong>Level of GenAI use.</strong> Specify where the assignment lies on the AI Assessment Scale. The scale has five levels of GenAI use, from No AI to AI Exploration (Perkins et al., 2025). You choose the level that fits what the assignment assesses.' +
                         '<details class="dropdown">' +
@@ -152,15 +172,15 @@ window.HEGENAI_MODULES = {
                         '</ol>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Specify the level of GenAI use.</strong> Given the learning objectives (LOs) in the sample case, GenAI may help students plan, but not do these. So: Level 2, AI Planning.</p>' +
+                        '<p><strong>Specify the level of GenAI use.</strong> Given the learning outcomes (LOs) in the sample case, GenAI may help students plan, but not do these. So: Level 2, AI Planning.</p>' +
                         '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Fill in the prompt.</strong> Below is a complete prompt for generating the GenAI-use guide, based on the sample case. You could use the same prompt, replacing the underlined details with information on your own assignment, and paste it into an AI tool.</p>' +
+                        '<p><strong>Fill in the prompt.</strong> Below is a complete prompt for generating the policy and declaration guide, based on the sample case. You could use the same prompt, replacing the underlined details with information on your own assignment, and paste it into an AI tool.</p>' +
                         '<div data-text="see-prompt"></div>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Let Copilot draft.</strong> Below is a drafted GenAI use policy and declaration guide from Microsoft Copilot based on the prompt from step 2, for the sample case.</p>' +
+                        '<p><strong>Let Copilot draft.</strong> Below is a drafted policy and declaration guide from Microsoft Copilot based on the prompt from step 2, for the sample case.</p>' +
                         '<div data-text="see-draft"></div>' +
                         '</li>' +
                         '<li>' +
@@ -171,11 +191,11 @@ window.HEGENAI_MODULES = {
                         '<li><span class="check-label check-label-fixed">Fixed</span> <span><strong>Nothing under “GenAI for…” does what a learning outcome asks.</strong> “Giving feedback on … clarity of writing for a professional reader” does what LO3 asks students to show, and feedback is a Level 3 use. Removed.</span></li>' +
                         '<li><span class="check-label check-label-ok">OK</span> <span><strong>The declaration is complete.</strong> It asks for the tool, the use, the prompts, the part and the date, and says where: the appendix.</span></li>' +
                         '</ul>' +
-                        '<p>The result is <button type="button" class="link-button" data-open-resource="finished-guide">the finished guide</button>.</p>' +
+                        '<p>The result is the <button type="button" class="link-button" data-open-resource="finished-guide">finished sample policy and declaration guide</button>.</p>' +
                         '</li>' +
                         '</ol>' +
                         '<h3>Why it works</h3>' +
-                        '<p>The scale gives you and your students a shared way to talk about GenAI use (Perkins et al., 2025), and the two lists make it concrete for one assignment. The prompt drafts the guide. Your check makes it fit your course.</p>',
+                        '<p>The scale gives you and your students a shared way to talk about GenAI use (Perkins et al., 2025), and the two lists make it concrete for one assignment. The prompt drafts the policy and declaration guide. Your check makes it fit your course.</p>',
                     quiz: {
                         title: "Self-check",
                         intro: "One question that applies step 1 to a new case.",
@@ -205,12 +225,95 @@ window.HEGENAI_MODULES = {
                 },
                 {
                     id: "try",
-                    minutes: null,
-                    html: '<p><span class="to-be-confirmed">Try it content to be confirmed.</span></p>'
+                    minutes: 10,
+                    html: '<p>In this block you collect the five details the prompt needs, for your own assignment or the practice case.</p>' +
+                        '<div class="callout">' +
+                        '<h3 class="callout-title">What to aim for</h3>' +
+                        '<ul>' +
+                        '<li>All five fields are filled in.</li>' +
+                        '<li>The learning outcomes are the ones students see.</li>' +
+                        '</ul>' +
+                        '</div>' +
+                        '<div data-form></div>' +
+                        '<h3>Your judgement</h3>' +
+                        '<p>In step 5, you judged which uses of GenAI would replace what the assignment assesses. In <a href="#block-make">Make it</a> you judge the GenAI draft itself, with the checklist.</p>',
+                    quiz: {
+                        title: "Self-check",
+                        intro: "One question that applies to the practice case.",
+                        scored: true,
+                        questions: [
+                            {
+                                id: "m1-try1",
+                                prompt: "Which AI use level fits the practice case?",
+                                action: { label: "Open the practice case", resource: "practice-case" },
+                                options: [
+                                    {
+                                        text: "Level 2, AI Planning.",
+                                        note: "Level 2 covers planning, idea development and research. The teacher also allows help with drafting and editing text, which is Level 3 (Perkins et al., 2025)."
+                                    },
+                                    {
+                                        text: "Level 3, AI Collaboration.",
+                                        note: "Level 3 allows help with drafting text, refining and evaluating, and students must critically evaluate and modify what GenAI writes (Perkins et al., 2025). The data and the discussion stay with the students."
+                                    },
+                                    {
+                                        text: "Level 4, Full AI.",
+                                        note: "At Level 4, GenAI may be used throughout the work. Here, students collect and analyse the data and write the discussion themselves (LO1 to LO3)."
+                                    }
+                                ],
+                                correct: 1
+                            }
+                        ]
+                    },
+                    form: {
+                        practiceResource: "practice-case",
+                        fields: [
+                            {
+                                title: "The assignment",
+                                guidance: "Its name, and a short description.",
+                                inputs: [
+                                    { key: "name", label: "Name", type: "line",
+                                      practice: "Pendulum lab report" },
+                                    { key: "description", label: "Description", type: "text", rows: 3,
+                                      practice: "A 1,500-word individual lab report in a first-year bachelor's physics course. Students measure the acceleration due to gravity with a simple pendulum, analyse their data, and discuss the result." }
+                                ]
+                            },
+                            {
+                                title: "Learning outcomes",
+                                guidance: "Copy them as students would see them in the course/assignment description.",
+                                inputs: [
+                                    { key: "outcomes", label: "Learning outcomes", type: "text", rows: 4,
+                                      practice: "LO1 Collect and present measurement data with uncertainties. LO2 Analyse the data and compare the result with the accepted value. LO3 Discuss sources of error and suggest improvements." }
+                                ]
+                            },
+                            {
+                                title: "Institution",
+                                guidance: "Look up your institution’s GenAI rules. Your policy must stay within them (Heaps, 2024). Write the institution’s name, for example, Technical University of Denmark, DTU.",
+                                inputs: [
+                                    { key: "institution", label: "Institution", type: "line",
+                                      practice: "the university" }
+                                ]
+                            },
+                            {
+                                title: "Where students declare GenAI use",
+                                guidance: "For example an appendix, the cover sheet, or a section of the report.",
+                                inputs: [
+                                    { key: "declare", label: "Where students declare", type: "line",
+                                      practice: "the last section of the Methods chapter, headed \"Use of GenAI\"" }
+                                ]
+                            },
+                            {
+                                title: "AI use level",
+                                guidance: "Which parts of the assignment show the learning outcomes? GenAI must not do those parts. Choose the AI use level that allows GenAI for the remaining parts.",
+                                inputs: [
+                                    { key: "level", label: "Level", type: "level", levelsFrom: "The five levels" }
+                                ]
+                            }
+                        ]
+                    }
                 },
                 {
                     id: "make",
-                    minutes: null,
+                    minutes: 15,
                     html: '<p><span class="to-be-confirmed">Make it content to be confirmed.</span></p>'
                 },
                 {
@@ -222,8 +325,8 @@ window.HEGENAI_MODULES = {
             resources: [
                 {
                     id: "sample-case",
-                    title: "Sample case: Case study report",
-                    html: '<p class="resource-note">(Invented for this module.)</p>' +
+                    title: "Sample case",
+                    html: '<p class="resource-note">(Invented for this module, used in shown examples.)</p>' +
                         '<p>A 2,500-word individual report in a second-year bachelor’s course. Each student picks an organisation, analyses one problem it faces, and recommends a solution.</p>' +
                         '<ul>' +
                         '<li>Learning outcome 1 (LO1): Analyse an organisation’s problem using course concepts.</li>' +
@@ -234,8 +337,9 @@ window.HEGENAI_MODULES = {
                 },
                 {
                     id: "finished-guide",
-                    title: "Finished guide: Case study report",
-                    html: '<div class="guide-page">' +
+                    title: "Finished sample guide",
+                    html: '<p class="resource-note">(Based on the sample case, the result of shown examples.)</p>' +
+                        '<div class="guide-page">' +
                         '<h3>GenAI in the case study report: Level 2, AI Planning</h3>' +
                         '<blockquote><p>"You may use AI for planning, idea development, and research. Your final submission should show how you have developed and refined these ideas."</p></blockquote>' +
                         '<h4>GenAI for…</h4>' +
@@ -267,6 +371,20 @@ window.HEGENAI_MODULES = {
                         '<p>Level text from The AI Assessment Scale by Perkins, Furze, Roe &amp; MacVaugh (2024), CC BY-NC-SA 4.0.</p>' +
                         '<p><strong>Example declaration.</strong> GenAI tool: Microsoft Copilot. Used for: Brainstorming three organisations, and suggesting a structure. I chose one organisation and changed the structure. Prompts: <mark class="fill-in">[link to the chat]</mark>. Part of the work: Planning only. Date(s): 2–15 November 2026.</p>' +
                         '</div>'
+                },
+                {
+                    id: "practice-case",
+                    title: "Practice case",
+                    html: '<p class="resource-note">(Invented for this module.)</p>' +
+                        '<p><strong>Pendulum lab report.</strong> A 1,500-word individual lab report in a first-year bachelor’s physics course. Students measure the acceleration due to gravity with a simple pendulum, analyse their data, and discuss the result.</p>' +
+                        '<ul>' +
+                        '<li>Learning outcome 1 (LO1): Collect and present measurement data with uncertainties.</li>' +
+                        '<li>Learning outcome 2 (LO2): Analyse the data and compare the result with the accepted value.</li>' +
+                        '<li>Learning outcome 3 (LO3): Discuss sources of error and suggest improvements.</li>' +
+                        '</ul>' +
+                        '<p><strong>What the teacher wants:</strong> GenAI may help students draft and edit the introduction and the method description, and give feedback on their draft. Students must check and change anything GenAI writes. They collect and analyse the data, and write the discussion, themselves.</p>' +
+                        '<p><strong>Institution rule:</strong> Each assignment states the level of GenAI use allowed, and students must declare all GenAI use.</p>' +
+                        '<p><strong>Where students declare:</strong> in the last section of the Methods chapter, headed “Use of GenAI”.</p>'
                 }
             ],
             texts: [
@@ -335,9 +453,9 @@ window.HEGENAI_MODULES = {
                 '</ul>'
         },
         {
-            id: "mcqs-with-genai",
+            id: "feedback-genai-declarations",
             number: 2,
-            title: "MCQs with GenAI",
+            title: "Giving Feedback on GenAI Declarations in Written Assignments",
             cluster: null,
             outcome: "To be confirmed",
             minutes: 60,
@@ -347,7 +465,7 @@ window.HEGENAI_MODULES = {
         {
             id: "feedback-with-genai",
             number: 3,
-            title: "Feedback with GenAI",
+            title: "Give Formative Feedback with GenAI",
             cluster: null,
             outcome: "To be confirmed",
             minutes: 60,
@@ -357,7 +475,7 @@ window.HEGENAI_MODULES = {
         {
             id: "rubrics-with-genai",
             number: 4,
-            title: "Rubrics with GenAI",
+            title: "Creating Assessment Rubrics with GenAI",
             cluster: null,
             outcome: "To be confirmed",
             minutes: 60,
