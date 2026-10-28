@@ -81,12 +81,12 @@ window.HEGENAI_MODULES = {
         {
             id: "declaring-genai-use",
             number: 1,
-            title: "Declaring GenAI use",
+            title: "Assignment-Level GenAI Use Policy and Declaration Guide",
             cluster: null,
-            outcome: "After this module, you can write clear GenAI-use guidance for a written assignment, including how students declare their GenAI use, and you leave with a one-page GenAI-use guide for that assignment.",
+            outcome: "After this module, you can set a GenAI use policy and a declaration guide for a written assignment, and you leave with a completed policy and guide for a given assignment.",
             outcomePreview: { resource: "finished-guide", caption: "An example of the guide you leave with. Select to open it." },
             audience: "Higher education educators who set written assignments. No prior GenAI experience needed.",
-            needs: "A GenAI tool. This module uses Microsoft Copilot as the example, and a free account is enough.",
+            needs: "A GenAI tool. This module uses Microsoft Copilot as the example, and a free account is enough. Also, either an assignemtns you set or the sample case provided in the module.",
             minutes: 55,
             extraMinutes: 20,
             status: "available",
@@ -128,10 +128,10 @@ window.HEGENAI_MODULES = {
                 {
                     id: "see",
                     minutes: 15,
-                    html: '<p>In this block you see how one prompt turns the sample case into a GenAI-use guide.</p>' +
-                        '<p>A GenAI-use guide has three parts:</p>' +
+                    html: '<p>In this block you see how one prompt can turn the sample case into a GenAI-use guide.</p>' +
+                        '<p>The GenAI-use guide has three parts:</p>' +
                         '<ol>' +
-                        '<li><strong>A level.</strong> The AI Assessment Scale sets out five levels of GenAI use, from No AI to AI Exploration (Perkins et al., 2025). You choose the level that fits what the assignment assesses.' +
+                        '<li><strong>Level of GenAI use.</strong> Specify where the assignment lies on the AI Assessment Scale. The scale has five levels of GenAI use, from No AI to AI Exploration (Perkins et al., 2025). You choose the level that fits what the assignment assesses.' +
                         '<details class="dropdown">' +
                         '<summary>The five levels</summary>' +
                         '<div class="dropdown-body">' +
@@ -147,24 +147,24 @@ window.HEGENAI_MODULES = {
                         '</div>' +
                         '</details>' +
                         '</li>' +
-                        '<li><strong>Two lists</strong>, in the assignment’s own terms: “GenAI for…” and “GenAI is not for…”.</li>' +
-                        '<li><strong>A declaration:</strong> what students state about their GenAI use, and where.</li>' +
+                        '<li><strong>A list of do\'s and don\'ts.</strong> List what students should and should not do with GenAI, in the assignment’s own terms: “GenAI for…” and “GenAI is not for…”.</li>' +
+                        '<li><strong>A declaration and example.</strong> What students state about their GenAI use, and where.</li>' +
                         '</ol>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Choose the level.</strong> The report assesses analysis (LO1) and a justified recommendation (LO2). GenAI may help students plan, but not do these. So: Level 2, AI Planning.</p>' +
+                        '<p><strong>Specify the level of GenAI use.</strong> Given the learning objectives (LOs) in the sample case, GenAI may help students plan, but not do these. So: Level 2, AI Planning.</p>' +
                         '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Fill in the prompt.</strong></p>' +
+                        '<p><strong>Fill in the prompt.</strong> Below is a complete prompt for generating the GenAI-use guide, based on the sample case. You could use the same prompt, replacing the underlined details with information on your own assignment, and paste it into an AI tool.</p>' +
                         '<div data-text="see-prompt"></div>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Let Copilot draft.</strong></p>' +
+                        '<p><strong>Let Copilot draft.</strong> Below is a drafted GenAI use policy and declaration guide from Microsoft Copilot based on the prompt from step 2, for the sample case.</p>' +
                         '<div data-text="see-draft"></div>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Check the draft.</strong></p>' +
+                        '<p><strong>Check the draft.</strong> As an educator, you are responsible for ensuring the draft aligns with your course objectives and institutional policies. Here is how the draft above was checked and fixed:</p>' +
                         '<ul class="check-list" role="list">' +
                         '<li><span class="check-label check-label-ok">OK</span> <span><strong>The level fits.</strong> Level 2 is named, and the scale’s sentence is quoted word for word.</span></li>' +
                         '<li><span class="check-label check-label-ok">OK</span> <span><strong>Each item names a concrete use.</strong> Every item is in the report’s own terms, such as “a shortlist of possible organisations”.</span></li>' +
