@@ -993,6 +993,17 @@ html {
     margin: 0;
 }
 
+.study-event .event-time {
+    margin-bottom: 6px;
+    font-weight: 400;
+    color: var(--primary-dark);
+}
+
+.study-event .event-topic {
+    margin-bottom: 8px;
+    font-style: italic;
+}
+
 @media (max-width: 720px) {
 
     .section .study-events {
