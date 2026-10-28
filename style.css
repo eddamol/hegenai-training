@@ -939,7 +939,7 @@ html {
 .section .study-events {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px 40px;
+    gap: 36px 40px;
     margin: 32px 0 20px;
     padding: 0;
     list-style: none;
@@ -1002,6 +1002,7 @@ html {
 .study-event .event-topic {
     margin-bottom: 8px;
     font-style: italic;
+    color: var(--primary-dark);
 }
 
 @media (max-width: 720px) {
