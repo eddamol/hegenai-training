@@ -516,6 +516,26 @@ window.HEGENAI_MODULES = {
             minutes: 60,
             extraMinutes: 20,
             status: "soon"
+        },
+        {
+            id: "feedback-lit-course-instructors",
+            number: 5,
+            title: "Feedback Literacy for Course Instructors with GenAI",
+            cluster: null,
+            outcome: "To be confirmed",
+            minutes: 60,
+            extraMinutes: 20,
+            status: "soon"
+        },
+        {
+            id: "assess-handwritten-exams",
+            number: 6,
+            title: "GenAI-Supported Assessment of Handwritten exams",
+            cluster: null,
+            outcome: "To be confirmed",
+            minutes: 60,
+            extraMinutes: 20,
+            status: "soon"
         }
     ]
 };
