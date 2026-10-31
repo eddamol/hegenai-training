@@ -349,7 +349,7 @@ window.HEGENAI_MODULES = {
                         '</li>' +
                         '<li><p><strong>Hand out your guide.</strong> It is ideal to raise GenAI in the first week of the course, and again when you set the assignment (Heaps, 2024). No course coming up? Give it to a peer or colleague, and ask them to write a declaration for an imagined use.</p></li>' +
                         '<li><p><strong>Fill in the log:</strong> part 1 when you hand out the guide, parts 2 and 3 when you have one declaration back.</p></li>' +
-                        '<li><p><strong>On the certified track,</strong> email the log to the reviewer by the deadline.</p></li>' +
+                        '<li><p><strong>On the certified track,</strong> upload the completed log to a survey you receive by email, within 2 weeks from the session.</p></li>' +
                         '</ol>'
                 }
             ],
