@@ -49,7 +49,7 @@
         var name = tidy(values.name).replace(/[.\s]+$/, '');
         var description = tidy(values.description);
         var outcomes = tidy(values.outcomes);
-        var institution = tidy(values.institution);
+        var rules = tidy(values.rules);
         var declare = tidy(values.declare);
         var level = levels.filter(function (item) {
             return item.value === values.level;
@@ -60,15 +60,18 @@
         var levelText = level ? 'Level ' + levelNumber + ', ' + levelName : '';
         var sentence = level ? level.sentence.replace(/^[“"]\s*/, '').replace(/\s*[”"]$/, '') : '';
 
-        var missing = !name || !description || !outcomes || !institution || !declare || !level;
+        var missing = !name || !description || !outcomes || !declare || !level;
         var lines = [];
 
         lines.push(lineOf('Write a one-page guide for students on GenAI use in one written assignment. Use plain language.'));
         lines.push(lineOf('Assignment: ', value(name, '[assignment name]'), '. ', value(description, '[description]')));
         lines.push(lineOf('Learning outcomes: ', value(outcomes, '[learning outcomes]')));
         lines.push(lineOf('Where students declare their use: ', value(declare, '[where students declare]')));
-        lines.push(lineOf('Institution: ', value(institution, '[institution]')));
+        lines.push(lineOf('Rules to stay within: ', rules ? { text: rules, filled: true } : 'none given'));
         lines.push(lineOf('Level: ', value(levelText, '[level]')));
+        lines.push(lineOf(rules
+            ? 'Stay within the rules given above. Do not add, assume or look up any other rules. If the level conflicts with a rule, say so instead of resolving it.'
+            : 'No rules are given. Do not invent or look up any.'));
         lines.push(lineOf('Use exactly these parts:'));
         lines.push(lineOf('1) Title: "GenAI in ',
             name ? { text: inTitle(name), filled: true } : 'the [assignment name]',
@@ -82,10 +85,11 @@
         } else {
             lines.push(lineOf('3) "GenAI for…": up to five concrete uses that fit this level and this assignment.'));
             lines.push(lineOf('4) "GenAI is not for…": up to five items. For each learning outcome, one item that stops GenAI from doing what the outcome asks students to show. Also: citing GenAI as a source (cite the original sources instead), and pasting in other people\'s work or confidential, personal or copyrighted material.'));
-            lines.push(lineOf('5) "Declare your use": in the place given above, students state the GenAI tool, what they used it for, their prompts or a link to the chat, which part of the work, and the date or date range. If they used no GenAI, they say so. Using GenAI beyond this guide, or without declaring it, may count as misconduct under ',
-                value(institution, '[institution]'), '\'s rules.'));
+            lines.push(lineOf('5) "Declare your use": in the place given above, students state the GenAI tool, what they used it for, their prompts or a link to the chat, which part of the work, and the date or date range. If they used no GenAI, they say so. Using GenAI beyond this guide, or without declaring it, may count as misconduct under the institution\'s rules.'));
         }
-        lines.push(lineOf('6) Last line: "Level text from The AI Assessment Scale by Perkins, Furze, Roe & MacVaugh (2024), CC BY-NC-SA 4.0."'));
+        lines.push(lineOf(rules
+            ? '6) Last line: "Level text from The AI Assessment Scale by Perkins, Furze, Roe & MacVaugh (2024), CC BY-NC-SA 4.0."'
+            : '6) Last two lines: "[Check against your institution\'s GenAI rules before handing this out.]" and then "Level text from The AI Assessment Scale by Perkins, Furze, Roe & MacVaugh (2024), CC BY-NC-SA 4.0."'));
         if (levelNumber !== '1') {
             lines.push(lineOf('Every item must name a concrete use in the terms of this assignment, and a student must be able to read it only one way.'));
         }

@@ -150,12 +150,13 @@ window.HEGENAI_MODULES = {
                 {
                     id: "see",
                     minutes: 15,
-                    html: '<p>In this block you see how one prompt can turn the sample case into a policy and declaration guide.</p>' +
-                        '<p>The policy and declaration guide has three parts:</p>' +
+                    html: '<p>In this block, you see an approach to creating an AI policy and declaration guide for the sample case.</p>' +
+                        '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>' +
+                        '<p>The AI policy and declaration guide has three parts:</p>' +
                         '<ol>' +
-                        '<li><strong>Level of GenAI use.</strong> Specify where the assignment lies on the AI Assessment Scale. The scale has five levels of GenAI use, from No AI to AI Exploration (Perkins et al., 2025). You choose the level that fits what the assignment assesses.' +
+                        '<li><strong>Level of GenAI use.</strong> The first part specifies where the assignment lies on the AI Assessment Scale. The scale has five levels of GenAI use, from No AI to AI Exploration (Perkins et al., 2025). In choosing the level of AI use for an assignment, make sure that AI is only allowed for tasks that do not directly translate into the learning outcomes of the assignment.</p>' +
                         '<details class="dropdown">' +
-                        '<summary>The five levels</summary>' +
+                        '<summary>The five levels of AI use: Click to expand</summary>' +
                         '<div class="dropdown-body">' +
                         '<ul class="level-list">' +
                         '<li><strong>Level 1, No AI:</strong> “You must not use AI at any point during the assessment. You must demonstrate your core skills and knowledge.”</li>' +
@@ -169,13 +170,13 @@ window.HEGENAI_MODULES = {
                         '</div>' +
                         '</details>' +
                         '</li>' +
-                        '<li><strong>A list of do\'s and don\'ts.</strong> List what students should and should not do with GenAI, in the assignment’s own terms: “GenAI for…” and “GenAI is not for…”.</li>' +
+                        '<li><strong>A list of do\'s and don\'ts.</strong> List what students should and should not do with GenAI, in the assignment’s own terms: “GenAI for…” and “GenAI is not for…”. This two-list format is used in practice, for example in a master’s programme at Dundalk Institute of Technology (Bree et al., 2026) and in course policies that list acceptable and unacceptable uses (Heaps, 2024).</li>' +
                         '<li><strong>A declaration and example.</strong> What students state about their GenAI use, and where.</li>' +
                         '</ol>' +
+                        '<p class="section-divider">Now, a four-step approach to making a policy and declaration guide for an assignment, starting with a structured prompt to an AI tool.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Specify the level of GenAI use.</strong> Given the learning outcomes (LOs) in the sample case, GenAI may help students plan, but not do these. So: Level 2, AI Planning.</p>' +
-                        '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>' +
+                        '<p><strong>Specify the level of GenAI use.</strong> Given the learning outcomes (LOs) in the sample case, GenAI may help students plan, but not do the actual tasks the learning oucomes require. So, it is at Level 2, AI Planning.</p>' +
                         '</li>' +
                         '<li>' +
                         '<p><strong>Fill in the prompt.</strong> Below is a complete prompt for generating the policy and declaration guide, based on the sample case. You could use the same prompt, replacing the underlined details with information on your own assignment, and paste it into an AI tool.</p>' +
@@ -200,23 +201,23 @@ window.HEGENAI_MODULES = {
                         '<p>The scale gives you and your students a shared way to talk about GenAI use (Perkins et al., 2025), and the two lists make it concrete for one assignment. The prompt drafts the policy and declaration guide. Your check makes it fit your course.</p>',
                     quiz: {
                         title: "Self-check",
-                        intro: "One question that applies step 1 to a new case.",
+                        intro: "Check if you can identify a proper AI use level for another assignment:.",
                         scored: true,
                         questions: [
                             {
                                 id: "m1-see1",
-                                prompt: "A take-home essay is set at Level 1, No AI. What fits the scale best?",
+                                prompt: "Imagine a take-home essay, set at Level 1: No AI use. What guidance fits best?",
                                 options: [
                                     {
-                                        text: "Keep Level 1 and ask for a signed ‘no GenAI’ statement.",
-                                        note: "Declaring work AI-free without a controlled setting has proved untenable (Perkins et al., 2025). See step 1."
+                                        text: "Keep Level 1 and ask for a signed ‘no GenAI’ statement in student submissions.",
+                                        note: "Declaring work AI-free without a controlled setting has proved untenable (Perkins et al., 2025)."
                                     },
                                     {
-                                        text: "Do it under supervision, or choose another level.",
+                                        text: "Have students do the assignment under supervision, or choose another level.",
                                         note: "Level 1 needs a supervised setting (Perkins et al., 2025)."
                                     },
                                     {
-                                        text: "Keep Level 1 and use a GenAI detector.",
+                                        text: "Keep Level 1 and use a GenAI detector when assessing student work.",
                                         note: "Detectors are unreliable (Perkins et al., 2025)."
                                     }
                                 ],
@@ -228,17 +229,32 @@ window.HEGENAI_MODULES = {
                 {
                     id: "try",
                     minutes: 10,
-                    html: '<p>In this block you collect the five details the prompt needs, for your own assignment or the practice case.</p>' +
+                    html: '<p>In this block, you collect the five details the prompt needs, for an assignment you assign to students or, if you do not have one, for the practice case.</p>' +
                         '<div class="callout">' +
                         '<h3 class="callout-title">What to aim for</h3>' +
                         '<ul>' +
-                        '<li>All five fields are filled in.</li>' +
+                        '<li>All fields are filled in. Leave “Rules you know of” empty only if you know none.</li>' +
                         '<li>The learning outcomes are the ones students see.</li>' +
                         '</ul>' +
                         '</div>' +
                         '<div data-form></div>' +
-                        '<h3>Your judgement</h3>' +
-                        '<p>In step 5, you judged which uses of GenAI would replace what the assignment assesses. In <a href="#block-make">Make it</a> you judge the GenAI draft itself, with the checklist.</p>',
+                        '<details class="dropdown dropdown-under-steps">' +
+                        '<summary>The five levels of AI use: Click to expand</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<ul class="level-list">' +
+                        '<li><strong>Level 1, No AI:</strong> “You must not use AI at any point during the assessment. You must demonstrate your core skills and knowledge.”</li>' +
+                        '<li><strong>Level 2, AI Planning:</strong> “You may use AI for planning, idea development, and research. Your final submission should show how you have developed and refined these ideas.”</li>' +
+                        '<li><strong>Level 3, AI Collaboration:</strong> “You may use AI to assist with specific tasks such as drafting text, refining and evaluating your work. You must critically evaluate and modify any AI-generated content you use.”</li>' +
+                        '<li><strong>Level 4, Full AI:</strong> “You may use AI extensively throughout your work either as you wish, or as specifically directed in your assessment. Focus on directing AI to achieve your goals while demonstrating your critical thinking.”</li>' +
+                        '<li><strong>Level 5, AI Exploration:</strong> “You should use AI creatively to solve the task, potentially co-designing new approaches with your instructor.”</li>' +
+                        '</ul>' +
+                        '<p class="credit-line">“The AI Assessment Scale” by Perkins, Furze, Roe &amp; MacVaugh (2024), from Perkins, Roe &amp; Furze (2025), CC BY-NC-SA 4.0. Used unchanged.</p>' +
+                        '<p><a href="assets/module-1/aias-figure-1.png" data-open-image data-title="The AI Assessment Scale" data-alt="The AI Assessment Scale: five levels of AI use, from No AI to AI Exploration">See the original figure</a></p>' +
+                        '</div>' +
+                        '</details>',
+//                        '<h3>Your judgement</h3>' +
+//                        '<p>In step 5, you judged which uses of GenAI would replace what the assignment assesses. In <a href="#block-make">Make it</a> you judge the GenAI draft itself, with the checklist.</p>'
+                        
                     quiz: {
                         title: "Self-check",
                         intro: "One question that applies to the practice case.",
@@ -288,11 +304,11 @@ window.HEGENAI_MODULES = {
                                 ]
                             },
                             {
-                                title: "Institution",
-                                guidance: "Look up your institution’s GenAI rules. Your policy must stay within them (Heaps, 2024). Write the institution’s name, for example, Technical University of Denmark, DTU.",
+                                title: "Rules you know of",
+                                guidance: "Type or paste any GenAI rules you already know for this course, programme, or institution. Do not look them up now: you check the guide against them before you hand it out (see Plan it). Leave this empty if you know none.",
                                 inputs: [
-                                    { key: "institution", label: "Institution", type: "line",
-                                      practice: "the university" }
+                                    { key: "rules", label: "Rules you know of", type: "text", rows: 3,
+                                      practice: "Each assignment states the level of GenAI use allowed, and students must declare all GenAI use." }
                                 ]
                             },
                             {
@@ -310,32 +326,33 @@ window.HEGENAI_MODULES = {
                                     { key: "level", label: "Level", type: "level", levelsFrom: "The five levels" }
                                 ]
                             }
+                            
                         ]
                     }
                 },
                 {
                     id: "make",
                     minutes: 15,
-                    html: '<p>In this block you let GenAI draft your policy and declaration guide, check it, and make it ready to use.</p>' +
+                    html: '<p>In this block, you let GenAI draft your policy and declaration guide, check it, and make it ready to use.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Copy your prompt.</strong> The prompt is ready below, as it was in <a href="#block-see">See it</a> but with your information from <a href="#block-try">Try it</a>. Adjust the information in Try it or copy right away.</p>' +
+                        '<p><strong>Copy your prompt.</strong> The prompt is ready below, as it was in <a href="#block-see">See it</a> but with your information from <a href="#block-try">Try it</a>. One change: it gives the rules you know of instead of an institution’s name, and tells the tool not to add any. Adjust the information in Try it or copy right away.</p>' +
                         '<div data-text="make-prompt"></div>' +
                         '</li>' +
                         '<li><p><strong>Paste your prompt into a new conversation</strong> in a GenAI tool of your choice, for example Microsoft Copilot (a free account is enough).</p></li>' +
-                        '<li><p><strong>Check the draft.</strong> You should now have a drafted GenAI policy and declaration guide. Following the checklist below, fix what falls short: Edit the text yourself, or ask the tool to change one item.</p></li>' +
+                        '<li><p><strong>Check the draft.</strong> You should now have a drafted GenAI policy and declaration guide. Following the checklist below, fix what falls short: Edit the text yourself, or ask the tool to change one item.</p>' +
+                        '<ol class="tick-list" data-checklist>' +
+                        '<li>The AI level (1-5) fits what the assignment assesses (Heaps, 2024).</li>' +
+                        '<li>The guide stays within the rules you gave, and nothing in it invents a rule.</li>' +
+                        '<li>Nothing under “GenAI for…” does what a learning outcome asks students to show.</li>' +
+                        '<li>The declaration guide asks for the tool, the use, the prompts/links, the part of the work AI is used for, and the date, and it says where the declaration should be (UQ Library, 2026).</li>' +
+                        '</ol>' +
+                        '</li>' +
                         '<li><p><strong>Save it.</strong> Paste the finalised policy and guide into a document and save it. Keep the credit line at the end.</p></li>' +
                         '<li>' +
                         '<p><strong>Add an example declaration.</strong> You can write it at the end of the document as in the finished sample policy and declaration guide.</p>' +
                         '<p><button type="button" class="pill-button pill-button-secondary" data-open-resource="finished-guide" aria-haspopup="dialog">Open the finished sample policy and declaration guide</button></p>' +
                         '</li>' +
-                        '</ol>' +
-                        '<h3>Checklist</h3>' +
-                        '<ol class="tick-list" data-checklist>' +
-                        '<li>The AI level (1-5) fits what the assignment assesses (Heaps, 2024).</li>' +
-                        '<li>The AI level (1-5) fits your institution’s rules (Heaps, 2024).</li>' +
-                        '<li>Nothing under “GenAI for…” does what a learning outcome asks students to show.</li>' +
-                        '<li>The declaration guide asks for the tool, the use, the prompts/links, the part of the work AI is used for, and the date, and it says where the declaration should be (UQ Library, 2026).</li>' +
                         '</ol>'
                 },
                 {
@@ -347,8 +364,9 @@ window.HEGENAI_MODULES = {
                         '<p><strong>Download the practice log.</strong></p>' +
                         '<p><a class="pill-button" href="downloads/practice-log-module-1.docx" download>Download the practice log (Word)</a></p>' +
                         '</li>' +
-                        '<li><p><strong>Hand out your guide.</strong> It is ideal to raise GenAI in the first week of the course, and again when you set the assignment (Heaps, 2024). No course coming up? Give it to a peer or colleague, and ask them to write a declaration for an imagined use.</p></li>' +
-                        '<li><p><strong>Fill in the log:</strong> part 1 when you hand out the guide, parts 2 and 3 when you have one declaration back.</p></li>' +
+                        '<li><p><strong>Check it against the rules.</strong> Before you hand it out, check it against your institution’s and programme’s GenAI rules, and fix anything that conflicts (Heaps, 2024). No rules found? Note that in the log, and keep the declaration part as it is.</p></li>' +
+                        '<li><p><strong>Hand out your guide.</strong> It is ideal to raise GenAI in the first week of the course, and again when you set the assignment (Heaps, 2024). No assignment coming up? Give it to a peer or colleague, and ask them to write a declaration for an imagined use.</p></li>' +
+                        '<li><p><strong>Fill in the log.</strong> You can fill in part 1 already when you hand out the guide, and parts 2 and 3 when you have received at least one declaration back.</p></li>' +
                         '<li><p><strong>On the certified track,</strong> upload the completed log to a survey you receive by email, within 2 weeks from the session.</p></li>' +
                         '</ol>'
                 }
@@ -364,7 +382,7 @@ window.HEGENAI_MODULES = {
                         '<li>Learning outcome 2 (LO2): Recommend a solution and justify it with evidence.</li>' +
                         '<li>Learning outcome 3 (LO3): Write clearly for a professional reader.</li>' +
                         '</ul>' +
-                        '<p><strong>Institution rule:</strong> GenAI may be used if the course guide says how, and all use must be declared.</p>'
+                        '<p><strong>Institution rules:</strong> GenAI may be used if the course guide says how, and all use must be declared.</p>'
                 },
                 {
                     id: "finished-guide",
@@ -406,7 +424,7 @@ window.HEGENAI_MODULES = {
                 {
                     id: "practice-case",
                     title: "Practice case",
-                    html: '<p class="resource-note">(Invented for this module.)</p>' +
+                    html: '<p class="resource-note">(Invented for this module, for you to use if you do not have your own case to work on.)</p>' +
                         '<p><strong>Pendulum lab report.</strong> A 1,500-word individual lab report in a first-year bachelor’s physics course. Students measure the acceleration due to gravity with a simple pendulum, analyse their data, and discuss the result.</p>' +
                         '<ul>' +
                         '<li>Learning outcome 1 (LO1): Collect and present measurement data with uncertainties.</li>' +
@@ -414,7 +432,7 @@ window.HEGENAI_MODULES = {
                         '<li>Learning outcome 3 (LO3): Discuss sources of error and suggest improvements.</li>' +
                         '</ul>' +
                         '<p><strong>What the teacher wants:</strong> GenAI may help students draft and edit the introduction and the method description, and give feedback on their draft. Students must check and change anything GenAI writes. They collect and analyse the data, and write the discussion, themselves.</p>' +
-                        '<p><strong>Institution rule:</strong> Each assignment states the level of GenAI use allowed, and students must declare all GenAI use.</p>' +
+                        '<p><strong>Institution rules:</strong> Each assignment states the level of GenAI use allowed, and students must declare all GenAI use.</p>' +
                         '<p><strong>Where students declare:</strong> in the last section of the Methods chapter, headed “Use of GenAI”.</p>'
                 }
             ],

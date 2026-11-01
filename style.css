@@ -1539,6 +1539,26 @@ textarea.form-control {
     border-radius: 12px 12px 0 0;
 }
 
+/* A drop-down directly after a step list lines up with the step text. */
+.dropdown-under-steps {
+    margin-top: -8px;
+    margin-left: 44px;
+}
+
+@media (max-width: 550px) {
+
+    .dropdown-under-steps {
+        margin-left: 38px;
+    }
+}
+
+/* A slim grey rule above a paragraph that starts a new part of a block. */
+.block-body .section-divider {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+}
+
 .dropdown-body {
     padding: 12px 16px 16px;
 }
