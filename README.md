@@ -227,9 +227,10 @@ with `window.HEGenAIForm.get(moduleId)`, which returns `{ key: "text" }`
 
 A module may list `resources`: texts trainees can keep open while they work,
 such as a sample case or a finished guide. Each has an `id`, a `title` and
-`html` (the same kinds of HTML as block content). They are listed under "Module
-materials" in the contents panel and in the "Module Blocks" menu on narrow
-screens.
+`html` (the same kinds of HTML as block content). They are listed in the
+contents panel and in the "Module Blocks" menu on narrow screens, under the
+heading given by an optional `group` (for example `"Worked example"`), or
+"Module materials" when there is none.
 
 On screens 1100px wide and over, a material opens in a panel on the right and
 the page narrows to make room, so the panel never covers the blocks and stays

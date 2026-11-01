@@ -76,6 +76,7 @@
 //                         trainee types, under "hegenai:form:<moduleId>:v1".
 //   resources  optional "Module materials": texts trainees can open beside the blocks, listed in the
 //            contents panel. [ { id: "sample-case", title: "...", html: "<p>...</p>" } ]
+//            Optional group: "..." sets the heading it is listed under (default "Module materials").
 //            Any element in block html with data-open-resource="<id>" opens that resource, for example
 //            <button type="button" data-open-resource="sample-case">Open the sample case</button>
 //            Fill-in parts of a template can be marked <mark class="fill-in">[assignment name]</mark>.
@@ -374,6 +375,7 @@ window.HEGENAI_MODULES = {
             resources: [
                 {
                     id: "sample-case",
+                    group: "Worked example",
                     title: "Sample case",
                     html: '<p class="resource-note">(Invented for this module, used in shown examples.)</p>' +
                         '<p>A 2,500-word individual report in a second-year bachelor’s course. Each student picks an organisation, analyses one problem it faces, and recommends a solution.</p>' +
@@ -386,6 +388,7 @@ window.HEGENAI_MODULES = {
                 },
                 {
                     id: "finished-guide",
+                    group: "Worked example",
                     title: "Finished sample guide",
                     html: '<p class="resource-note">(Based on the sample case, the result of shown examples.)</p>' +
                         '<div class="guide-page">' +
@@ -423,6 +426,7 @@ window.HEGENAI_MODULES = {
                 },
                 {
                     id: "practice-case",
+                    group: "Optional materials",
                     title: "Practice case",
                     html: '<p class="resource-note">(Invented for this module, for you to use if you do not have your own case to work on.)</p>' +
                         '<p><strong>Pendulum lab report.</strong> A 1,500-word individual lab report in a first-year bachelor’s physics course. Students measure the acceleration due to gravity with a simple pendulum, analyse their data, and discuss the result.</p>' +

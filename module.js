@@ -314,21 +314,31 @@
 
     // Module materials open in the resource panel (resources.js), so they are
     // buttons rather than links.
+    // Resources are grouped by their optional "group" title, in order of first
+    // appearance; those without one go under "Module materials".
     function buildMaterialsList(resources) {
-        var wrapper = create('div', 'contents-materials');
-        wrapper.appendChild(create('h3', 'contents-subtitle', 'Module materials'));
-        var list = create('ul', 'contents-list');
+        var groups = [];
+        var listsByGroup = {};
         resources.forEach(function (resource) {
+            var groupTitle = resource.group || 'Module materials';
+            if (!listsByGroup[groupTitle]) {
+                var wrapper = create('div', 'contents-materials');
+                wrapper.appendChild(create('h3', 'contents-subtitle', groupTitle));
+                listsByGroup[groupTitle] = create('ul', 'contents-list');
+                wrapper.appendChild(listsByGroup[groupTitle]);
+                groups.push(wrapper);
+            }
             var item = create('li');
             var button = create('button', 'contents-resource', resource.title);
             button.type = 'button';
             button.setAttribute('data-open-resource', resource.id);
             button.setAttribute('aria-haspopup', 'dialog');
             item.appendChild(button);
-            list.appendChild(item);
+            listsByGroup[groupTitle].appendChild(item);
         });
-        wrapper.appendChild(list);
-        return wrapper;
+        var fragment = document.createDocumentFragment();
+        groups.forEach(function (wrapper) { fragment.appendChild(wrapper); });
+        return fragment;
     }
 
     function renderModule(module) {
