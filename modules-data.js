@@ -368,7 +368,7 @@ window.HEGENAI_MODULES = {
                         '<li><p><strong>Check it against the rules.</strong> Before you hand it out, check it against your institution’s and programme’s GenAI rules, and fix anything that conflicts (Heaps, 2024). No rules found? Note that in the log, and keep the declaration part as it is.</p></li>' +
                         '<li><p><strong>Hand out your guide.</strong> It is ideal to raise GenAI in the first week of the course, and again when you set the assignment (Heaps, 2024). No assignment coming up? Give it to a peer or colleague, and ask them to write a declaration for an imagined use.</p></li>' +
                         '<li><p><strong>Fill in the log.</strong> You can fill in part 1 already when you hand out the guide, and parts 2 and 3 when you have received at least one declaration back.</p></li>' +
-                        '<li><p><strong>Upload the completed log</strong> to a survey you receive by email, within 2 weeks from the session. This is optional for participants in the study and for future trainees who want a certificate of completion.</p></li>' +
+                        '<li><p><strong>Upload the completed log</strong> to a survey you receive by email, within 2 weeks from the session. This is optional for participants in facilitated sessions.</p></li>' +
                         '</ol>'
                 }
             ],
