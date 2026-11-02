@@ -239,7 +239,7 @@ window.HEGENAI_MODULES = {
                         '</ul>' +
                         '</div>' +
                         '<div data-form></div>' +
-                        '<details class="dropdown dropdown-under-steps">' +
+                        '<details class="dropdown dropdown-under-steps" hidden>' +
                         '<summary>The five levels of AI use: Click to expand</summary>' +
                         '<div class="dropdown-body">' +
                         '<ul class="level-list">' +

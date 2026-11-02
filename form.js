@@ -206,6 +206,7 @@
                     if (found) {
                         var copy = found.dropdown.cloneNode(true);
                         copy.removeAttribute('open');
+                        copy.hidden = false;
                         group.appendChild(copy);
                     }
                     inputs.push({ spec: spec, control: control, refresh: showSentence });
