@@ -73,7 +73,7 @@
     function readLevels(scope, summaryText) {
         var summaries = scope.querySelectorAll('details.dropdown > summary');
         var summary = Array.prototype.filter.call(summaries, function (candidate) {
-            return candidate.textContent.trim() === summaryText;
+            return candidate.textContent.trim().indexOf(summaryText) === 0;
         })[0];
         if (!summary) return null;
         var dropdown = summary.parentNode;
