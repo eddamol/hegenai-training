@@ -118,14 +118,16 @@
         // Top buttons
         var tools = create('div', 'form-tools');
         // Off unless config.practiceFill is true: no field is pre-filled.
+        // config.practiceLabel names the case on the buttons (default "practice case").
+        var practiceLabel = config.practiceLabel || 'practice case';
         var practiceButton = null;
         if (config.practiceFill === true) {
-            practiceButton = create('button', 'pill-button pill-button-secondary', 'Use the practice case');
+            practiceButton = create('button', 'pill-button pill-button-secondary', 'Use the ' + practiceLabel);
             practiceButton.type = 'button';
             tools.appendChild(practiceButton);
         }
         if (config.practiceResource && window.HEGenAIResources && window.HEGenAIResources.has(config.practiceResource)) {
-            var openButton = create('button', 'pill-button pill-button-secondary', 'Open the practice case');
+            var openButton = create('button', 'pill-button pill-button-secondary', 'Open the ' + practiceLabel);
             openButton.type = 'button';
             openButton.setAttribute('data-open-resource', config.practiceResource);
             openButton.setAttribute('aria-haspopup', 'dialog');
@@ -276,7 +278,8 @@
                 input.control.value = input.spec.practice;
                 remember(input.spec.key, input.spec.practice);
             });
-            status.textContent = 'Steps 1 to 4 filled in with the practice case. The level is left for you to choose.';
+            status.textContent = config.practiceStatus ||
+                ('Steps 1 to 4 filled in with the ' + practiceLabel + '. The level is left for you to choose.');
         });
 
         return form;

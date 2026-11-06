@@ -2340,10 +2340,20 @@ mark.fill-in {
         align-self: stretch;
     }
 
+    /* Always stays in place on screen for navigation. No visible scroll bar;
+       in a very short window the panel can still be scrolled with the wheel. */
     .contents-panel {
         display: block;
         position: sticky;
         top: calc(var(--header-height) + 24px);
+        max-height: calc(100vh - var(--header-height) - 48px);
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        scrollbar-width: none;
+    }
+
+    .contents-panel::-webkit-scrollbar {
+        display: none;
     }
 }
 
@@ -2427,4 +2437,363 @@ mark.fill-in {
     .pill-button:hover {
         transform: none;
     }
+}
+
+/* Certificate section (certificate.js). */
+.certificate-form .tick-item {
+    margin: 16px 0;
+}
+
+.certificate-form .tick-item::before {
+    content: none;
+}
+
+.certificate-form .form-group {
+    max-width: 28rem;
+}
+
+.module-video {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 12px 0 4px;
+    border-radius: 6px;
+    background-color: #000;
+}
+
+/* Module 3: criteria in two columns, checkable (bright) beside the brief (faded). */
+.criteria-compare {
+    margin: 12px 0 4px;
+}
+
+.criteria-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.criteria-head span {
+    padding: 0 14px 6px;
+}
+
+.criteria-head span:first-child {
+    color: var(--correct-text);
+}
+
+.criteria-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    margin: 0 0 10px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background-color: white;
+}
+
+.criteria-check,
+.criteria-brief {
+    padding: 12px 14px;
+    line-height: 1.55;
+}
+
+.criteria-check mark {
+    padding: 0 3px;
+    border-radius: 4px;
+    background-color: var(--correct-bg);
+    color: var(--correct-text);
+}
+
+.criteria-brief {
+    border-left: 2px dashed var(--line);
+    color: #8a8b90;
+    font-size: 0.95rem;
+}
+
+.criteria-label {
+    display: none;
+    margin-bottom: 2px;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+@media (max-width: 640px) {
+    .criteria-head {
+        display: none;
+    }
+
+    .criteria-row {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .criteria-brief {
+        border-left: 0;
+        border-top: 2px dashed var(--line);
+    }
+
+    .criteria-label {
+        display: block;
+    }
+
+    .criteria-check .criteria-label {
+        color: var(--correct-text);
+    }
+}
+
+/* Module 3: a simplified agent builder with notes (M3_BUILDER_FIGURE in modules-data.js).
+   Wide screens: notes beside the window with arrows. Narrow screens: each note under its field. */
+.builder-figure {
+    --bf-change: #b4461a;
+    --bf-change-bg: #fbeae2;
+    --bf-same: #17795c;
+    --bf-same-bg: #e1f3ec;
+    margin: 20px 0 24px;
+}
+
+.builder-figure figcaption {
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.bf {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.7fr) minmax(0, 1fr);
+    column-gap: 14px;
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
+.bf p {
+    margin: 0 0 4px;
+}
+
+.bf .bf-r1 { grid-row: 1; }
+.bf .bf-r2 { grid-row: 2; }
+.bf .bf-r3 { grid-row: 3; }
+.bf .bf-r4 { grid-row: 4; }
+.bf .bf-r5 { grid-row: 5; }
+
+.bf-win {
+    grid-column: 2;
+    padding: 8px 14px;
+    border-left: 1px solid #b9bac0;
+    border-right: 1px solid #b9bac0;
+    background-color: white;
+}
+
+.bf-top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid #b9bac0;
+    border-radius: 12px 12px 0 0;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+.bf-bottom {
+    padding-bottom: 12px;
+    border-bottom: 1px solid #b9bac0;
+    border-radius: 0 0 12px 12px;
+    text-align: right;
+}
+
+.bf-dots {
+    display: inline-flex;
+    gap: 5px;
+}
+
+.bf-dots i {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background-color: #d3d4d8;
+}
+
+.bf-name {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.bf-icon {
+    flex: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background-color: #e3b3c8;
+}
+
+.bf-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+}
+
+.bf-add,
+.bf-create {
+    display: inline-block;
+    padding: 1px 12px;
+    border: 1px solid #b9bac0;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 400;
+}
+
+.bf-create {
+    background-color: #ececf0;
+}
+
+.bf-field {
+    padding: 8px 10px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+}
+
+.bf-field-change {
+    border: 1px solid var(--bf-change);
+    background-color: var(--bf-change-bg);
+    color: var(--bf-change);
+}
+
+.bf-field-same {
+    border: 1px solid var(--bf-same);
+    background-color: var(--bf-same-bg);
+    color: var(--bf-same);
+}
+
+.bf-field p:last-child {
+    margin-bottom: 0;
+}
+
+.bf-note {
+    position: relative;
+    align-self: center;
+    font-size: 0.85rem;
+}
+
+.bf-left {
+    grid-column: 1;
+    padding-right: 34px;
+}
+
+.bf-right {
+    grid-column: 3;
+    padding-left: 34px;
+}
+
+.bf-note-title {
+    font-weight: 700;
+    font-size: 0.92rem;
+}
+
+.bf-change .bf-note-title { color: var(--bf-change); }
+.bf-same .bf-note-title { color: var(--bf-same); }
+.bf-grey { color: var(--text-muted); }
+
+.bf-arrow {
+    position: absolute;
+    top: 50%;
+    width: 26px;
+    height: 2px;
+    background-color: #8a8b90;
+}
+
+.bf-change .bf-arrow { background-color: var(--bf-change); }
+.bf-same .bf-arrow { background-color: var(--bf-same); }
+
+.bf-left .bf-arrow { right: 2px; }
+.bf-right .bf-arrow { left: 2px; }
+
+.bf-arrow::after {
+    content: "";
+    position: absolute;
+    top: -4px;
+    border: 5px solid transparent;
+}
+
+.bf-left .bf-arrow::after {
+    right: -6px;
+    border-left: 7px solid;
+    border-left-color: inherit;
+    border-right: 0;
+}
+
+.bf-right .bf-arrow::after {
+    left: -6px;
+    border-right: 7px solid;
+    border-right-color: inherit;
+    border-left: 0;
+}
+
+.bf-arrow { border-color: #8a8b90; }
+.bf-change .bf-arrow { border-color: var(--bf-change); }
+.bf-same .bf-arrow { border-color: var(--bf-same); }
+
+@media (max-width: 640px) {
+    .bf {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .bf .bf-r1, .bf .bf-r2, .bf .bf-r3, .bf .bf-r4, .bf .bf-r5 {
+        grid-row: auto;
+    }
+
+    .bf-win,
+    .bf-note {
+        grid-column: 1;
+    }
+
+    .bf-win {
+        border: 1px solid #b9bac0;
+        border-radius: 10px;
+    }
+
+    .bf-top {
+        display: none;
+    }
+
+    .bf-note {
+        margin: 6px 0 12px;
+        padding: 6px 10px;
+        border-left: 3px solid #b9bac0;
+    }
+
+    .bf-change { border-left-color: var(--bf-change); }
+    .bf-same { border-left-color: var(--bf-same); }
+
+    .bf-arrow {
+        display: none;
+    }
+}
+
+/* Module 3: what to change when a check fails. */
+.block-body .fix-list {
+    margin: 12px 0 16px;
+    padding: 0;
+    list-style: none;
+}
+
+.fix-list li {
+    margin: 0 0 10px;
+    padding: 10px 14px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background-color: white;
+}
+
+.fix-list p {
+    margin: 0 0 4px;
+}
+
+.fix-list p:last-child {
+    margin-bottom: 0;
+}
+
+.fix-check {
+    font-weight: 700;
+    color: var(--primary-dark);
 }
