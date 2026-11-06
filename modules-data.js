@@ -203,7 +203,7 @@ window.HEGENAI_MODULES = {
                         '<p class="section-divider">Now, a four-step approach to making a policy and declaration guide for an assignment, starting with a structured prompt to an AI tool.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Specify the level of GenAI use.</strong> Given the learning outcomes (LOs) in the sample case, GenAI may help students plan, but not do the actual tasks the learning oucomes require. So, it is at Level 2, AI Planning.</p>' +
+                        '<p><strong>Specify the level of GenAI use.</strong> Given the learning outcomes (LOs) in the sample case, GenAI may help students plan, but not do the actual tasks the learning outcomes require. So, it is at Level 2, AI Planning.</p>' +
                         '</li>' +
                         '<li>' +
                         '<p><strong>Fill in the prompt.</strong> Below is a complete prompt for generating the policy and declaration guide, based on the sample case. You could use the same prompt, replacing the underlined details with information on your own assignment, and paste it into an AI tool.</p>' +
@@ -228,7 +228,7 @@ window.HEGENAI_MODULES = {
                         '<p>The scale gives you and your students a shared way to talk about GenAI use (Perkins et al., 2025), and the two lists make it concrete for one assignment. The prompt drafts the policy and declaration guide. Your check makes it fit your course.</p>',
                     quiz: {
                         title: "Self-check",
-                        intro: "Check if you can identify a proper AI use level for another assignment:.",
+                        intro: "Check if you can identify a proper AI use level for another assignment.",
                         scored: true,
                         questions: [
                             {
@@ -558,7 +558,6 @@ window.HEGENAI_MODULES = {
             extraMinutes: 10,
             extraLabel: "practice log",
             status: "available",
-            certificate: false,
             blocks: [
                 {
                     id: "intro",
@@ -669,7 +668,7 @@ window.HEGENAI_MODULES = {
                 {
                     id: "try",
                     minutes: 10,
-                    html: '<p>In this block, you write what goes into the instructions, for an assignment you set or for the sample case. With the sample case, select “Use the sample case”: the form is filled in with its criteria as written for students, and you make each one checkable yourself. Then compare with the version in <strong>See it</strong>.</p>' +
+                    html: '<p>In this block, you write what goes into the instructions, for an assignment you set or for the sample case. With the sample case, open it and write each of its criteria, as written for students, in a checkable way yourself. Then compare with the version in <strong>See it</strong>.</p>' +
                         '<div class="callout">' +
                         '<h3 class="callout-title">What to aim for</h3>' +
                         '<ul>' +
@@ -728,7 +727,7 @@ window.HEGENAI_MODULES = {
                         practiceResource: "sample-case",
                         practiceLabel: "sample case",
                         practiceStatus: "Filled in with the sample case. Its criteria are as written for students: rewrite each one with a “Met when:”, then compare with our version below the form.",
-                        practiceFill: true,
+                        // practiceFill: true,   switched off: would add a "Use the sample case" button that fills the form from the `practice` values below
                         fields: [
                             {
                                 title: "The assignment",
@@ -815,6 +814,7 @@ window.HEGENAI_MODULES = {
                         '<li><p><strong>Check the rules.</strong> Students should use a GenAI tool your institution approves, and the course’s GenAI rules must allow GenAI feedback on drafts. If they do not, change the rules or the plan before you share the agent.</p></li>' +
                         '<li><p><strong>Choose when, and introduce it.</strong> Give students the agent when they have a draft, for example two weeks before the deadline. Tell them what it is for, that the feedback can be wrong, that you grade, and not to paste in other people’s work or personal data.</p></li>' +
                         '<li><p><strong>Start the practice log.</strong> Note the course, the assignment, when students get the agent, what you changed while testing, and how you will find out whether they used it (for example, one question in the hand-in). After the hand-in, answer: Was one piece of feedback a student got right by your criteria? What would you tell a colleague?</p></li>' +
+                        '<li><p><strong>Upload the completed log</strong> to a survey you receive by email, within 2 weeks from the session. This is optional for participants in facilitated sessions.</p></li>' +
                         '</ol>' +
                         '<h3>Example: a course feedback coach at DTU</h3>' +
                         '<p>At the Technical University of Denmark (DTU), this is how a feedback agent looks on DTU’s own GenAI platform, CampusAI: a teacher turns the criteria into a feedback coach that students open with their DTU login, so they only paste their draft. The video shows how it works (1 min 40 s, no sound; demo with an invented course and student draft). You do not need it for this module.</p>' +
@@ -842,7 +842,7 @@ window.HEGENAI_MODULES = {
                     id: "sample-case",
                     group: "Worked example",
                     title: "Sample case",
-                    html: '<p class="resource-note">(Invented for this module and used in every block. Written as a typical assignment description. In Try it, “Use the sample case” fills in its criteria as written here, for you to make checkable.)</p>' +
+                    html: '<p class="resource-note">(Invented for this module and used in every block. Written as a typical assignment description. In Try it, you make its criteria, as written here, checkable.)</p>' +
                         '<div class="guide-page">' +
                         '<p><strong>Organisation and Management</strong> · 2nd-year BSc · 5 ECTS</p>' +
                         '<h3>Assignment 2: Case study report</h3>' +
@@ -1043,7 +1043,7 @@ window.HEGENAI_MODULES = {
                 {
                     id: "see-draft",
                     kind: "draft",
-                    label: "Example feedback on the weak draft (illustration; replace with a real run)",
+                    label: "Microsoft Copilot, free version, November 2026",
                     showLines: 5,
                     moreLabel: "Show all the feedback",
                     lines: [
