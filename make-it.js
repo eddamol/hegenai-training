@@ -96,6 +96,54 @@
         return { lines: lines, missing: missing };
     }
 
+    // A module may give its live prompt as a template instead of using Module 1's
+    // prompt: { kind: "live-prompt", template: [ "Assignment: {{name|[assignment name]}}", ... ] }.
+    // It may also set label (read by screen readers) and copyLabel (the button's text),
+    // for example "Agent instructions" and "Copy instructions"; a module can show several.
+    // optionalKeys: ["link"] lists keys that may stay empty without the "details are missing" notice.
+    // download: { label: "Download SKILL.md", filename: "SKILL.md" } adds a button that saves the text as a file.
+    // {{key|[placeholder]}} is replaced by the form value saved under key, or by the
+    // placeholder while it is empty. A value typed on several lines (such as a list of
+    // criteria) becomes several prompt lines. Returns { lines, missing }.
+    function buildFromTemplate(values, template, optional) {
+        var missing = false;
+        var lines = [];
+        template.forEach(function (source) {
+            var parts = [];
+            var pattern = /\{\{\s*([\w-]+)\s*(?:\|([^}]*))?\}\}/g;
+            var last = 0;
+            var match;
+            while ((match = pattern.exec(source)) !== null) {
+                if (match.index > last) parts.push({ text: source.slice(last, match.index), filled: false });
+                var raw = (values[match[1]] || '').split('\n').map(function (line) {
+                    return line.replace(/\s+/g, ' ').trim();
+                }).filter(Boolean).join('\n');
+                if (raw) {
+                    parts.push({ text: raw, filled: true });
+                } else {
+                    if (!optional || optional.indexOf(match[1]) === -1) missing = true;
+                    parts.push({ text: match[2] || '[' + match[1] + ']', filled: false });
+                }
+                last = pattern.lastIndex;
+            }
+            if (last < source.length) parts.push({ text: source.slice(last), filled: false });
+
+            // Split parts on line breaks into separate prompt lines.
+            var line = [];
+            parts.forEach(function (part) {
+                part.text.split('\n').forEach(function (piece, index) {
+                    if (index > 0) {
+                        lines.push(line);
+                        line = [];
+                    }
+                    if (piece) line.push({ text: piece, filled: part.filled });
+                });
+            });
+            lines.push(line);
+        });
+        return { lines: lines, missing: missing };
+    }
+
     function plainText(lines) {
         return lines.map(function (line) {
             return line.map(function (part) {
@@ -128,7 +176,7 @@
         });
     }
 
-    function renderPrompt(slot, moduleId, scope) {
+    function renderPrompt(slot, moduleId, scope, spec) {
         var forms = window.HEGenAIForm;
         if (!forms) return;
 
@@ -143,16 +191,45 @@
 
         var box = create('div', 'text-box prompt-box');
         box.setAttribute('role', 'group');
-        box.setAttribute('aria-label', 'Your prompt');
+        box.setAttribute('aria-label', (spec && spec.label) || 'Your prompt');
+        // showLabel: true shows the label above the box, as on draft boxes.
+        if (spec && spec.label && spec.showLabel) {
+            var label = create('p', 'draft-label', spec.label);
+            label.id = 'live-' + moduleId + '-' + (spec.id || 'prompt') + '-label';
+            box.removeAttribute('aria-label');
+            box.setAttribute('aria-labelledby', label.id);
+            box.appendChild(label);
+        }
         var body = create('div', 'text-box-body');
         box.appendChild(body);
+        // showLines: lines after this stay hidden until the toggle under the box is pressed.
+        var showLines = spec && typeof spec.showLines === 'number' ? spec.showLines : null;
+        var moreLabel = (spec && spec.moreLabel) || 'Show all';
+        var expanded = false;
+        var toggle = null;
+        if (showLines !== null) {
+            toggle = create('button', 'text-box-toggle', moreLabel);
+            toggle.type = 'button';
+            toggle.setAttribute('aria-expanded', 'false');
+            toggle.addEventListener('click', function () {
+                expanded = !expanded;
+                update();
+            });
+            box.appendChild(toggle);
+        }
 
-        var copyButton = create('button', 'pill-button pill-button-secondary', 'Copy prompt');
+        var copyButton = create('button', 'pill-button pill-button-secondary', (spec && spec.copyLabel) || 'Copy prompt');
         copyButton.type = 'button';
         var status = create('span', 'copy-status');
         status.setAttribute('role', 'status');
         var actions = create('div', 'prompt-actions');
         actions.appendChild(copyButton);
+        var downloadButton = null;
+        if (spec && spec.download) {
+            downloadButton = create('button', 'pill-button pill-button-secondary', spec.download.label || 'Download file');
+            downloadButton.type = 'button';
+            actions.appendChild(downloadButton);
+        }
         actions.appendChild(status);
 
         slot.appendChild(notice);
@@ -161,12 +238,19 @@
 
         var current = '';
         function update() {
-            var found = forms.readLevels(scope, LEVELS_FROM);
-            var built = buildLines(forms.get(moduleId), found ? found.levels : []);
+            var built;
+            if (spec && spec.template) {
+                built = buildFromTemplate(forms.get(moduleId), spec.template, spec.optionalKeys);
+            } else {
+                var found = forms.readLevels(scope, LEVELS_FROM);
+                built = buildLines(forms.get(moduleId), found ? found.levels : []);
+            }
             current = plainText(built.lines);
             notice.hidden = !built.missing;
             body.textContent = '';
-            built.lines.forEach(function (line) {
+            var folds = showLines !== null && built.lines.length > showLines;
+            var shown = folds && !expanded ? built.lines.slice(0, showLines) : built.lines;
+            shown.forEach(function (line) {
                 var paragraph = create('p', 'prompt-line');
                 line.forEach(function (part) {
                     if (part.filled) paragraph.appendChild(create('mark', 'prompt-value', part.text));
@@ -174,6 +258,12 @@
                 });
                 body.appendChild(paragraph);
             });
+            if (toggle) {
+                toggle.hidden = !folds;
+                body.classList.toggle('is-collapsed', folds && !expanded);
+                toggle.setAttribute('aria-expanded', String(expanded));
+                toggle.textContent = expanded ? 'Show less' : moreLabel;
+            }
         }
 
         copyButton.addEventListener('click', function () {
@@ -183,6 +273,25 @@
                 status.textContent = NOT_COPIED;
             });
         });
+
+        if (downloadButton) {
+            downloadButton.addEventListener('click', function () {
+                try {
+                    var blob = new Blob([current + '\n'], { type: 'text/markdown;charset=utf-8' });
+                    var url = URL.createObjectURL(blob);
+                    var link = create('a');
+                    link.href = url;
+                    link.download = spec.download.filename || 'file.md';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    setTimeout(function () { URL.revokeObjectURL(url); }, 1000);
+                    status.textContent = 'Downloaded ' + link.download + '.';
+                } catch (error) {
+                    status.textContent = NOT_COPIED;
+                }
+            });
+        }
 
         document.addEventListener('hegenai:form-change', function (event) {
             if (event.detail.moduleId === moduleId) update();
