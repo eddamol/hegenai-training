@@ -24,10 +24,13 @@ never sent anywhere. Hosted on GitHub Pages; all links are relative.
 - `module.js`: draws a module page from the data and handles "Mark as done"
 - `quiz.js`: draws the self-check questions in a block and saves the answers
 - `form.js`: draws a module's numbered form and keeps its values in the browser under `hegenai:form:<module-id>:v1`
-- `make-it.js`: draws the live prompt in a module's Make it block (built from the form's saved values, with a copy button) and adds tick boxes to a checklist
+- `make-it.js`: draws the live prompt in a module's Make it block (built from the form's saved values, or from a template, with a copy button and optional file download) and adds tick boxes to a checklist
+- `certificate.js`: **not in use yet.** A certificate of completion that was built and kept for possible later use (see "Certificate (not implemented yet)" below)
 - `downloads/`: files trainees download, such as `practice-log-module-1.docx`. The Word file is edited in Word from now on; it is no longer generated from a script
 - `resources.js`: opens a module's materials (for example a sample case) in a panel beside the blocks, or full screen on narrow screens
 - `assets/module-1/`: pictures used in Module 1 (`aias-figure-1.png`)
+- `assets/module-3/`: the video used in Module 3's Plan it block (`dtu-feedback-coach.mp4`; see the README in that folder)
+- `assets/vendor/`: jsPDF and its licence, kept for the certificate feature that is not in use yet
 - `assets/`: `logo-w.svg`, `logo-b.svg`, `favicon.svg` (placeholders; replace with the real files under the same names)
 - `.nojekyll`: switches off Jekyll on GitHub Pages
 
@@ -188,6 +191,19 @@ as `<ol class="tick-list" data-checklist>` gets tick boxes; each tick is saved a
 removes them. `HEGenAIForm.set(moduleId, key, value)` saves one value and every
 change fires `hegenai:form-change` on `document`.
 
+A live prompt may instead have a `template`: a list of lines where
+`{{key|[placeholder]}}` is replaced by the form value saved under `key`. A value
+typed on several lines (such as a list of criteria) becomes several prompt
+lines. Without `template`, Module 1's prompt is built as before. Further
+options on a live prompt:
+
+- `label` is read by screen readers; with `showLabel: true` it is also shown above the box (as on draft boxes).
+- `copyLabel` is the copy button's text, so a block can show several copy boxes (Module 3 has the instructions, the skill and a starter prompt).
+- A template with no `{{...}}` keys shows fixed text with a copy button.
+- `optionalKeys: ["link"]` lists keys that may stay empty without the "details are missing" notice.
+- `download: { label, filename }` adds a button that saves the text as a file (Module 3's skill is a SKILL.md file).
+- `showLines` and `moreLabel` fold long text behind a toggle, as in prompt boxes.
+
 ### Forms
 
 `<div data-form></div>` in block html shows the block's `form`, a numbered
@@ -200,7 +216,7 @@ answers") before it empties everything.
 
 Setting `practiceFill: true` in the form adds a "Use the practice case" button
 that fills every input that has a `practice` value (never a level). It is off
-by default, so no field is pre-filled.
+by default, so no field is pre-filled. `practiceLabel` (default "practice case") names the case on the buttons, and `practiceStatus` replaces the message shown after the button fills the form. Module 3 uses `practiceLabel: "sample case"`.
 
 ```js
 form: {
@@ -251,15 +267,33 @@ preview sits under the outcome sentence.
 Mark the fill-in parts of a template with `<mark class="fill-in">[assignment name]</mark>`.
 Keep the brackets so the parts do not depend on the highlight alone.
 
+### Layouts and video used in Module 3
+
+- `.criteria-compare` shows each criterion's checkable version beside the faded brief wording. Both stack on narrow screens.
+- `.builder-figure` is a simplified picture of an agent builder, with notes on where the two parts of the agent go. It is written once as `M3_BUILDER_FIGURE` in `modules-data.js` and used in both See it and Make it.
+- `.fix-list` lists what to change when a check fails.
+- A `<video class="module-video" controls>` plays a file from `assets/`, with a text version in a drop-down under it. Module 3's Plan it block plays `assets/module-3/dtu-feedback-coach.mp4`. The captions are in the picture.
+
 ## Still to do
 
 - Sign-up: when the survey URL exists, replace the "Sign-up opens soon" pill in `index.html` with a link to it.
 - Add the official EU emblem as `assets/eu-emblem.svg` (or `.png`) and uncomment the image in the footer of all pages.
 - Replace every "To be confirmed" on the pages once decided.
+- Decide whether to bring back the certificate feature (see the last section).
 
-## Additions for Module 3
+## Certificate (not implemented yet)
 
-- **Live prompt from a template.** A `kind: "live-prompt"` text may have a `template`: a list of lines where `{{key|[placeholder]}}` is replaced by the form value saved under `key`. A value typed on several lines (such as a list of criteria) becomes several prompt lines. Without `template`, `make-it.js` builds Module 1's prompt as before. A template text may also set `label` (read by screen readers) and `copyLabel` (the copy button's text), so a block can show several copy boxes, as Module 3 does for the agent's instructions, skill and starter prompt. A template with no `{{...}}` keys shows fixed text with a copy button (Module 3's skill is the same for every assignment). `optionalKeys: ["link"]` lists template keys that may stay empty without the "details are missing" notice, and `download: { label, filename }` adds a button that saves the text as a file (Module 3's skill is a SKILL.md file).
-- **Certificate.** A module with `certificate: true` gets a "Certificate" section after its blocks (`certificate.js`). Once every block is marked as done, the trainee types their name and downloads a PDF certificate of completion, made in the browser with jsPDF (`assets/vendor/jspdf.umd.min.js`, MIT licence, loaded only when the button is pressed). An optional tick box adds a self-declared line about the practice log. The name is not saved or sent anywhere. The standard PDF fonts only cover Latin letters.
-- **Module 3 layouts.** `.criteria-compare` shows each criterion's checkable version beside the faded brief wording, `.agent-diagram` draws the agent's two parts (skill and instructions), and `.fix-list` lists what to change when a check fails. All stack on narrow screens.
-- **Video.** Module 3's Plan it block plays `assets/module-3/dtu-feedback-coach.mp4` (captions are in the picture; a text version sits under it). See `assets/module-3/README.md`.
+**This feature is not implemented yet.** It was built and then switched off because the right time and way to offer it has not been decided. The code is kept so it can be brought back, probably in an updated form. With the feature off, no visitor sees anything about it and `jspdf.umd.min.js` is never requested.
+
+What is kept:
+
+- `certificate.js`: adds a "Certificate" section after a module's blocks. Once every block is marked as done, the trainee types their name and downloads a PDF made in the browser with jsPDF. The name is not saved or sent anywhere. An optional tick box adds a self-declared line about the practice log. The standard PDF fonts only cover Latin letters.
+- `assets/vendor/jspdf.umd.min.js` (jsPDF 2.5.1) and `assets/vendor/jspdf-LICENSE.txt` (MIT licence). The library is loaded only when the download button is pressed.
+- The hooks in `module.js` (they do nothing unless `certificate.js` is loaded and a module sets `certificate: true`) and the `.certificate-form` rules in `style.css`.
+
+To bring it back:
+
+1. In `module.html`, uncomment the `<script src="certificate.js">` line.
+2. Add `certificate: true,` to the module in `modules-data.js`.
+3. In `about.html`, uncomment the jsPDF credit under "Credits".
+4. Check that the wording on `index.html` and `privacy.html` about certificates matches what is offered (the privacy text comes from `docs/privacy-notice.md` and is not edited here).
