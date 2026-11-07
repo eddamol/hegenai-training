@@ -550,28 +550,36 @@ window.HEGENAI_MODULES = {
             number: 3,
             title: "GenAI Teaching Assistant for Formative Feedback",
             cluster: null,
-            outcome: "After this module, you can turn the assessment criteria of a written assignment into the instructions of a GenAI feedback agent, and you leave with a tested agent your students can use to check their drafts against your criteria before they hand in.",
+            outcome: "After this module, you can write assessment criteria in a way so a GenAI tool can check a drafted assignment against them, and you leave with a feedback agent your students can use to get feedback on their draft.",
             outcomePreview: { resource: "finished-agent", caption: "An example of the feedback agent you leave with. Select to open it." },
             audience: "Higher education educators who set written assignments with stated criteria. No prior GenAI experience needed.",
-            needs: "A GenAI tool your institution approves that lets you create an agent and share it with students, for example a Microsoft Copilot agent with instructions and skills, or your institution’s own GenAI platform. Also, the criteria of an assignment you set, or the sample case provided in the module.",
-            minutes: 45,
-            extraMinutes: 10,
+            needs: "A GenAI tool your institution allows, where you can build an agent. Microsoft Copilot is the example, and its free version is enough. Also, either the criteria of an assignment you set or the sample case provided.",
+            minutes: 55,
+            extraMinutes: 15,
             extraLabel: "practice log",
             status: "available",
             blocks: [
                 {
                     id: "intro",
-                    minutes: 8,
-                    html: '<p><dfn>Formative feedback</dfn> is feedback students get while they can still improve their work, for example on a draft before the deadline.</p>' +
-                        '<h3>The problem</h3>' +
-                        '<p>Students often learn how their work measures up to the criteria only at grading, when it is too late to act on it. Before the deadline, teachers and teaching assistants answer the same “does my draft meet the criteria?” questions again and again, which does not scale to large classes.</p>' +
-                        '<p>Many students already ask a GenAI chatbot for feedback, with their own prompts. They get fluent but generic feedback, not tied to your criteria and often too kind to weak work.</p>' +
-                        '<h3>What you make</h3>' +
-                        '<p>A <dfn>feedback agent</dfn>: a GenAI assistant that you set up once and share with your students through a link on your course page. Students open it, paste their draft, and get feedback on each of your criteria, with a quote from their own text and one next step. No grade, and no rewritten text.</p>' +
-                        '<p>This module does not teach you how to build an agent; your tool’s own help does that. It gives you the two things that go into the agent: a <strong>skill</strong> (a SKILL.md file on how to give the feedback, the same for every assignment) and the <strong>instructions</strong> (text with your assignment and criteria, the only part you change).</p>' +
-                        '<h3>One example all the way through</h3>' +
-                        '<p>The module uses one invented example in every block: the <strong>sample case</strong>, a case study report in a second-year business course, with a weak and a strong draft. If you have no assignment of your own, you use it in <strong>Try it</strong> and <strong>Make it</strong> too.</p>' +
-                        '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>',
+                    minutes: 10,
+                    html: '<p>In this block you see the problem the module addresses, learn four terms, and choose the assignment you will work on.</p>' +
+                            '<h3>The problem</h3>' +
+                            '<p>Think of the last written assignment you set. When did students first find out how their work measured up to your criteria?</p>' +
+                            '<p>If it was after grading, it was likely too late for them to act on it. Before the deadline, you or teaching assistants may be able to tell students where their drafts stand in terms of the criteria, but not for a large class.</p>' +
+                            '<p>Students can also put their drafts into a GenAI tool like ChatGPT or Microsoft Copilot and ask for feedback. But the chatbot does not necessarily have your criteria, so its feedback may be generic.</p>' +
+                            '<div class="callout">' +
+                            '<h3 class="callout-title">Four terms</h3>' +
+                            '<p><strong>Formative feedback:</strong> Feedback students get while they can still improve their work, for example on a draft before the deadline.</p>' +
+                            '<p><strong>Feedback agent:</strong> A GenAI assistant you set up once and can share through a link for others to use. It has instructions and a skill, which give context and define how the agent answers.</p>' +
+                            '<p><strong>Instructions:</strong> The text you give the agent, here, based on your assignment and its criteria. You change the instructions for each assignment.</p>' +
+                            '<p><strong>Skill:</strong> A file (named SKILL.md) that tells the agent how to deliver feedback. It is the same for every assignment.</p>' +
+                            '</div>' +
+                            '<h3>What you make</h3>' +
+                            '<p>You make a feedback agent for one of your assignments, or for the sample case if you do not have an assignment of your own. For each criterion of the assignment, the feedback agent tells the student whether the draft meets it, quotes the line it based that on, and suggests a next step. It gives no grade and writes nothing for the student.</p>' +
+                            '<p>This module does not teach you how to build an agent; your tool’s own help does that. It gives you what goes into the agent. You write the instructions from your own criteria in <strong>Try it</strong>, and you download the skill in <strong>Make it</strong>.</p>' +
+                            '<h3>One example throughout this module</h3>' +
+                            '<p>The module uses an invented example of an assignment, the <strong>sample case</strong>: A report set in a second-year business course, with a strong and a weak student draft. If you have no assignment of your own, you also use it in <strong>Try it</strong> and <strong>Make it</strong>.</p>' +
+                            '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>',
                     quiz: {
                         title: "Where you stand",
                         intro: "This question helps you choose your route through the module.",
@@ -601,7 +609,7 @@ window.HEGENAI_MODULES = {
                 },
                 {
                     id: "see",
-                    minutes: 12,
+                    minutes: 10,
                     html: '<p>In this block, you see what goes into a feedback agent for the sample case, and what the agent gives a student with a weak draft.</p>' +
                         M3_BUILDER_FIGURE +
                         '<p class="section-divider">Now, the four steps, for the sample case.</p>' +
@@ -667,7 +675,7 @@ window.HEGENAI_MODULES = {
                 },
                 {
                     id: "try",
-                    minutes: 10,
+                    minutes: 15,
                     html: '<p>In this block, you write what goes into the instructions, for an assignment you set or for the sample case. With the sample case, open it and write each of its criteria, as written for students, in a checkable way yourself. Then compare with the version in <strong>See it</strong>.</p>' +
                         '<div class="callout">' +
                         '<h3 class="callout-title">What to aim for</h3>' +
@@ -760,7 +768,7 @@ window.HEGENAI_MODULES = {
                 },
                 {
                     id: "make",
-                    minutes: 12,
+                    minutes: 15,
                     html: '<p>In this block, you set up your feedback agent, test it on a weak and a strong draft, fix it if needed, and share it with students.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
@@ -808,7 +816,7 @@ window.HEGENAI_MODULES = {
                 },
                 {
                     id: "plan",
-                    minutes: 3,
+                    minutes: 5,
                     html: '<p>In this block, you plan how students get your feedback agent, and start the practice log.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li><p><strong>Check the rules.</strong> Students should use a GenAI tool your institution approves, and the course’s GenAI rules must allow GenAI feedback on drafts. If they do not, change the rules or the plan before you share the agent.</p></li>' +
