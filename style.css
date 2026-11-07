@@ -395,6 +395,16 @@ html {
     box-shadow: none;
     color: var(--primary-dark);
 }
+/* A button that is not connected yet. */
+.pill-button:disabled,
+.pill-button:disabled:hover {
+    border-color: #767676;
+    background-color: white;
+    box-shadow: none;
+    color: #595959;
+    cursor: not-allowed;
+    transform: none;
+}
 
 
 /* Landing page: main holds full-width bands, so it takes over the sticky-footer
