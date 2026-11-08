@@ -851,29 +851,42 @@ window.HEGENAI_MODULES = {
                 {
                     id: "plan",
                     minutes: 5,
-                    html: '<p>In this block, you plan how students get your feedback agent, and start the practice log.</p>' +
+                    html: '<p>In this block, you see how you would share your feedback agent with students in Microsoft Copilot. You do not need to share it to finish this module. If you want to prepare properly, the last two steps point you to a practice log.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Download the practice log.</strong> You fill in part 1 in this block, and parts 2 and 3 after the hand-in.</p>' +
-                        '<p><button type="button" class="pill-button pill-button-secondary" disabled>Practice log (Word): Available soon</button></p>' +
+                        '<p><strong>Check the rules.</strong> Two sets of rules must allow it:</p>' +
+                        '<ul>' +
+                        '<li><strong>Your course and institution:</strong> The GenAI rules must allow GenAI feedback on drafts. If they do not, change the rules or the plan before you share the agent.</li>' +
+                        '<li><strong>Your Copilot set-up:</strong> Your IT department most likely decides whether teachers can share agents, with whom, and whether students can use them. Ask: “Can I share an agent I built in Copilot with the students on my course? Do they need anything besides their university login?” Students should sign in with their institution account, not a personal one.</li>' +
+                        '</ul>' +
                         '</li>' +
-                        '<li><p><strong>Check the rules.</strong> Students should use a GenAI tool your institution approves, and the course’s GenAI rules must allow GenAI feedback on drafts. If they do not, change the rules or the plan before you share the agent.</p></li>' +
                         '<li>' +
-                        '<p><strong>Choose when and how to introduce the agent.</strong> Give students the agent when they are working on an assignment, for example two weeks before the deadline. When you hand it out, tell students four things:</p>' +
+                        '<p><strong>Set up sharing.</strong> In Copilot, open your agent’s sharing settings and choose specific people or groups, not “anyone in your organisation”. Add a colleague first, and add your students only after testing. People you share with can use the agent but not edit it.</p>' +
+                        '</li>' +
+                        '<li>' +
+                        '<p><strong>Test it as a student would.</strong> In <a href="#block-make">Make it</a> you tested as the owner. Now ask your colleague to open the link and paste in a draft. Check that the link opens, that they can add and use the agent, and that they cannot edit it. Then ask them to try what students will try:</p>' +
+                        '<ul>' +
+                        '<li>Ask for a grade.</li>' +
+                        '<li>Ask it to rewrite a paragraph.</li>' +
+                        '<li>Paste in only one section of a draft.</li>' +
+                        '</ul>' +
+                        '<p>The agent should give no grade, write no text for the student, and say “Cannot judge” for criteria the pasted section does not cover. If it does not, go back to <a href="#block-make">Make it</a> and fix the instructions.</p>' +
+                        '</li>' +
+                        '<li>' +
+                        '<p><strong>Choose when and how to introduce the agent.</strong> Plan to give students the agent when they are working on an assignment, for example two weeks before a deadline. Add them in the sharing settings, and tell them four things:</p>' +
                         '<ul>' +
                         '<li>What the agent is for.</li>' +
                         '<li>That its feedback can be wrong.</li>' +
                         '<li>That you grade, not the agent.</li>' +
                         '<li>That they must not paste in other people’s work or personal data.</li>' +
                         '</ul>' +
-                        '<div data-text="plan-intro"></div>' +
+                        '<p>Also decide how you will find out whether they used it, for example, one question in the hand-in.</p>' +
                         '</li>' +
-                        '<li><p><strong>Fill in part 1 of the practice log.</strong> Note the course, the assignment, when students get the agent, what you changed while testing, and how you will find out whether they used it, for example, one question in the hand-in.</p></li>' +
                         '<li>' +
-                        '<p><strong>Fill in parts 2 and 3 after the hand-in.</strong> Part 2 asks what you saw in students’ work, for example one piece of feedback a student got that was right by your criteria, and one that was not. Part 3 asks what worked, what did not, and what you would tell a colleague. Anything that did not work is a useful finding.</p>' +
-                        '<p>No assignment coming up? Share the link with a colleague, ask them to paste in a draft of their own, and note what they say about the feedback.</p>' +
+                        '<p><strong>Download the practice log.</strong> This is optional. If you want to properly prepare to share a feedback agent with your students, use the practice log. It is about Microsoft Copilot, and you do not need to share the agent with students to fill it in.</p>' +
+                        '<p><button type="button" class="pill-button pill-button-secondary" disabled>Practice log (Word): Available soon</button></p>' +
                         '</li>' +
-                        '<li><p><strong>Upload the completed log</strong> to a survey you receive by email, within 2 weeks from the session. This is optional for participants in facilitated sessions.</p></li>' +
+                        '<li><p><strong>Fill in the practice log and hand it in within 2 weeks.</strong> Upload the completed log to a survey you receive by email, within 2 weeks from the session.</p></li>' +
                         '</ol>' +
                         '<h3>Example: a course feedback coach at DTU</h3>' +
                         '<p>At the Technical University of Denmark (DTU), a feedback agent can look like this on the university’s own GenAI platform, CampusAI. DTU calls it a feedback coach. A teacher turns the criteria into a coach, and students open with their DTU login information, so they only paste their draft. The video shows how it works in 1 min 40 s, without sound. It uses an invented course and student draft. You do not need it for this module.</p>' +
