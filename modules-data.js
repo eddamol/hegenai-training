@@ -134,7 +134,7 @@ window.HEGENAI_MODULES = {
             outcome: "After this module, you can set a GenAI use policy and a declaration guide for a written assignment, and you leave with a completed policy and guide for a given assignment.",
             outcomePreview: { resource: "finished-guide", caption: "An example of the policy and declaration guide you leave with. Select to open it." },
             audience: "Higher education educators who set written assignments. No prior GenAI experience needed.",
-            needs: "A GenAI tool. This module uses Microsoft Copilot as the example, and a free account is enough. Also, either an assignment you set or the practice case provided in the module.",
+            needs: "Access to a GenAI tool. This module uses Microsoft Copilot as an example, and the free version is enough. Also, either an assignment you set or the practice case provided in the module.",
             minutes: 55,
             extraMinutes: 10,
             extraLabel: "practice log",
@@ -366,7 +366,7 @@ window.HEGENAI_MODULES = {
                         '<p><strong>Copy your prompt.</strong> The prompt is ready below, as it was in <a href="#block-see">See it</a> but with your information from <a href="#block-try">Try it</a>. One change: it gives the rules you know of instead of an institution’s name, and tells the tool not to add any. Adjust the information in Try it or copy right away.</p>' +
                         '<div data-text="make-prompt"></div>' +
                         '</li>' +
-                        '<li><p><strong>Paste your prompt into a new conversation</strong> in a GenAI tool of your choice, for example Microsoft Copilot (a free account is enough).</p></li>' +
+                        '<li><p><strong>Paste your prompt into a new conversation</strong> in a GenAI tool of your choice, for example Microsoft Copilot (Work/School account, or paid).</p></li>' +
                         '<li><p><strong>Check the draft.</strong> You should now have a drafted GenAI policy and declaration guide. Following the checklist below, fix what falls short: Edit the text yourself, or ask the tool to change one item.</p>' +
                         '<ol class="tick-list" data-checklist>' +
                         '<li>The AI level (1-5) fits what the assignment assesses (Heaps, 2024).</li>' +
@@ -497,7 +497,7 @@ window.HEGENAI_MODULES = {
                 {
                     id: "see-draft",
                     kind: "draft",
-                    label: "Microsoft Copilot, free version, 27 October 2026",
+                    label: "Microsoft Copilot, Work account (Basic), 27 October 2026",
                     showLines: 4,
                     moreLabel: "Show the whole draft",
                     lines: [
@@ -553,7 +553,7 @@ window.HEGENAI_MODULES = {
             outcome: "After this module, you can write assessment criteria in a way so a GenAI tool can check a drafted assignment against them, and you leave with a feedback agent your students can use to get feedback on their draft.",
             outcomePreview: { resource: "finished-agent", caption: "An example of the feedback agent you leave with. Select to open it." },
             audience: "Higher education educators who set written assignments with stated criteria. No prior GenAI experience needed.",
-            needs: "A GenAI tool your institution allows, where you can build an agent. Microsoft Copilot is the example, and its free version is enough. Also, either the criteria of an assignment you set or the sample case provided.",
+            needs: "Preferably access to Microsoft Copilot, a Work/School account or with a paid subscription. Also, either the criteria of an assignment you set or the sample case provided.",
             minutes: 55,
             extraMinutes: 15,
             extraLabel: "practice log",
@@ -570,13 +570,14 @@ window.HEGENAI_MODULES = {
                             '<div class="callout">' +
                             '<h3 class="callout-title">Four terms</h3>' +
                             '<p><strong>Formative feedback:</strong> Feedback students get while they can still improve their work, for example on a draft before the deadline.</p>' +
-                            '<p><strong>Feedback agent:</strong> A GenAI assistant you set up once and can share through a link for others to use. It has instructions and a skill, which give context and define how the agent answers.</p>' +
+                            '<p><strong>Agent:</strong> A GenAI assistant you set up once and can share through a link for others to use. It has instructions and a skill, which give context and define how the agent answers.</p>' +
                             '<p><strong>Instructions:</strong> The text you give the agent, here, based on your assignment and its criteria. You change the instructions for each assignment.</p>' +
                             '<p><strong>Skill:</strong> A file (named SKILL.md) that tells the agent how to deliver feedback. It is the same for every assignment.</p>' +
                             '</div>' +
                             '<h3>What you make</h3>' +
                             '<p>You make a feedback agent for one of your assignments, or for the sample case if you do not have an assignment of your own. For each criterion of the assignment, the feedback agent tells the student whether the draft meets it, quotes the line it based that on, and suggests a next step. It gives no grade and writes nothing for the student.</p>' +
-                            '<p>This module does not teach you how to build an agent; your tool’s own help does that. It gives you what goes into the agent. You write the instructions from your own criteria in <strong>Try it</strong>, and you download the skill in <strong>Make it</strong>.</p>' +
+                            '<p>This module does not teach you how to implement an agent in different AI tools. Instead, it focuses on what goes into the agent and how it can deliver value for your students. You write the instructions from your own criteria in <strong>Try it</strong>, and you download the skill in <strong>Make it</strong>.</p>' +
+                            '<p>At the time of writing, the possibility to create a sharable agent like the one in this module is the most accessible through Microsoft Copilot (although not for personal free accounts). Another similar option is to create a so-called Plugin in ChatGPT.</p>' +
                             '<h3>One example throughout this module</h3>' +
                             '<p>The module uses an invented example of an assignment, the <strong>sample case</strong>: A report set in a second-year business course, with a strong and a weak student draft. If you have no assignment of your own, you also use it in <strong>Try it</strong> and <strong>Make it</strong>.</p>' +
                             '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>',
@@ -788,6 +789,7 @@ window.HEGENAI_MODULES = {
                     id: "make",
                     minutes: 15,
                     html: '<p>In this block, you set up your feedback agent, test it on a weak and a strong draft, fix it if needed, and get a link that can be shared.</p>' +
+                        '<p>In Microsoft Copilot (although not for personal free accounts), find Agents in the left sidebar and click Agents > New agent. If it offers you to "Build your own specialist agent", click Skip. Then you should see an area where you can edit the name and instructions of your agent, and upload a sill file.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
                         '<p><strong>Download the skill.</strong> It is the same for every assignment, so you download it once and upload it to every feedback agent you make. Keep the file name SKILL.md.</p>' +
@@ -1116,7 +1118,7 @@ window.HEGENAI_MODULES = {
                 {
                     id: "see-draft",
                     kind: "draft",
-                    label: "Microsoft Copilot, free version, November 2026",
+                    label: "Microsoft Copilot, Work account (Basic), November 2026",
                     showLines: 5,
                     moreLabel: "Show all the feedback",
                     lines: [
