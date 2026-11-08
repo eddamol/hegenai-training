@@ -107,10 +107,10 @@ var M3_BUILDER_FIGURE =
     '<p># Assignment<br>Case study report. A 2,500-word…</p>' +
     '<p># Criteria (judge only these)<br>1. Problem analysis. Met when: …<br>2. Justified recommendation. …</p>' +
     '</div></div>' +
-    '<div class="bf-note bf-left bf-change bf-r3"><p class="bf-note-title">Instructions: paste</p><p>Your assignment and its criteria, each with a “met when”.</p><p><strong>The only part you change for each assignment.</strong></p><span class="bf-arrow" aria-hidden="true"></span></div>' +
+    '<div class="bf-note bf-left bf-change bf-r3"><p class="bf-note-title">Instructions: Paste</p><p>Your assignment and its criteria, each with a “met when”.</p><p><strong>The only part you change for each assignment.</strong></p><span class="bf-arrow" aria-hidden="true"></span></div>' +
     '<div class="bf-win bf-r4"><p class="bf-label">Skills <span class="bf-add" aria-hidden="true">+ Add</span></p>' +
     '<div class="bf-field bf-field-same"><strong>SKILL.md</strong> · criteria-feedback</div></div>' +
-    '<div class="bf-note bf-right bf-same bf-r4"><p class="bf-note-title">Skills: upload once</p><p>Add, then upload the SKILL.md from Make it.</p><p><strong>The same file for every assignment.</strong></p><span class="bf-arrow" aria-hidden="true"></span></div>' +
+    '<div class="bf-note bf-right bf-same bf-r4"><p class="bf-note-title">Skills: Upload once</p><p>Add, then upload the SKILL.md from Make it.</p><p><strong>The same file for every assignment.</strong></p><span class="bf-arrow" aria-hidden="true"></span></div>' +
     '<div class="bf-win bf-bottom bf-r5"><span class="bf-create" aria-hidden="true">Create</span></div>' +
     '<div class="bf-note bf-right bf-grey bf-r5"><p>Then share the link with your students.</p><span class="bf-arrow" aria-hidden="true"></span></div>' +
     '</div>' +
@@ -553,8 +553,8 @@ window.HEGENAI_MODULES = {
             outcome: "After this module, you can write assessment criteria in a way so a GenAI tool can check a drafted assignment against them, and you leave with a feedback agent your students can use to get feedback on their draft.",
             outcomePreview: { resource: "finished-agent", caption: "An example of the feedback agent you leave with. Select to open it." },
             audience: "Higher education educators who set written assignments with stated criteria. No prior GenAI experience needed.",
-            needs: "Preferably access to Microsoft Copilot, a Work/School account or with a paid subscription. Also, either the criteria of an assignment you set or the sample case provided.",
-            minutes: 55,
+            needs: "Preferably Microsoft Copilot with a work or school account or a paid plan. Without it, you can still follow the module, but you cannot build or share an agent. Also, either the criteria of an assignment you set or the sample case provided.",
+            minutes: 60,
             extraMinutes: 15,
             extraLabel: "practice log",
             status: "available",
@@ -611,12 +611,11 @@ window.HEGENAI_MODULES = {
                 {
                     id: "see",
                     minutes: 10,
-                    html: '<p>In this block, you see how a feedback agent is set up and tested for the sample case. It is done in four steps: Making each criterion checkable, setting up instructions and a skill, running a draft through the agent, and checking the feedback.</p>' +
+                    html: '<p>In this block, you see how a feedback agent is set up and tested for the sample case, in four steps. Make each criterion checkable, set up the instructions and a skill, run a draft through the agent, and check the feedback.</p>' +
                         M3_BUILDER_FIGURE +
-                        '<p class="section-divider">Setting up a feedback agent for the sample case, in four steps:</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Make each criterion checkable.</strong> Criteria in assignment descriptions are written for students and graders, for example “well argued”. But a GenAI tool doesn not know what “well argued” looks like in a text. Therefore, each criterion gets a “met when”, as illustrated below.</p>' +
+                        '<p><strong>Make each criterion checkable.</strong> Criteria in assignment descriptions are written for students and graders, for example “well argued”. But a GenAI tool does not know what “well argued” looks like in a text. Therefore, each criterion gets a “met when”, as illustrated below.</p>' +
                         '<div class="criteria-compare">' +
                         '<div class="criteria-head" aria-hidden="true"><span>Checkable criteria: What the agent gets</span><span>Original criteria: What students and graders see</span></div>' +
                         '<div class="criteria-row">' +
@@ -632,14 +631,14 @@ window.HEGENAI_MODULES = {
                         '<div class="criteria-brief"><span class="criteria-label">Original</span>“The report is <s>clearly written</s> and <s>well structured</s> for a professional reader.”</div>' +
                         '</div>' +
                         '</div>' +
-                        '<p>In the checkable versions on left, highlighted parts can be checked by the agent. In the original criteria on right, the struck-through words cannot. What makes the highlighted parts checkable?</p>' +
+                        '<p>In the checkable versions on the left, the highlighted parts can be checked by the agent. In the original criteria on the right, the struck-through words cannot. What makes the highlighted parts checkable?</p>' +
                         '<details class="dropdown">' +
                         '<summary>The answer: Click to expand</summary>' +
                         '<div class="dropdown-body">' +
                         '<p>The highlighted criteria are made tangible, such as by counting instances or looking for sources next to claims. Words like “clearly” and “relevant” leave room for the reader (or GenAI tool) to decide what counts.</p>' +
                         '</div>' +
                         '</details>' +
-                        '<p>The qualities in the originals still count and you do not need to change them in the assignment description, only for the agent, because you can judge them when you grade, but the agent cannot judge them in a student draft.</p>' +
+                        '<p>The original wording still counts. Keep it in the assignment description, and use the checkable versions only for the agent. You judge the original qualities when you grade, because the agent cannot see them in a draft.</p>' +
                         '</li>' +
                         '<li>' +
                         '<p><strong>Set up the agent: Instructions and a skill.</strong> The instructions hold the assignment and the checkable criteria. The underlined parts below are what you would change for your own assignment. The skill stays as it is.</p>' +
@@ -647,7 +646,7 @@ window.HEGENAI_MODULES = {
                         '<div data-text="see-skill"></div>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Run the agent on a weak assignment draft.</strong> Imagine a student opens the agent and pastes their drafted assignment. Below is the feedback they would get. You can open the weak student draftand judge it yourself against the criteria, then read the agent’s feedback.</p>' +
+                        '<p><strong>Run the agent on a weak assignment draft.</strong> Imagine a student opens the agent and pastes their drafted assignment. Below is the feedback they would get. You can open the weak student draft and judge it yourself against the criteria, then read the agent’s feedback.</p>' +
                         '<p><button type="button" class="link-button" data-open-resource="test-weak">Open the weak student draft</button></p>' +
                         '<div data-text="see-draft"></div>' +
                         '</li>' +
@@ -712,8 +711,8 @@ window.HEGENAI_MODULES = {
                         '</div>' +
                         '</details>' +
                         '<div data-form></div>' +
-                        '<details class="dropdown">' +
                         '<p><strong>Test each “met when”.</strong> Could a reader decide from the student’s text alone whether it is met? If not, make it something visible or countable.</p>' +
+                        '<details class="dropdown">' +
                         '<summary>Sample case: Compare with our checkable version</summary>' +
                         '<div class="dropdown-body">' +
                         '<p>Yours does not need to match. Check that each of yours says what the draft must show, naming things a reader can see or count.</p>' +
@@ -726,7 +725,7 @@ window.HEGENAI_MODULES = {
                         '</details>',
                     quiz: {
                         title: "Self-check",
-                        intro: "See if you can tell a checkable criterion from one that is not. (Not recorded, not scored.)",
+                        intro: "See if you can tell a checkable criterion from one that is not. (Your answer is only visible to you.)",
                         scored: true,
                         questions: [
                             {
@@ -787,9 +786,8 @@ window.HEGENAI_MODULES = {
                 },
                 {
                     id: "make",
-                    minutes: 15,
+                    minutes: 20,
                     html: '<p>In this block, you set up your feedback agent, test it on a weak and a strong draft, fix it if needed, and get a link that can be shared.</p>' +
-                        '<p>In Microsoft Copilot (although not for personal free accounts), find Agents in the left sidebar and click Agents > New agent. If it offers you to "Build your own specialist agent", click Skip. Then you should see an area where you can edit the name and instructions of your agent, and upload a sill file.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
                         '<p><strong>Download the skill.</strong> It is the same for every assignment, so you download it once and upload it to every feedback agent you make. Keep the file name SKILL.md.</p>' +
@@ -799,16 +797,17 @@ window.HEGENAI_MODULES = {
                         '<p><strong>Copy the instructions.</strong> They hold your information from <a href="#block-try">Try it</a>. This is the only part you would change for another assignment.</p>' +
                         '<div data-text="make-instructions"></div>' +
                         '</li>' +
-                        '<li><p><strong>Create the agent</strong> in your approved GenAI tool.</p>' +
+                        '<li><p><strong>Create the agent</strong> in your approved GenAI tool. At the time of writing, in Microsoft Copilot (not available for personal free accounts), you find Agents in the left sidebar and choose New agent. If it offers to build one for you, skip that. You then see where to enter the name and instructions and where to upload a skill file.</p>' +
                         '<ul>' +
                         '<li><strong>Name:</strong> Give it a name students will recognise, for example “Feedback on the case study report”.</li>' +
                         '<li><strong>Instructions:</strong> Paste the text from step 2.</li>' +
-                        '<li><strong>Skill:</strong> Upload SKILL.md. If your tool has no place for a skill, paste the skill text under the instructions.</li>' +
+                        '<li><strong>Skill:</strong> Upload SKILL.md. If your tool has no place for a skill file, paste the skill text under the instructions instead.</li>' +
                         '</ul>' +
+                        '<p><strong>No agent builder?</strong> Start a new conversation in any GenAI tool you are allowed to use. Paste the instructions and then the skill text into your first message, and paste a draft as your second message. You can test the feedback this way, but you cannot share it.</p>' +
                         M3_BUILDER_FIGURE + '</li>' +
-                        '<li><p><strong>Test it.</strong> Open a new conversation with your agent and paste in the weak draft. Do this twice, in a new conversations each time, to see whether the verdicts stay the same. Then paste the strong draft in a third new conversation.</p>' +
+                        '<li><p><strong>Test it.</strong> Open a new conversation with your agent and paste in the weak draft. Do this twice, in a new conversation each time, to see whether the verdicts stay the same. Then paste the strong draft in a third new conversation.</p>' +
                         '<p>Use drafts you wrote yourself or the sample case drafts, never real student work with names or other personal data.</p>' +
-                        '<p><button type="button" class="link-button" data-open-resource="test-weak">Open the weak draft</button> · <button type="button" class="link-button" data-open-resource="test-strong">Open the strong draft</button></p></li>' +
+                        '<p><button type="button" class="link-button" data-open-resource="test-weak">Open the weak draft</button> · <button type="button" class="link-button" data-open-resource="test-strong">Open the strong draft</button></p>' +
                         '<details class="dropdown">' +
                         '<summary>No drafts of your own: Let GenAI write test drafts</summary>' +
                         '<div class="dropdown-body">' +
@@ -828,15 +827,15 @@ window.HEGENAI_MODULES = {
                         '</li>' +
                         '<li><p><strong>Fix what failed.</strong> All ticked? Go on to the next step. If a tick is missing, open the list below to see what to change.</p>' +
                         '<details class="dropdown">' +
-                        '<summary>If a tick is missing: what to change</summary>' +
+                        '<summary>If a tick is missing: What to change</summary>' +
                         '<div class="dropdown-body">' +
                         '<p>Most fixes are in your criteria. Edit them in <a href="#block-try">Try it</a>, copy the instructions again, paste them over the old ones, and rerun the same drafts. The skill stays as it is.</p>' +
                         '<ul class="fix-list" role="list">' +
-                        '<li><p class="fix-check">1. A verdict has no quote, or the format is not followed</p><p><strong>Likely cause:</strong> the agent does not use the skill.</p><p><strong>Change:</strong> check that SKILL.md is uploaded as the agent’s skill. If it still is not used, paste the skill text under the instructions.</p></li>' +
-                        '<li><p class="fix-check">2. The weak draft gets “Met”</p><p><strong>Likely cause:</strong> the “met when” is too vague, so fluent text passes.</p><p><strong>Change:</strong> make it something you can see or count (“at least two…”, “each claim…”), and add “Typical mistake: …”.</p></li>' +
-                        '<li><p class="fix-check">3. The two runs give different verdicts</p><p><strong>Likely cause:</strong> the criterion checks two things at once, or a word in it can be read two ways.</p><p><strong>Change:</strong> split it into two criteria, or replace the vague word.</p></li>' +
-                        '<li><p class="fix-check">4. It gives a grade or rewrites text</p><p><strong>Likely cause:</strong> the rule is lost in a long text.</p><p><strong>Change:</strong> make sure the first line of the instructions is kept as it is, and shorten long criteria.</p></li>' +
-                        '<li><p class="fix-check">5. A next step is vague, such as “improve your analysis”</p><p><strong>Likely cause:</strong> the “met when” does not say what the draft must show.</p><p><strong>Change:</strong> rewrite the “met when”; the next step follows from it.</p></li>' +
+                        '<li><p class="fix-check">1. A verdict has no quote, or the format is not followed</p><p><strong>Likely cause:</strong> The agent does not use the skill.</p><p><strong>Change:</strong> Check that SKILL.md is uploaded as the agent’s skill. If it still is not used, paste the skill text under the instructions.</p></li>' +
+                        '<li><p class="fix-check">2. The weak draft gets “Met”</p><p><strong>Likely cause:</strong> The “met when” is too vague, so fluent text passes.</p><p><strong>Change:</strong> Make it something you can see or count (“at least two…”, “each claim…”), and add “Typical mistake: …”.</p></li>' +
+                        '<li><p class="fix-check">3. The two runs give different verdicts</p><p><strong>Likely cause:</strong> The criterion checks two things at once, or a word in it can be read two ways.</p><p><strong>Change:</strong> Split it into two criteria, or replace the vague word.</p></li>' +
+                        '<li><p class="fix-check">4. It gives a grade or rewrites text</p><p><strong>Likely cause:</strong> The rule is lost in a long text.</p><p><strong>Change:</strong> Make sure the first line of the instructions is kept as it is, and shorten long criteria.</p></li>' +
+                        '<li><p class="fix-check">5. A next step is vague, such as “improve your analysis”</p><p><strong>Likely cause:</strong> The “met when” does not say what the draft must show.</p><p><strong>Change:</strong> Rewrite the “met when”. The next step follows from it.</p></li>' +
                         '</ul>' +
                         '<div class="callout">' +
                         '<h3 class="callout-title">Still failing after two rounds?</h3>' +
@@ -845,35 +844,33 @@ window.HEGENAI_MODULES = {
                         '</div>' +
                         '</details>' +
                         '</li>' +
-                        '<li><p><strong>Share it.</strong> If your institution allows it, share the agent with your students (and only the students), and copy the link to it. Do not send it yet. In <strong>Plan it</strong>, you check the rules and choose when students get it. Write one line to go with the link: “Open this feedback agent, then paste your draft.”</p></li>' +
+                        '<li><p><strong>Your agent is ready.</strong> Keep it private for now. In <strong>Plan it</strong>, you set up sharing and choose when students get it.</p></li>' +
                         '</ol>'
                 },
                 {
                     id: "plan",
                     minutes: 5,
-                    html: '<p>In this block, you see how you would share your feedback agent with students in Microsoft Copilot. You do not need to share it to finish this module. If you want to prepare properly, the last two steps point you to a practice log.</p>' +
+                    html: '<p>In this block, you plan how to share your feedback agent with students. You do not need to share it to finish this module.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
                         '<p><strong>Check the rules.</strong> Two sets of rules must allow it:</p>' +
                         '<ul>' +
-                        '<li><strong>Your course and institution:</strong> The GenAI rules must allow GenAI feedback on drafts. If they do not, change the rules or the plan before you share the agent.</li>' +
-                        '<li><strong>Your Copilot set-up:</strong> Your IT department most likely decides whether teachers can share agents, with whom, and whether students can use them. Ask: “Can I share an agent I built in Copilot with the students on my course? Do they need anything besides their university login?” Students should sign in with their institution account, not a personal one.</li>' +
+                        '<li><strong>Your course and institution:</strong> The GenAI rules must allow GenAI feedback on drafts. If they do not, change the rules or your plan first.</li>' +
+                        '<li><strong>Your Copilot set-up:</strong> Your IT department most likely decides whether teachers can share agents and whether students can use them. Ask: “Can I share an agent I built in Copilot with the students on my course?” Students should sign in with their institution account, not a personal one.</li>' +
                         '</ul>' +
                         '</li>' +
+                        '<li><p><strong>Set up sharing.</strong> At the time of writing, you do this in your agent’s sharing settings in Copilot. Choose specific people or groups, not “anyone in your organisation”. Add a colleague first, and your students only after testing. People you share with can use the agent but not edit it.</p></li>' +
                         '<li>' +
-                        '<p><strong>Set up sharing.</strong> In Copilot, open your agent’s sharing settings and choose specific people or groups, not “anyone in your organisation”. Add a colleague first, and add your students only after testing. People you share with can use the agent but not edit it.</p>' +
-                        '</li>' +
-                        '<li>' +
-                        '<p><strong>Test it as a student would.</strong> In <a href="#block-make">Make it</a> you tested as the owner. Now ask your colleague to open the link and paste in a draft. Check that the link opens, that they can add and use the agent, and that they cannot edit it. Then ask them to try what students will try:</p>' +
+                        '<p><strong>Test it as a student would.</strong> Ask your colleague to open the link and paste in a draft. Check that the link opens, that they can use the agent, and that they cannot edit it. Then ask them to try what students will try:</p>' +
                         '<ul>' +
                         '<li>Ask for a grade.</li>' +
                         '<li>Ask it to rewrite a paragraph.</li>' +
                         '<li>Paste in only one section of a draft.</li>' +
                         '</ul>' +
-                        '<p>The agent should give no grade, write no text for the student, and say “Cannot judge” for criteria the pasted section does not cover. If it does not, go back to <a href="#block-make">Make it</a> and fix the instructions.</p>' +
+                        '<p>The agent should give no grade, write no text for the student, and say “Cannot judge” for criteria the pasted section does not cover. If it does not, fix the instructions in <a href="#block-make">Make it</a>.</p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Choose when and how to introduce the agent.</strong> Plan to give students the agent when they are working on an assignment, for example two weeks before a deadline. Add them in the sharing settings, and tell them four things:</p>' +
+                        '<p><strong>Choose when and how to introduce it.</strong> Give students the agent while they work on an assignment, for example two weeks before the deadline. Put the link on the course page with one line: “Open this feedback agent, then paste your draft.” Tell students four things:</p>' +
                         '<ul>' +
                         '<li>What the agent is for.</li>' +
                         '<li>That its feedback can be wrong.</li>' +
@@ -883,13 +880,13 @@ window.HEGENAI_MODULES = {
                         '<p>Also decide how you will find out whether they used it, for example, one question in the hand-in.</p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Download the practice log.</strong> This is optional. If you want to properly prepare to share a feedback agent with your students, use the practice log. It is about Microsoft Copilot, and you do not need to share the agent with students to fill it in.</p>' +
+                        '<p><strong>Download the practice log.</strong> It is optional, and you do not need to share the agent to fill it in.</p>' +
                         '<p><button type="button" class="pill-button pill-button-secondary" disabled>Practice log (Word): Available soon</button></p>' +
                         '</li>' +
-                        '<li><p><strong>Fill in the practice log and hand it in within 2 weeks.</strong> Upload the completed log to a survey you receive by email, within 2 weeks from the session.</p></li>' +
+                        '<li><p><strong>Fill in the practice log and upload it</strong> to a survey you receive by email, within 2 weeks from the session. This is optional for participants in facilitated sessions.</p></li>' +
                         '</ol>' +
-                        '<h3>Example: a course feedback coach at DTU</h3>' +
-                        '<p>At the Technical University of Denmark (DTU), a feedback agent can look like this on the university’s own GenAI platform, CampusAI. DTU calls it a feedback coach. A teacher turns the criteria into a coach, and students open with their DTU login information, so they only paste their draft. The video shows how it works in 1 min 40 s, without sound. It uses an invented course and student draft. You do not need it for this module.</p>' +
+                        '<h3>Example: A course feedback coach at DTU</h3>' +
+                        '<p>At the Technical University of Denmark (DTU), a feedback agent can look like this on the university’s own GenAI platform, CampusAI. DTU calls it a feedback coach, and students open it with their DTU login. The video is 1 min 40 s, has no sound, and uses an invented course and student draft. You do not need it for this module.</p>' +
                         '<video class="module-video" controls preload="metadata" src="assets/module-3/dtu-feedback-coach.mp4">' +
                         '<p>Your browser cannot play this video. <a href="assets/module-3/dtu-feedback-coach.mp4">Download the video</a>.</p>' +
                         '</video>' +
@@ -897,14 +894,14 @@ window.HEGENAI_MODULES = {
                         '<summary>Text version of the video</summary>' +
                         '<div class="dropdown-body">' +
                         '<ol>' +
-                        '<li><strong>Teacher:</strong> opens the Coach Builder and names the course.</li>' +
+                        '<li><strong>Teacher:</strong> Opens the Coach Builder and names the course.</li>' +
                         '<li>Pastes how they assess. Here it is a transcript of them talking about what they look for in reports and what they ask in the oral exam.</li>' +
                         '<li>Signs in with the university account. The AI turns the text into five report criteria and three oral-exam questions.</li>' +
                         '<li>Reviews the criteria, adds course readings the coach can point students to, and downloads the coach to share on the course page.</li>' +
-                        '<li><strong>Student:</strong> opens the coach, signs in with their university account, and pastes a draft.</li>' +
-                        '<li>Gets feedback on each criterion: whether it is present, partly there or missing, where in the draft, what is weak, a question to think about, and what to reread. No grade, and no rewritten text.</li>' +
+                        '<li><strong>Student:</strong> Opens the coach, signs in with their university account, and pastes a draft.</li>' +
+                        '<li>Gets feedback on each criterion, with whether it is present, partly there or missing, where in the draft, what is weak, a question to think about, and what to reread. No grade, and no rewritten text.</li>' +
                         '</ol>' +
-                        '<p>Why your own AI infrastructure helps: students sign in with their university account, so they need no private chatbot accounts; text goes only to the university’s own AI platform; each coach is built from the teacher’s own criteria, which the teacher reviews before students get it.</p>' +
+                        '<p>Why your own AI infrastructure helps: Students sign in with their university account, so they need no private chatbot accounts. Text goes only to the university’s own AI platform. Each coach is built from the teacher’s own criteria, which the teacher reviews before students get it.</p>' +
                         '</div>' +
                         '</details>'
                 }
