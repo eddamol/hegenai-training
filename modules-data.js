@@ -881,8 +881,7 @@ window.HEGENAI_MODULES = {
                         '</li>' +
                         '<li>' +
                         '<p><strong>Download the practice log.</strong> It is optional, and you do not need to share the agent to fill it in.</p>' +
-                        '<p><button type="button" class="pill-button pill-button-secondary" disabled>Practice log (Word): Available soon</button></p>' +
-                        '</li>' +
+                        '<p><a class="pill-button" href="downloads/practice-log-module-3.docx" download>Download the practice log (Word)</a></p>' +                        '</li>' +
                         '<li><p><strong>Fill in the practice log and upload it</strong> to a survey you receive by email, within 2 weeks from the session. This is optional for participants in facilitated sessions.</p></li>' +
                         '</ol>' +
                         '<h3>Example: A course feedback coach at DTU</h3>' +
