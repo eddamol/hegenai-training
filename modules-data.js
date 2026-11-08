@@ -203,7 +203,7 @@ window.HEGENAI_MODULES = {
                         '<p class="section-divider">Now, a four-step approach to making a policy and declaration guide for an assignment, starting with a structured prompt to an AI tool.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Specify the level of GenAI use.</strong> Given the learning outcomes (LOs) in the sample case, GenAI may help students plan, but not do the actual tasks the learning oucomes require. So, it is at Level 2, AI Planning.</p>' +
+                        '<p><strong>Specify the level of GenAI use.</strong> Given the learning outcomes (LOs) in the sample case, GenAI may help students plan, but not do the actual tasks the learning outcomes require. So, it is at Level 2, AI Planning.</p>' +
                         '</li>' +
                         '<li>' +
                         '<p><strong>Fill in the prompt.</strong> Below is a complete prompt for generating the policy and declaration guide, based on the sample case. You could use the same prompt, replacing the underlined details with information on your own assignment, and paste it into an AI tool.</p>' +
@@ -228,7 +228,7 @@ window.HEGENAI_MODULES = {
                         '<p>The scale gives you and your students a shared way to talk about GenAI use (Perkins et al., 2025), and the two lists make it concrete for one assignment. The prompt drafts the policy and declaration guide. Your check makes it fit your course.</p>',
                     quiz: {
                         title: "Self-check",
-                        intro: "Check if you can identify a proper AI use level for another assignment:.",
+                        intro: "Check if you can identify a proper AI use level for another assignment.",
                         scored: true,
                         questions: [
                             {
@@ -550,29 +550,36 @@ window.HEGENAI_MODULES = {
             number: 3,
             title: "GenAI Teaching Assistant for Formative Feedback",
             cluster: null,
-            outcome: "After this module, you can turn the assessment criteria of a written assignment into the instructions of a GenAI feedback agent, and you leave with a tested agent your students can use to check their drafts against your criteria before they hand in.",
+            outcome: "After this module, you can write assessment criteria in a way so a GenAI tool can check a drafted assignment against them, and you leave with a feedback agent your students can use to get feedback on their draft.",
             outcomePreview: { resource: "finished-agent", caption: "An example of the feedback agent you leave with. Select to open it." },
             audience: "Higher education educators who set written assignments with stated criteria. No prior GenAI experience needed.",
-            needs: "A GenAI tool your institution approves that lets you create an agent and share it with students, for example a Microsoft Copilot agent with instructions and skills, or your institution’s own GenAI platform. Also, the criteria of an assignment you set, or the sample case provided in the module.",
-            minutes: 45,
-            extraMinutes: 10,
+            needs: "A GenAI tool your institution allows, where you can build an agent. Microsoft Copilot is the example, and its free version is enough. Also, either the criteria of an assignment you set or the sample case provided.",
+            minutes: 55,
+            extraMinutes: 15,
             extraLabel: "practice log",
             status: "available",
-            certificate: false,
             blocks: [
                 {
                     id: "intro",
-                    minutes: 8,
-                    html: '<p><dfn>Formative feedback</dfn> is feedback students get while they can still improve their work, for example on a draft before the deadline.</p>' +
-                        '<h3>The problem</h3>' +
-                        '<p>Students often learn how their work measures up to the criteria only at grading, when it is too late to act on it. Before the deadline, teachers and teaching assistants answer the same “does my draft meet the criteria?” questions again and again, which does not scale to large classes.</p>' +
-                        '<p>Many students already ask a GenAI chatbot for feedback, with their own prompts. They get fluent but generic feedback, not tied to your criteria and often too kind to weak work.</p>' +
-                        '<h3>What you make</h3>' +
-                        '<p>A <dfn>feedback agent</dfn>: a GenAI assistant that you set up once and share with your students through a link on your course page. Students open it, paste their draft, and get feedback on each of your criteria, with a quote from their own text and one next step. No grade, and no rewritten text.</p>' +
-                        '<p>This module does not teach you how to build an agent; your tool’s own help does that. It gives you the two things that go into the agent: a <strong>skill</strong> (a SKILL.md file on how to give the feedback, the same for every assignment) and the <strong>instructions</strong> (text with your assignment and criteria, the only part you change).</p>' +
-                        '<h3>One example all the way through</h3>' +
-                        '<p>The module uses one invented example in every block: the <strong>sample case</strong>, a case study report in a second-year business course, with a weak and a strong draft. If you have no assignment of your own, you use it in <strong>Try it</strong> and <strong>Make it</strong> too.</p>' +
-                        '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>',
+                    minutes: 10,
+                    html: '<p>In this block you see the problem the module addresses, learn four terms, and choose the assignment you will work on.</p>' +
+                            '<h3>The problem</h3>' +
+                            '<p>Think of the last written assignment you set. When did students first find out how their work measured up to your criteria?</p>' +
+                            '<p>If it was after grading, it was likely too late for them to act on it. Before the deadline, you or teaching assistants may be able to tell students where their drafts stand in terms of the criteria, but not for a large class.</p>' +
+                            '<p>Students can also put their drafts into a GenAI tool like ChatGPT or Microsoft Copilot and ask for feedback. But the chatbot does not necessarily have your criteria, so its feedback may be generic.</p>' +
+                            '<div class="callout">' +
+                            '<h3 class="callout-title">Four terms</h3>' +
+                            '<p><strong>Formative feedback:</strong> Feedback students get while they can still improve their work, for example on a draft before the deadline.</p>' +
+                            '<p><strong>Feedback agent:</strong> A GenAI assistant you set up once and can share through a link for others to use. It has instructions and a skill, which give context and define how the agent answers.</p>' +
+                            '<p><strong>Instructions:</strong> The text you give the agent, here, based on your assignment and its criteria. You change the instructions for each assignment.</p>' +
+                            '<p><strong>Skill:</strong> A file (named SKILL.md) that tells the agent how to deliver feedback. It is the same for every assignment.</p>' +
+                            '</div>' +
+                            '<h3>What you make</h3>' +
+                            '<p>You make a feedback agent for one of your assignments, or for the sample case if you do not have an assignment of your own. For each criterion of the assignment, the feedback agent tells the student whether the draft meets it, quotes the line it based that on, and suggests a next step. It gives no grade and writes nothing for the student.</p>' +
+                            '<p>This module does not teach you how to build an agent; your tool’s own help does that. It gives you what goes into the agent. You write the instructions from your own criteria in <strong>Try it</strong>, and you download the skill in <strong>Make it</strong>.</p>' +
+                            '<h3>One example throughout this module</h3>' +
+                            '<p>The module uses an invented example of an assignment, the <strong>sample case</strong>: A report set in a second-year business course, with a strong and a weak student draft. If you have no assignment of your own, you also use it in <strong>Try it</strong> and <strong>Make it</strong>.</p>' +
+                            '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>',
                     quiz: {
                         title: "Where you stand",
                         intro: "This question helps you choose your route through the module.",
@@ -592,7 +599,7 @@ window.HEGENAI_MODULES = {
                                     },
                                     {
                                         text: "I have none coming up.",
-                                        note: "Use the sample case throughout the module. It comes with a weak and a strong draft to test on.",
+                                        note: "Use the sample case throughout the module. It comes with two invented student drafts, one weak and one strong, to test on.",
                                         action: { label: "Open the sample case", resource: "sample-case" }
                                     }
                                 ]
@@ -602,15 +609,15 @@ window.HEGENAI_MODULES = {
                 },
                 {
                     id: "see",
-                    minutes: 12,
-                    html: '<p>In this block, you see what goes into a feedback agent for the sample case, and what the agent gives a student with a weak draft.</p>' +
+                    minutes: 10,
+                    html: '<p>In this block, you see how a feedback agent is set up and tested for the sample case. It is done in four steps: Making each criterion checkable, setting up instructions and a skill, running a draft through the agent, and checking the feedback.</p>' +
                         M3_BUILDER_FIGURE +
-                        '<p class="section-divider">Now, the four steps, for the sample case.</p>' +
+                        '<p class="section-divider">Setting up a feedback agent for the sample case, in four steps:</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Make each criterion checkable.</strong> Criteria as written in an assignment description are for students and graders, for example “well argued”. A GenAI tool needs to know what that looks like in the text, so each criterion gets a “met when”: what the draft must show. The highlighted parts can be checked in the draft; the struck-through words cannot.</p>' +
+                        '<p><strong>Make each criterion checkable.</strong> Criteria in assignment descriptions are written for students and graders, for example “well argued”. But a GenAI tool doesn not know what “well argued” looks like in a text. Therefore, each criterion gets a “met when”, as illustrated below.</p>' +
                         '<div class="criteria-compare">' +
-                        '<div class="criteria-head" aria-hidden="true"><span>Checkable: what the agent gets</span><span>Original: what students and graders see</span></div>' +
+                        '<div class="criteria-head" aria-hidden="true"><span>Checkable criteria: What the agent gets</span><span>Original criteria: What students and graders see</span></div>' +
                         '<div class="criteria-row">' +
                         '<div class="criteria-check"><span class="criteria-label">Checkable</span><strong>Problem analysis.</strong> Met when: <mark>the problem is stated in one or two sentences</mark>, and <mark>at least two course concepts</mark> are applied to it using <mark>facts about the organisation</mark>.</div>' +
                         '<div class="criteria-brief"><span class="criteria-label">Original</span>“The problem is <s>clearly</s> identified and analysed using <s>relevant</s> course concepts.”</div>' +
@@ -624,73 +631,91 @@ window.HEGENAI_MODULES = {
                         '<div class="criteria-brief"><span class="criteria-label">Original</span>“The report is <s>clearly written</s> and <s>well structured</s> for a professional reader.”</div>' +
                         '</div>' +
                         '</div>' +
-                        '<p>The struck-through qualities still count: you judge them when you grade. The agent only checks what it can see in the draft.</p>' +
+                        '<p>In the checkable versions on left, highlighted parts can be checked by the agent. In the original criteria on right, the struck-through words cannot. What makes the highlighted parts checkable?</p>' +
+                        '<details class="dropdown">' +
+                        '<summary>The answer: Click to expand</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>The highlighted criteria are made tangible, such as by counting instances or looking for sources next to claims. Words like “clearly” and “relevant” leave room for the reader (or GenAI tool) to decide what counts.</p>' +
+                        '</div>' +
+                        '</details>' +
+                        '<p>The qualities in the originals still count and you do not need to change them in the assignment description, only for the agent, because you can judge them when you grade, but the agent cannot judge them in a student draft.</p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Fill in the agent.</strong> The instructions hold the assignment and the checkable criteria; the underlined parts are what you change for your own assignment. The skill stays as it is.</p>' +
+                        '<p><strong>Set up the agent: Instructions and a skill.</strong> The instructions hold the assignment and the checkable criteria. The underlined parts below are what you would change for your own assignment. The skill stays as it is.</p>' +
                         '<div data-text="see-instructions"></div>' +
                         '<div data-text="see-skill"></div>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Run it on a weak draft.</strong> A student opens the agent and pastes their whole draft. Below is the kind of feedback they get.</p>' +
-                        '<p><button type="button" class="link-button" data-open-resource="test-weak">Open the weak draft</button></p>' +
+                        '<p><strong>Run the agent on a weak assignment draft.</strong> Imagine a student opens the agent and pastes their drafted assignment. Below is the feedback they would get. You can open the weak student draftand judge it yourself against the criteria, then read the agent’s feedback.</p>' +
+                        '<p><button type="button" class="link-button" data-open-resource="test-weak">Open the weak student draft</button></p>' +
                         '<div data-text="see-draft"></div>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Check the feedback.</strong> Before students get the agent, you check what it gives against your own judgement:</p>' +
+                        '<p><strong>Check the feedback.</strong> Before students get the agent, you judge its performance using your own judgement. Here is how the feedback above was checked:</p>' +
                         '<ul class="check-list" role="list">' +
                         '<li><span class="check-label check-label-ok">OK</span> <span><strong>Each verdict quotes the draft.</strong> The student can see what the verdict is based on.</span></li>' +
-                        '<li><span class="check-label check-label-ok">OK</span> <span><strong>The verdicts are not too kind.</strong> The draft reads fluently, but no criterion is met, because each “met when” says what is missing.</span></li>' +
-                        '<li><span class="check-label check-label-ok">OK</span> <span><strong>No grade and no rewritten text.</strong> Each next step tells the student what to do, not what to write.</span></li>' +
+                        '<li><span class="check-label check-label-ok">OK</span> <span><strong>The verdicts are not overly kind.</strong> The draft reads fluently, but no criterion is met, because each “met when” says what is missing.</span></li>' +
+                        '<li><span class="check-label check-label-ok">OK</span> <span><strong>No grade and no rewritten text.</strong> Each next step tells the student what to do, it doesn’t do it for them.</span></li>' +
                         '</ul>' +
-                        '<p>Here every check holds. When one does not, <a href="#block-make">Make it</a> shows what to change.</p>' +
+                        '<p>Here, every check holds. When one does not, <a href="#block-make">Make it</a> shows what to change.</p>' +
                         '</li>' +
                         '</ol>' +
                         '<h3>Why it works</h3>' +
-                        '<p>Feedback helps most when it makes clear what good work looks like and reaches students while they can still act on it (Nicol &amp; Macfarlane-Dick, 2006), and when it says where to go next, not only how well the work did (Hattie &amp; Timperley, 2007). The “met when” parts carry your standard into the agent, and testing on a weak and a strong draft shows whether the tool keeps it.</p>',
+                        '<p>Feedback is the most useful when it makes clear what good work looks like and reaches students while they can still act on it (Nicol &amp; Macfarlane-Dick, 2006), and when it says where to go next, not only how well the work did (Hattie &amp; Timperley, 2007). The “met when” parts carry your standard into the agent, and testing on a weak and a strong draft shows whether the tool keeps it.</p>',
                     quiz: {
                         title: "Self-check",
+                        intro: "See if you can find the likely reason for an agent letting a draft pass too easily. (Your answer is only visible to you.)",
                         scored: true,
                         questions: [
                             {
                                 id: "m3-see1",
-                                prompt: "A student pastes a weak draft, and the feedback says every criterion is met. What is the most likely cause?",
+                                prompt: "A student gives a weak draft to the agent, and the feedback says every criterion is met. What is the most likely cause?",
                                 options: [
-                                    { text: "The student has found a way to trick the tool." },
-                                    { text: "The criteria have no “met when”, so the tool falls back on its own, often lenient, judgement." },
-                                    { text: "The GenAI tool is broken." }
+                                    {
+                                        text: "The student has found a way to trick the tool.",
+                                        note: "The student only pasted a draft into the agent. The way the feedback is delivered depends on the set-up, so that is the first place to look. See step 1 in **See it**."
+                                    },
+                                    {
+                                        text: "The criteria have no “met when”, so the tool falls back on its own judgement, which may be lenient.",
+                                    },
+                                    {
+                                        text: "The GenAI tool itself is broken or has an error.",
+                                        note: "A tool that gives feedback at all is not broken. The cause is more likely to lie in what you gave it. **Make it** shows what to change."
+                                    }
                                 ],
                                 correct: 1,
-                                explanation: "Without a “met when”, the tool has nothing specific to check, and fluent text tends to pass. See step 1 in **See it**."
+                                explanation: "Without a “met when” formulation, the tool has nothing specific to check, and text that reads fluently tends to pass. See step 1 in **See it**."
                             }
                         ]
                     }
                 },
                 {
                     id: "try",
-                    minutes: 10,
-                    html: '<p>In this block, you write what goes into the instructions, for an assignment you set or for the sample case. With the sample case, select “Use the sample case”: the form is filled in with its criteria as written for students, and you make each one checkable yourself. Then compare with the version in <strong>See it</strong>.</p>' +
+                    minutes: 15,
+                    html: '<p>In this block, you fill in the parts of the agent instructions that are specific to your assignment, using an assignment you set for your students or the sample case. You start by rewriting the assignment criteria (use three to five) so that they are checkable.</p>' +
+                        '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>' +
                         '<div class="callout">' +
                         '<h3 class="callout-title">What to aim for</h3>' +
                         '<ul>' +
-                        '<li>3 to 5 criteria, one per line, each with “Met when:”.</li>' +
+                        '<li>Have 3-5 criteria, one per line, each with “Met when:”.</li>' +
                         '<li>Each criterion can be judged from the student’s text alone.</li>' +
-                        '<li>The criteria are the ones students see, in words they understand.</li>' +
-                        '<li>Optional: add the mistake students often make, for example “Typical mistake: claims with no source.” It helps the agent spot it.</li>' +
+                        '<li>Each criterion keeps the name students already know.</li>' +
+                        '<li>Optional: Add a line such as “Typical mistake: claims with no source.” It helps the agent spot it.</li>' +
                         '</ul>' +
                         '</div>' +
                         '<details class="dropdown">' +
-                        '<summary>Save time: let GenAI draft the “met when” parts</summary>' +
+                        '<summary>Save time: Let GenAI change the criteria to have “met when” in them</summary>' +
                         '<div class="dropdown-body">' +
-                        '<p>Copy this prompt into your approved GenAI tool, paste your criteria or rubric where shown, and check the result before you put it in the form below. Paste criteria only, never student work.</p>' +
+                        '<p>Copy this prompt into your approved GenAI tool, with your criteria where shown. Check the result against "What to aim for" before you put it in the form below. Paste criteria only, never student work.</p>' +
                         '<div data-text="try-starter"></div>' +
                         '</div>' +
                         '</details>' +
                         '<div data-form></div>' +
                         '<details class="dropdown">' +
-                        '<summary>Sample case: compare with our checkable version</summary>' +
+                        '<p><strong>Test each “met when”.</strong> Could a reader decide from the student’s text alone whether it is met? If not, make it something visible or countable.</p>' +
+                        '<summary>Sample case: Compare with our checkable version</summary>' +
                         '<div class="dropdown-body">' +
-                        '<p>Yours does not need to match. Check that each of yours says what the draft must show, in things a reader can see or count.</p>' +
+                        '<p>Yours does not need to match. Check that each of yours says what the draft must show, naming things a reader can see or count.</p>' +
                         '<ol>' +
                         '<li>Problem analysis. Met when: the problem is stated in one or two sentences, and at least two course concepts are applied to it using facts about the organisation.</li>' +
                         '<li>Justified recommendation. Met when: the recommendation follows from the analysis, and each claim for it is backed by a cited source or data about the organisation.</li>' +
@@ -700,16 +725,16 @@ window.HEGENAI_MODULES = {
                         '</details>',
                     quiz: {
                         title: "Self-check",
+                        intro: "See if you can tell a checkable criterion from one that is not. (Not recorded, not scored.)",
                         scored: true,
                         questions: [
                             {
                                 id: "m3-try1",
                                 prompt: "Which criterion can a GenAI tool judge from the student’s text alone?",
-                                action: { label: "Open the sample case", resource: "sample-case" },
                                 options: [
                                     {
                                         text: "Good research. Met when: the student has read widely about the organisation.",
-                                        note: "How widely the student read cannot be seen in the text."
+                                        note: "How widely the student read cannot be seen in the text. See step 1 in **See it**."
                                     },
                                     {
                                         text: "Justified recommendation. Met when: each claim for the recommendation is backed by a cited source or data about the organisation.",
@@ -717,7 +742,7 @@ window.HEGENAI_MODULES = {
                                     },
                                     {
                                         text: "Effort. Met when: the student has worked hard on the report.",
-                                        note: "Effort cannot be seen in the text, and it is not what the report is assessed on."
+                                        note: "Effort cannot be seen in the text, and it is not what the report is assessed on. See step 1 in **See it**."
                                     }
                                 ],
                                 correct: 1
@@ -728,7 +753,7 @@ window.HEGENAI_MODULES = {
                         practiceResource: "sample-case",
                         practiceLabel: "sample case",
                         practiceStatus: "Filled in with the sample case. Its criteria are as written for students: rewrite each one with a “Met when:”, then compare with our version below the form.",
-                        practiceFill: true,
+                        // practiceFill: true,   switched off: would add a "Use the sample case" button that fills the form from the `practice` values below
                         fields: [
                             {
                                 title: "The assignment",
@@ -742,7 +767,7 @@ window.HEGENAI_MODULES = {
                             },
                             {
                                 title: "Criteria",
-                                guidance: "Start from the criteria in your assignment description or rubric. Choose 3 to 5, one per line, and write each as: name. Met when: what the draft must show.",
+                                guidance: "Start from the criteria in your assignment description or rubric. Choose 3-5, one per line. Write each as a name, then “Met when:”, and what the draft must show.",
                                 inputs: [
                                     { key: "criteria", label: "Criteria", type: "text", rows: 6,
                                       practice: "1. Problem analysis. The problem is clearly identified and analysed using relevant course concepts.\n2. Recommendation. The recommendation is well argued and supported by evidence.\n3. Writing and structure. The report is clearly written and well structured for a professional reader." }
@@ -750,7 +775,7 @@ window.HEGENAI_MODULES = {
                             },
                             {
                                 title: "What students paste",
-                                guidance: "Which part of the draft, and how long. Shorter parts give more precise feedback.",
+                                guidance: "Say whether students paste their whole draft or only some sections, for example one section at a time.",
                                 inputs: [
                                     { key: "paste", label: "What students paste", type: "line",
                                       practice: "their whole draft or one or more sections of it" }
@@ -761,21 +786,35 @@ window.HEGENAI_MODULES = {
                 },
                 {
                     id: "make",
-                    minutes: 12,
-                    html: '<p>In this block, you set up your feedback agent, test it on a weak and a strong draft, fix it if needed, and share it with students.</p>' +
+                    minutes: 15,
+                    html: '<p>In this block, you set up your feedback agent, test it on a weak and a strong draft, fix it if needed, and get a link that can be shared.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
                         '<p><strong>Download the skill.</strong> It is the same for every assignment, so you download it once and upload it to every feedback agent you make. Keep the file name SKILL.md.</p>' +
                         '<div data-text="make-skill"></div>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Copy the instructions.</strong> They hold your information from <a href="#block-try">Try it</a>. This is the only part you change for another assignment.</p>' +
+                        '<p><strong>Copy the instructions.</strong> They hold your information from <a href="#block-try">Try it</a>. This is the only part you would change for another assignment.</p>' +
                         '<div data-text="make-instructions"></div>' +
                         '</li>' +
-                        '<li><p><strong>Create the agent</strong> in your approved GenAI tool, with a name students will recognise, for example “Feedback on the case study report”. Paste the instructions into its instructions and upload SKILL.md as its skill. If your tool has no place for a skill, paste the skill text under the instructions.</p>' +
+                        '<li><p><strong>Create the agent</strong> in your approved GenAI tool.</p>' +
+                        '<ul>' +
+                        '<li><strong>Name:</strong> Give it a name students will recognise, for example “Feedback on the case study report”.</li>' +
+                        '<li><strong>Instructions:</strong> Paste the text from step 2.</li>' +
+                        '<li><strong>Skill:</strong> Upload SKILL.md. If your tool has no place for a skill, paste the skill text under the instructions.</li>' +
+                        '</ul>' +
                         M3_BUILDER_FIGURE + '</li>' +
-                        '<li><p><strong>Test it.</strong> Open a new conversation with your agent and paste the weak draft. Do it twice, in two new conversations. Then paste the strong draft once. Use drafts you wrote yourself or the sample case drafts, never real student work with names or other personal data.</p>' +
+                        '<li><p><strong>Test it.</strong> Open a new conversation with your agent and paste in the weak draft. Do this twice, in a new conversations each time, to see whether the verdicts stay the same. Then paste the strong draft in a third new conversation.</p>' +
+                        '<p>Use drafts you wrote yourself or the sample case drafts, never real student work with names or other personal data.</p>' +
                         '<p><button type="button" class="link-button" data-open-resource="test-weak">Open the weak draft</button> · <button type="button" class="link-button" data-open-resource="test-strong">Open the strong draft</button></p></li>' +
+                        '<details class="dropdown">' +
+                        '<summary>No drafts of your own: Let GenAI write test drafts</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>Copy this prompt into your approved GenAI tool. Read both drafts before you use them. The weak one should clearly miss the criteria, and the strong one should clearly meet them.</p>' +
+                        '<div data-text="make-drafts"></div>' +
+                        '</div>' +
+                        '</details>' +
+                        '</li>' +
                         '<li><p><strong>Check the feedback.</strong> First judge the drafts yourself, criterion by criterion. Then tick what holds:</p>' +
                         '<ol class="tick-list" data-checklist>' +
                         '<li>Every verdict comes with a quote from the draft.</li>' +
@@ -789,7 +828,7 @@ window.HEGENAI_MODULES = {
                         '<details class="dropdown">' +
                         '<summary>If a tick is missing: what to change</summary>' +
                         '<div class="dropdown-body">' +
-                        '<p>Most fixes are in your criteria: edit them in <a href="#block-try">Try it</a>, copy the instructions again, paste them over the old ones, and rerun the same drafts. The skill stays as it is.</p>' +
+                        '<p>Most fixes are in your criteria. Edit them in <a href="#block-try">Try it</a>, copy the instructions again, paste them over the old ones, and rerun the same drafts. The skill stays as it is.</p>' +
                         '<ul class="fix-list" role="list">' +
                         '<li><p class="fix-check">1. A verdict has no quote, or the format is not followed</p><p><strong>Likely cause:</strong> the agent does not use the skill.</p><p><strong>Change:</strong> check that SKILL.md is uploaded as the agent’s skill. If it still is not used, paste the skill text under the instructions.</p></li>' +
                         '<li><p class="fix-check">2. The weak draft gets “Met”</p><p><strong>Likely cause:</strong> the “met when” is too vague, so fluent text passes.</p><p><strong>Change:</strong> make it something you can see or count (“at least two…”, “each claim…”), and add “Typical mistake: …”.</p></li>' +
@@ -799,25 +838,43 @@ window.HEGENAI_MODULES = {
                         '</ul>' +
                         '<div class="callout">' +
                         '<h3 class="callout-title">Still failing after two rounds?</h3>' +
-                        '<p>Take that criterion out of the instructions and tell students to check it themselves or ask you. Share the agent for the criteria that pass. If none pass, do not share it this term. Either way, note what happened in the practice log: it is a useful finding too.</p>' +
+                        '<p>Take that criterion out of the instructions and tell students to check it themselves or ask you. Share the agent for the criteria that pass. If none pass, do not share it this term. Either way, note what happened in the practice log. It is a useful finding too.</p>' +
                         '</div>' +
                         '</div>' +
                         '</details>' +
                         '</li>' +
-                        '<li><p><strong>Share it.</strong> If your institution allows it, share the agent with your students only, and put its link on the course page with one line on top: “Open this agent, then paste your draft.”</p></li>' +
+                        '<li><p><strong>Share it.</strong> If your institution allows it, share the agent with your students (and only the students), and copy the link to it. Do not send it yet. In <strong>Plan it</strong>, you check the rules and choose when students get it. Write one line to go with the link: “Open this feedback agent, then paste your draft.”</p></li>' +
                         '</ol>'
                 },
                 {
                     id: "plan",
-                    minutes: 3,
+                    minutes: 5,
                     html: '<p>In this block, you plan how students get your feedback agent, and start the practice log.</p>' +
                         '<ol class="step-list" role="list">' +
+                        '<li>' +
+                        '<p><strong>Download the practice log.</strong> You fill in part 1 in this block, and parts 2 and 3 after the hand-in.</p>' +
+                        '<p><button type="button" class="pill-button pill-button-secondary" disabled>Practice log (Word): Available soon</button></p>' +
+                        '</li>' +
                         '<li><p><strong>Check the rules.</strong> Students should use a GenAI tool your institution approves, and the course’s GenAI rules must allow GenAI feedback on drafts. If they do not, change the rules or the plan before you share the agent.</p></li>' +
-                        '<li><p><strong>Choose when, and introduce it.</strong> Give students the agent when they have a draft, for example two weeks before the deadline. Tell them what it is for, that the feedback can be wrong, that you grade, and not to paste in other people’s work or personal data.</p></li>' +
-                        '<li><p><strong>Start the practice log.</strong> Note the course, the assignment, when students get the agent, what you changed while testing, and how you will find out whether they used it (for example, one question in the hand-in). After the hand-in, answer: Was one piece of feedback a student got right by your criteria? What would you tell a colleague?</p></li>' +
+                        '<li>' +
+                        '<p><strong>Choose when and how to introduce the agent.</strong> Give students the agent when they are working on an assignment, for example two weeks before the deadline. When you hand it out, tell students four things:</p>' +
+                        '<ul>' +
+                        '<li>What the agent is for.</li>' +
+                        '<li>That its feedback can be wrong.</li>' +
+                        '<li>That you grade, not the agent.</li>' +
+                        '<li>That they must not paste in other people’s work or personal data.</li>' +
+                        '</ul>' +
+                        '<div data-text="plan-intro"></div>' +
+                        '</li>' +
+                        '<li><p><strong>Fill in part 1 of the practice log.</strong> Note the course, the assignment, when students get the agent, what you changed while testing, and how you will find out whether they used it, for example, one question in the hand-in.</p></li>' +
+                        '<li>' +
+                        '<p><strong>Fill in parts 2 and 3 after the hand-in.</strong> Part 2 asks what you saw in students’ work, for example one piece of feedback a student got that was right by your criteria, and one that was not. Part 3 asks what worked, what did not, and what you would tell a colleague. Anything that did not work is a useful finding.</p>' +
+                        '<p>No assignment coming up? Share the link with a colleague, ask them to paste in a draft of their own, and note what they say about the feedback.</p>' +
+                        '</li>' +
+                        '<li><p><strong>Upload the completed log</strong> to a survey you receive by email, within 2 weeks from the session. This is optional for participants in facilitated sessions.</p></li>' +
                         '</ol>' +
                         '<h3>Example: a course feedback coach at DTU</h3>' +
-                        '<p>At the Technical University of Denmark (DTU), this is how a feedback agent looks on DTU’s own GenAI platform, CampusAI: a teacher turns the criteria into a feedback coach that students open with their DTU login, so they only paste their draft. The video shows how it works (1 min 40 s, no sound; demo with an invented course and student draft). You do not need it for this module.</p>' +
+                        '<p>At the Technical University of Denmark (DTU), a feedback agent can look like this on the university’s own GenAI platform, CampusAI. DTU calls it a feedback coach. A teacher turns the criteria into a coach, and students open with their DTU login information, so they only paste their draft. The video shows how it works in 1 min 40 s, without sound. It uses an invented course and student draft. You do not need it for this module.</p>' +
                         '<video class="module-video" controls preload="metadata" src="assets/module-3/dtu-feedback-coach.mp4">' +
                         '<p>Your browser cannot play this video. <a href="assets/module-3/dtu-feedback-coach.mp4">Download the video</a>.</p>' +
                         '</video>' +
@@ -842,7 +899,7 @@ window.HEGENAI_MODULES = {
                     id: "sample-case",
                     group: "Worked example",
                     title: "Sample case",
-                    html: '<p class="resource-note">(Invented for this module and used in every block. Written as a typical assignment description. In Try it, “Use the sample case” fills in its criteria as written here, for you to make checkable.)</p>' +
+                    html: '<p class="resource-note">(Invented for this module and used in every block. Written as a typical assignment description. In Try it, you make its criteria, as written here, checkable.)</p>' +
                         '<div class="guide-page">' +
                         '<p><strong>Organisation and Management</strong> · 2nd-year BSc · 5 ECTS</p>' +
                         '<h3>Assignment 2: Case study report</h3>' +
@@ -1041,9 +1098,25 @@ window.HEGENAI_MODULES = {
                     ]
                 },
                 {
+                    id: "make-drafts",
+                    kind: "live-prompt",
+                    label: "Prompt to write test drafts",
+                    copyLabel: "Copy prompt",
+                    template: [
+                        "Write two short drafts of the assignment below, about 250 words each, to test a feedback tool.",
+                        "Draft 1 is weak. It reads fluently but meets none of the criteria.",
+                        "Draft 2 is strong. It meets all of the criteria.",
+                        "Do not use real people or real student work.",
+                        "# Assignment",
+                        "{{name|[assignment name]}}. {{description|[description]}}",
+                        "# Criteria",
+                        "{{criteria|[criteria, one per line, each with Met when]}}"
+                    ]
+                },
+                {
                     id: "see-draft",
                     kind: "draft",
-                    label: "Example feedback on the weak draft (illustration; replace with a real run)",
+                    label: "Microsoft Copilot, free version, November 2026",
                     showLines: 5,
                     moreLabel: "Show all the feedback",
                     lines: [
