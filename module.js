@@ -250,7 +250,7 @@
 
     function renderMeta(module, isAvailable) {
         var items = [['Module time', '~' + describeMinutes(module.minutes)]];
-        if (module.extraMinutes) items.push([module.extraLabel ? 'Practice log' : 'Post-module activity', '~' + describeMinutes(module.extraMinutes)]);
+        if (module.extraMinutes) items.push(['Optional certification', '~' + describeMinutes(module.extraMinutes)]);
         if (!module.audience) items.push(['For', 'Higher education educators']);
         var meta = create('p', 'module-meta');
         items.forEach(function (item, index) {

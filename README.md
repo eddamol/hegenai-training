@@ -59,8 +59,7 @@ All module content lives in `modules-data.js`, as `window.HEGENAI_MODULES`:
       audience: "...",             // optional; "For" in the "Before you start" card
       needs: "...",                // optional; "What you need" in the same card
       minutes: 60,
-      extraMinutes: 10,            // optional post-module activity, in minutes
-      extraLabel: "practice log", // optional; what it is for, shown as "+ 10 min. for the practice log"
+      extraMinutes: 10,            // optional certification time, in minutes; shown as "+ optional 10 min. for certification"
       status: "available",         // or "soon": not linked, page shows "Coming soon"
       blocks: [
         { id: "intro", minutes: 10, html: "<p>...</p>" },   // id matches a shared block

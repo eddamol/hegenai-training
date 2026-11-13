@@ -2286,6 +2286,12 @@ mark.fill-in {
     margin: 0;
 }
 
+.guide-page .entry-divider {
+    margin: 12px 0;
+    border: 0;
+    border-top: 1px solid var(--primary);
+}
+
 .guide-page ul {
     margin: 0;
 }

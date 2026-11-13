@@ -16,8 +16,7 @@
 //            beside the outcome (leave out to show "For: Higher education educators" in the time line)
 //   needs    optional; shown under "What you need" in the same card
 //   minutes  length in minutes (60 shows as "About 1 hour")
-//   extraMinutes  extra time on top, in minutes (20 adds " + 20 min."); optional
-//   extraLabel    optional; what the extra time is for, e.g. "practice log" (adds " for the practice log")
+//   extraMinutes  optional extra time for certification, in minutes (20 adds " + optional 20 min. for certification")
 //   status   "soon" (shown as "Coming soon", not linked) or "available"
 //   blocks   content for each block, by block id (see below); blocks left out show a placeholder
 //              id       one of the block ids defined at the top
@@ -137,7 +136,6 @@ window.HEGENAI_MODULES = {
             needs: "Access to a GenAI tool. This module uses Microsoft Copilot as an example, and the free version is enough. Also, either an assignment you set or the practice case provided in the module.",
             minutes: 55,
             extraMinutes: 10,
-            extraLabel: "practice log",
             status: "available",
             blocks: [
                 {
@@ -149,7 +147,7 @@ window.HEGENAI_MODULES = {
                         '<p>A <dfn>declaration</dfn> is a short statement in which a student says how they used GenAI. Even when use is allowed, students are often reluctant to declare it (Gonsalves, 2024, cited in Perkins et al., 2025).</p>',
                     quiz: {
                         title: "Where you stand",
-                        intro: "This question helps you choose your route through the module.",
+                        intro: "This question how best to approach the module.",
                         scored: false,
                         questions: [
                             {
@@ -538,12 +536,102 @@ window.HEGENAI_MODULES = {
         {
             id: "feedback-genai-declarations",
             number: 2,
-            title: "Giving Feedback on GenAI Declarations in Written Assignments",
+            title: "Building a Feedback Agent for GenAI Declarations",
             cluster: null,
-            outcome: "To be confirmed",
-            minutes: 60,
-            extraMinutes: 20,
-            status: "soon"
+            outcome: "After this module, you can rate a GenAI declaration as Proper, Incomplete or Vague, and you leave with a Microsoft Copilot agent that gives your students this feedback on their own declarations.",
+            outcomePreview: { resource: "example-feedback", caption: "An example of the feedback your students get from the agent. Select to open it." },
+            audience: "Higher education educators who set written assignments where some GenAI use is allowed.",
+            needs: "Microsoft Copilot with a work or school account, or a paid plan, to make and share the agent. Without it, you can still follow the module and try the method in any GenAI tool you are allowed to use, but you cannot make or share an agent.",
+            minutes: 55,
+            extraMinutes: 15,
+            status: "available",
+            blocks: [
+                {
+                    id: "intro",
+                    minutes: 10,
+                    html: '<p>In this block, you see a problem, a solution to it, and see how you can best go through the module.</p>' +
+                        '<h3>The problem</h3>' +
+                        '<p>An AI (GenAI) declaration is a short section in an assignment where a student describes their use of AI tools for the work.</p>' +
+                        '<p>Think of an AI declaration you have read. Was it clear which tool was used, what for, and where to see it?</p>' +
+                        '<p>Often, it is not. A DTU master’s theses found that only about 1 in 10 declarations named the tool, the purpose, and a record (Mahmud, 2026). Some students hold back because declaring feels like admitting misconduct (Gonsalves, 2025). Telling each student what is missing would help, but it is rarely feasible for a whole class before every deadline.</p>' +
+                        '<h3>In this module</h3>' +
+                        '<p>This module shows you how to make an <strong>agent</strong> that gives students feedback on their declarations. Once shared, a student can paste their declaration to a conversation with the agent. The agent then rates each entry, says what is missing, and places it at a level: Vague, Incomplete, or Proper. Students can use the agent before they hand in an assignment. It does not give a grade and does not write for them.</p>' +
+                        '<p>You get a ready-made AI declaration guide and material to make the agent in later blocks, and need only add your course name. This approach was developed at DTU. You learn it here and can later adapt to your practice.</p>',
+                    quiz: {
+                        title: "Where you stand",
+                        intro: "This question helps you choose your route through the module.",
+                        scored: false,
+                        questions: [
+                            {
+                                id: "m2-route",
+                                prompt: "Can you make agents with your Microsoft Copilot account?",
+                                options: [
+                                    {
+                                        text: "Yes, with a work or school account.",
+                                        note: "Follow every block. You build the agent in **Make it** and share it in **Plan it**."
+                                    },
+                                    {
+                                        text: "I don’t know.",
+                                        note: "Follow along. Step 3 in **Make it** shows where to check if you can make agents in Microsoft Copilot. **Try it** works in any GenAI chat."
+                                    },
+                                    {
+                                        text: "No.",
+                                        note: "Follow along. In **Try it**, you test the instructions and skill in any GenAI tool you are allowed to use. You cannot share an agent, but **Plan it** shows how students can paste them into a chat themselves."
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                },
+                {
+                    id: "see",
+                    minutes: 10,
+                    html: '<p>In this block, you see the method on three real declarations from DTU master’s theses, one for each level, and then check two GenAI replies against your own rating.</p>' +
+                        '<p>Content coming soon.</p>'
+                },
+                {
+                    id: "try",
+                    minutes: 15,
+                    html: '<p>In this block, you rate two declarations yourself, then see whether a GenAI tool rates them the same way.</p>' +
+                        '<p>Content coming soon.</p>'
+                },
+                {
+                    id: "make",
+                    minutes: 15,
+                    html: '<p>In this block, you set up your agent in Microsoft Copilot, change two course details, test it, and keep it ready to share.</p>' +
+                        '<p>Content coming soon.</p>'
+                },
+                {
+                    id: "plan",
+                    minutes: 5,
+                    html: '<p>In this block, you decide when and how students get the agent, and you start the practice log.</p>' +
+                        '<p>Content coming soon.</p>'
+                }
+            ],
+            resources: [
+                {
+                    id: "example-feedback",
+                    group: "Worked example",
+                    title: "Example of agent feedback",
+                    html: '<p class="resource-note">(An example of the feedback a student gets when they paste a declaration into the agent.)</p>' +
+                        '<div class="guide-page">' +
+                        '<h3>Feedback on a GenAI declaration</h3>' +
+                        '<p><strong>Entry 1:</strong> “ChatGPT (GPT-5), for feedback on the structure of my introduction. Conversation: [link].”</p>' +
+                        '<p>Tool: clear · Purpose: clear · Documentation: clear · Level: Proper</p>' +
+                        '<hr class="entry-divider">' +
+                        '<p><strong>Entry 2:</strong> “Grammarly, to correct spelling and grammar.”</p>' +
+                        '<p>Tool: clear · Purpose: clear · Documentation: unclear · Level: Incomplete</p>' +
+                        '<p>Next step: Does Grammarly keep a record of your edits? Add where to find it, or write “No record available”.</p>' +
+                        '<hr class="entry-divider">' +
+                        '<p><strong>Entry 3:</strong> “Claude, to help with my report. Conversation: [link].”</p>' +
+                        '<p>Tool: clear · Purpose: unclear · Documentation: clear · Level: Vague</p>' +
+                        '<p>Next step: What did you ask Claude to do? Say it in this entry.</p>' +
+                        '<hr class="entry-divider">' +
+                        '<p><strong>Overall:</strong> Vague (based on the weakest entry).</p>' +
+                        '<p>This is AI-generated feedback on your declaration against the course guide. It can be wrong and it is not a grade. Your teacher decides how your work is assessed.</p>' +
+                        '</div>'
+                }
+            ]
         },
         {
             id: "feedback-with-genai",
@@ -556,7 +644,6 @@ window.HEGENAI_MODULES = {
             needs: "Preferably Microsoft Copilot with a work or school account or a paid plan. Without it, you can still follow the module, but you cannot build or share an agent. Also, either the criteria of an assignment you set or the sample case provided.",
             minutes: 60,
             extraMinutes: 15,
-            extraLabel: "practice log",
             status: "available",
             blocks: [
                 {
