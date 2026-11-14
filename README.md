@@ -26,7 +26,7 @@ never sent anywhere. Hosted on GitHub Pages; all links are relative.
 - `form.js`: draws a module's numbered form and keeps its values in the browser under `hegenai:form:<module-id>:v1`
 - `make-it.js`: draws the live prompt in a module's Make it block (built from the form's saved values, or from a template, with a copy button and optional file download) and adds tick boxes to a checklist
 - `certificate.js`: **not in use yet.** A certificate of completion that was built and kept for possible later use (see "Certificate (not implemented yet)" below)
-- `downloads/`: files trainees download, such as `practice-log-module-1.docx`. The Word file is edited in Word from now on; it is no longer generated from a script
+- `downloads/`: files trainees download, such as `practice-log-module-1.docx` (one practice log per module). The Word file is edited in Word from now on; it is no longer generated from a script
 - `downloads/module-2/`: Module 2's `SKILL.md` (the same lines as `M2_SKILL_LINES` in `modules-data.js`; change both together) and `declaration-guide.docx`
 - `resources.js`: opens a module's materials (for example a sample case) in a panel beside the blocks, or full screen on narrow screens
 - `assets/module-1/`: pictures used in Module 1 (`aias-figure-1.png`)
@@ -324,7 +324,7 @@ Keep the brackets so the parts do not depend on the highlight alone.
 ## Still to do
 
 - Sign-up: when the survey URL exists, replace the "Sign-up opens soon" pill in `index.html` with a link to it.
-- Module 2: add `downloads/module-2/declaration-guide.docx`, and `assets/module-2/agent-setup.mp4` (then switch on the commented-out video in Make it, step 3).
+- Module 2: add `assets/module-2/agent-setup.mp4`, then switch on the commented-out video in Make it, step 3.
 - Add the official EU emblem as `assets/eu-emblem.svg` (or `.png`) and uncomment the image in the footer of all pages.
 - Replace every "To be confirmed" on the pages once decided.
 - Decide whether to bring back the certificate feature (see the last section).

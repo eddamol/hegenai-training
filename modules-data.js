@@ -1094,8 +1094,29 @@ window.HEGENAI_MODULES = {
                 {
                     id: "plan",
                     minutes: 5,
-                    html: '<p>In this block, you decide when and how students get the agent, and you start the practice log.</p>' +
-                        '<p>Content coming soon.</p>'
+                    html: '<p>In this block, you plan how students will get your agent, and optionally download the practice log.</p>' +
+                        '<ol class="step-list" role="list">' +
+                        '<li>' +
+                        '<p><strong>Check that you can share the agent.</strong> An optional tool like this is usually easy to justify. Students choose whether to use it, and it is separate from grading. If you are unsure, ask your IT department: “Can I share an agent I built in Copilot with the students on my course?” Also check that you can keep the guide’s promise – declarations that follow it are never marked down for the AI use itself.</p>' +
+                        '</li>' +
+                        '<li>' +
+                        '<p><strong>Try it with a colleague.</strong> Share the agent with a peer or colleague. Give them the declaration guide, and ask them to write a declaration and work with the agent until the agent judges it as Proper, after pasting and rewriting as needed. Then ask your peer or colleague to request a grade from the agent, and to have the agent write/rewrite an entry. The agent should decline both.</p>' +
+                        '</li>' +
+                        '<li>' +
+                        '<p><strong>Choose when students get the agent.</strong> Share the agent with students so that they have time to use it before a deadline, so they can still fix their declaration before handing in the assignment. Introduce it in class, then put the guide and the agent link on the course page with a text like this:</p>' +
+                        '<blockquote class="declaration-quote"><p>“Before you hand in, you can paste your GenAI declaration into this agent. It will give each entry a level – Vague, Incomplete, or Proper – and guide you where something is missing. This is optional, the agent can be wrong, and it is independent of your grade.”</p></blockquote>' +
+                        '</li>' +
+                        '<li>' +
+                        '<p><strong>Download the practice log (optional).</strong> It takes about 15 minutes and walks you through steps 2 and 3 for your own course. A colleague tries your agent, you check at least one reply, and you plan when students get it.</p>' +
+                        '<p><a class="pill-button" href="downloads/practice-log-module-2.docx" download>Download the practice log (Word)</a></p>' +
+                        '</li>' +
+                        '</ol>' +
+                        '<details class="dropdown">' +
+                        '<summary>Want a certificate of completion?</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>If you take part in a facilitated session, opt in through the short survey after the session. Hand in your practice log within 2 weeks, and you receive a certificate of completion by email. It shows that you have applied the method in your own work setting, not only completed the module.</p>' +
+                        '</div>' +
+                        '</details>'
                 }
             ],
             resources: [
