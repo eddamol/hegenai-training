@@ -157,6 +157,7 @@ quiz: {
     {
       id: "m1-sc1",                // unique within the module; used to store the answer
       prompt: "...",
+      quote: "...",                // optional; text shown in a box under the prompt, such as the entry being rated
       action: { label: "...", resource: "sample-case" },   // optional; a button under the prompt
       options: [ { text: "...", note: "...", action: { label: "...", resource: "sample-case" } } ],
                                    // note and action are optional
@@ -174,6 +175,32 @@ same page, for example `see **Try it**`.
 
 An option with an `action` shows a button with that label under its note once
 the option is chosen. The button opens the module material with that id.
+
+Questions can be checked together. Give them the same `checkTogether` value
+and they show no marks or notes until the trainee presses the button after the
+last question of the group. `checkLabels` in the quiz sets the button's label
+for each group; without one it says "Check my answers". The last question's
+"Clear answer" sits on the same line as the button, and a thin line follows if
+more questions come after the group. After the press, every question in the
+group is marked as usual and the button adds "again" to its label ("Check my
+answers again"). A question answered or changed after that hides its mark and
+note until the button is pressed again; the other questions keep theirs.
+Answers are saved as usual, but the press is not: after a reload, or once every
+answer in the group is cleared, the feedback is held back again.
+
+```js
+quiz: {
+  checkLabels: { entries: "Check my ratings" },
+  questions: [
+    { id: "m2-try1", checkTogether: "entries", ... },
+    { id: "m2-try2", checkTogether: "entries", ... },   // the button comes after this one
+    { id: "m2-try3", ... }                              // feedback straight away
+  ]
+}
+```
+
+`<div data-quiz></div>` in block html places the block's quiz there instead
+of after the content, so text can follow the quiz. Without it, nothing changes.
 
 Scored questions show "Correct" or "Not quite" with the note and explanation.
 A quiz with `scored: false` shows "Not scored. Your answer stays in your

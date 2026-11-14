@@ -446,8 +446,12 @@
             }
             section.appendChild(body);
 
+            // A <div data-quiz> in the block's html places the quiz there; otherwise it follows the content.
             if (details.quiz) {
-                section.appendChild(window.HEGenAIQuiz.build(module.id, details.quiz, blocks));
+                var quiz = window.HEGenAIQuiz.build(module.id, details.quiz, blocks);
+                var quizSlot = body.querySelector('[data-quiz]');
+                if (quizSlot) quizSlot.parentNode.replaceChild(quiz, quizSlot);
+                else section.appendChild(quiz);
             }
 
             var actions = create('div', 'block-actions');

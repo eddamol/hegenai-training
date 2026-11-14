@@ -2040,8 +2040,33 @@ textarea.form-control {
     font-size: 1.25rem;
 }
 
+/* A quiz placed inside block html keeps its own heading spacing. */
+.block-body .quiz-title {
+    margin: 0 0 12px;
+}
+
 .quiz-intro {
     margin: 0 0 16px;
+}
+
+/* "Check my answers" after a group of questions checked together, with the
+   last question's "Clear answer" on the same line. */
+.quiz-check {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 16px;
+    margin: -8px 0 24px;
+}
+
+.quiz-check .quiz-clear {
+    margin: 0 0 0 auto;
+}
+
+.quiz-divider {
+    margin: 0 0 24px;
+    border: 0;
+    border-top: 1px solid var(--line);
 }
 
 .quiz-question {
@@ -2057,6 +2082,16 @@ textarea.form-control {
     font-family: Georgia, serif;
     font-size: 1.1rem;
     font-weight: 400;
+}
+
+/* The text being rated, repeated under the question. */
+.quiz-quote {
+    margin: 0 0 12px;
+    padding: 8px 16px;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--primary-dark);
+    background-color: white;
+    color: var(--primary-dark);
 }
 
 .quiz-options {

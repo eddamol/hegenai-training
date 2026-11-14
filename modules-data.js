@@ -34,13 +34,17 @@
 //                       A button that looks like a link and opens a resource:
 //                         <button type="button" class="link-button" data-open-resource="sample-case">...</button>
 //                       A prompt box or draft box from "texts" (below): <div data-text="see-prompt"></div>
+//                       The block's quiz, placed here instead of after the content: <div data-quiz></div>
 //              quiz    optional self-check, shown after the block content:
 //                         { title: "Self-check",          heading above the questions
 //                           intro: "...",                 optional line under the heading
 //                           scored: true,                 false = no right or wrong answer
+//                           checkLabels: { entries: "..." },   optional; button label per checkTogether group
 //                           questions: [
 //                             { id: "m1-sc1",             unique within the module; used to store the answer
+//                               checkTogether: "entries", optional; marks and notes wait for the group's button
 //                               prompt: "...",
+//                               quote: "...",             optional; text in a box under the prompt, such as the entry being rated
 //                               action: { label: "...", resource: "<resource id>" },   optional; a button under the prompt that opens the resource
 //                               options: [ { text: "...", note: "..." } ],   note is optional feedback for that option
 //                               correct: 1,               index into options; leave out when scored is false
@@ -899,9 +903,112 @@ window.HEGENAI_MODULES = {
                 },
                 {
                     id: "try",
-                    minutes: 15,
-                    html: '<p>In this block, you rate two declarations yourself, then see whether a GenAI tool rates them the same way.</p>' +
-                        '<p>Content coming soon.</p>'
+                    minutes: 10,
+                    html: '<p>In this block, you rate one declaration the way the agent does: first each entry, then the whole declaration. Then you check the agent’s reply to the same declaration.</p>' +
+                        // Switched off for now:
+                        // '<div class="callout">' +
+                        // '<h3 class="callout-title">What to aim for</h3>' +
+                        // '<ul>' +
+                        // '<li>Rate each entry on tool, purpose and documentation before you pick its level.</li>' +
+                        // '<li>Give the declaration the level of its weakest entry.</li>' +
+                        // '<li>Name the rule behind each level. That is how you spot the agent’s mistakes.</li>' +
+                        // '</ul>' +
+                        // '</div>' +
+                        '<p>Here is an example of a declaration from an environmental engineering report:</p>' +
+                        '<blockquote class="declaration-quote guide-page">' +
+                        '<p><strong>Entry 1:</strong> “Grammarly, to correct spelling and grammar. No record available.”</p>' +
+                        '<hr class="entry-divider">' +
+                        '<p><strong>Entry 2:</strong> “Microsoft Copilot, to suggest a structure for the literature review. Prompts available on request.”</p>' +
+                        '<hr class="entry-divider">' +
+                        '<p><strong>Entry 3:</strong> “ChatGPT, for help with the data analysis in section 4. Conversation: [link].”</p>' +
+                        '</blockquote>' +
+                        '<details class="dropdown">' +
+                        '<summary>How to judge a declaration</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>First, check three elements per entry:</p>' +
+                        '<ul>' +
+                        '<li><strong>Tool:</strong> clear when named.</li>' +
+                        '<li><strong>Purpose:</strong> clear when a reader can tell what the tool did.</li>' +
+                        '<li><strong>Documentation:</strong> clear with an appendix, a link, or “No record available”.</li>' +
+                        '</ul>' +
+                        '<p>Then, give the declaration a level:</p>' +
+                        '<ul>' +
+                        '<li><strong>Vague:</strong> tool or purpose unclear.</li>' +
+                        '<li><strong>Incomplete:</strong> only documentation unclear.</li>' +
+                        '<li><strong>Proper:</strong> all three clear.</li>' +
+                        '</ul>' +
+                        '</div>' +
+                        '</details>' +
+                        '<div data-quiz></div>' +
+                        '<h3>Optional: Write one as a student would</h3>' +
+                        '<p>Write a Proper declaration with two entries for an assignment on your own course. Check each entry against the three tests. You can paste it into your agent in <a href="#block-make">Make it</a>.</p>',
+                    quiz: {
+                        title: "Rate the declaration",
+                        intro: "Rate the three entries, then check them all at once. Scored for you only, and your answers stay in your browser.",
+                        scored: true,
+                        checkLabels: { entries: "Check my ratings", level: "Check my level" },
+                        questions: [
+                            {
+                                id: "m2-try1",
+                                checkTogether: "entries",
+                                prompt: "Entry 1: What level?",
+                                quote: "“Grammarly, to correct spelling and grammar. No record available.”",
+                                correct: 0,
+                                options: [
+                                    { text: "Proper", note: "The tool is named, the purpose is clear, and “No record available” counts as documentation. It does not say where in the report, but where never changes the level." },
+                                    { text: "Incomplete", note: "“No record available” counts as documentation. See the documentation test in **See it**." },
+                                    { text: "Vague", note: "“Correct spelling and grammar” tells a reader what Grammarly did. Saying where is encouraged but never changes the level." }
+                                ]
+                            },
+                            {
+                                id: "m2-try2",
+                                checkTogether: "entries",
+                                prompt: "Entry 2: What level?",
+                                quote: "“Microsoft Copilot, to suggest a structure for the literature review. Prompts available on request.”",
+                                correct: 1,
+                                options: [
+                                    { text: "Proper", note: "“On request” is not a record a reader can find. See the documentation test in **See it**." },
+                                    { text: "Incomplete", note: "Tool and purpose are clear, but “on request” gives the reader no record. A link, an appendix or “No record available” would fix it." },
+                                    { text: "Vague", note: "Copilot is named, and “suggest a structure for the literature review” says what it did. Only the record is missing." }
+                                ]
+                            },
+                            {
+                                id: "m2-try3",
+                                checkTogether: "entries",
+                                prompt: "Entry 3: What level?",
+                                quote: "“ChatGPT, for help with the data analysis in section 4. Conversation: [link].”",
+                                correct: 2,
+                                options: [
+                                    { text: "Proper", note: "A section and a link are given, but “help” does not say what ChatGPT did. See the purpose test in **See it**." },
+                                    { text: "Incomplete", note: "The link counts as documentation. The gap is the purpose: “help” does not say what ChatGPT did." },
+                                    { text: "Vague", note: "“Help” does not tell a reader what ChatGPT did, even with a section and a link. An unclear purpose makes the entry Vague, whatever else is there." }
+                                ]
+                            },
+                            {
+                                id: "m2-try4",
+                                checkTogether: "level",
+                                prompt: "What level does the whole declaration get?",
+                                correct: 2,
+                                options: [
+                                    { text: "Proper", note: "Entry 1 is Proper, but the declaration takes the level of its weakest entry." },
+                                    { text: "Incomplete", note: "Entry 2 is Incomplete, but entry 3 is weaker. The declaration takes the level of its weakest entry." },
+                                    { text: "Vague", note: "Entry 3 is Vague, and the declaration takes the level of its weakest entry. One unclear purpose is enough." }
+                                ]
+                            }
+                            // Switched off for now, together with the "try-agent-reply" material:
+                            // {
+                            //     id: "m2-try5",
+                            //     prompt: "Now check the agent. Open its reply to the same declaration. The overall level is right, but one entry is rated wrong. Which one?",
+                            //     action: { label: "Open the agent’s reply", resource: "try-agent-reply" },
+                            //     correct: 0,
+                            //     options: [
+                            //         { text: "Entry 1", note: "The agent marked the purpose unclear because no section is named. Where never changes the level, so entry 1 is Proper, and the student would rewrite an entry that was fine. The overall level hides the mistake, because entry 3 is Vague anyway. So when you test your agent in **Make it**, check each entry, not only the overall level." },
+                            //         { text: "Entry 2", note: "“On request” is not a record, so Incomplete is right, and the next step asks for one." },
+                            //         { text: "Entry 3", note: "“Help” leaves the purpose unclear, so Vague is right, and the next step asks what ChatGPT did." }
+                            //     ]
+                            // }
+                        ]
+                    }
                 },
                 {
                     id: "make",
@@ -958,6 +1065,29 @@ window.HEGENAI_MODULES = {
                         '<p>This is AI-generated feedback on your declaration against the course guide. It can be wrong and it is not a grade. Your teacher decides how your work is assessed.</p>' +
                         '</div>'
                 }
+                // Hidden for now, together with question m2-try5 in Try it:
+                // {
+                //     id: "try-agent-reply",
+                //     group: "Worked example",
+                //     title: "The agent’s reply",
+                //     html: '<p class="resource-note">(An example written for this module: one agent reply to the declaration in Try it.)</p>' +
+                //         '<div class="guide-page">' +
+                //         '<p><strong>Entry 1:</strong> <i>“Grammarly, to correct spelling and grammar…”</i></p>' +
+                //         '<p>Tool: clear · Purpose: unclear · Documentation: clear · Level: Vague</p>' +
+                //         '<p>Next step: Where in your work did you use Grammarly? Name the section.</p>' +
+                //         '<hr class="entry-divider">' +
+                //         '<p><strong>Entry 2:</strong> <i>“Microsoft Copilot, to suggest a structure…”</i></p>' +
+                //         '<p>Tool: clear · Purpose: clear · Documentation: unclear · Level: Incomplete</p>' +
+                //         '<p>Next step: Can a reader see your prompts? Add a link or an appendix, or write “No record available”.</p>' +
+                //         '<hr class="entry-divider">' +
+                //         '<p><strong>Entry 3:</strong> <i>“ChatGPT, for help with the data analysis…”</i></p>' +
+                //         '<p>Tool: clear · Purpose: unclear · Documentation: clear · Level: Vague</p>' +
+                //         '<p>Next step: What did you ask ChatGPT to do? Say it in this entry.</p>' +
+                //         '<hr class="entry-divider">' +
+                //         '<p><strong>Overall:</strong> Vague (based on the weakest entry).</p>' +
+                //         '<p>This is AI-generated feedback on your declaration against the course guide. It can be wrong and it is not a grade. Your teacher decides how your work is assessed.</p>' +
+                //         '</div>'
+                // }
             ]
         },
         {
