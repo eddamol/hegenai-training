@@ -3048,3 +3048,49 @@ mark.fill-in {
     background-color: #f8e1df;
     color: #8a1c17;
 }
+
+/* A thin line between two parts of a block. */
+.section-divider {
+    margin: 24px 0;
+    border: 0;
+    border-top: 1px solid #c9ccd2;
+}
+
+/* Writing box with copy and clear buttons (Try it). */
+.writing-box {
+    margin: 12px 0;
+}
+
+.writing-label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+.writing-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 16px;
+    max-width: 640px;
+    margin: 12px 0 0;
+}
+
+.writing-actions[hidden] {
+    display: none;
+}
+
+.writing-actions .link-button {
+    margin-left: auto;
+}
+
+.writing-status {
+    flex-basis: 100%;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.writing-status:empty {
+    display: none;
+}

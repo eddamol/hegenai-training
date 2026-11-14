@@ -340,5 +340,45 @@
         });
     }
 
+    // A button with data-copy-target="<id>" copies the text of that element, one line per
+    // paragraph or list item (hidden ones too). Used under fixed prompt boxes and in module
+    // materials. The label reads "Copied" for a moment, and a status line next to the button
+    // says the same for screen readers.
+    function linesOf(target) {
+        var parts = target.querySelectorAll('p, li');
+        if (!parts.length) return target.textContent.trim();
+        return Array.prototype.map.call(parts, function (part) {
+            return part.textContent.replace(/\s+/g, ' ').trim();
+        }).join('\n');
+    }
+
+    document.addEventListener('click', function (event) {
+        var button = event.target.closest ? event.target.closest('[data-copy-target]') : null;
+        if (!button) return;
+        var target = document.getElementById(button.getAttribute('data-copy-target'));
+        if (!target) return;
+        var status = button.parentNode.querySelector('.copy-status');
+        if (!status) {
+            status = create('span', 'copy-status');
+            status.setAttribute('role', 'status');
+            button.parentNode.insertBefore(status, button.nextSibling);
+        }
+        if (!button.hasAttribute('data-label')) button.setAttribute('data-label', button.textContent);
+        window.clearTimeout(button.copyTimer);
+        status.textContent = '';
+        copyText(linesOf(target)).then(function () {
+            button.textContent = 'Copied';
+            // A short wait so a status line that was just added is announced.
+            window.setTimeout(function () { status.textContent = COPIED; }, 50);
+            button.copyTimer = window.setTimeout(function () {
+                button.textContent = button.getAttribute('data-label');
+                status.textContent = '';
+            }, 2500);
+        }, function () {
+            button.textContent = button.getAttribute('data-label');
+            status.textContent = NOT_COPIED;
+        });
+    });
+
     window.HEGenAIMakeIt = { renderPrompt: renderPrompt, setupChecklists: setupChecklists };
 })();

@@ -143,6 +143,7 @@ var M2_BUILDER_FIGURE =
     '</figure>';
 
 // Module 2: the skill file text, one line per paragraph in the box.
+// downloads/module-2/SKILL.md holds the same lines; change both together.
 var M2_SKILL_LINES = [
     '---',
     'name: declaration-feedback',
@@ -152,9 +153,9 @@ var M2_SKILL_LINES = [
     'Give short, formative feedback on a student’s GenAI declaration, judged only against the declaration guide in your instructions. Rate what is written, not what you think the student did.',
     '# For each entry',
     'Quote the entry in a few words, then give:',
-    '- Tool, Purpose, Documentation: clear or unclear.',
+    '- Tool, Purpose, Documentation: Clear or unclear.',
     '- Level: Proper, Incomplete or Vague.',
-    '- Next step, only if not Proper: one short question that leads the student to the missing part, then what to add. Max 20 words. Never answer it for them or write the entry.',
+    '- Next step, only if not Proper: One short question that leads the student to the missing part, then what to add. Max 20 words. Never answer it for them or write the entry.',
     'No praise, no padding.',
     'Tests:',
     '- Tool is clear if named. Version never decides the level.',
@@ -166,11 +167,11 @@ var M2_SKILL_LINES = [
     '3. Otherwise: Proper.',
     'If borderline, give the lower level and say why in a few words. If an entry bundles several uses, rate it as written and suggest splitting it.',
     '# Overall',
-    'One line: the weakest entry’s level, and that a level is not a mark.',
+    'One line: The weakest entry’s level, and that a level is not a mark.',
     '# Rules',
     '- Use only the guide. Add no requirements.',
     '- You cannot open links or check records. Check only that documentation is stated, and accept “No record available”.',
-    '- If the student says they used no GenAI, say the statement is clear and there is nothing to rate: no level, no next step. If the same text also describes a use, say in one sentence that it contradicts the no-use statement, then rate that use as an entry.',
+    '- If the student says they used no GenAI, say the statement is clear and there is nothing to rate: No level, no next step. If the same text also describes a use, say in one sentence that it contradicts the no-use statement, then rate that use as an entry.',
     '- If the section is empty or too unclear to identify any use, ask what they used. Rate the entries you can identify.',
     '- If nothing is pasted, greet in one sentence and ask for the declaration. If the whole assignment is pasted, ask for the declaration section only.',
     '- If asked to write or fix an entry, decline in one sentence and repeat the next step.',
@@ -180,14 +181,14 @@ var M2_SKILL_LINES = [
     'This is GenAI feedback on your declaration against the course guide. It can be wrong. Your teacher decides how your work is assessed.',
     '# Example (entry feedback and overall line only; always add the closing sentence)',
     '> Entry 1: “ChatGPT (GPT-5), for feedback on the structure of my introduction. Conversation: [link].”',
-    'Tool: clear · Purpose: clear · Documentation: clear',
+    'Tool: Clear · Purpose: Clear · Documentation: Clear',
     'Level: Proper',
     '> Entry 2: “Grammarly, to correct spelling and grammar.”',
-    'Tool: clear · Purpose: clear · Documentation: unclear',
+    'Tool: Clear · Purpose: Clear · Documentation: Unclear',
     'Level: Incomplete',
     'Next step: Does Grammarly keep a record of your edits? Add where to find it, or write “No record available”.',
     '> Entry 3: “Claude, to help with my report. Conversation: [link].”',
-    'Tool: clear · Purpose: unclear · Documentation: clear',
+    'Tool: Clear · Purpose: Unclear · Documentation: Clear',
     'Level: Vague',
     'Next step: What did you ask Claude to do? Say it in this entry.',
     'Overall: Vague (the weakest entry). A level is not a mark.'
@@ -202,7 +203,7 @@ var M2_GUIDE_LINES = [
     'How to declare? Write one entry per GenAI use, each with three parts: Tool, purpose and documentation. If one tool did several things, write one entry for each. Put the declaration in its own section, either in the methodology chapter or the front matter.',
     'No GenAI use? If you used no GenAI, say so explicitly, for example: “I used no generative AI tools in this work.” An empty section is not a declaration.',
     '# Tool(s) used',
-    'List every tool you used: the name, and the version or model if you know it. Include anything that writes, rewrites, translates, or suggests content for you, such as chatbots or tools for grammar, rewriting, or coding.',
+    'List every tool you used: The name, and the version or model if you know it. Include anything that writes, rewrites, translates, or suggests content for you, such as chatbots or tools for grammar, rewriting, or coding.',
     '- Example: ChatGPT (GPT-5); Claude (Sonnet 5.5); Microsoft Copilot; Grammarly.',
     '# Purpose: What and where',
     'For each entry, say what you asked the tool to do, in enough detail that a reader can tell what it did. Also say where in your work you used the result (a section, a part, or the whole work), so a reader can find it.',
@@ -211,7 +212,7 @@ var M2_GUIDE_LINES = [
     '- Unclear: “I used ChatGPT (GPT-5) to help with my report.” (a reader cannot tell what it did)',
     '- Unclear: “I used AI for help.” (no tool named, and a reader cannot tell what it did)',
     '# Documentation',
-    'For each entry, point to a record a reader can find: your prompts and the tool’s replies in an appendix (referred to in the declaration), or a link to the conversation, included in the declaration. Check that the link opens for others. If a tool keeps no record, write “No record available.”',
+    'For each entry, point to a record a reader can find: Your prompts and the tool’s replies in an appendix (referred to in the declaration), or a link to the conversation, included in the declaration. Check that the link opens for others. If a tool keeps no record, write “No record available.”',
     '# Levels of declaration',
     'Each entry is described at one of three levels, and your declaration is at the level of its weakest entry. The level describes the information in the entry/declaration. It is not a mark for grading. A tool is clear when it is named. A purpose is clear when a reader can tell what the tool did. Documentation is clear when a record is given, or “No record available” is stated.',
     '- Proper: Tool, purpose, and documentation are all clear.',
@@ -769,12 +770,12 @@ window.HEGENAI_MODULES = {
                 {
                     id: "see",
                     minutes: 10,
-                    html: '<p>In this block, you see how declarations are rated, and then the whole process: from giving students the guide to a student getting feedback from the agent.</p>' +
+                    html: '<p>In this block, you see how declarations are rated, and then the whole process: From giving students the guide to a student getting feedback from the agent.</p>' +
                         '<h3>How declarations are rated</h3>' +
-                        '<p>Students declare their GenAI use with one entry per use. Each entry should specify three elements: the tool, its purpose in the assignment, and documentation of the use.</p>' +
+                        '<p>Students declare their GenAI use with one entry per use. Each entry should specify three elements: The tool, its purpose in the assignment, and documentation of the use.</p>' +
                         '<p><button type="button" class="pill-button pill-button-secondary" data-open-resource="declaration-guide">See the complete declaration guide</button></p>' +
                         '<ol class="step-list" role="list">' +
-                        '<li><p><strong>Each element is checked: is it clear?</strong></p>' +
+                        '<li><p><strong>Each element is checked: Is it clear?</strong></p>' +
                         '<ul>' +
                         '<li><strong>Tool</strong> is clear when the tool is named. “AI” or “an AI tool” is not a name.</li>' +
                         '<li><strong>Purpose</strong> is clear when a reader can tell what the tool did. A category such as “language editing” or “debugging code” is enough. “Help”, “assistance” or “support” alone is not.</li>' +
@@ -782,9 +783,9 @@ window.HEGENAI_MODULES = {
                         '</ul></li>' +
                         '<li><p><strong>Each entry gets a level:</strong></p>' +
                         '<ul class="level-list">' +
-                        '<li><strong>Vague:</strong> tool or purpose unclear, even when documentation is clear.</li>' +
-                        '<li><strong>Incomplete:</strong> only documentation unclear.</li>' +
-                        '<li><strong>Proper:</strong> all three clear.</li>' +
+                        '<li><strong>Vague:</strong> Tool or purpose unclear, even when documentation is clear.</li>' +
+                        '<li><strong>Incomplete:</strong> Only documentation unclear.</li>' +
+                        '<li><strong>Proper:</strong> All three clear.</li>' +
                         '</ul></li>' +
                         '<li><p><strong>The declaration gets the level of its weakest entry.</strong> A statement that no GenAI was used gets no level.</p></li>' +
                         '</ol>' +
@@ -816,7 +817,7 @@ window.HEGENAI_MODULES = {
                         buildSlider('m2-reply', {
                             label: 'Agent feedback',
                             html: '<div class="reply-box"><p class="reply-label">Agent feedback</p>' +
-                                '<p>Tool: clear · Purpose: clear · Documentation: unclear · Level: <strong>Incomplete</strong></p>' +
+                                '<p>Tool: Clear · Purpose: Clear · Documentation: Unclear · Level: <strong>Incomplete</strong></p>' +
                                 '<p>Next step: Does ChatGPT keep this conversation? Add a link or an appendix, or write “No record available”.</p>' +
                                 '<p>Overall: Incomplete (the weakest entry). A level is not a mark.</p>' +
                                 '<p class="reply-closing">' + M2_CLOSING_SENTENCE + '</p></div>'
@@ -843,7 +844,7 @@ window.HEGENAI_MODULES = {
                             html: '<p class="reply-label">Real declaration, pasted into the agent</p>' +
                                 '<blockquote class="declaration-quote"><p>“Artificial intelligence was used for language refinement, exclusively to improve the clarity of the writing. All final content has been reviewed and remains the responsibility of the author”</p></blockquote>' +
                                 '<div class="reply-box"><p class="reply-label">Agent feedback</p>' +
-                                '<p>Tool: unclear · Purpose: clear · Documentation: unclear · Level: <strong>Vague</strong></p>' +
+                                '<p>Tool: Unclear · Purpose: Clear · Documentation: Unclear · Level: <strong>Vague</strong></p>' +
                                 '<p>Next step: Which tool did you use? Name it, and add a record or write “No record available”.</p>' +
                                 '<p>Overall: Vague (the weakest entry). A level is not a mark.</p>' +
                                 '<p class="reply-closing">' + M2_CLOSING_SENTENCE + '</p></div>'
@@ -852,7 +853,7 @@ window.HEGENAI_MODULES = {
                             html: '<p class="reply-label">Revised declaration, pasted into the agent</p>' +
                                 '<blockquote class="declaration-quote"><p>“Grammarly was used for language refinement, to improve the clarity of the writing. No record available.”</p></blockquote>' +
                                 '<div class="reply-box"><p class="reply-label">Agent feedback</p>' +
-                                '<p>Tool: clear · Purpose: clear · Documentation: clear · Level: <strong>Proper</strong></p>' +
+                                '<p>Tool: Clear · Purpose: Clear · Documentation: Clear · Level: <strong>Proper</strong></p>' +
                                 '<p>Overall: Proper. A level is not a mark.</p>' +
                                 '<p class="reply-closing">' + M2_CLOSING_SENTENCE + '</p></div>'
                         }, true) +
@@ -904,7 +905,7 @@ window.HEGENAI_MODULES = {
                 {
                     id: "try",
                     minutes: 10,
-                    html: '<p>In this block, you rate one declaration the way the agent does: first each entry, then the whole declaration. Then you check the agent’s reply to the same declaration.</p>' +
+                    html: '<p>In this block, you rate one declaration the way the agent does: First each entry, then the whole declaration. Then you check the agent’s reply to the same declaration.</p>' +
                         // Switched off for now:
                         // '<div class="callout">' +
                         // '<h3 class="callout-title">What to aim for</h3>' +
@@ -927,21 +928,31 @@ window.HEGENAI_MODULES = {
                         '<div class="dropdown-body">' +
                         '<p>First, check three elements per entry:</p>' +
                         '<ul>' +
-                        '<li><strong>Tool:</strong> clear when named.</li>' +
-                        '<li><strong>Purpose:</strong> clear when a reader can tell what the tool did.</li>' +
-                        '<li><strong>Documentation:</strong> clear with an appendix, a link, or “No record available”.</li>' +
+                        '<li><strong>Tool:</strong> Clear when named.</li>' +
+                        '<li><strong>Purpose:</strong> Clear when a reader can tell what the tool did.</li>' +
+                        '<li><strong>Documentation:</strong> Clear with an appendix, a link, or “No record available”.</li>' +
                         '</ul>' +
-                        '<p>Then, give the declaration a level:</p>' +
+                        '<p>Then, give each entry a level:</p>' +
                         '<ul>' +
-                        '<li><strong>Vague:</strong> tool or purpose unclear.</li>' +
-                        '<li><strong>Incomplete:</strong> only documentation unclear.</li>' +
-                        '<li><strong>Proper:</strong> all three clear.</li>' +
+                        '<li><strong>Vague:</strong> Tool or purpose unclear.</li>' +
+                        '<li><strong>Incomplete:</strong> Only documentation unclear.</li>' +
+                        '<li><strong>Proper:</strong> All three clear.</li>' +
                         '</ul>' +
+                        '<p>Finally, the declaration as a whole gets the level of its weakest entry. A statement that no GenAI was used gets no level.</p>' +
                         '</div>' +
                         '</details>' +
                         '<div data-quiz></div>' +
+                        '<hr class="section-divider">' +
                         '<h3>Optional: Write one as a student would</h3>' +
-                        '<p>Write a Proper declaration with two entries for an assignment on your own course. Check each entry against the three tests. You can paste it into your agent in <a href="#block-make">Make it</a>.</p>',
+                        '<p>Write a Proper declaration with two entries for an assignment on your own course. Check each entry against the three tests. You can paste it into your agent in <a href="#block-make">Make it</a>.</p>' +
+                        '<div class="writing-box">' +
+                        '<label class="writing-label" for="m2-own-declaration">Your declaration</label>' +
+                        '<textarea class="form-control writing-input" id="m2-own-declaration" rows="6" data-writing-input></textarea>' +
+                        '<p class="writing-actions" data-writing-actions hidden>' +
+                        '<button type="button" class="pill-button" data-writing-copy>Copy declaration</button>' +
+                        '<button type="button" class="link-button" id="m2-own-declaration-clear" data-writing-clear>Clear text</button>' +
+                        '<span class="writing-status" role="status" aria-live="polite"></span>' +
+                        '</p></div>',
                     quiz: {
                         title: "Rate the declaration",
                         intro: "Rate the three entries, then check them all at once. Scored for you only, and your answers stay in your browser.",
@@ -980,7 +991,7 @@ window.HEGENAI_MODULES = {
                                 correct: 2,
                                 options: [
                                     { text: "Proper", note: "A section and a link are given, but “help” does not say what ChatGPT did. See the purpose test in **See it**." },
-                                    { text: "Incomplete", note: "The link counts as documentation. The gap is the purpose: “help” does not say what ChatGPT did." },
+                                    { text: "Incomplete", note: "The link counts as documentation. The gap is the purpose: “Help” does not say what ChatGPT did." },
                                     { text: "Vague", note: "“Help” does not tell a reader what ChatGPT did, even with a section and a link. An unclear purpose makes the entry Vague, whatever else is there." }
                                 ]
                             },
@@ -1012,9 +1023,73 @@ window.HEGENAI_MODULES = {
                 },
                 {
                     id: "make",
-                    minutes: 15,
-                    html: '<p>In this block, you set up your agent in Microsoft Copilot, change two course details, test it, and keep it ready to share.</p>' +
-                        '<p>Content coming soon.</p>'
+                    minutes: 20,
+                    html: '<p>In this block, you set up your agent, test it, and get it ready to share. You need Microsoft Copilot with a work or school account, or a paid plan.</p>' +
+                        '<ol class="step-list" role="list">' +
+                        '<li>' +
+                        '<p><strong>Add your course name.</strong> Copy the instructions and replace [course name] in the guide. Change nothing else.</p>' +
+                        '<div data-text="make-instructions"></div>' +
+                        '</li>' +
+                        '<li>' +
+                        '<p><strong>Download the skill.</strong> It is the same for every course. Keep the file name SKILL.md.</p>' +
+                        '<div data-text="make-skill"></div>' +
+                        '<p class="prompt-actions"><a class="pill-button" href="downloads/module-2/SKILL.md" download>Download SKILL.md</a>' +
+                        '<button type="button" class="pill-button pill-button-secondary" data-copy-target="text-make-skill-body">Copy skill text</button></p>' +
+                        '</li>' +
+                        '<li>' +
+                        '<p><strong>Create the agent.</strong> In Microsoft Copilot, open Agents in the left sidebar and choose New agent. If it offers to build one for you, skip that. Then fill in:</p>' +
+                        '<ul>' +
+                        '<li><strong>Name:</strong> One students will recognise, for example “AI declaration feedback: Organic Chemistry I”.</li>' +
+                        '<li><strong>Instructions:</strong> Paste the text from step 1.</li>' +
+                        '<li><strong>Skill:</strong> Upload SKILL.md. If there is no place for a skill file, paste the skill text under the instructions.</li>' +
+                        '</ul>' +
+                        // Switch on once assets/module-2/agent-setup.mp4 is in place (about 90 s, no sound, captions in the picture):
+                        // '<video class="module-video" controls preload="metadata" src="assets/module-2/agent-setup.mp4">' +
+                        // '<p>Your browser cannot play this video. <a href="assets/module-2/agent-setup.mp4">Download the video</a>.</p>' +
+                        // '</video>' +
+                        '<details class="dropdown">' +
+                        '<summary>No agent builder?</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>At the time of writing, personal free accounts cannot make agents. Paste the instructions and the skill into a new chat in any GenAI tool you are allowed to use, then paste a declaration. You can test the agent this way, but not share it.</p>' +
+                        '</div>' +
+                        '</details>' +
+                        '</li>' +
+                        '<li>' +
+                        '<p><strong>Test it.</strong> Open the sample declarations. Copy each sample into a new conversation with your agent, and paste sample A twice, each time in a new conversation.</p>' +
+                        '<p><button type="button" class="pill-button pill-button-secondary" data-open-resource="sample-declarations">Open sample declarations</button></p>' +
+                        '<p>Optional: Also paste the declaration you wrote in <a href="#block-try">Try it</a>.</p>' +
+                        '</li>' +
+                        '<li>' +
+                        '<p><strong>Check each entry, not only the overall level.</strong> Tick what holds:</p>' +
+                        '<ol class="tick-list" data-checklist>' +
+                        '<li>Sample A: Entries 1, 2 and 3 are rated Proper, Incomplete and Vague, and the overall level is Vague, in both runs.</li>' +
+                        '<li>Sample B: Proper for both entries, even though entry 1 says “help”.</li>' +
+                        '<li>Sample C: The contradiction is named, and the AI use is rated Vague, because no tool is named.</li>' +
+                        '<li>All samples: Each next step is a short question, then what to add. Nothing is written for the student.</li>' +
+                        '<li>All samples: No reply gives a grade, and each ends with the closing sentence: The feedback can be wrong, it is not a grade, and the teacher decides.</li>' +
+                        '</ol>' +
+                        '</li>' +
+                        '<li>' +
+                        '<p><strong>Fix what failed.</strong> All ticked? Go to step 7.</p>' +
+                        '<details class="dropdown">' +
+                        '<summary>If a tick is missing</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>Change one thing at a time, then rerun the same declarations.</p>' +
+                        '<ul class="fix-list" role="list">' +
+                        '<li><p class="fix-check">No levels, or the format is off.</p><p>The agent does not use the skill. Check that SKILL.md is uploaded. If it still is not used, paste the skill text under the instructions.</p></li>' +
+                        '<li><p class="fix-check">A clear entry is marked down, or a weak one passes.</p><p>For example, sample B loses a level for “help”, or entry 2 of sample A passes with “on request”. The agent uses its own idea of a clear purpose or record. Paste the skill text under the instructions as well.</p></li>' +
+                        '<li><p class="fix-check">An entry is written for the student.</p><p>The first lines of the instructions were changed. Restore them.</p></li>' +
+                        '<li><p class="fix-check">The two runs of sample A differ.</p><p>Run it a third time. If the runs still differ, tell students to check that element themselves.</p></li>' +
+                        '<li><p class="fix-check">Still failing after two rounds?</p><p>Do not share the agent this term, and note what happened in the practice log. That is a useful finding too.</p></li>' +
+                        '</ul>' +
+                        '</div>' +
+                        '</details>' +
+                        '</li>' +
+                        '<li>' +
+                        '<p><strong>Your agent is ready.</strong> Keep it private until <a href="#block-plan">Plan it</a>. Download the guide for your course page and add your course name.</p>' +
+                        '<p><a class="pill-button" href="downloads/module-2/declaration-guide.docx" download>Download the declaration guide (Word)</a></p>' +
+                        '</li>' +
+                        '</ol>'
                 },
                 {
                     id: "plan",
@@ -1045,30 +1120,82 @@ window.HEGENAI_MODULES = {
                 },
                 {
                     id: "example-feedback",
-                    group: "Worked example",
+                    group: "Examples",
                     title: "Example of agent feedback",
                     html: '<p class="resource-note">(An example of the feedback a student gets when they paste a declaration into the agent.)</p>' +
                         '<div class="guide-page">' +
                         '<h3>Feedback on a GenAI declaration</h3>' +
                         '<p><strong>Entry 1:</strong> “ChatGPT (GPT-5), for feedback on the structure of my introduction. Conversation: [link].”</p>' +
-                        '<p>Tool: clear · Purpose: clear · Documentation: clear · Level: Proper</p>' +
+                        '<p>Tool: Clear · Purpose: Clear · Documentation: Clear · Level: Proper</p>' +
                         '<hr class="entry-divider">' +
                         '<p><strong>Entry 2:</strong> “Grammarly, to correct spelling and grammar.”</p>' +
-                        '<p>Tool: clear · Purpose: clear · Documentation: unclear · Level: Incomplete</p>' +
+                        '<p>Tool: Clear · Purpose: Clear · Documentation: Unclear · Level: Incomplete</p>' +
                         '<p>Next step: Does Grammarly keep a record of your edits? Add where to find it, or write “No record available”.</p>' +
                         '<hr class="entry-divider">' +
                         '<p><strong>Entry 3:</strong> “Claude, to help with my report. Conversation: [link].”</p>' +
-                        '<p>Tool: clear · Purpose: unclear · Documentation: clear · Level: Vague</p>' +
+                        '<p>Tool: Clear · Purpose: Unclear · Documentation: Clear · Level: Vague</p>' +
                         '<p>Next step: What did you ask Claude to do? Say it in this entry.</p>' +
                         '<hr class="entry-divider">' +
                         '<p><strong>Overall:</strong> Vague (based on the weakest entry).</p>' +
                         '<p>This is AI-generated feedback on your declaration against the course guide. It can be wrong and it is not a grade. Your teacher decides how your work is assessed.</p>' +
                         '</div>'
+                },
+                {
+                    id: "sample-declarations",
+                    group: "Examples",
+                    title: "Sample declarations",
+                    html: '<p class="resource-note">(Copy one sample into each new conversation with your agent, then compare the reply with the expected result. Sample B is real, from a DTU master’s thesis in the dataset behind Mahmud (2026), quoted as written, with the links replaced by an example link. Samples A and C are invented.)</p>' +
+                        '<h3>Sample A: Environmental engineering report (from Try it)</h3>' +
+                        '<p>Paste it twice.</p>' +
+                        '<p class="prompt-actions"><button type="button" class="pill-button pill-button-secondary" data-copy-target="m2-sample-a">Copy sample A</button></p>' +
+                        '<div class="guide-page" id="m2-sample-a">' +
+                        '<p>Grammarly, to correct spelling and grammar. No record available.</p>' +
+                        '<hr class="entry-divider">' +
+                        '<p>Microsoft Copilot, to suggest a structure for the literature review. Prompts available on request.</p>' +
+                        '<hr class="entry-divider">' +
+                        '<p>ChatGPT, for help with the data analysis in section 4. Conversation: https://chatgpt.com/share/example-link.</p>' +
+                        '</div>' +
+                        '<details class="dropdown">' +
+                        '<summary>Expected result</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<ul>' +
+                        '<li>Entry 1: Proper.</li>' +
+                        '<li>Entry 2: Incomplete (“on request” is not a record).</li>' +
+                        '<li>Entry 3: Vague (“help” does not say what ChatGPT did).</li>' +
+                        '<li>Overall: Vague.</li>' +
+                        '</ul>' +
+                        '</div>' +
+                        '</details>' +
+                        '<h3>Sample B: Photonics thesis (real)</h3>' +
+                        '<p class="prompt-actions"><button type="button" class="pill-button pill-button-secondary" data-copy-target="m2-sample-b">Copy sample B</button></p>' +
+                        // Quoted as written, including "Assistence" and "LATEX".
+                        '<div class="guide-page" id="m2-sample-b">' +
+                        '<p>Assistance with the Julia programming language. As the author did not have any prior experience with Julia, ChatGPT was used to help learn the language and later to help with writing the code and understanding error messages. The chat used in this process can be found here: https://chatgpt.com/share/example-link</p>' +
+                        '<hr class="entry-divider">' +
+                        '<p>Assistence with LATEX and thesis structure. ChatGPT was used to get inputs on how a master’s thesis is best structured. In this same chat, it was also discussed how different layouts were possible when using LATEX. The chat used in this process can be found here: https://chatgpt.com/share/example-link</p>' +
+                        '</div>' +
+                        '<details class="dropdown">' +
+                        '<summary>Expected result</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>Proper for both entries. “Help” appears in entry 1, but a reader can tell what ChatGPT did: Teaching the language, writing code and explaining errors.</p>' +
+                        '</div>' +
+                        '</details>' +
+                        '<h3>Sample C: Sociology essay</h3>' +
+                        '<p class="prompt-actions"><button type="button" class="pill-button pill-button-secondary" data-copy-target="m2-sample-c">Copy sample C</button></p>' +
+                        '<div class="guide-page" id="m2-sample-c">' +
+                        '<p>I used no generative AI tools in this work, apart from AI for language refinement in the introduction.</p>' +
+                        '</div>' +
+                        '<details class="dropdown">' +
+                        '<summary>Expected result</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>The agent names the contradiction in one sentence, then rates the AI use: Vague, because “AI” names no tool. The next step asks which tool, and for a record.</p>' +
+                        '</div>' +
+                        '</details>'
                 }
                 // Hidden for now, together with question m2-try5 in Try it:
                 // {
                 //     id: "try-agent-reply",
-                //     group: "Worked example",
+                //     group: "Examples",
                 //     title: "The agent’s reply",
                 //     html: '<p class="resource-note">(An example written for this module: one agent reply to the declaration in Try it.)</p>' +
                 //         '<div class="guide-page">' +
@@ -1088,6 +1215,29 @@ window.HEGENAI_MODULES = {
                 //         '<p>This is AI-generated feedback on your declaration against the course guide. It can be wrong and it is not a grade. Your teacher decides how your work is assessed.</p>' +
                 //         '</div>'
                 // }
+            ],
+            texts: [
+                {
+                    // The same text as the "agent-instructions" material, with the course name left to fill in.
+                    id: "make-instructions",
+                    kind: "prompt",
+                    label: "Instructions",
+                    showLabel: true,
+                    showLines: 6,
+                    moreLabel: "Show the whole text",
+                    copyLabel: "Copy instructions",
+                    lines: M2_INSTRUCTIONS_LINES.concat(m2GuidePromptLines('[course name]'))
+                },
+                {
+                    // Copied by the "Copy skill text" button in Make it, step 2, through its body id (text-make-skill-body).
+                    id: "make-skill",
+                    kind: "prompt",
+                    label: "Skill",
+                    showLabel: true,
+                    showLines: 6,
+                    moreLabel: "Show the whole skill",
+                    lines: M2_SKILL_LINES
+                }
             ]
         },
         {

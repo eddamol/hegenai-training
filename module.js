@@ -146,8 +146,18 @@
             var lines = text.lines || [];
             var shown = typeof text.showLines === 'number' ? text.showLines : lines.length;
             var body = create('div', 'text-box-body');
+            body.id = 'text-' + id + '-body';
             body.appendChild(render(lines.slice(0, shown)));
             slot.appendChild(body);
+            // copyLabel: a copy button under a prompt box (make-it.js handles data-copy-target).
+            if (!isDraft && text.copyLabel) {
+                var actions = create('p', 'prompt-actions');
+                var copyButton = create('button', 'pill-button pill-button-secondary', text.copyLabel);
+                copyButton.type = 'button';
+                copyButton.setAttribute('data-copy-target', body.id);
+                actions.appendChild(copyButton);
+                slot.parentNode.insertBefore(actions, slot.nextSibling);
+            }
             if (shown >= lines.length) return;
 
             var moreLabel = text.moreLabel || 'Show all';
@@ -613,6 +623,84 @@
             if (section) observer.observe(section);
         });
     }
+
+    // The writing box in Try it: the buttons appear once there is text. The text
+    // stays on the page only; nothing is stored or sent.
+    function setUpWritingBoxes() {
+        function boxOf(element) {
+            return element.closest ? element.closest('.writing-box') : null;
+        }
+
+        function update(box) {
+            var input = box.querySelector('[data-writing-input]');
+            box.querySelector('[data-writing-actions]').hidden = input.value.trim() === '';
+            resetClear(box);
+        }
+
+        // The clear button asks for a second click, then goes back to its first label.
+        var clearTimers = [];
+
+        function resetClear(box) {
+            var button = box.querySelector('[data-writing-clear]');
+            window.clearTimeout(clearTimers[button.id]);
+            button.removeAttribute('data-confirming');
+            button.textContent = 'Clear text';
+        }
+
+        function copy(text) {
+            if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(text);
+            return new Promise(function (resolve, reject) {
+                var helper = create('textarea');
+                helper.value = text;
+                helper.setAttribute('readonly', '');
+                helper.style.position = 'fixed';
+                helper.style.opacity = '0';
+                document.body.appendChild(helper);
+                helper.select();
+                var done = false;
+                try { done = document.execCommand('copy'); } catch (error) { done = false; }
+                document.body.removeChild(helper);
+                if (done) resolve(); else reject(new Error('copy failed'));
+            });
+        }
+
+        function say(box, message) {
+            var status = box.querySelector('.writing-status');
+            status.textContent = message;
+            window.setTimeout(function () { status.textContent = ''; }, 2500);
+        }
+
+        document.addEventListener('input', function (event) {
+            var box = event.target.hasAttribute && event.target.hasAttribute('data-writing-input') ? boxOf(event.target) : null;
+            if (box) update(box);
+        });
+
+        document.addEventListener('click', function (event) {
+            var button = event.target.closest ? event.target.closest('[data-writing-copy], [data-writing-clear]') : null;
+            var box = button ? boxOf(button) : null;
+            if (!box) return;
+            var input = box.querySelector('[data-writing-input]');
+            if (button.hasAttribute('data-writing-clear')) {
+                if (!button.hasAttribute('data-confirming')) {
+                    button.setAttribute('data-confirming', '');
+                    button.textContent = 'Click again to clear';
+                    clearTimers[button.id] = window.setTimeout(function () { resetClear(box); }, 4000);
+                    return;
+                }
+                input.value = '';
+                update(box);
+                input.focus();
+                return;
+            }
+            copy(input.value).then(function () {
+                say(box, 'Copied');
+            }, function () {
+                say(box, 'Could not copy. Select the text and copy it yourself.');
+            });
+        });
+    }
+
+    setUpWritingBoxes();
 
     var module = findModule(readModuleId());
     if (!module) {
