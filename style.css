@@ -2883,19 +2883,18 @@ mark.fill-in {
 }
 
 .slider-banner {
-    padding: 5px;
+    padding: 5px 36px;
     border: 1px solid #c9ccd2;
-    border-bottom: 2px solid var(--slider-colour);
+    border-bottom: 0;
     border-radius: 8px 8px 0 0;
     background-color: #eceef1;
-    transition: border-color 0.2s;
 }
 
 .slider-track {
     position: relative;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding: 2px;
+    padding: 1px;
     border: 1px solid #c9ccd2;
     border-radius: 6px;
     background-color: #fafbfc;
@@ -2906,12 +2905,12 @@ mark.fill-in {
 .slider-track::before {
     content: "";
     position: absolute;
-    top: 2px;
-    bottom: 2px;
-    left: 2px;
-    width: calc(50% - 2px);
+    top: 1px;
+    bottom: 1px;
+    left: 1px;
+    width: calc(50% - 1px);
     border: 1px solid var(--slider-colour);
-    border-radius: 4px;
+    border-radius: 5px;
     background-color: var(--slider-tint);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
     transition: transform 0.25s ease, background-color 0.25s, border-color 0.25s;
@@ -2963,6 +2962,7 @@ mark.fill-in {
     padding: 12px 16px;
     border: 1px solid #c9ccd2;
     border-top: 0;
+    border-bottom: 4px solid var(--slider-colour);
     border-radius: 0 0 8px 8px;
     background-color: white;
 }
@@ -2988,6 +2988,10 @@ mark.fill-in {
 
 @media (max-width: 550px) {
 
+    .slider-banner {
+        padding: 5px 14px;
+    }
+
     .slider-panel {
         padding: 12px;
     }
@@ -2999,7 +3003,6 @@ mark.fill-in {
 
 @media (prefers-reduced-motion: reduce) {
 
-    .slider-banner,
     .slider-track::before,
     .slider-option {
         transition: none;
