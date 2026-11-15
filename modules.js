@@ -17,17 +17,12 @@
     }
 
     function describeLength(minutes) {
-        if (minutes % 60 === 0) {
-            var hours = minutes / 60;
-            return 'About ' + hours + (hours === 1 ? ' hour' : ' hours');
-        }
-        return 'About ' + minutes + ' minutes';
+        return 'About ' + minutes + ' min.';
     }
 
     function describeModuleLength(module) {
         var text = describeLength(module.minutes);
-        return module.extraMinutes ? text + ' + ' + module.extraMinutes + ' min.' +
-            (module.extraLabel ? ' for the ' + module.extraLabel : '') : text;
+        return module.extraMinutes ? text + ' + optional ' + module.extraMinutes + ' min. for certification' : text;
     }
 
     function buildProgress(module) {

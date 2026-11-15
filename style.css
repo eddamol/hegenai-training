@@ -2040,8 +2040,33 @@ textarea.form-control {
     font-size: 1.25rem;
 }
 
+/* A quiz placed inside block html keeps its own heading spacing. */
+.block-body .quiz-title {
+    margin: 0 0 12px;
+}
+
 .quiz-intro {
     margin: 0 0 16px;
+}
+
+/* "Check my answers" after a group of questions checked together, with the
+   last question's "Clear answer" on the same line. */
+.quiz-check {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px 16px;
+    margin: -8px 0 24px;
+}
+
+.quiz-check .quiz-clear {
+    margin: 0 0 0 auto;
+}
+
+.quiz-divider {
+    margin: 0 0 24px;
+    border: 0;
+    border-top: 1px solid var(--line);
 }
 
 .quiz-question {
@@ -2057,6 +2082,16 @@ textarea.form-control {
     font-family: Georgia, serif;
     font-size: 1.1rem;
     font-weight: 400;
+}
+
+/* The text being rated, repeated under the question. */
+.quiz-quote {
+    margin: 0 0 12px;
+    padding: 8px 16px;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--primary-dark);
+    background-color: white;
+    color: var(--primary-dark);
 }
 
 .quiz-options {
@@ -2217,9 +2252,11 @@ textarea.form-control {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
+/* z-index keeps positioned content in the body from scrolling over the header. */
 .resource-panel-top {
     position: sticky;
     top: 0;
+    z-index: 2;
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: start;
@@ -2284,6 +2321,12 @@ mark.fill-in {
 
 .guide-page blockquote p {
     margin: 0;
+}
+
+.guide-page .entry-divider {
+    margin: 12px 0;
+    border: 0;
+    border-top: 1px solid var(--primary);
 }
 
 .guide-page ul {
@@ -2802,4 +2845,254 @@ mark.fill-in {
 .fix-check {
     font-weight: 700;
     color: var(--primary-dark);
+}
+
+/* A quoted student declaration. */
+.declaration-quote {
+    margin: 12px 0;
+    padding: 8px 16px;
+    border-left: 4px solid var(--primary);
+    background-color: var(--primary-tint);
+}
+
+.declaration-quote p {
+    margin: 0;
+}
+
+/* An agent reply, drawn as a box. */
+.reply-box {
+    margin: 12px 0;
+    padding: 12px 16px;
+    border: 1px solid #c9ccd2;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.reply-box p {
+    margin: 0 0 8px;
+}
+
+.reply-box > :last-child {
+    margin-bottom: 0;
+}
+
+.reply-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.reply-closing {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.reply-source {
+    margin: 12px 0 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+/* Two-way slider (see buildSlider in modules-data.js). A banner holds a track with two
+   options; the thumb slides to the chosen one and the matching panel shows below. No script:
+   radio buttons and :has(). By default the first option is green and the second red;
+   add slider-reversed to swap them. Colours match the .check-label-ok and .check-label-miss tags. */
+.slider {
+    --first-colour: var(--correct-text);
+    --first-tint: var(--correct-bg);
+    --second-colour: #8a1c17;
+    --second-tint: #f8e1df;
+    --slider-colour: var(--first-colour);
+    --slider-tint: var(--first-tint);
+    margin: 12px 0;
+}
+
+.slider-reversed {
+    --first-colour: #8a1c17;
+    --first-tint: #f8e1df;
+    --second-colour: var(--correct-text);
+    --second-tint: var(--correct-bg);
+}
+
+.slider:has(.slider-input-2:checked) {
+    --slider-colour: var(--second-colour);
+    --slider-tint: var(--second-tint);
+}
+
+.slider-banner {
+    padding: 5px 36px;
+    border: 1px solid #c9ccd2;
+    border-bottom: 0;
+    border-radius: 8px 8px 0 0;
+    background-color: #eceef1;
+}
+
+.slider-track {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 1px;
+    border: 1px solid #c9ccd2;
+    border-radius: 6px;
+    background-color: #fafbfc;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* The thumb. */
+.slider-track::before {
+    content: "";
+    position: absolute;
+    top: 1px;
+    bottom: 1px;
+    left: 1px;
+    width: calc(50% - 1px);
+    border: 1px solid var(--slider-colour);
+    border-radius: 5px;
+    background-color: var(--slider-tint);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    transition: transform 0.25s ease, background-color 0.25s, border-color 0.25s;
+}
+
+.slider:has(.slider-input-2:checked) .slider-track::before {
+    transform: translateX(100%);
+}
+
+.slider-input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+}
+
+.slider-option {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    color: #5f636b;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+    cursor: pointer;
+    transition: color 0.25s;
+}
+
+.slider-option:hover {
+    color: var(--text);
+}
+
+.slider-input:checked + .slider-option,
+.slider-input:checked + .slider-option:hover {
+    color: var(--slider-colour);
+}
+
+.slider-input:focus-visible + .slider-option {
+    outline: 3px solid var(--primary-dark);
+    outline-offset: 1px;
+}
+
+/* The window under the banner. */
+.slider-panel {
+    display: none;
+    padding: 12px 16px;
+    border: 1px solid #c9ccd2;
+    border-top: 0;
+    border-bottom: 4px solid var(--slider-colour);
+    border-radius: 0 0 8px 8px;
+    background-color: white;
+}
+
+.slider:has(.slider-input-1:checked) .slider-panel-1,
+.slider:has(.slider-input-2:checked) .slider-panel-2 {
+    display: block;
+}
+
+.slider-panel > :first-child {
+    margin-top: 0;
+}
+
+.slider-panel > :last-child {
+    margin-bottom: 0;
+}
+
+.slider-panel .reply-box {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+@media (max-width: 550px) {
+
+    .slider-banner {
+        padding: 5px 14px;
+    }
+
+    .slider-panel {
+        padding: 12px;
+    }
+
+    .slider-option {
+        padding: 4px 4px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .slider-track::before,
+    .slider-option {
+        transition: none;
+    }
+}
+
+.check-label-miss {
+    background-color: #f8e1df;
+    color: #8a1c17;
+}
+
+/* A thin line between two parts of a block. */
+.section-divider {
+    margin: 24px 0;
+    border: 0;
+    border-top: 1px solid #c9ccd2;
+}
+
+/* Writing box with copy and clear buttons (Try it). */
+.writing-box {
+    margin: 12px 0;
+}
+
+.writing-label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 700;
+}
+
+.writing-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 16px;
+    max-width: 640px;
+    margin: 12px 0 0;
+}
+
+.writing-actions[hidden] {
+    display: none;
+}
+
+.writing-actions .link-button {
+    margin-left: auto;
+}
+
+.writing-status {
+    flex-basis: 100%;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.writing-status:empty {
+    display: none;
 }

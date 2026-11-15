@@ -26,7 +26,8 @@ never sent anywhere. Hosted on GitHub Pages; all links are relative.
 - `form.js`: draws a module's numbered form and keeps its values in the browser under `hegenai:form:<module-id>:v1`
 - `make-it.js`: draws the live prompt in a module's Make it block (built from the form's saved values, or from a template, with a copy button and optional file download) and adds tick boxes to a checklist
 - `certificate.js`: **not in use yet.** A certificate of completion that was built and kept for possible later use (see "Certificate (not implemented yet)" below)
-- `downloads/`: files trainees download, such as `practice-log-module-1.docx`. The Word file is edited in Word from now on; it is no longer generated from a script
+- `downloads/`: files trainees download, such as `practice-log-module-1.docx` (one practice log per module). The Word file is edited in Word from now on; it is no longer generated from a script
+- `downloads/module-2/`: Module 2's `SKILL.md` (the same lines as `M2_SKILL_LINES` in `modules-data.js`; change both together) and `declaration-guide.docx`
 - `resources.js`: opens a module's materials (for example a sample case) in a panel beside the blocks, or full screen on narrow screens
 - `assets/module-1/`: pictures used in Module 1 (`aias-figure-1.png`)
 - `assets/module-3/`: the video used in Module 3's Plan it block (`dtu-feedback-coach.mp4`; see the README in that folder)
@@ -59,8 +60,7 @@ All module content lives in `modules-data.js`, as `window.HEGENAI_MODULES`:
       audience: "...",             // optional; "For" in the "Before you start" card
       needs: "...",                // optional; "What you need" in the same card
       minutes: 60,
-      extraMinutes: 10,            // optional post-module activity, in minutes
-      extraLabel: "practice log", // optional; what it is for, shown as "+ 10 min. for the practice log"
+      extraMinutes: 10,            // optional certification time, in minutes; shown as "+ optional 10 min. for certification"
       status: "available",         // or "soon": not linked, page shows "Coming soon"
       blocks: [
         { id: "intro", minutes: 10, html: "<p>...</p>" },   // id matches a shared block
@@ -137,8 +137,12 @@ texts: [
 All lines are set as text, never as HTML. In a prompt, `{{...}}` marks a
 filled-in value, shown tinted and underlined. In a draft, a line starting `# `
 is a heading, `- ` a list item, and anything else a paragraph. The toggle
-under the box shows or hides the rest and switches to "Show less". Try it will
-reuse the prompt box with a copy button and a level picker. If a module has `audience` or `needs`, they appear in a card (labelled "Before you start" for screen readers)
+under the box shows or hides the rest and switches to "Show less". A prompt
+with `copyLabel: "Copy instructions"` gets a copy button under the box that
+copies every line, hidden ones included, without the `{{ }}` marks. Unlike a
+live prompt, it never shows the "details are missing" notice, so a value such
+as `{{[course name]}}` stays tinted and is copied as `[course name]` (Module 2's
+Make it uses this). If a module has `audience` or `needs`, they appear in a card (labelled "Before you start" for screen readers)
 in the right-hand column, above the contents panel. The card scrolls away with
 the page while the contents panel stays in view. On narrow screens it sits
 under the outcome. A module without `audience` shows "For: Higher education
@@ -158,6 +162,7 @@ quiz: {
     {
       id: "m1-sc1",                // unique within the module; used to store the answer
       prompt: "...",
+      quote: "...",                // optional; text shown in a box under the prompt, such as the entry being rated
       action: { label: "...", resource: "sample-case" },   // optional; a button under the prompt
       options: [ { text: "...", note: "...", action: { label: "...", resource: "sample-case" } } ],
                                    // note and action are optional
@@ -176,6 +181,32 @@ same page, for example `see **Try it**`.
 An option with an `action` shows a button with that label under its note once
 the option is chosen. The button opens the module material with that id.
 
+Questions can be checked together. Give them the same `checkTogether` value
+and they show no marks or notes until the trainee presses the button after the
+last question of the group. `checkLabels` in the quiz sets the button's label
+for each group; without one it says "Check my answers". The last question's
+"Clear answer" sits on the same line as the button, and a thin line follows if
+more questions come after the group. After the press, every question in the
+group is marked as usual and the button adds "again" to its label ("Check my
+answers again"). A question answered or changed after that hides its mark and
+note until the button is pressed again; the other questions keep theirs.
+Answers are saved as usual, but the press is not: after a reload, or once every
+answer in the group is cleared, the feedback is held back again.
+
+```js
+quiz: {
+  checkLabels: { entries: "Check my ratings" },
+  questions: [
+    { id: "m2-try1", checkTogether: "entries", ... },
+    { id: "m2-try2", checkTogether: "entries", ... },   // the button comes after this one
+    { id: "m2-try3", ... }                              // feedback straight away
+  ]
+}
+```
+
+`<div data-quiz></div>` in block html places the block's quiz there instead
+of after the content, so text can follow the quiz. Without it, nothing changes.
+
 Scored questions show "Correct" or "Not quite" with the note and explanation.
 A quiz with `scored: false` shows "Not scored. Your answer stays in your
 browser." under its title, and an option without a note shows "No right answer;
@@ -188,7 +219,8 @@ form values and the level list in See it. Fields that are empty show as their
 `[placeholder]`, and a notice links to Try it while any is empty. A list written
 as `<ol class="tick-list" data-checklist>` gets tick boxes; each tick is saved as
 `check1`, `check2` and so on next to the form's values, so the form's Clear also
-removes them. `HEGenAIForm.set(moduleId, key, value)` saves one value and every
+removes them. A checklist also works in a module without a form (Module 2): the
+ticks are saved the same way, and each is cleared by unticking it. `HEGenAIForm.set(moduleId, key, value)` saves one value and every
 change fires `hegenai:form-change` on `document`.
 
 A live prompt may instead have a `template`: a list of lines where
@@ -259,6 +291,21 @@ Anything in block html with `data-open-resource="<id>"` opens that material:
 <button type="button" data-open-resource="sample-case">Open the sample case</button>
 ```
 
+A button with `data-copy-target="<id>"`, in a material or a block, copies the
+text of the element with that id: one line per paragraph or list item inside
+it, or its whole text if it has none. Its label reads "Copied" for a moment,
+and a status line next to it (added if missing) tells screen readers. Copy
+buttons under prompt boxes use the same code (`make-it.js`). A prompt box's
+body has the id `text-<text id>-body`, so a button placed elsewhere can copy it;
+Module 2's Make it puts "Copy skill text" next to the "Download SKILL.md" link
+this way (`data-copy-target="text-make-skill-body"`). Module 2's
+"Sample declarations" puts each sample's entries in a box with an id:
+
+```html
+<p class="prompt-actions"><button type="button" class="pill-button pill-button-secondary" data-copy-target="m2-sample-a">Copy sample A</button></p>
+<div class="guide-page" id="m2-sample-a"><p>First entry</p><hr class="entry-divider"><p>Second entry</p></div>
+```
+
 `outcomePreview: { resource, caption }` shows that material beside the outcome
 as a small printed page (A4 shape, drawn from the same HTML, not an image).
 Selecting it opens the material in the same panel. On narrow screens the
@@ -277,6 +324,7 @@ Keep the brackets so the parts do not depend on the highlight alone.
 ## Still to do
 
 - Sign-up: when the survey URL exists, replace the "Sign-up opens soon" pill in `index.html` with a link to it.
+- Module 2: add `assets/module-2/agent-setup.mp4`, then switch on the commented-out video in Make it, step 3.
 - Add the official EU emblem as `assets/eu-emblem.svg` (or `.png`) and uncomment the image in the footer of all pages.
 - Replace every "To be confirmed" on the pages once decided.
 - Decide whether to bring back the certificate feature (see the last section).
