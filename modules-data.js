@@ -167,7 +167,7 @@ var M2_SKILL_LINES = [
     '3. Otherwise: Proper.',
     'If borderline, give the lower level and say why in a few words. If an entry bundles several uses, rate it as written and suggest splitting it.',
     '# Overall',
-    'One line: The weakest entry’s level, and that a level is not a mark.',
+    'One line: The declaration’s level, as in “Overall: Vague (based on the weakest entry).”',
     '# Rules',
     '- Use only the guide. Add no requirements.',
     '- You cannot open links or check records. Check only that documentation is stated, and accept “No record available”.',
@@ -178,7 +178,7 @@ var M2_SKILL_LINES = [
     '- Never grade. Never judge whether a use was allowed, wise or honest.',
     '- Write in the student’s language. Keep the level names in English.',
     '- End every reply with this exact sentence, in English:',
-    'This is GenAI feedback on your declaration against the course guide. It can be wrong. Your teacher decides how your work is assessed.',
+    'This is AI-generated feedback on your declaration against the course guide. It can be wrong and it is not a grade. Your teacher decides how your work is assessed.',
     '# Example (entry feedback and overall line only; always add the closing sentence)',
     '> Entry 1: “ChatGPT (GPT-5), for feedback on the structure of my introduction. Conversation: [link].”',
     'Tool: Clear · Purpose: Clear · Documentation: Clear',
@@ -191,7 +191,7 @@ var M2_SKILL_LINES = [
     'Tool: Clear · Purpose: Unclear · Documentation: Clear',
     'Level: Vague',
     'Next step: What did you ask Claude to do? Say it in this entry.',
-    'Overall: Vague (the weakest entry). A level is not a mark.'
+    'Overall: Vague (based on the weakest entry).'
 ];
 
 // Module 2: the declaration guide. "# " is a heading (the first is the title), "- " a list
@@ -212,11 +212,11 @@ var M2_GUIDE_LINES = [
     '- Unclear: “I used ChatGPT (GPT-5) to help with my report.” (a reader cannot tell what it did)',
     '- Unclear: “I used AI for help.” (no tool named, and a reader cannot tell what it did)',
     '# Documentation',
-    'For each entry, point to a record a reader can find: Your prompts and the tool’s replies in an appendix (referred to in the declaration), or a link to the conversation, included in the declaration. Check that the link opens for others. If a tool keeps no record, write “No record available.”',
+    'For each entry, point to a record a reader can find: Your prompts and the tool’s replies in an appendix (referred to in the declaration), or a link to the conversation, included in the declaration. Check that the link opens for others. “Available on request” is not a record. If a tool keeps no record, write “No record available.”',
     '# Levels of declaration',
-    'Each entry is described at one of three levels, and your declaration is at the level of its weakest entry. The level describes the information in the entry/declaration. It is not a mark for grading. A tool is clear when it is named. A purpose is clear when a reader can tell what the tool did. Documentation is clear when a record is given, or “No record available” is stated.',
+    'Each entry is described at one of three levels, and your declaration is at the level of its weakest entry. The level describes how much information an entry gives. It is not a mark for grading. A tool is clear when it is named. A purpose is clear when a reader can tell what the tool did. Documentation is clear when a record is given, or “No record available” is stated.',
     '- Proper: Tool, purpose, and documentation are all clear.',
-    '- Incomplete: Tool and purpose are clear, but documentation is missing.',
+    '- Incomplete: Tool and purpose are clear, but documentation is missing or unclear.',
     '- Vague: Tool or purpose not specific enough to tell what was done, even if documentation is given.',
     '# Example',
     'A declaration with four entries:',
@@ -289,9 +289,14 @@ var M2_INSTRUCTIONS_LINES = [
 ];
 
 // Text to paste into the agent, as a box for the side panel. One paragraph per line;
-// {{...}} marks a filled-in value.
-function m2PasteTextHtml(note, lines) {
-    var html = '<p class="resource-note">' + note + '</p><div class="text-box prompt-box"><div class="text-box-body">';
+// {{...}} marks a filled-in value. bodyId lets a copy button (make-it.js) find the text;
+// download, if given, adds a link to that file.
+function m2PasteTextHtml(note, lines, bodyId, download) {
+    var html = '<p class="prompt-actions">' +
+        '<button type="button" class="pill-button" data-copy-target="' + bodyId + '">Copy text</button>' +
+        (download ? '<a class="pill-button" href="' + download.href + '" download>' + download.label + '</a>' : '') +
+        '</p>';
+    html += '<p class="resource-note">' + note + '</p><div class="text-box prompt-box"><div class="text-box-body" id="' + bodyId + '">';
     lines.forEach(function (line) {
         html += '<p class="prompt-line">' + m2EscapeHtml(line)
             .replace(/\{\{/g, '<mark class="prompt-value">').replace(/\}\}/g, '</mark>') + '</p>';
@@ -299,7 +304,7 @@ function m2PasteTextHtml(note, lines) {
     return html + '</div></div>';
 }
 
-var M2_CLOSING_SENTENCE = 'This is GenAI feedback on your declaration against the course guide. It can be wrong. Your teacher decides how your work is assessed.';
+var M2_CLOSING_SENTENCE = 'This is AI-generated feedback on your declaration against the course guide. It can be wrong and it is not a grade. Your teacher decides how your work is assessed.';
 
 window.HEGENAI_MODULES = {
     blocks: [
@@ -329,7 +334,7 @@ window.HEGENAI_MODULES = {
                     html: '<p><dfn>GenAI</dfn> (generative artificial intelligence) means tools such as ChatGPT or Microsoft Copilot that write text from your instructions, called a prompt.</p>' +
                         '<h3>The problem</h3>' +
                         '<p>Without guidance for the assignment, students have to guess what GenAI use is acceptable. They need clear guidelines on each assignment (Heaps, 2024).</p>' +
-                        '<p>A <dfn>declaration</dfn> is a short statement in which a student says how they used GenAI. Even when use is allowed, students are often reluctant to declare it (Gonsalves, 2024, cited in Perkins et al., 2025).</p>',
+                        '<p>A <dfn>declaration</dfn> is a short statement in which a student says how they used GenAI. Even when use is allowed, students are often reluctant to declare it (Gonsalves, 2025).</p>',
                     quiz: {
                         title: "Where you stand",
                         intro: "This question how best to approach the module.",
@@ -712,7 +717,7 @@ window.HEGENAI_MODULES = {
                 }
             ],
             sources: '<ul class="reference-list">' +
-                '<li>Gonsalves, C. (2024). Addressing student non-compliance in AI use declarations: Implications for academic integrity and assessment in higher education. <i>Assessment &amp; Evaluation in Higher Education</i>. <a href="https://doi.org/10.1080/02602938.2024.2415654">https://doi.org/10.1080/02602938.2024.2415654</a> (cited in Perkins et al., 2025)</li>' +
+                '<li>Gonsalves, C. (2025). Addressing student non-compliance in AI use declarations: Implications for academic integrity and assessment in higher education. <i>Assessment &amp; Evaluation in Higher Education, 50</i>(4), 592–606. <a href="https://doi.org/10.1080/02602938.2024.2415654">https://doi.org/10.1080/02602938.2024.2415654</a></li>' +
                 '<li>Heaps, T. (2024). Setting policy and communicating expectations. In <i>Generative artificial intelligence: Practical uses in education</i> (ch. 4). Pressbooks. <a href="https://pressbooks.openedmb.ca/aiineducation/chapter/setting-policy-and-communicating-expectations/">https://pressbooks.openedmb.ca/aiineducation/chapter/setting-policy-and-communicating-expectations/</a> (CC BY 4.0)</li>' +
                 '<li>Perkins, M., Roe, J., &amp; Furze, L. (2025). The AI Assessment Scale revisited: A framework for educational assessment. <i>Journal of University Teaching and Learning Practice, 22</i>(7). <a href="https://doi.org/10.53761/rrm4y757">https://doi.org/10.53761/rrm4y757</a> Preprint: <a href="https://arxiv.org/abs/2412.09029">https://arxiv.org/abs/2412.09029</a> (CC BY-NC-SA 4.0)</li>' +
                 '<li>The University of Queensland Library. (2026). <i>Guide to acknowledging and referencing AI</i>. <a href="https://guides.library.uq.edu.au/referencing/acknowledging-and-referencing-ai">https://guides.library.uq.edu.au/referencing/acknowledging-and-referencing-ai</a> (CC BY-NC 4.0)</li>' +
@@ -736,11 +741,11 @@ window.HEGENAI_MODULES = {
                     minutes: 10,
                     html: '<p>In this block, you see a problem, a solution to it, and how best to go through the module.</p>' +
                         '<h3>The problem</h3>' +
-                        '<p>An AI (GenAI) declaration is a short section in an assignment where a student describes their use of AI tools for the work. Think of an AI declaration you have read. Was it clear which tool was used, what for, and where to see it?</p>' +
+                        '<p>A GenAI declaration is a short section in an assignment where a student describes their use of GenAI tools for the work. Think of a GenAI declaration you have read. Was it clear which tool was used, what for, and where to see it?</p>' +
                         '<p>Often, it is not. A DTU master’s thesis found that only about 1 in 10 thesis declarations screened named the tool, the purpose, and a record (Mahmud, 2026). Some students hold back because declaring feels like admitting misconduct (Gonsalves, 2025). Telling each student what is missing would help, but it is rarely feasible for a whole class before every deadline.</p>' +
                         '<h3>In this module</h3>' +
-                        '<p>This module shows you how to make an <strong>agent</strong> in Microsoft Copilot that can give students feedback on their AI declarations. Once shared, a student can paste their declaration into a conversation with the agent, before hand-in, to have it rate each entry as Proper, Incomplete, or Vague, and suggest improvements.</p>' +
-                        '<p>In later blocks, you get a ready-made AI declaration guide and material to make the agent. This is an approach developed at DTU, which you can later adapt to your own practice.</p>',
+                        '<p>This module shows you how to make an <strong>agent</strong> in Microsoft Copilot that can give students feedback on their GenAI declarations. Once shared, a student can paste their declaration into a conversation with the agent, before hand-in, to have it rate each entry as Proper, Incomplete, or Vague, and suggest improvements.</p>' +
+                        '<p>In later blocks, you get a ready-made GenAI declaration guide and material to make the agent. This is an approach developed at DTU, which you can later adapt to your own practice.</p>',
                     quiz: {
                         title: "Where you stand",
                         intro: "This question helps you choose your route through the module.",
@@ -756,11 +761,11 @@ window.HEGENAI_MODULES = {
                                     },
                                     {
                                         text: "I don’t know.",
-                                        note: "Follow along. Step 3 in **Make it** shows where to check if you can make agents in Microsoft Copilot. **Try it** works in any GenAI chat."
+                                        note: "Follow along. Step 3 in **Make it** shows where to check if you can make agents in Microsoft Copilot. **Try it** needs no GenAI tool."
                                     },
                                     {
                                         text: "No.",
-                                        note: "Follow along. In **Try it**, you test the instructions and skill in any GenAI tool you are allowed to use. You cannot share an agent, but **Plan it** shows how students can paste them into a chat themselves."
+                                        note: "Follow along. **Try it** needs no GenAI tool. In **Make it**, you can test the instructions and skill in any GenAI chat you are allowed to use, but you cannot share an agent."
                                     }
                                 ]
                             }
@@ -819,7 +824,7 @@ window.HEGENAI_MODULES = {
                             html: '<div class="reply-box"><p class="reply-label">Agent feedback</p>' +
                                 '<p>Tool: Clear · Purpose: Clear · Documentation: Unclear · Level: <strong>Incomplete</strong></p>' +
                                 '<p>Next step: Does ChatGPT keep this conversation? Add a link or an appendix, or write “No record available”.</p>' +
-                                '<p>Overall: Incomplete (the weakest entry). A level is not a mark.</p>' +
+                                '<p>Overall: Incomplete (based on the weakest entry).</p>' +
                                 '<p class="reply-closing">' + M2_CLOSING_SENTENCE + '</p></div>'
                         }, {
                             label: 'General chat feedback',
@@ -846,7 +851,7 @@ window.HEGENAI_MODULES = {
                                 '<div class="reply-box"><p class="reply-label">Agent feedback</p>' +
                                 '<p>Tool: Unclear · Purpose: Clear · Documentation: Unclear · Level: <strong>Vague</strong></p>' +
                                 '<p>Next step: Which tool did you use? Name it, and add a record or write “No record available”.</p>' +
-                                '<p>Overall: Vague (the weakest entry). A level is not a mark.</p>' +
+                                '<p>Overall: Vague (based on the weakest entry).</p>' +
                                 '<p class="reply-closing">' + M2_CLOSING_SENTENCE + '</p></div>'
                         }, {
                             label: 'Second try',
@@ -854,7 +859,7 @@ window.HEGENAI_MODULES = {
                                 '<blockquote class="declaration-quote"><p>“Grammarly was used for language refinement, to improve the clarity of the writing. No record available.”</p></blockquote>' +
                                 '<div class="reply-box"><p class="reply-label">Agent feedback</p>' +
                                 '<p>Tool: Clear · Purpose: Clear · Documentation: Clear · Level: <strong>Proper</strong></p>' +
-                                '<p>Overall: Proper. A level is not a mark.</p>' +
+                                '<p>Overall: Proper (based on the weakest entry).</p>' +
                                 '<p class="reply-closing">' + M2_CLOSING_SENTENCE + '</p></div>'
                         }, true) +
                         '</li>' +
@@ -905,7 +910,7 @@ window.HEGENAI_MODULES = {
                 {
                     id: "try",
                     minutes: 10,
-                    html: '<p>In this block, you rate one declaration the way the agent does: First each entry, then the whole declaration. Then you check the agent’s reply to the same declaration.</p>' +
+                    html: '<p>In this block, you rate one declaration the way the agent does: First each entry, then the whole declaration.</p>' +
                         // Switched off for now:
                         // '<div class="callout">' +
                         // '<h3 class="callout-title">What to aim for</h3>' +
@@ -1039,7 +1044,7 @@ window.HEGENAI_MODULES = {
                         '<li>' +
                         '<p><strong>Create the agent.</strong> In Microsoft Copilot, open Agents in the left sidebar and choose New agent. If it offers to build one for you, skip that. Then fill in:</p>' +
                         '<ul>' +
-                        '<li><strong>Name:</strong> One students will recognise, for example “AI declaration feedback: Organic Chemistry I”.</li>' +
+                        '<li><strong>Name:</strong> One students will recognise, for example “GenAI declaration feedback: Organic Chemistry I”.</li>' +
                         '<li><strong>Instructions:</strong> Paste the text from step 1.</li>' +
                         '<li><strong>Skill:</strong> Upload SKILL.md. If there is no place for a skill file, paste the skill text under the instructions.</li>' +
                         '</ul>' +
@@ -1100,10 +1105,10 @@ window.HEGENAI_MODULES = {
                         '<p><strong>Check that you can share the agent.</strong> An optional tool like this is usually easy to justify. Students choose whether to use it, and it is separate from grading. If you are unsure, ask your IT department: “Can I share an agent I built in Copilot with the students on my course?” Also check that you can keep the guide’s promise – declarations that follow it are never marked down for the AI use itself.</p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Try it with a colleague.</strong> Share the agent with a peer or colleague. Give them the declaration guide, and ask them to write a declaration and work with the agent until the agent judges it as Proper, after pasting and rewriting as needed. Then ask your peer or colleague to request a grade from the agent, and to have the agent write/rewrite an entry. The agent should decline both.</p>' +
+                        '<p><strong>Try it with a colleague.</strong> Share the agent with a peer or colleague. Give them the declaration guide, and ask them to write a declaration and revise it with the agent until it is Proper. Then ask them to request a grade and to have the agent write an entry. It should decline both.</p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Choose when students get the agent.</strong> Share the agent with students so that they have time to use it before a deadline, so they can still fix their declaration before handing in the assignment. Introduce it in class, then put the guide and the agent link on the course page with a text like this:</p>' +
+                        '<p><strong>Choose when students get the agent.</strong> Share it with students well before a deadline, so they can still fix their declaration. Introduce it in class, then put the guide and the agent link on the course page with a text like this:</p>' +
                         '<blockquote class="declaration-quote"><p>“Before you hand in, you can paste your GenAI declaration into this agent. It will give each entry a level – Vague, Incomplete, or Proper – and guide you where something is missing. This is optional, the agent can be wrong, and it is independent of your grade.”</p></blockquote>' +
                         '</li>' +
                         '<li>' +
@@ -1131,13 +1136,14 @@ window.HEGENAI_MODULES = {
                     group: "Module materials",
                     title: "Agent instructions",
                     html: m2PasteTextHtml('(The text pasted into the agent as its instructions. The course name, highlighted, is the only edit.)',
-                        M2_INSTRUCTIONS_LINES.concat(m2GuidePromptLines('Organic Chemistry 1')))
+                        M2_INSTRUCTIONS_LINES.concat(m2GuidePromptLines('Organic Chemistry 1')), 'm2-panel-instructions-body')
                 },
                 {
                     id: "agent-skill",
                     group: "Module materials",
                     title: "Skill (SKILL.md)",
-                    html: m2PasteTextHtml('(The skill file, the same for every course.)', M2_SKILL_LINES)
+                    html: m2PasteTextHtml('(The skill file, the same for every course.)', M2_SKILL_LINES, 'm2-panel-skill-body',
+                        { href: 'downloads/module-2/SKILL.md', label: 'Download SKILL.md' })
                 },
                 {
                     id: "example-feedback",
@@ -1259,7 +1265,12 @@ window.HEGENAI_MODULES = {
                     moreLabel: "Show the whole skill",
                     lines: M2_SKILL_LINES
                 }
-            ]
+            ],
+            sources: '<ul class="reference-list">' +
+                '<li>Gonsalves, C. (2025). Addressing student non-compliance in AI use declarations: Implications for academic integrity and assessment in higher education. <i>Assessment &amp; Evaluation in Higher Education, 50</i>(4), 592–606. <a href="https://doi.org/10.1080/02602938.2024.2415654">https://doi.org/10.1080/02602938.2024.2415654</a></li>' +
+                '<li>Hattie, J., &amp; Timperley, H. (2007). The power of feedback. <i>Review of Educational Research, 77</i>(1), 81–112. <a href="https://doi.org/10.3102/003465430298487">https://doi.org/10.3102/003465430298487</a></li>' +
+                '<li>Mahmud, M. R. (2026). <i>Analysis workflow for examining generative AI declarations in DTU master’s theses</i> [Unpublished master’s thesis]. Technical University of Denmark. Real declarations quoted in this module are from the dataset behind this thesis, shared by the author for this module.</li>' +
+                '</ul>'
         },
         {
             id: "feedback-with-genai",

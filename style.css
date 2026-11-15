@@ -2252,9 +2252,11 @@ textarea.form-control {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
+/* z-index keeps positioned content in the body from scrolling over the header. */
 .resource-panel-top {
     position: sticky;
     top: 0;
+    z-index: 2;
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: start;
