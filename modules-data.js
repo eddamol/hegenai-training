@@ -232,7 +232,8 @@ function m2EscapeHtml(text) {
 
 // The guide as a page for the side panel; the course name is a fill-in.
 function m2GuideHtml() {
-    var html = '<p class="resource-note">(The guide students get. The teacher adds the course name where it is highlighted.)</p><div class="guide-page">';
+    var html = '<p class="prompt-actions"><a class="pill-button" href="downloads/module-2/declaration-guide.docx" download>Download declaration guide (Word)</a></p>' +
+        '<p class="resource-note">(The guide students get. The teacher adds the course name where it is highlighted.)</p><div class="guide-page">';
     var headings = 0;
     var inList = false;
     M2_GUIDE_LINES.forEach(function (line) {
@@ -776,6 +777,7 @@ window.HEGENAI_MODULES = {
                     id: "see",
                     minutes: 10,
                     html: '<p>In this block, you see how declarations are rated, and then the whole process: From giving students the guide to a student getting feedback from the agent.</p>' +
+                        '<hr class="section-divider">' +
                         '<h3>How declarations are rated</h3>' +
                         '<p>Students declare their GenAI use with one entry per use. Each entry should specify three elements: The tool, its purpose in the assignment, and documentation of the use.</p>' +
                         '<p><button type="button" class="pill-button pill-button-secondary" data-open-resource="declaration-guide">See the complete declaration guide</button></p>' +
@@ -795,6 +797,7 @@ window.HEGENAI_MODULES = {
                         '<li><p><strong>The declaration gets the level of its weakest entry.</strong> A statement that no GenAI was used gets no level.</p></li>' +
                         '</ol>' +
                         '<p class="credit-line">Credit: Levels from Mahmud (2026, p. 40). Rating each entry, and the test for each element, were added for this module.</p>' +
+                        '<hr class="section-divider">' +
                         '<h3>The agent</h3>' +
                         '<p>An agent applies these rules for you, so every student can get feedback before they hand in. It has two parts:</p>' +
                         '<ul>' +
@@ -802,7 +805,8 @@ window.HEGENAI_MODULES = {
                         '<li><strong>Skill:</strong> A file named SKILL.md so the agent knows the rating rules and how to word the feedback.</li>' +
                         '</ul>' +
                         '<p>For each entry, the agent says which elements are clear and gives the level. If the entry is not Proper, it asks a short question that leads to what is missing. It gives no grade and writes nothing for the student.</p>' +
-                        '<h3>How it is shown</h3>' +
+                        '<hr class="section-divider">' +
+                        '<h3>How the agent is built</h3>' +
                         '<p>Here is the whole process in five steps, for an invented course. The declarations are real, from DTU master’s theses.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
@@ -865,6 +869,7 @@ window.HEGENAI_MODULES = {
                         '</li>' +
                         '</ol>' +
                         '<p class="credit-line">Credit: Declarations in steps 3 and 5 (first try) from the dataset behind Mahmud (2026), quoted as written. Agent replies are examples written for this module.</p>' +
+                        '<hr class="section-divider">' +
                         '<h3>Why it works</h3>' +
                         '<p>Feedback helps most when it shows students where they are going, how they are doing, and what to do next (Hattie &amp; Timperley, 2007). The guide sets the goal, the level shows where the declaration stands, and the next step says what to add, while there is still time to add it.</p>' +
                         '<p>In <a href="#block-try">Try it</a>, you test the rules yourself. In <a href="#block-make">Make it</a>, you set up your own agent.</p>',
@@ -899,9 +904,9 @@ window.HEGENAI_MODULES = {
                             //     prompt: "Next term, you want the agent for a second course. What do you change?",
                             //     correct: 0,
                             //     options: [
-                            //         { text: "The course name in the instructions.", note: "The guide and the skill stay the same, so a level means the same on every course. See step 2 under How it is shown." },
-                            //         { text: "The rating rules in the skill, to fit the new course.", note: "The skill is the same for every course, so the levels mean the same everywhere. See step 2 under How it is shown." },
-                            //         { text: "Nothing. You share the same agent with the new class.", note: "The guide in the instructions names the course, so it needs the new name. See step 2 under How it is shown." }
+                            //         { text: "The course name in the instructions.", note: "The guide and the skill stay the same, so a level means the same on every course. See step 2 under How the agent is built." },
+                            //         { text: "The rating rules in the skill, to fit the new course.", note: "The skill is the same for every course, so the levels mean the same everywhere. See step 2 under How the agent is built." },
+                            //         { text: "Nothing. You share the same agent with the new class.", note: "The guide in the instructions names the course, so it needs the new name. See step 2 under How the agent is built." }
                             //     ]
                             // }
                         ]
@@ -1048,10 +1053,16 @@ window.HEGENAI_MODULES = {
                         '<li><strong>Instructions:</strong> Paste the text from step 1.</li>' +
                         '<li><strong>Skill:</strong> Upload SKILL.md. If there is no place for a skill file, paste the skill text under the instructions.</li>' +
                         '</ul>' +
-                        // Switch on once assets/module-2/agent-setup.mp4 is in place (about 90 s, no sound, captions in the picture):
-                        // '<video class="module-video" controls preload="metadata" src="assets/module-2/agent-setup.mp4">' +
-                        // '<p>Your browser cannot play this video. <a href="assets/module-2/agent-setup.mp4">Download the video</a>.</p>' +
-                        // '</video>' +
+                        '<details class="dropdown">' +
+                        '<summary>Video: New agent in Microsoft Copilot</summary>' +
+                        '<div class="dropdown-body video-with-popup">' +
+                        '<video class="module-video" controls preload="metadata" src="assets/module-2/agent-setup.mp4">' +
+                        '<p>Your browser cannot play this video. <a href="assets/module-2/agent-setup.mp4">Download the video</a>.</p>' +
+                        '</video>' +
+                        '<p class="video-popup-open"><button type="button" class="pill-button pill-button-secondary" data-open-video="assets/module-2/agent-setup.mp4" data-title="Video: New agent in Microsoft Copilot" aria-haspopup="dialog">View larger</button></p>' +
+                        '<p>The instructions above are equivalent to a text version of the video.</p>' +
+                        '</div>' +
+                        '</details>' +
                         '<details class="dropdown">' +
                         '<summary>No agent builder?</summary>' +
                         '<div class="dropdown-body">' +

@@ -2511,6 +2511,48 @@ mark.fill-in {
     background-color: #000;
 }
 
+/* Larger view of a module video (video-popup.js). */
+.video-popup {
+    width: min(1200px, 94vw);
+    max-width: none;
+    max-height: 94vh;
+    margin: auto;
+    padding: 16px;
+    border: 0;
+    border-radius: 6px;
+    background-color: white;
+    color: var(--text);
+}
+
+.video-popup::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.video-popup-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 12px;
+}
+
+.video-popup-title {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.video-popup-player {
+    display: block;
+    width: 100%;
+    max-height: calc(94vh - 100px);
+    border-radius: 6px;
+    background-color: #000;
+}
+
+.video-popup-open {
+    margin: 8px 0 0;
+}
+
 /* Module 3: criteria in two columns, checkable (bright) beside the brief (faded). */
 .criteria-compare {
     margin: 12px 0 4px;

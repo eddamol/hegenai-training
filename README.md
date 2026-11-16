@@ -30,6 +30,7 @@ never sent anywhere. Hosted on GitHub Pages; all links are relative.
 - `downloads/module-2/`: Module 2's `SKILL.md` (the same lines as `M2_SKILL_LINES` in `modules-data.js`; change both together) and `declaration-guide.docx`
 - `resources.js`: opens a module's materials (for example a sample case) in a panel beside the blocks, or full screen on narrow screens
 - `assets/module-1/`: pictures used in Module 1 (`aias-figure-1.png`)
+- `assets/module-2/`: the video in Module 2's Make it block, step 3 (`agent-setup.mp4`)
 - `assets/module-3/`: the video used in Module 3's Plan it block (`dtu-feedback-coach.mp4`; see the README in that folder)
 - `assets/vendor/`: jsPDF and its licence, kept for the certificate feature that is not in use yet
 - `assets/`: `logo-w.svg`, `logo-b.svg`, `favicon.svg` (placeholders; replace with the real files under the same names)
@@ -320,11 +321,11 @@ Keep the brackets so the parts do not depend on the highlight alone.
 - `.builder-figure` is a simplified picture of an agent builder, with notes on where the two parts of the agent go. It is written once as `M3_BUILDER_FIGURE` in `modules-data.js` and used in both See it and Make it.
 - `.fix-list` lists what to change when a check fails.
 - A `<video class="module-video" controls>` plays a file from `assets/`, with a text version in a drop-down under it. Module 3's Plan it block plays `assets/module-3/dtu-feedback-coach.mp4`. The captions are in the picture.
+- Module 2's Make it block, step 3, has the same kind of video in a drop-down, with a "View larger" button. `video-popup.js` opens any element with `data-open-video="<path>"` in a larger modal pop-up (Esc, the Close button or a click outside closes it).
 
 ## Still to do
 
 - Sign-up: when the survey URL exists, replace the "Sign-up opens soon" pill in `index.html` with a link to it.
-- Module 2: add `assets/module-2/agent-setup.mp4`, then switch on the commented-out video in Make it, step 3.
 - Add the official EU emblem as `assets/eu-emblem.svg` (or `.png`) and uncomment the image in the footer of all pages.
 - Replace every "To be confirmed" on the pages once decided.
 - Decide whether to bring back the certificate feature (see the last section).
