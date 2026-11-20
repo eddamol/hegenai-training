@@ -384,6 +384,7 @@ var M4_SKILL_LINES = [
     "- Evidence: a short quote from the draft.",
     "- To reach the next level: one concrete thing the student can do, in the words of that level's description. At the top level, write \"Top level\" and say what keeps it there.",
     "If the part needed to judge a criterion is missing, write \"Cannot judge\" and say what the student should paste.",
+    "Comment only on the rubric's criteria. Do not comment on length, word count, file format, deadlines or anything else the rubric does not list, and do not list criteria you cannot judge.",
     "# Rules",
     "- Never give a grade, a score, points, a total or an overall level.",
     "- Never rewrite the student's text or write new text for them, even if asked.",
@@ -2371,7 +2372,7 @@ window.HEGENAI_MODULES = {
                         '<div data-text="make-skill"></div>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Paste your checked rubric.</strong> Copy it from your GenAI conversation in <a href="#block-try">Try it</a>, as GenAI gave it: each criterion, then one line per level.</p>' +
+                        '<p><strong>Paste your checked rubric.</strong> Copy it from your GenAI conversation in <a href="#block-try">Try it</a>, as GenAI gave it: each criterion, then one line per level. Leave out the part under “Not for the agent”: The agent cannot judge those criteria, so you check them yourself.</p>' +
                         '<div data-form></div>' +
                         '<details class="dropdown">' +
                         '<summary>Sample case: Copy our rubric</summary>' +
@@ -2413,7 +2414,8 @@ window.HEGENAI_MODULES = {
                         '<li><p class="fix-check">2. The levels differ from the ones you agreed with in Try it</p><p><strong>Likely cause:</strong> The rubric in the instructions is not the one you tested, or a descriptor can be read two ways.</p><p><strong>Change:</strong> Paste the tested rubric again. If it was the same, rewrite the descriptor that was misread.</p></li>' +
                         '<li><p class="fix-check">3. The two runs give different levels</p><p><strong>Likely cause:</strong> Two neighbouring levels differ by a vague word.</p><p><strong>Change:</strong> Make the difference something you can see or count, as in step 2 of See it.</p></li>' +
                         '<li><p class="fix-check">4. It gives a total, a grade or an overall level</p><p><strong>Likely cause:</strong> Points or weights are left in the rubric.</p><p><strong>Change:</strong> Remove them from the instructions. Keep them in your own marking guide.</p></li>' +
-                        '<li><p class="fix-check">5. It tells the student to copy the model report</p><p><strong>Likely cause:</strong> The knowledge link is used as an answer, not an example.</p><p><strong>Change:</strong> Remove the knowledge link. The agent works without it.</p></li>' +
+                        '<li><p class="fix-check">5. It comments on length, format or criteria it cannot judge</p><p><strong>Likely cause:</strong> The agent uses an older copy of the rubric skill, or the “Not for the agent” list was pasted with the rubric.</p><p><strong>Change:</strong> Upload the rubric SKILL.md from step 1 again, and remove that list from the rubric in step 2.</p></li>' +
+                        '<li><p class="fix-check">6. It tells the student to copy the model report</p><p><strong>Likely cause:</strong> The knowledge link is used as an answer, not an example.</p><p><strong>Change:</strong> Remove the knowledge link. The agent works without it.</p></li>' +
                         '</ul>' +
                         '<div class="callout">' +
                         '<h3 class="callout-title">Still failing after two rounds?</h3>' +
@@ -2574,7 +2576,7 @@ window.HEGENAI_MODULES = {
                         "Each level must differ from the next by one clear thing. A higher level may start with \"Everything in [level below], and\".",
                         "No points, marks or weights.",
                         "Give the rubric as a list: each criterion's name, then one line per level, as \"Level: descriptor\".",
-                        "After the rubric, name any criterion that cannot be judged from the text alone.",
+                        "Then, under the heading \"Not for the agent\", name any criterion that cannot be judged from the text alone.",
                         "# Assignment",
                         "{{Case study report. A 2,500-word individual report in a second-year bachelor's course. Each student picks an organisation, analyses one problem it faces, and recommends a solution.}}",
                         "# Criteria",
@@ -2643,7 +2645,7 @@ window.HEGENAI_MODULES = {
                         "Each level must differ from the next by one clear thing. A higher level may start with \"Everything in [level below], and\".",
                         "No points, marks or weights.",
                         "Give the rubric as a list: each criterion's name, then one line per level, as \"Level: descriptor\".",
-                        "After the rubric, name any criterion that cannot be judged from the text alone.",
+                        "Then, under the heading \"Not for the agent\", name any criterion that cannot be judged from the text alone.",
                         "# Assignment",
                         "{{name|[assignment name]}}. {{description|[description]}}",
                         "# Criteria",
