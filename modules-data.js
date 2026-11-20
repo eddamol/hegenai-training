@@ -2373,9 +2373,8 @@ window.HEGENAI_MODULES = {
                         '<li><strong>Name:</strong> One students will recognise, for example “Rubric feedback: case study report”.</li>' +
                         '<li><strong>Instructions:</strong> Paste the text from step 3.</li>' +
                         '<li><strong>Skill:</strong> Upload the SKILL.md from step 1. If your tool has no place for a skill file, paste the skill text under the instructions instead.</li>' +
-                        '<li><strong>Knowledge (optional):</strong> Add a link to a public page with a model report, so the agent can show what a level looks like. For the sample case, use the <a href="model-report/">model report page</a>: Open it and copy its address from your browser. For your own assignment, use a public page you control, or leave this out. Not every account can upload files as knowledge, but links to public pages usually work. Copilot finds the page through Bing search, so a new page can take some days before the agent uses it.</li>' +
+                        '<li><strong>Knowledge (optional):</strong> If you have a good example report on a public web page, add its link. Leave out anything already in the instructions or the skill: The agent works well without knowledge.</li>' +
                         '</ul>' +
-                        '<p><strong>No agent builder?</strong> Start a new conversation in any GenAI tool you are allowed to use. Paste the instructions and then the skill text into your first message, and paste a draft as your second. You can test the feedback this way, but you cannot share it.</p>' +
                         '<figure class="screenshot-figure">' +
                         '<img src="assets/module-4/builder-instructions.jpg" width="1280" height="968" loading="lazy" alt="The Configure tab of Microsoft Copilot’s agent builder, with the agent’s name, description and the start of the pasted instructions.">' +
                         '<figcaption>In Microsoft Copilot’s agent builder: (1) the Configure tab, (2) the name and description students see, and (3) the instructions with your assignment and rubric.</figcaption>' +
@@ -2409,7 +2408,6 @@ window.HEGENAI_MODULES = {
                         '<li><p class="fix-check">3. The two runs give different levels</p><p><strong>Likely cause:</strong> Two neighbouring levels differ by a vague word.</p><p><strong>Change:</strong> Make the difference something you can see or count, as in step 2 of See it.</p></li>' +
                         '<li><p class="fix-check">4. It gives a total, a grade or an overall level</p><p><strong>Likely cause:</strong> Points or weights are left in the rubric.</p><p><strong>Change:</strong> Remove them from the instructions. Keep them in your own marking guide.</p></li>' +
                         '<li><p class="fix-check">5. It comments on length, format or criteria it cannot judge</p><p><strong>Likely cause:</strong> The agent uses an older copy of the rubric skill, or the “Not for the agent” list was pasted with the rubric.</p><p><strong>Change:</strong> Upload the rubric SKILL.md from step 1 again, and remove that list from the rubric in step 2.</p></li>' +
-                        '<li><p class="fix-check">6. It tells the student to copy the model report</p><p><strong>Likely cause:</strong> The knowledge link is used as an answer, not an example.</p><p><strong>Change:</strong> Remove the knowledge link. The agent works without it.</p></li>' +
                         '</ul>' +
                         '<div class="callout">' +
                         '<h3 class="callout-title">Still failing after two rounds?</h3>' +
