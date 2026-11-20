@@ -420,6 +420,72 @@ var M4_BUILDER_FIGURE =
     '<figcaption>Where the parts go in an agent builder (simplified; your tool may look a little different). Compared with Module 3, the instructions hold a rubric, the skill is a different file, and you can add a knowledge link.</figcaption>' +
     '</figure>';
 
+// Module 4: the five steps of the module as one strip. active lists the steps the block covers
+// (0-4); label is shown on them, for example "This block".
+var M4_JOURNEY = [
+    { title: 'Your criteria', text: 'From the assignment description' },
+    { title: 'GenAI drafts a rubric', text: 'Four levels per criterion' },
+    { title: 'You fix vague words', text: 'Name what a reader can see' },
+    { title: 'Test on two drafts', text: 'Weak and strong must land apart' },
+    { title: 'Feedback agent', text: 'Level, evidence, next step' }
+];
+function m4Journey(active, label) {
+    var html = '<figure class="journey-figure"><ol class="journey" role="list">';
+    M4_JOURNEY.forEach(function (step, index) {
+        var on = active && active.indexOf(index) !== -1;
+        html += '<li class="journey-step' + (on ? ' is-active' : '') + '">' +
+            '<span class="journey-number" aria-hidden="true">' + (index + 1) + '</span>' +
+            '<strong>' + step.title + '</strong><span>' + step.text + '</span>' +
+            (on && label ? '<em class="journey-tag">' + label + '</em>' : '') +
+            '</li>';
+    });
+    return html + '</ol></figure>';
+}
+
+// Module 4: where the weak (W) and strong (S) drafts land on the rubric, one row per criterion.
+// places: { weak: level index, strong: level index } per criterion in M4_RUBRIC.
+function m4PlacementGrid(places, caption, failing) {
+    var html = '<figure class="placement-figure' + (failing ? ' is-failing' : '') + '">' +
+        '<div class="rubric-wrap"><table class="rubric-table placement-table"><thead><tr><th scope="col">Criterion</th>';
+    M4_LEVELS.forEach(function (level) { html += '<th scope="col">' + level + '</th>'; });
+    html += '</tr></thead><tbody>';
+    M4_RUBRIC.forEach(function (row, r) {
+        var place = places[r];
+        var same = place.weak === place.strong;
+        html += '<tr' + (same ? ' class="placement-same"' : '') + '><th scope="row">' + row.name +
+            (same ? '<span class="placement-flag">Same level: fix this row</span>' : '') + '</th>';
+        M4_LEVELS.forEach(function (level, l) {
+            var marks = '';
+            if (place.weak === l) marks += '<span class="marker marker-weak" title="Weak draft">W<span class="visually-hidden"> (weak draft)</span></span>';
+            if (place.strong === l) marks += '<span class="marker marker-strong" title="Strong draft">S<span class="visually-hidden"> (strong draft)</span></span>';
+            html += '<td>' + marks + '</td>';
+        });
+        html += '</tr>';
+    });
+    return html + '</tbody></table></div><figcaption>' + caption + '</figcaption></figure>';
+}
+
+// Module 4: one criterion's feedback, taken apart, beside the rubric row it comes from.
+var M4_FEEDBACK_ANATOMY =
+    '<figure class="anatomy-figure">' +
+    '<div class="anatomy">' +
+    '<div class="anatomy-card">' +
+    '<p class="anatomy-title">Feedback: Problem analysis</p>' +
+    '<div class="anatomy-part"><span class="anatomy-label">1 · Level</span><p>Developing.</p></div>' +
+    '<div class="anatomy-part"><span class="anatomy-label">2 · Evidence</span><p>“Café Nord has a problem with customers. Fewer people come back than before”</p></div>' +
+    '<div class="anatomy-part anatomy-next"><span class="anatomy-label">3 · Next step</span><p>To reach Meets: State the problem in one or two sentences with a fact about Café Nord, then apply at least two course concepts to it by name.</p></div>' +
+    '</div>' +
+    '<div class="anatomy-rubric" aria-label="The rubric row for Problem analysis">' +
+    '<p class="anatomy-title">The rubric row it comes from</p>' +
+    '<div class="anatomy-cell"><strong>Beginning</strong></div>' +
+    '<div class="anatomy-cell is-here"><strong>Developing</strong><span>The draft is here (1)</span></div>' +
+    '<div class="anatomy-cell is-next"><strong>Meets</strong><span>The next step (3) uses this descriptor’s words: “states the problem in one or two sentences … at least two course concepts”</span></div>' +
+    '<div class="anatomy-cell"><strong>Exceeds</strong></div>' +
+    '</div>' +
+    '</div>' +
+    '<figcaption>The three parts of the feedback for each criterion. The level and the next step both come from the rubric, so students meet the same words in the rubric and in the feedback.</figcaption>' +
+    '</figure>';
+
 window.HEGENAI_MODULES = {
     blocks: [
         { id: "intro", title: "Intro" },
@@ -2036,6 +2102,7 @@ window.HEGENAI_MODULES = {
                         '<p><strong>Rubric:</strong> All the criteria with a descriptor for each level, in one table. Here, each criterion is judged on its own, which works better for feedback than one overall judgement (Brookhart, 2018).</p>' +
                         '</div>' +
                         '<h3>What you make</h3>' +
+                        m4Journey(null) +
                         '<p>You make a rubric for one of your assignments, or for the sample case, with 3 to 5 criteria and four levels. You test it on a weak and a strong draft, then put it in a feedback agent. For each criterion, the agent tells the student which level the draft is at, quotes the line it based that on, and says what would get the draft to the next level.</p>' +
                         '<h3>Two ground rules</h3>' +
                         '<ul>' +
@@ -2089,7 +2156,8 @@ window.HEGENAI_MODULES = {
                 {
                     id: "see",
                     minutes: 10,
-                    html: '<p>In this block, you see how a rubric is made and tested for the sample case, in four steps: Let GenAI draft it, fix the vague descriptors, test it on two drafts, and see the feedback a student gets.</p>' +
+                    html: '<p>In this block, you see the whole journey for the sample case, in four steps: Let GenAI draft the rubric, fix the vague descriptors, test it on two drafts, and see the feedback a student gets.</p>' +
+                        m4Journey([1, 2, 3, 4], 'Shown here') +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
                         '<p><strong>Let GenAI draft the rubric.</strong> The teacher gives a GenAI tool the assignment, its three criteria and the four level names, with a few rules for how to write the descriptors. The highlighted parts are what you would change for your own assignment.</p>' +
@@ -2118,13 +2186,21 @@ window.HEGENAI_MODULES = {
                         '<li>' +
                         '<p><strong>Test the rubric on a weak and a strong draft.</strong> In the same conversation, the teacher pastes the two sample drafts and asks GenAI to place each on the rubric, criterion by criterion. This tests the rubric, not the students: If both drafts land on the same level for a criterion, its descriptors are too vague to tell them apart.</p>' +
                         '<p><button type="button" class="link-button" data-open-resource="test-weak">Open the weak draft</button> · <button type="button" class="link-button" data-open-resource="test-strong">Open the strong draft</button></p>' +
-                        '<div data-text="see-test"></div>' +
-                        '<p>Every criterion places the two drafts on different levels, so the rubric passes the test. Do you agree with each level? Judging that yourself is part of the test.</p>' +
+                        '<div class="placement-legend" aria-hidden="true"><span><span class="marker marker-weak">W</span>Weak draft</span><span><span class="marker marker-strong">S</span>Strong draft</span></div>' +
+                        m4PlacementGrid([{ weak: 1, strong: 3 }, { weak: 1, strong: 3 }, { weak: 0, strong: 2 }], 'Our rubric passes: In every row, the weak and the strong draft land on different levels.') +
+                        '<p>Compare a rubric that fails the test. With the first draft’s “clearly written and well structured”, both drafts can land at Meets for Writing and structure, because both read fluently:</p>' +
+                        m4PlacementGrid([{ weak: 1, strong: 3 }, { weak: 1, strong: 3 }, { weak: 2, strong: 2 }], 'A rubric that fails (example): Same level for both drafts in one row, so that row’s descriptors need fixing.', true) +
+                        '<details class="dropdown">' +
+                        '<summary>Why each draft got its level</summary>' +
+                        '<div class="dropdown-body"><div data-text="see-test"></div></div>' +
+                        '</details>' +
+                        '<p>Do you agree with each level? Judging that yourself is part of the test.</p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>See the feedback a student gets.</strong> The rubric then goes into a feedback agent, set up as in Module 3. A student pastes the weak draft and gets this:</p>' +
+                        '<p><strong>See the feedback a student gets.</strong> The rubric then goes into a feedback agent, set up as in Module 3. A student pastes the weak draft. For each criterion, the feedback has three parts:</p>' +
+                        M4_FEEDBACK_ANATOMY +
+                        '<p>Here is all of it. There is no grade and no rewritten text.</p>' +
                         '<div data-text="see-feedback"></div>' +
-                        '<p>Each criterion gets a level, a quote as evidence, and one step towards the next level, taken from the words of that level’s descriptor. There is no grade and no rewritten text.</p>' +
                         '</li>' +
                         '</ol>' +
                         '<h3>Why it works</h3>' +
@@ -2180,8 +2256,9 @@ window.HEGENAI_MODULES = {
                     id: "try",
                     minutes: 15,
                     html: '<p>In this block, you make a rubric for your assignment or the sample case, check it, and test it on two drafts. You need a GenAI tool your institution allows. Paste criteria and invented drafts only, never real student work.</p>' +
+                        m4Journey([0, 1, 2, 3], 'You do this here') +
                         '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>' +
-                        '<p><strong>Start with the form.</strong> Fill in its first three steps. Leave the last one, “Your checked rubric”, until you have tested your rubric in the steps below the form.</p>' +
+                        '<p><strong>Start with the form.</strong> The prompt below fills in as you type.</p>' +
                         '<div data-form></div>' +
                         '<p><strong>Then make, check and test the rubric:</strong></p>' +
                         '<ol class="step-list" role="list">' +
@@ -2210,10 +2287,10 @@ window.HEGENAI_MODULES = {
                         '<div data-text="try-drafts"></div>' +
                         '</div>' +
                         '</details>' +
-                        '<p><strong>Read the result.</strong> Did the two drafts land on different levels for every criterion? Where they did not, rewrite that criterion’s descriptors so they name what the strong draft shows and the weak one lacks, and run the test again. Do you agree with each level? If not, the descriptor says something other than what you mean.</p>' +
+                        '<p><strong>Read the result,</strong> as in the grid in step 3 of <a href="#block-see">See it</a>. Did the two drafts land on different levels for every criterion? Where they did not, rewrite that criterion’s descriptors so they name what the strong draft shows and the weak one lacks, and run the test again. Do you agree with each level? If not, the descriptor says something other than what you mean.</p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Paste your checked rubric into the form above,</strong> in its last step, “Your checked rubric”. It goes into the agent in <a href="#block-make">Make it</a>.</p>' +
+                        '<p><strong>Keep the conversation open.</strong> You paste the checked rubric into the agent in <a href="#block-make">Make it</a>.</p>' +
                         '</li>' +
                         '</ol>' +
                         '<details class="dropdown">' +
@@ -2279,13 +2356,6 @@ window.HEGENAI_MODULES = {
                                     { key: "levels", label: "Level names", type: "line",
                                       practice: "Beginning, Developing, Meets, Exceeds" }
                                 ]
-                            },
-                            {
-                                title: "Your checked rubric",
-                                guidance: "Leave empty until you have checked and tested your rubric in the steps below the form. Then paste it here, as GenAI gave it: each criterion, then one line per level.",
-                                inputs: [
-                                    { key: "rubric", label: "Your checked rubric", type: "text", rows: 8 }
-                                ]
                             }
                         ]
                     }
@@ -2294,19 +2364,28 @@ window.HEGENAI_MODULES = {
                     id: "make",
                     minutes: 20,
                     html: '<p>In this block, you put your rubric into a feedback agent, test it on the two drafts, and get a link that can be shared. If you built the agent in Module 3, the steps are the same. Only the skill and the instructions change.</p>' +
+                        m4Journey([4], 'You do this here') +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
                         '<p><strong>Download the rubric skill.</strong> It is the same for every assignment that has a rubric. It is a different file from the Module 3 skill: It gives levels instead of met or not met. Keep the file name SKILL.md.</p>' +
                         '<div data-text="make-skill"></div>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Copy the instructions.</strong> They hold your assignment and the rubric from <a href="#block-try">Try it</a>. This is the only part you would change for another assignment.</p>' +
+                        '<p><strong>Paste your checked rubric.</strong> Copy it from your GenAI conversation in <a href="#block-try">Try it</a>, as GenAI gave it: each criterion, then one line per level.</p>' +
+                        '<div data-form></div>' +
+                        '<details class="dropdown">' +
+                        '<summary>Sample case: Copy our rubric</summary>' +
+                        '<div class="dropdown-body"><div data-text="make-sample-rubric"></div></div>' +
+                        '</details>' +
+                        '</li>' +
+                        '<li>' +
+                        '<p><strong>Copy the instructions.</strong> They hold your assignment from <a href="#block-try">Try it</a> and the rubric from step 2. This is the only part you would change for another assignment.</p>' +
                         '<div data-text="make-instructions"></div>' +
                         '</li>' +
                         '<li><p><strong>Create the agent</strong> in your approved GenAI tool. At the time of writing, in Microsoft Copilot (not available for personal free accounts), you find Agents in the left sidebar and choose New agent. If it offers to build one for you, skip that.</p>' +
                         '<ul>' +
                         '<li><strong>Name:</strong> One students will recognise, for example “Rubric feedback: case study report”.</li>' +
-                        '<li><strong>Instructions:</strong> Paste the text from step 2.</li>' +
+                        '<li><strong>Instructions:</strong> Paste the text from step 3.</li>' +
                         '<li><strong>Skill:</strong> Upload the SKILL.md from step 1. If your tool has no place for a skill file, paste the skill text under the instructions instead.</li>' +
                         '<li><strong>Knowledge (optional):</strong> Add a link to a public page with a model report, so the agent can show what a level looks like. For the sample case, use the <a href="module-4-model-report.html">model report page</a>: Open it and copy its address from your browser. For your own assignment, use a public page you control, or leave this out. Not every account can upload files as knowledge, but links to public pages usually work.</li>' +
                         '</ul>' +
@@ -2328,7 +2407,7 @@ window.HEGENAI_MODULES = {
                         '<details class="dropdown">' +
                         '<summary>If a tick is missing: What to change</summary>' +
                         '<div class="dropdown-body">' +
-                        '<p>Most fixes are in your rubric. Edit it in the last step of the form in <a href="#block-try">Try it</a>, copy the instructions again, paste them over the old ones, and rerun the same drafts. The skill stays as it is.</p>' +
+                        '<p>Most fixes are in your rubric. Edit it in step 2 above, copy the instructions again, paste them over the old ones, and rerun the same drafts. The skill stays as it is.</p>' +
                         '<ul class="fix-list" role="list">' +
                         '<li><p class="fix-check">1. A level has no quote, or it gives met or not met instead of a level</p><p><strong>Likely cause:</strong> The agent uses the Module 3 skill, or no skill.</p><p><strong>Change:</strong> Check that the rubric SKILL.md from step 1 is the agent’s skill. If it is still not used, paste the skill text under the instructions.</p></li>' +
                         '<li><p class="fix-check">2. The levels differ from the ones you agreed with in Try it</p><p><strong>Likely cause:</strong> The rubric in the instructions is not the one you tested, or a descriptor can be read two ways.</p><p><strong>Change:</strong> Paste the tested rubric again. If it was the same, rewrite the descriptor that was misread.</p></li>' +
@@ -2344,7 +2423,19 @@ window.HEGENAI_MODULES = {
                         '</details>' +
                         '</li>' +
                         '<li><p><strong>Your agent is ready.</strong> Keep it private for now. In <strong>Plan it</strong>, you choose how students get the rubric and the agent.</p></li>' +
-                        '</ol>'
+                        '</ol>',
+                    form: {
+                        id: "make",
+                        fields: [
+                            {
+                                title: "Your checked rubric",
+                                guidance: "Paste the rubric you checked and tested in Try it. It fills in the instructions in step 3.",
+                                inputs: [
+                                    { key: "rubric", label: "Your checked rubric", type: "text", rows: 8 }
+                                ]
+                            }
+                        ]
+                    }
                 },
                 {
                     id: "plan",
@@ -2531,6 +2622,13 @@ window.HEGENAI_MODULES = {
                     ]
                 },
                 {
+                    id: "make-sample-rubric",
+                    kind: "prompt",
+                    label: "Our rubric for the sample case",
+                    copyLabel: "Copy our rubric",
+                    lines: m4RubricLines()
+                },
+                {
                     id: "try-prompt",
                     kind: "live-prompt",
                     label: "Prompt to draft the rubric",
@@ -2599,7 +2697,7 @@ window.HEGENAI_MODULES = {
                         "{{name|[assignment name]}}. {{description|[description]}}",
                         "# Rubric (judge only these criteria)",
                         "Levels, from lowest to highest: {{levels|Beginning, Developing, Meets, Exceeds}}.",
-                        "{{rubric|[your checked rubric, from the form in Try it]}}",
+                        "{{rubric|[your checked rubric, from step 2]}}",
                         "# What the student pastes",
                         "Their whole draft or one or more sections of it."
                     ]

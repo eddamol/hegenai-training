@@ -3215,3 +3215,223 @@ mark.fill-in {
     font-weight: 700;
     text-align: center;
 }
+
+/* Module 4: the five steps of the module as a strip. */
+.journey-figure {
+    margin: 14px 0 6px;
+}
+
+.journey {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.journey-step {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 10px 10px 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background-color: white;
+    font-size: 0.85rem;
+    line-height: 1.35;
+}
+
+.journey-step strong {
+    font-size: 0.9rem;
+}
+
+.journey-step > span:not(.journey-number) {
+    color: var(--text-muted);
+}
+
+.journey-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    margin-bottom: 4px;
+    border-radius: 50%;
+    background-color: var(--line);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.journey-step.is-active {
+    border-color: var(--primary);
+    background-color: var(--primary-tint);
+}
+
+.journey-step.is-active .journey-number {
+    background-color: var(--primary);
+    color: white;
+}
+
+.journey-tag {
+    margin-top: 4px;
+    color: var(--primary);
+    font-size: 0.8rem;
+    font-style: normal;
+    font-weight: 700;
+}
+
+@media (max-width: 640px) {
+    .journey {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* Module 4: where the two test drafts land on the rubric. */
+.placement-figure {
+    margin: 12px 0 10px;
+}
+
+.placement-figure figcaption {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.placement-table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.marker {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    margin: 0 2px;
+    border-radius: 50%;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white;
+}
+
+.marker-weak {
+    background-color: #8a8b90;
+}
+
+.marker-strong {
+    background-color: var(--correct-line);
+}
+
+.placement-same th,
+.placement-same td {
+    background-color: #fbe9e9;
+}
+
+.placement-flag {
+    display: block;
+    margin-top: 3px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.placement-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 8px 0 0;
+    font-size: 0.85rem;
+}
+
+.placement-legend .marker {
+    margin-right: 6px;
+}
+
+/* Module 4: one criterion's feedback beside its rubric row. */
+.anatomy-figure {
+    margin: 12px 0 10px;
+}
+
+.anatomy {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: 14px;
+}
+
+.anatomy-title {
+    margin: 0 0 8px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.anatomy-card,
+.anatomy-rubric {
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background-color: white;
+    font-size: 0.88rem;
+    line-height: 1.45;
+}
+
+.anatomy-part {
+    margin-bottom: 8px;
+    padding: 8px 10px;
+    border-left: 3px solid var(--line);
+    background-color: var(--page-background);
+}
+
+.anatomy-part p {
+    margin: 2px 0 0;
+}
+
+.anatomy-next {
+    border-left-color: var(--correct-line);
+    background-color: var(--correct-bg);
+}
+
+.anatomy-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.anatomy-cell {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 6px;
+    padding: 6px 10px;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+}
+
+.anatomy-cell span {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+.anatomy-cell.is-here {
+    border-color: #8a8b90;
+    background-color: var(--page-background);
+}
+
+.anatomy-cell.is-next {
+    border-color: var(--correct-line);
+    background-color: var(--correct-bg);
+}
+
+.anatomy-figure figcaption {
+    margin-top: 6px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+@media (max-width: 640px) {
+    .anatomy {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
