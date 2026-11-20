@@ -321,6 +321,7 @@ Keep the brackets so the parts do not depend on the highlight alone.
 
 - `M4_RUBRIC` and `M4_LEVELS` in `modules-data.js` hold the sample-case rubric; `m4RubricTable()` draws it as a `.rubric-table` (styles at the end of `style.css`), with the "Meets" column tinted.
 - `M4_BUILDER_FIGURE` is Module 3's agent-builder figure with a sixth row for knowledge (`.bf-r6`).
+- A module can have an optional `subtitle`, shown under the title on the module page and the module card. A form can be `unnumbered` (a one-field form inside a numbered step), and a live prompt can say where its missing details are filled in with `missingIn: [{ label, block }]` (default: Try it).
 - A checklist can be named, `<ol class="tick-list" data-checklist="rubric">`, so two checklists in one module keep their ticks apart. An unnamed `data-checklist` keeps the old keys.
 
 ### Layouts and video used in Module 3

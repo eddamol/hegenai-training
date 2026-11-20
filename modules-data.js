@@ -2074,7 +2074,8 @@ window.HEGENAI_MODULES = {
         {
             id: "rubrics-with-genai",
             number: 4,
-            title: "Creating Assessment Rubrics and GenAI Agents for Assessment and Feedback on Student Reports and Assignments",
+            title: "Creating Rubrics and Feedback Agents with GenAI",
+            subtitle: "For Assessment and Feedback on Student Reports and Assignments",
             cluster: null,
             outcome: "After this module, you can turn the criteria of a written assignment into a four-level rubric with GenAI and test that it tells a weak draft from a strong one, and you leave with a rubric and a feedback agent that tells students which level their draft is at and how to reach the next one.",
             outcomePreview: { resource: "finished-rubric", caption: "The rubric you make for the sample case. Select to open it." },
@@ -2257,7 +2258,6 @@ window.HEGENAI_MODULES = {
                     minutes: 15,
                     html: '<p>In this block, you make a rubric for your assignment or the sample case, check it, and test it on two drafts. You need a GenAI tool your institution allows. Paste criteria and invented drafts only, never real student work.</p>' +
                         m4Journey([0, 1, 2, 3], 'You do this here') +
-                        '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>' +
                         '<p><strong>Start with the form.</strong> The prompt below fills in as you type.</p>' +
                         '<div data-form></div>' +
                         '<p><strong>Then make, check and test the rubric:</strong></p>' +
@@ -2426,6 +2426,7 @@ window.HEGENAI_MODULES = {
                         '</ol>',
                     form: {
                         id: "make",
+                        unnumbered: true,
                         fields: [
                             {
                                 title: "Your checked rubric",
@@ -2691,6 +2692,7 @@ window.HEGENAI_MODULES = {
                     showLabel: true,
                     copyLabel: "Copy instructions",
                     optionalKeys: ["levels"],
+                    missingIn: [{ label: "Try it", block: "try" }, { label: "step 2 of Make it", block: "make" }],
                     template: [
                         "You give formative feedback to a student on a draft of one written assignment, using the rubric below. You do not grade it, and you never rewrite the student's text. Use your skill rubric-feedback for how to give the feedback.",
                         "# Assignment",

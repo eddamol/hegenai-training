@@ -1041,6 +1041,20 @@ html {
     font-size: 2.2rem;
 }
 
+.page-subtitle {
+    margin: 0 0 12px;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    line-height: 1.4;
+}
+
+.module-subtitle {
+    margin: -4px 0 8px;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
 .notice h2 {
     margin: 32px 0 8px;
     font-size: 1.5rem;
@@ -1427,6 +1441,15 @@ html {
 
 .form-steps {
     margin-top: 8px;
+}
+
+.form-steps.is-unnumbered > li {
+    padding-left: 0;
+}
+
+.form-steps.is-unnumbered > li::before,
+.form-steps.is-unnumbered > li::after {
+    display: none;
 }
 
 .form-step-heading {

@@ -141,7 +141,8 @@
         if (tools.children.length) form.appendChild(tools);
 
         // Steps
-        var steps = create('ol', 'step-list form-steps');
+        // config.unnumbered: a one-field form inside a numbered step shows no number of its own.
+        var steps = create('ol', 'step-list form-steps' + (config.unnumbered ? ' is-unnumbered' : ''));
         steps.setAttribute('role', 'list');
         (config.fields || []).forEach(function (field, fieldIndex) {
             var item = create('li');
