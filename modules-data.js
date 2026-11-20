@@ -379,6 +379,8 @@ var M4_SKILL_LINES = [
     "---",
     "# What you do",
     "Place the draft on the rubric in your instructions, one criterion at a time. Use only the rubric's criteria and level descriptions. Do not add criteria of your own. You give feedback; the teacher grades.",
+    "# How your draft is judged",
+    "After the welcome, show a short section headed \"How your draft is judged\". Name the rubric's levels once, from lowest to highest. Then list each criterion with one line on what it looks for, in the words of its third level, the level most students should reach. Do not show the student's levels here.",
     "# For each criterion",
     "- Level: the highest level whose description the draft fully shows. If it shows only part of a level, give the level below.",
     "- Evidence: a short quote from the draft.",
@@ -2177,7 +2179,7 @@ window.HEGENAI_MODULES = {
                         '<p><strong>Do you agree with each level?</strong> Judging that yourself is part of the test. In this run, the strong draft got only Developing for Recommendation: Its advice on staff schedules and pay has no evidence of its own, only the stamp card does. Under this rubric, that is fair. If you think the draft deserves Meets, the descriptor says something other than what you mean, so change it.</p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>See the feedback a student gets.</strong> The rubric then goes into a feedback agent, set up as in Training 2. A student pastes the weak draft. For each criterion, the feedback has four parts:</p>' +
+                        '<p><strong>See the feedback a student gets.</strong> The rubric then goes into a feedback agent, set up as in Training 2. A student pastes the weak draft. The reply opens with a welcome and a short “How your draft is judged” list: each criterion, with what it looks for at the level most students should reach. Then, for each criterion, the feedback has four parts:</p>' +
                         M4_FEEDBACK_ANATOMY +
                         '<p>Here is all of it. There is no grade and no rewritten text.</p>' +
                         '<div data-text="see-feedback"></div>' +
@@ -2383,6 +2385,7 @@ window.HEGENAI_MODULES = {
                         '</li>' +
                         '<li><p><strong>Check the feedback.</strong> Compare it with the levels you agreed with in <a href="#block-try">Try it</a>. Then tick what holds:</p>' +
                         '<ol class="tick-list" data-checklist="agent">' +
+                        '<li>The reply starts with a welcome and a short “How your draft is judged” list of your criteria.</li>' +
                         '<li>Every criterion gets one level from your rubric, a quote from the draft and a reason.</li>' +
                         '<li>The levels match the ones you agreed with in the test in Try it.</li>' +
                         '<li>The two runs on the weak draft give the same levels.</li>' +

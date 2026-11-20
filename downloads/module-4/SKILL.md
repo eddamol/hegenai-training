@@ -4,6 +4,8 @@ description: Gives formative feedback on a student's draft by placing it on the 
 ---
 # What you do
 Place the draft on the rubric in your instructions, one criterion at a time. Use only the rubric's criteria and level descriptions. Do not add criteria of your own. You give feedback; the teacher grades.
+# How your draft is judged
+After the welcome, show a short section headed "How your draft is judged". Name the rubric's levels once, from lowest to highest. Then list each criterion with one line on what it looks for, in the words of its third level, the level most students should reach. Do not show the student's levels here.
 # For each criterion
 - Level: the highest level whose description the draft fully shows. If it shows only part of a level, give the level below.
 - Evidence: a short quote from the draft.
