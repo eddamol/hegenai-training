@@ -312,30 +312,30 @@ var M2_CLOSING_SENTENCE = 'This is AI-generated feedback on your declaration aga
 var M4_LEVELS = ['Beginning', 'Developing', 'Meets', 'Exceeds'];
 var M4_RUBRIC = [
     {
-        name: 'Problem analysis',
+        name: 'Problem analysis (LO1)',
         levels: [
-            'Names a topic, not a problem. No course concept is named.',
-            'States a problem, but without facts about the organisation, or names course concepts without applying them to it.',
-            'States the problem in one or two sentences, and applies at least two course concepts to it using facts about the organisation.',
-            'Everything in Meets, and shows how the concepts together explain the cause of the problem, each step backed by a fact about the organisation.'
+            'Names an organisation but does not identify a specific problem, state a research question, or apply course concepts to analyse the problem.',
+            'Identifies one organisational problem and states a research question. Applies at least one course concept to describe the problem but does not analyse it using two concepts.',
+            'Identifies one organisational problem, states a research question, and analyses the problem using at least two relevant course concepts. Explains how each concept relates to the problem and supports the analysis with information about the organisation.',
+            'Everything in Meets, and compares what the two or more course concepts reveal about different causes, effects or dimensions of the problem.'
         ]
     },
     {
-        name: 'Recommendation',
+        name: 'Recommendation (LO2)',
         levels: [
-            'No recommendation, or one that does not address the problem in the analysis.',
-            'Recommends a solution to the problem, but backs it with general claims only, with no cited source or data about the organisation.',
-            'The recommendation follows from the analysis, and each claim for it is backed by a cited source or data about the organisation.',
-            'Everything in Meets, and compares the recommendation with at least one alternative or names a risk, saying why it is still the better choice.'
+            'Names a possible solution but does not explain how it addresses the organisational problem or provide supporting evidence.',
+            'Recommends one solution and explains how it addresses the organisational problem, but provides fewer than two pieces of relevant supporting evidence.',
+            'Recommends one solution that addresses the analysed problem, explains how it would address the problem, and supports the recommendation with at least two pieces of relevant evidence.',
+            'Everything in Meets, and evaluates at least one limitation, risk or implementation challenge of the recommended solution using supporting evidence.'
         ]
     },
     {
-        name: 'Writing and structure',
+        name: 'Writing and structure (LO3)',
         levels: [
-            'A required section is missing, or there is no research question.',
-            'All sections are there, but the research question is vague or the conclusion does not answer it.',
-            'Each section opens by stating its purpose, and the conclusion answers the research question set in the introduction.',
-            'Everything in Meets, and each paragraph makes one point, stated in its first sentence.'
+            'Omits three or more required sections, or presents the report without identifiable section headings.',
+            'Includes at least four of the six required sections, with identifiable headings, and uses complete sentences. APA 7 in-text citations or reference entries are missing.',
+            'Includes all six required sections: Introduction with research question, Background, Problem analysis, Recommendation, Conclusion and References. Uses headings to distinguish the sections, writes in complete sentences, and uses APA 7 in-text citations and reference entries.',
+            'Everything in Meets, and uses transitions between sections to explicitly connect the organisational background, problem analysis, recommendation and conclusion.'
         ]
     }
 ];
@@ -472,19 +472,19 @@ var M4_FEEDBACK_ANATOMY =
     '<div class="anatomy">' +
     '<div class="anatomy-card">' +
     '<p class="anatomy-title">Feedback: Problem analysis</p>' +
-    '<div class="anatomy-part"><span class="anatomy-label">1 · Level</span><p>Developing.</p></div>' +
-    '<div class="anatomy-part"><span class="anatomy-label">2 · Evidence</span><p>“Café Nord has a problem with customers. Fewer people come back than before”</p></div>' +
-    '<div class="anatomy-part anatomy-next"><span class="anatomy-label">3 · Next step</span><p>To reach Meets: State the problem in one or two sentences with a fact about Café Nord, then apply at least two course concepts to it by name.</p></div>' +
+    '<div class="anatomy-part"><span class="anatomy-label">1 · Level</span><p>Beginning.</p></div>' +
+    '<div class="anatomy-part"><span class="anatomy-label">2 · Evidence</span><p>“Café Nord has a problem with customers. Fewer people come back than before…”</p></div>' +
+    '<div class="anatomy-part anatomy-next"><span class="anatomy-label">3 · Next step</span><p>To reach the next level: State a research question and apply at least one course concept to describe the problem.</p></div>' +
     '</div>' +
     '<div class="anatomy-rubric" aria-label="The rubric row for Problem analysis">' +
     '<p class="anatomy-title">The rubric row it comes from</p>' +
-    '<div class="anatomy-cell"><strong>Beginning</strong></div>' +
-    '<div class="anatomy-cell is-here"><strong>Developing</strong><span>The draft is here (1)</span></div>' +
-    '<div class="anatomy-cell is-next"><strong>Meets</strong><span>The next step (3) uses this descriptor’s words: “states the problem in one or two sentences … at least two course concepts”</span></div>' +
+    '<div class="anatomy-cell is-here"><strong>Beginning</strong><span>The draft is here (1)</span></div>' +
+    '<div class="anatomy-cell is-next"><strong>Developing</strong><span>The next step (3) uses this descriptor’s words: “states a research question … applies at least one course concept to describe the problem”</span></div>' +
+    '<div class="anatomy-cell"><strong>Meets</strong></div>' +
     '<div class="anatomy-cell"><strong>Exceeds</strong></div>' +
     '</div>' +
     '</div>' +
-    '<figcaption>The three parts of the feedback for each criterion. The level and the next step both come from the rubric, so students meet the same words in the rubric and in the feedback.</figcaption>' +
+    '<figcaption>The three parts of the feedback for each criterion, from a test run of the agent on the weak draft. The level and the next step both come from the rubric, so students meet the same words in the rubric and in the feedback.</figcaption>' +
     '</figure>';
 
 window.HEGENAI_MODULES = {
@@ -2170,38 +2170,38 @@ window.HEGENAI_MODULES = {
                         '<div class="criteria-compare">' +
                         '<div class="criteria-head" aria-hidden="true"><span>Fixed: What the agent gets</span><span>First draft: What GenAI often writes</span></div>' +
                         '<div class="criteria-row">' +
-                        '<div class="criteria-check"><span class="criteria-label">Fixed</span><strong>Problem analysis, Developing.</strong> States a problem, but <mark>without facts about the organisation</mark>, or <mark>names course concepts without applying them</mark> to it.</div>' +
+                        '<div class="criteria-check"><span class="criteria-label">Fixed</span><strong>Problem analysis, Developing.</strong> Identifies one organisational problem and <mark>states a research question</mark>. <mark>Applies at least one course concept</mark> to describe the problem but <mark>does not analyse it using two concepts</mark>.</div>' +
                         '<div class="criteria-brief"><span class="criteria-label">First draft</span>“<s>Some</s> analysis of the problem, with <s>limited</s> use of course concepts.”</div>' +
                         '</div>' +
                         '<div class="criteria-row">' +
-                        '<div class="criteria-check"><span class="criteria-label">Fixed</span><strong>Recommendation, Exceeds.</strong> Everything in Meets, and <mark>compares the recommendation with at least one alternative</mark> or <mark>names a risk</mark>, saying why it is still the better choice.</div>' +
+                        '<div class="criteria-check"><span class="criteria-label">Fixed</span><strong>Recommendation, Meets.</strong> Recommends one solution that addresses the analysed problem, <mark>explains how it would address the problem</mark>, and supports it with <mark>at least two pieces of relevant evidence</mark>.</div>' +
                         '<div class="criteria-brief"><span class="criteria-label">First draft</span>“An <s>excellent, convincing</s> recommendation, <s>well</s> supported by <s>strong</s> evidence.”</div>' +
                         '</div>' +
                         '<div class="criteria-row">' +
-                        '<div class="criteria-check"><span class="criteria-label">Fixed</span><strong>Writing and structure, Meets.</strong> <mark>Each section opens by stating its purpose</mark>, and <mark>the conclusion answers the research question</mark> set in the introduction.</div>' +
+                        '<div class="criteria-check"><span class="criteria-label">Fixed</span><strong>Writing and structure, Meets.</strong> Includes <mark>all six required sections</mark>, <mark>uses headings</mark> to distinguish them, and uses <mark>APA 7 in-text citations and reference entries</mark>.</div>' +
                         '<div class="criteria-brief"><span class="criteria-label">First draft</span>“The report is <s>clearly</s> written and <s>well</s> structured.”</div>' +
                         '</div>' +
                         '</div>' +
-                        '<p>Here is the whole rubric after the fixes. The “Meets” column, tinted, is written first: It is the level most students should reach. The other levels are written around it.</p>' +
-                        m4RubricTable('The rubric for the sample case, after the teacher’s fixes.') +
+                        '<p>Here is the whole rubric, as the teacher checked it. The “Meets” column, tinted, is written first: It is the level most students should reach. The other levels are written around it.</p>' +
+                        m4RubricTable('The rubric for the sample case, drafted with GenAI and checked by the teacher.') +
                         '</li>' +
                         '<li>' +
                         '<p><strong>Test the rubric on a weak and a strong draft.</strong> In the same conversation, the teacher pastes the two sample drafts and asks GenAI to place each on the rubric, criterion by criterion. This tests the rubric, not the students: If both drafts land on the same level for a criterion, its descriptors are too vague to tell them apart.</p>' +
                         '<p><button type="button" class="link-button" data-open-resource="test-weak">Open the weak draft</button> · <button type="button" class="link-button" data-open-resource="test-strong">Open the strong draft</button></p>' +
                         '<div class="placement-legend" aria-hidden="true"><span><span class="marker marker-weak">W</span>Weak draft</span><span><span class="marker marker-strong">S</span>Strong draft</span></div>' +
-                        m4PlacementGrid([{ weak: 1, strong: 3 }, { weak: 1, strong: 3 }, { weak: 0, strong: 2 }], 'Our rubric passes: In every row, the weak and the strong draft land on different levels.') +
+                        m4PlacementGrid([{ weak: 0, strong: 2 }, { weak: 0, strong: 1 }, { weak: 1, strong: 2 }], 'The rubric passes: In every row, the weak and the strong draft land on different levels (from a test run of the agent, November 2026).') +
                         '<p>Compare a rubric that fails the test. With the first draft’s “clearly written and well structured”, both drafts can land at Meets for Writing and structure, because both read fluently:</p>' +
-                        m4PlacementGrid([{ weak: 1, strong: 3 }, { weak: 1, strong: 3 }, { weak: 2, strong: 2 }], 'A rubric that fails (example): Same level for both drafts in one row, so that row’s descriptors need fixing.', true) +
+                        m4PlacementGrid([{ weak: 0, strong: 2 }, { weak: 0, strong: 1 }, { weak: 2, strong: 2 }], 'A rubric that fails (example): Same level for both drafts in one row, so that row’s descriptors need fixing.', true) +
                         '<details class="dropdown">' +
                         '<summary>Why each draft got its level</summary>' +
                         '<div class="dropdown-body"><div data-text="see-test"></div></div>' +
                         '</details>' +
-                        '<p>Do you agree with each level? Judging that yourself is part of the test.</p>' +
+                        '<p><strong>Do you agree with each level?</strong> Judging that yourself is part of the test. In this run, the strong draft got only Developing for Recommendation: Its advice on staff schedules and pay has no evidence of its own, only the stamp card does. Under this rubric, that is fair. If you think the draft deserves Meets, the descriptor says something other than what you mean, so change it.</p>' +
                         '</li>' +
                         '<li>' +
                         '<p><strong>See the feedback a student gets.</strong> The rubric then goes into a feedback agent, set up as in Module 3. A student pastes the weak draft. For each criterion, the feedback has three parts:</p>' +
                         M4_FEEDBACK_ANATOMY +
-                        '<p>Here is all of it. There is no grade and no rewritten text.</p>' +
+                        '<p>Here is all of it, with a “Why” line the agent added for each criterion. There is no grade and no rewritten text.</p>' +
                         '<div data-text="see-feedback"></div>' +
                         '</li>' +
                         '</ol>' +
@@ -2588,39 +2588,42 @@ window.HEGENAI_MODULES = {
                 {
                     id: "see-test",
                     kind: "draft",
-                    label: "Where the two drafts land (example written for this module)",
+                    label: "Why each draft got its level (from a test run of the agent, November 2026, shortened)",
                     lines: [
                         "# Problem analysis",
-                        "- Weak draft: Developing. \"Café Nord has a problem with customers. Fewer people come back than before\" states a problem, with no fact about the café and no concept applied.",
-                        "- Strong draft: Exceeds. Applies Porter's five forces and Herzberg's two-factor theory, each to facts about the café, and links staff turnover to the loss of regular customers.",
+                        "- Weak draft: Beginning. It names a problem, but states no research question and applies no course concept.",
+                        "- Strong draft: Meets. It states a research question and analyses the problem with two course concepts, Porter's five forces and Herzberg's two-factor theory, supported by data about the café.",
                         "# Recommendation",
-                        "- Weak draft: Developing. \"Loyalty apps are very popular and many companies use them successfully\" is a general claim, with no source or data.",
-                        "- Strong draft: Exceeds. Each claim is backed by data or a source, and the stamp card is compared with an app on cost.",
+                        "- Weak draft: Beginning. It names a loyalty app, but does not explain how it addresses the problem and gives no evidence.",
+                        "- Strong draft: Developing. It explains how the actions address the problem, but only the stamp card has evidence; the advice on schedules and pay has none.",
                         "# Writing and structure",
-                        "- Weak draft: Beginning. \"This report is about Café Nord and the problems it has.\" There is no research question.",
-                        "- Strong draft: Meets. Each section opens with its purpose, and the conclusion answers the research question.",
+                        "- Weak draft: Developing. All sections are there, but there is no research question and no APA 7 in-text citation.",
+                        "- Strong draft: Meets. All six sections, with headings, a research question and APA 7 citations.",
                         "Same level for both drafts: none."
                     ]
                 },
                 {
                     id: "see-feedback",
                     kind: "draft",
-                    label: "Feedback on the weak draft (example written for this module)",
+                    label: "Feedback on the weak draft (from a test run of the agent, November 2026; its comments on length and on criteria it cannot judge are left out, and the skill now tells it not to give them)",
                     showLines: 5,
                     moreLabel: "Show all the feedback",
                     lines: [
-                        "# 1. Problem analysis",
-                        "- Level: Developing.",
-                        "- Evidence: \"Café Nord has a problem with customers. Fewer people come back than before\"",
-                        "- To reach Meets: State the problem in one or two sentences with a fact about Café Nord, then apply at least two course concepts to it by name.",
-                        "# 2. Recommendation",
-                        "- Level: Developing.",
-                        "- Evidence: \"Loyalty apps are very popular and many companies use them successfully.\"",
-                        "- To reach Meets: Show how the app follows from the problem in your analysis, and back each claim with a cited source or data about Café Nord.",
-                        "# 3. Writing and structure",
-                        "- Level: Beginning.",
-                        "- Evidence: \"This report is about Café Nord and the problems it has.\"",
-                        "- To reach Developing: Set a research question in the introduction.",
+                        "# 1. Problem analysis (LO1)",
+                        "- Level: Beginning",
+                        "- Evidence: \"Café Nord has a problem with customers. Fewer people come back than before…\"",
+                        "- Why: The draft identifies a problem, but it does not state a research question and does not analyse the problem using two course concepts.",
+                        "- To reach the next level: State a research question and apply at least one course concept to describe the problem.",
+                        "# 2. Recommendation (LO2)",
+                        "- Level: Beginning",
+                        "- Evidence: \"Based on the analysis, Café Nord should introduce a loyalty app.\"",
+                        "- Why: The draft names a solution and briefly states expected benefits, but it does not explain in detail how the solution addresses the problem and does not provide supporting evidence.",
+                        "- To reach the next level: Explain how the recommended solution addresses the organisational problem and support it with relevant evidence.",
+                        "# 3. Writing and structure (LO3)",
+                        "- Level: Developing",
+                        "- Evidence: The draft includes the headings \"Introduction,\" \"Background,\" \"Problem analysis,\" \"Recommendation,\" \"Conclusion\" and \"References.\"",
+                        "- Why: All six required sections are present and written in complete sentences. However, the Introduction does not include a research question, and APA 7 in-text citations are missing. The reference entry shown is also not a complete APA 7 reference.",
+                        "- To reach the next level: Include a research question in the Introduction and use APA 7 in-text citations and reference entries.",
                         "This is GenAI feedback on your draft against the course rubric. It can be wrong and it is not a grade. Your teacher grades your work."
                     ]
                 },
