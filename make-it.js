@@ -309,8 +309,10 @@
         var lists = container.querySelectorAll('ol[data-checklist]');
         Array.prototype.forEach.call(lists, function (list) {
             var boxes = [];
+            // data-checklist="name" keeps a second list's ticks apart; an empty value keeps the old keys.
+            var prefix = list.getAttribute('data-checklist');
             Array.prototype.forEach.call(list.children, function (item, index) {
-                var key = 'check' + (index + 1);
+                var key = (prefix ? prefix + '-' : '') + 'check' + (index + 1);
                 var label = create('label', 'tick-item');
                 var box = create('input');
                 box.type = 'checkbox';

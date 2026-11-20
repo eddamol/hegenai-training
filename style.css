@@ -2665,6 +2665,7 @@ mark.fill-in {
 .bf .bf-r3 { grid-row: 3; }
 .bf .bf-r4 { grid-row: 4; }
 .bf .bf-r5 { grid-row: 5; }
+.bf .bf-r6 { grid-row: 6; }
 
 .bf-win {
     grid-column: 2;
@@ -2829,7 +2830,7 @@ mark.fill-in {
         grid-template-columns: minmax(0, 1fr);
     }
 
-    .bf .bf-r1, .bf .bf-r2, .bf .bf-r3, .bf .bf-r4, .bf .bf-r5 {
+    .bf .bf-r1, .bf .bf-r2, .bf .bf-r3, .bf .bf-r4, .bf .bf-r5, .bf .bf-r6 {
         grid-row: auto;
     }
 
@@ -3137,4 +3138,80 @@ mark.fill-in {
 
 .writing-status:empty {
     display: none;
+}
+
+/* Module 4: a rubric as a table, criteria down the side and levels across. */
+.rubric-wrap {
+    margin: 12px 0 6px;
+    overflow-x: auto;
+}
+
+.rubric-table {
+    width: 100%;
+    min-width: 480px;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    background-color: white;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    hyphens: auto;
+}
+
+.rubric-table th,
+.rubric-table td {
+    padding: 8px 7px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    vertical-align: top;
+}
+
+.rubric-table tr:last-child th,
+.rubric-table tr:last-child td {
+    border-bottom: none;
+}
+
+.rubric-table thead th {
+    background-color: var(--primary-tint);
+    font-weight: 700;
+}
+
+.rubric-table thead th:first-child {
+    border-top-left-radius: 10px;
+}
+
+.rubric-table thead th:last-child {
+    border-top-right-radius: 10px;
+}
+
+.rubric-table thead th:first-child,
+.rubric-table tbody th {
+    width: 21%;
+    font-weight: 700;
+}
+
+.rubric-table .rubric-target {
+    background-color: var(--correct-bg);
+}
+
+.rubric-table caption {
+    caption-side: bottom;
+    padding-top: 6px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    text-align: left;
+}
+
+/* Module 4: where each test draft lands on the rubric. */
+.rubric-place {
+    display: inline-block;
+    min-width: 5.5em;
+    padding: 1px 7px;
+    border-radius: 999px;
+    background-color: var(--primary-tint);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-align: center;
 }

@@ -28,6 +28,8 @@ never sent anywhere. Hosted on GitHub Pages; all links are relative.
 - `certificate.js`: **not in use yet.** A certificate of completion that was built and kept for possible later use (see "Certificate (not implemented yet)" below)
 - `downloads/`: files trainees download, such as `practice-log-module-1.docx` (one practice log per module). The Word file is edited in Word from now on; it is no longer generated from a script
 - `downloads/module-2/`: Module 2's `SKILL.md` (the same lines as `M2_SKILL_LINES` in `modules-data.js`; change both together) and `declaration-guide.docx`
+- `downloads/module-4/`: Module 4's rubric `SKILL.md` (the same lines as `M4_SKILL_LINES` in `modules-data.js`; change both together)
+- `module-4-model-report.html`: a public page with Module 4's model report, kept at the top level so its address can be added as agent knowledge (agent builders accept public links up to two levels deep and without query parameters)
 - `resources.js`: opens a module's materials (for example a sample case) in a panel beside the blocks, or full screen on narrow screens
 - `assets/module-1/`: pictures used in Module 1 (`aias-figure-1.png`)
 - `assets/module-2/`: the video in Module 2's Make it block, step 3 (`agent-setup.mp4`)
@@ -314,6 +316,12 @@ preview sits under the outcome sentence.
 
 Mark the fill-in parts of a template with `<mark class="fill-in">[assignment name]</mark>`.
 Keep the brackets so the parts do not depend on the highlight alone.
+
+### Layouts used in Module 4
+
+- `M4_RUBRIC` and `M4_LEVELS` in `modules-data.js` hold the sample-case rubric; `m4RubricTable()` draws it as a `.rubric-table` (styles at the end of `style.css`), with the "Meets" column tinted.
+- `M4_BUILDER_FIGURE` is Module 3's agent-builder figure with a sixth row for knowledge (`.bf-r6`).
+- A checklist can be named, `<ol class="tick-list" data-checklist="rubric">`, so two checklists in one module keep their ticks apart. An unnamed `data-checklist` keeps the old keys.
 
 ### Layouts and video used in Module 3
 
