@@ -29,7 +29,6 @@ never sent anywhere. Hosted on GitHub Pages; all links are relative.
 - `downloads/`: files trainees download, such as `practice-log-module-1.docx` (one practice log per module). The Word file is edited in Word from now on; it is no longer generated from a script
 - `downloads/module-2/`: Module 2's `SKILL.md` (the same lines as `M2_SKILL_LINES` in `modules-data.js`; change both together) and `declaration-guide.docx`
 - `downloads/module-4/`: Module 4's rubric `SKILL.md` (the same lines as `M4_SKILL_LINES` in `modules-data.js`; change both together)
-- `model-report/index.html`: a public page with Module 4's model report, to add as agent knowledge. It is a folder, so its address ends in `/model-report/`: agent builders accept public links up to two levels deep, without query parameters, and may refuse a `.html` ending. Its links point one level up (`../`).
 - `resources.js`: opens a module's materials (for example a sample case) in a panel beside the blocks, or full screen on narrow screens
 - `assets/module-1/`: pictures used in Module 1 (`aias-figure-1.png`)
 - `assets/module-2/`: the video in Module 2's Make it block, step 3 (`agent-setup.mp4`)
