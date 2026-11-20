@@ -400,31 +400,6 @@ var M4_SKILL_LINES = [
     "- End with: \"This is GenAI feedback on your draft against the course rubric. It can be wrong and it is not a grade. Your teacher grades your work.\""
 ];
 
-// Module 4: a simplified agent builder, as in Module 3, with the rubric in the instructions,
-// the rubric skill, and an optional knowledge link. Used in Make it.
-var M4_BUILDER_FIGURE =
-    '<figure class="builder-figure">' +
-    '<div class="bf">' +
-    '<div class="bf-win bf-top bf-r1" aria-hidden="true"><span class="bf-dots"><i></i><i></i><i></i></span>Agent builder</div>' +
-    '<div class="bf-win bf-r2"><div class="bf-name"><span class="bf-icon" aria-hidden="true"></span><strong>Rubric feedback: case study report</strong></div></div>' +
-    '<div class="bf-note bf-left bf-grey bf-r2"><p>Name it so students recognise it.</p><span class="bf-arrow" aria-hidden="true"></span></div>' +
-    '<div class="bf-win bf-r3"><p class="bf-label">Instructions</p>' +
-    '<div class="bf-field bf-field-change">' +
-    '<p>You give formative feedback to a student on a draft, using the rubric below…</p>' +
-    '<p># Rubric<br>1. Problem analysis (LO1)<br>- Beginning: Names an organisation but does not identify…</p>' +
-    '</div></div>' +
-    '<div class="bf-note bf-left bf-change bf-r3"><p class="bf-note-title">Instructions: Paste</p><p>Your assignment and your checked rubric.</p><p><strong>The only part you change for each assignment.</strong></p><span class="bf-arrow" aria-hidden="true"></span></div>' +
-    '<div class="bf-win bf-r4"><p class="bf-label">Skills <span class="bf-add" aria-hidden="true">+ Add</span></p>' +
-    '<div class="bf-field bf-field-same"><strong>SKILL.md</strong> · rubric-feedback</div></div>' +
-    '<div class="bf-note bf-right bf-same bf-r4"><p class="bf-note-title">Skills: Upload once</p><p>The rubric skill, not Training 2’s.</p><span class="bf-arrow" aria-hidden="true"></span></div>' +
-    '<div class="bf-win bf-r5"><p class="bf-label">Knowledge</p>' +
-    '<div class="bf-field"><strong>Link</strong> · …/module-4-model-report.html</div></div>' +
-    '<div class="bf-note bf-right bf-grey bf-r5"><p><strong>Optional.</strong> A public page with a model report.</p><span class="bf-arrow" aria-hidden="true"></span></div>' +
-    '<div class="bf-win bf-bottom bf-r6"><span class="bf-create" aria-hidden="true">Create</span></div>' +
-    '<div class="bf-note bf-left bf-grey bf-r6"><p>Then share the link with your students.</p><span class="bf-arrow" aria-hidden="true"></span></div>' +
-    '</div>' +
-    '<figcaption>Where the parts go in an agent builder (simplified; your tool may look a little different). Compared with Training 2, the instructions hold a rubric, the skill is a different file, and you can add a knowledge link.</figcaption>' +
-    '</figure>';
 
 // Module 4: the five steps of the module as one strip. active lists the steps the block covers
 // (0-4); label is shown on them, for example "This block".
@@ -2394,7 +2369,15 @@ window.HEGENAI_MODULES = {
                         '<li><strong>Knowledge (optional):</strong> Add a link to a public page with a model report, so the agent can show what a level looks like. For the sample case, use the <a href="module-4-model-report.html">model report page</a>: Open it and copy its address from your browser. For your own assignment, use a public page you control, or leave this out. Not every account can upload files as knowledge, but links to public pages usually work.</li>' +
                         '</ul>' +
                         '<p><strong>No agent builder?</strong> Start a new conversation in any GenAI tool you are allowed to use. Paste the instructions and then the skill text into your first message, and paste a draft as your second. You can test the feedback this way, but you cannot share it.</p>' +
-                        M4_BUILDER_FIGURE + '</li>' +
+                        '<figure class="screenshot-figure">' +
+                        '<img src="assets/module-4/builder-instructions.jpg" width="1280" height="968" loading="lazy" alt="The Configure tab of Microsoft Copilot’s agent builder, with the agent’s name, description and the start of the pasted instructions.">' +
+                        '<figcaption>In Microsoft Copilot’s agent builder: (1) the Configure tab, (2) the name and description students see, and (3) the instructions with your assignment and rubric.</figcaption>' +
+                        '</figure>' +
+                        '<figure class="screenshot-figure">' +
+                        '<img src="assets/module-4/builder-skill-upload.jpg" width="1280" height="602" loading="lazy" alt="The Upload skill window in Copilot’s agent builder, with SKILL.md chosen and the file requirements below it.">' +
+                        '<figcaption>Adding the skill: (1) choose SKILL.md, (2) the file must be a SKILL.md, or a .zip that holds one, with a name and description at the top, as in the downloaded file, (3) select Upload.</figcaption>' +
+                        '</figure>' +
+                        '<p class="figure-note">Screenshots from Microsoft Copilot, November 2026. Your tool may look a little different.</p></li>' +
                         '<li><p><strong>Test it.</strong> Open a new conversation with your agent and paste the weak draft. Do this twice, in a new conversation each time, to see whether the levels stay the same. Then paste the strong draft in a third.</p>' +
                         '<p><button type="button" class="link-button" data-open-resource="test-weak">Open the weak draft</button> · <button type="button" class="link-button" data-open-resource="test-strong">Open the strong draft</button></p>' +
                         '</li>' +

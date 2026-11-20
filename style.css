@@ -2688,7 +2688,6 @@ mark.fill-in {
 .bf .bf-r3 { grid-row: 3; }
 .bf .bf-r4 { grid-row: 4; }
 .bf .bf-r5 { grid-row: 5; }
-.bf .bf-r6 { grid-row: 6; }
 
 .bf-win {
     grid-column: 2;
@@ -2853,7 +2852,7 @@ mark.fill-in {
         grid-template-columns: minmax(0, 1fr);
     }
 
-    .bf .bf-r1, .bf .bf-r2, .bf .bf-r3, .bf .bf-r4, .bf .bf-r5, .bf .bf-r6 {
+    .bf .bf-r1, .bf .bf-r2, .bf .bf-r3, .bf .bf-r4, .bf .bf-r5 {
         grid-row: auto;
     }
 
@@ -3457,4 +3456,24 @@ mark.fill-in {
     .anatomy {
         grid-template-columns: minmax(0, 1fr);
     }
+}
+
+/* Module 4: real screenshots, with numbered markers drawn into the picture. */
+.screenshot-figure {
+    margin: 16px 0;
+}
+
+.screenshot-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+}
+
+.screenshot-figure figcaption,
+.figure-note {
+    margin-top: 6px;
+    color: var(--text-muted);
+    font-size: 0.85rem;
 }
