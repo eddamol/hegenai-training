@@ -411,14 +411,14 @@ var M4_BUILDER_FIGURE =
     '<div class="bf-note bf-left bf-change bf-r3"><p class="bf-note-title">Instructions: Paste</p><p>Your assignment and your checked rubric.</p><p><strong>The only part you change for each assignment.</strong></p><span class="bf-arrow" aria-hidden="true"></span></div>' +
     '<div class="bf-win bf-r4"><p class="bf-label">Skills <span class="bf-add" aria-hidden="true">+ Add</span></p>' +
     '<div class="bf-field bf-field-same"><strong>SKILL.md</strong> · rubric-feedback</div></div>' +
-    '<div class="bf-note bf-right bf-same bf-r4"><p class="bf-note-title">Skills: Upload once</p><p>The rubric skill, not Module 3’s.</p><span class="bf-arrow" aria-hidden="true"></span></div>' +
+    '<div class="bf-note bf-right bf-same bf-r4"><p class="bf-note-title">Skills: Upload once</p><p>The rubric skill, not Training 2’s.</p><span class="bf-arrow" aria-hidden="true"></span></div>' +
     '<div class="bf-win bf-r5"><p class="bf-label">Knowledge</p>' +
     '<div class="bf-field"><strong>Link</strong> · …/module-4-model-report.html</div></div>' +
     '<div class="bf-note bf-right bf-grey bf-r5"><p><strong>Optional.</strong> A public page with a model report.</p><span class="bf-arrow" aria-hidden="true"></span></div>' +
     '<div class="bf-win bf-bottom bf-r6"><span class="bf-create" aria-hidden="true">Create</span></div>' +
     '<div class="bf-note bf-left bf-grey bf-r6"><p>Then share the link with your students.</p><span class="bf-arrow" aria-hidden="true"></span></div>' +
     '</div>' +
-    '<figcaption>Where the parts go in an agent builder (simplified; your tool may look a little different). Compared with Module 3, the instructions hold a rubric, the skill is a different file, and you can add a knowledge link.</figcaption>' +
+    '<figcaption>Where the parts go in an agent builder (simplified; your tool may look a little different). Compared with Training 2, the instructions hold a rubric, the skill is a different file, and you can add a knowledge link.</figcaption>' +
     '</figure>';
 
 // Module 4: the five steps of the module as one strip. active lists the steps the block covers
@@ -1802,7 +1802,7 @@ window.HEGENAI_MODULES = {
                         '<li><p><strong>Fill in the practice log and upload it</strong> to a survey you receive by email, within 2 weeks from the session. This is optional for participants in facilitated sessions.</p></li>' +
                         '</ol>' +
                         '<div class="callout">' +
-                        '<p><strong>Next step: Module 4.</strong> Your agent tells students whether their draft meets each criterion. To also tell them how well, with levels from Beginning to Exceeds, turn your criteria into a rubric in <a href="module.html?m=rubrics-with-genai">Module 4</a>.</p>' +
+                        '<p><strong>Next step: Creating Rubrics and Feedback Agents with GenAI.</strong> Your agent tells students whether their draft meets each criterion. To also tell them how well, with levels from Beginning to Exceeds, turn your criteria into a rubric in <a href="module.html?m=rubrics-with-genai">that module</a>.</p>' +
                         '</div>' +
                         '<h3>Example: A course feedback coach at DTU</h3>' +
                         '<p>At the Technical University of Denmark (DTU), a feedback agent can look like this on the university’s own GenAI platform, CampusAI. DTU calls it a feedback coach, and students open it with their DTU login. The video is 1 min 40 s, has no sound, and uses an invented course and student draft. You do not need it for this module.</p>' +
@@ -2080,7 +2080,7 @@ window.HEGENAI_MODULES = {
             cluster: null,
             outcome: "After this module, you can turn the criteria of a written assignment into a four-level rubric with GenAI and test that it tells a weak draft from a strong one, and you leave with a rubric and a feedback agent that tells students which level their draft is at and how to reach the next one.",
             outcomePreview: { resource: "finished-rubric", caption: "The rubric you make for the sample case. Select to open it." },
-            audience: "Higher education educators who set written assignments. Builds on Module 3, but you can start here. No prior GenAI experience needed.",
+            audience: "Higher education educators who set written assignments. Builds on Training 2: GenAI Teaching Assistant for Formative Feedback on Assignments, but you can start here. No prior GenAI experience needed.",
             needs: "A GenAI tool your institution allows, such as Microsoft Copilot with a work or school account. To build and share an agent, an agent builder such as Copilot’s. Also, either the criteria of an assignment you set or the sample case provided.",
             minutes: 60,
             status: "available",
@@ -2090,7 +2090,7 @@ window.HEGENAI_MODULES = {
                     minutes: 10,
                     html: '<p>In this block you see the problem the module addresses, learn four terms, and choose the assignment you will work on.</p>' +
                         '<div class="callout">' +
-                        '<p><strong>Builds on Module 3.</strong> In <a href="module.html?m=feedback-with-genai">Module 3</a>, a feedback agent tells students whether their draft <em>meets</em> each criterion. In this module, it tells them <em>how well</em>: which level the draft is at, and what gets it to the next one. You do not need to have done Module 3 first.</p>' +
+                        '<p><strong>Builds on Training 2: GenAI Teaching Assistant for Formative Feedback on Assignments.</strong> In <a href="module.html?m=feedback-with-genai">Training 2</a>, a feedback agent tells students whether their draft <em>meets</em> each criterion. In this module, it tells them <em>how well</em>: which level the draft is at, and what gets it to the next one. You do not need to have done Training 2 first.</p>' +
                         '</div>' +
                         '<h3>The problem</h3>' +
                         '<p>Assessment criteria tell students what to do, such as “The problem is clearly identified and analysed using relevant course concepts.” They do not show what weak, good and excellent work on that criterion looks like.</p>' +
@@ -2112,7 +2112,7 @@ window.HEGENAI_MODULES = {
                         '<li><strong>Feedback, not grades.</strong> The agent never gives points, a score or a grade. Students tend to learn more from comments than from grades (Koenka et al., 2021).</li>' +
                         '</ul>' +
                         '<h3>One example throughout this module</h3>' +
-                        '<p>The module uses the same invented <strong>sample case</strong> as Module 3: A case study report in a second-year business course, with a weak and a strong student draft. If you have no assignment of your own, you also use it in <strong>Try it</strong> and <strong>Make it</strong>.</p>' +
+                        '<p>The module uses the same invented <strong>sample case</strong> as Training 2: A case study report in a second-year business course, with a weak and a strong student draft. If you have no assignment of your own, you also use it in <strong>Try it</strong> and <strong>Make it</strong>.</p>' +
                         '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>',
                     quiz: {
                         title: "Where you stand",
@@ -2140,7 +2140,7 @@ window.HEGENAI_MODULES = {
                             },
                             {
                                 id: "m4-module3",
-                                prompt: "Have you built the feedback agent in Module 3?",
+                                prompt: "Have you built the feedback agent in Training 2?",
                                 options: [
                                     {
                                         text: "Yes.",
@@ -2199,7 +2199,7 @@ window.HEGENAI_MODULES = {
                         '<p><strong>Do you agree with each level?</strong> Judging that yourself is part of the test. In this run, the strong draft got only Developing for Recommendation: Its advice on staff schedules and pay has no evidence of its own, only the stamp card does. Under this rubric, that is fair. If you think the draft deserves Meets, the descriptor says something other than what you mean, so change it.</p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>See the feedback a student gets.</strong> The rubric then goes into a feedback agent, set up as in Module 3. A student pastes the weak draft. For each criterion, the feedback has three parts:</p>' +
+                        '<p><strong>See the feedback a student gets.</strong> The rubric then goes into a feedback agent, set up as in Training 2. A student pastes the weak draft. For each criterion, the feedback has three parts:</p>' +
                         M4_FEEDBACK_ANATOMY +
                         '<p>Here is all of it, with a “Why” line the agent added for each criterion. There is no grade and no rewritten text.</p>' +
                         '<div data-text="see-feedback"></div>' +
@@ -2344,7 +2344,7 @@ window.HEGENAI_MODULES = {
                             },
                             {
                                 title: "Criteria",
-                                guidance: "Copy 3 to 5 criteria from your assignment description, one per line, as students see them. Leave out weights and points. If you made them checkable in Module 3, use those.",
+                                guidance: "Copy 3 to 5 criteria from your assignment description, one per line, as students see them. Leave out weights and points. If you made them checkable in Training 2, use those.",
                                 inputs: [
                                     { key: "criteria", label: "Criteria", type: "text", rows: 5,
                                       practice: "1. Problem analysis. The problem is clearly identified and analysed using relevant course concepts.\n2. Recommendation. The recommendation is well argued and supported by evidence.\n3. Writing and structure. The report is clearly written and well structured for a professional reader." }
@@ -2364,11 +2364,11 @@ window.HEGENAI_MODULES = {
                 {
                     id: "make",
                     minutes: 20,
-                    html: '<p>In this block, you put your rubric into a feedback agent, test it on the two drafts, and get a link that can be shared. If you built the agent in Module 3, the steps are the same. Only the skill and the instructions change.</p>' +
+                    html: '<p>In this block, you put your rubric into a feedback agent, test it on the two drafts, and get a link that can be shared. If you built the agent in Training 2, the steps are the same. Only the skill and the instructions change.</p>' +
                         m4Journey([4], 'You do this here') +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Download the rubric skill.</strong> It is the same for every assignment that has a rubric. It is a different file from the Module 3 skill: It gives levels instead of met or not met. Keep the file name SKILL.md.</p>' +
+                        '<p><strong>Download the rubric skill.</strong> It is the same for every assignment that has a rubric. It is a different file from the Training 2 skill: It gives levels instead of met or not met. Keep the file name SKILL.md.</p>' +
                         '<div data-text="make-skill"></div>' +
                         '</li>' +
                         '<li>' +
@@ -2410,7 +2410,7 @@ window.HEGENAI_MODULES = {
                         '<div class="dropdown-body">' +
                         '<p>Most fixes are in your rubric. Edit it in step 2 above, copy the instructions again, paste them over the old ones, and rerun the same drafts. The skill stays as it is.</p>' +
                         '<ul class="fix-list" role="list">' +
-                        '<li><p class="fix-check">1. A level has no quote, or it gives met or not met instead of a level</p><p><strong>Likely cause:</strong> The agent uses the Module 3 skill, or no skill.</p><p><strong>Change:</strong> Check that the rubric SKILL.md from step 1 is the agent’s skill. If it is still not used, paste the skill text under the instructions.</p></li>' +
+                        '<li><p class="fix-check">1. A level has no quote, or it gives met or not met instead of a level</p><p><strong>Likely cause:</strong> The agent uses the Training 2 skill, or no skill.</p><p><strong>Change:</strong> Check that the rubric SKILL.md from step 1 is the agent’s skill. If it is still not used, paste the skill text under the instructions.</p></li>' +
                         '<li><p class="fix-check">2. The levels differ from the ones you agreed with in Try it</p><p><strong>Likely cause:</strong> The rubric in the instructions is not the one you tested, or a descriptor can be read two ways.</p><p><strong>Change:</strong> Paste the tested rubric again. If it was the same, rewrite the descriptor that was misread.</p></li>' +
                         '<li><p class="fix-check">3. The two runs give different levels</p><p><strong>Likely cause:</strong> Two neighbouring levels differ by a vague word.</p><p><strong>Change:</strong> Make the difference something you can see or count, as in step 2 of See it.</p></li>' +
                         '<li><p class="fix-check">4. It gives a total, a grade or an overall level</p><p><strong>Likely cause:</strong> Points or weights are left in the rubric.</p><p><strong>Change:</strong> Remove them from the instructions. Keep them in your own marking guide.</p></li>' +
@@ -2446,7 +2446,7 @@ window.HEGENAI_MODULES = {
                     html: '<p>In this block, you plan how students get the rubric and the agent. You do not need to share the agent to finish this module.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Check the rules.</strong> Your course and institution rules must allow GenAI feedback on drafts, and your IT department most likely decides whether you can share an agent with students. The sharing steps are the same as in <a href="module.html?m=feedback-with-genai#block-plan">Module 3, Plan it</a>.</p>' +
+                        '<p><strong>Check the rules.</strong> Your course and institution rules must allow GenAI feedback on drafts, and your IT department most likely decides whether you can share an agent with students. The sharing steps are the same as in <a href="module.html?m=feedback-with-genai#block-plan">Training 2, Plan it</a>.</p>' +
                         '<p>In the EU, the AI Act lists AI systems that evaluate learning outcomes as high-risk, with obligations that apply from 2 December 2027. Whether a feedback agent that gives no grade falls under this is not settled. Ask your institution’s AI or legal contact before you use it widely, and tell students plainly that the feedback comes from AI.</p>' +
                         '</li>' +
                         '<li>' +
@@ -2477,7 +2477,7 @@ window.HEGENAI_MODULES = {
                     id: "sample-case",
                     group: "Worked example",
                     title: "Sample case",
-                    html: '<p class="resource-note">(Invented, and the same as in Module 3. Written as a typical assignment description. In Try it, you turn its criteria, as written here, into a rubric.)</p>' +
+                    html: '<p class="resource-note">(Invented, and the same as in Training 2. Written as a typical assignment description. In Try it, you turn its criteria, as written here, into a rubric.)</p>' +
                         '<div class="guide-page">' +
                         '<p><strong>Organisation and Management</strong> · 2nd-year BSc · 5 ECTS</p>' +
                         '<h3>Assignment 2: Case study report</h3>' +
@@ -2510,7 +2510,7 @@ window.HEGENAI_MODULES = {
                     id: "test-weak",
                     group: "Worked example",
                     title: "Weak draft",
-                    html: '<p class="resource-note">(Invented, and the same as in Module 3: a weak draft for the sample case, shortened to about 250 words. Use it in the test in Try it and in Make it.)</p>' +
+                    html: '<p class="resource-note">(Invented, and the same as in Training 2: a weak draft for the sample case, shortened to about 250 words. Use it in the test in Try it and in Make it.)</p>' +
                         '<div class="guide-page">' +
                         '<h4>Introduction</h4>' +
                         '<p>Café Nord is a small café in Aarhus. This report is about Café Nord and the problems it has.</p>' +
@@ -2530,7 +2530,7 @@ window.HEGENAI_MODULES = {
                     id: "test-strong",
                     group: "Worked example",
                     title: "Strong draft",
-                    html: '<p class="resource-note">(Invented, and the same as in Module 3: a strong draft for the sample case, shortened to about 450 words. The organisation, data and the Jensen &amp; Holm source are made up. Use it in the test in Try it and in Make it.)</p>' +
+                    html: '<p class="resource-note">(Invented, and the same as in Training 2: a strong draft for the sample case, shortened to about 450 words. The organisation, data and the Jensen &amp; Holm source are made up. Use it in the test in Try it and in Make it.)</p>' +
                         '<div class="guide-page">' +
                         '<h4>Introduction</h4>' +
                         '<p>This report asks: why do fewer customers return to Café Nord, a 40-seat café in central Aarhus, and what should it do about it? Its sales fell 18% from 2024 to 2025. The report gives background on the café, analyses the problem and recommends a solution.</p>' +
