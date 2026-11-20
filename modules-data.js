@@ -414,8 +414,8 @@ var M4_JOURNEY = [
     { title: 'Your criteria', text: 'From the assignment description' },
     { title: 'GenAI drafts a rubric', text: 'Four levels per criterion' },
     { title: 'You fix vague words', text: 'Name what a reader can see' },
-    { title: 'Test on two drafts', text: 'Weak and strong must land apart' },
-    { title: 'Feedback agent', text: 'Level, evidence, next step' }
+    { title: 'Test on two drafts', text: 'Weak and strong get different levels' },
+    { title: 'Feedback agent', text: 'Level, evidence, why, next step' }
 ];
 function m4Journey(active, label) {
     var html = '<figure class="journey-figure"><ol class="journey" role="list">';
@@ -2090,7 +2090,7 @@ window.HEGENAI_MODULES = {
                         '</div>' +
                         '<h3>What you make</h3>' +
                         m4Journey(null) +
-                        '<p>You make a rubric for one of your assignments, or for the sample case, with 3 to 5 criteria and four levels. You test it on a weak and a strong draft, then put it in a feedback agent. For each criterion, the agent tells the student which level the draft is at, quotes the line it based that on, and says what would get the draft to the next level.</p>' +
+                        '<p>You make a rubric for one of your assignments, or for the sample case, with 3 to 5 criteria and four levels. You test it on a weak and a strong draft, then put it in a feedback agent. For each criterion, the agent tells the student which level the draft is at, quotes the line the level is based on, and says what would get the draft to the next level.</p>' +
                         '<h3>Two ground rules</h3>' +
                         '<ul>' +
                         '<li><strong>GenAI drafts, you decide.</strong> The rubric is yours. GenAI writes the first version, and you check every descriptor.</li>' +
@@ -2191,7 +2191,7 @@ window.HEGENAI_MODULES = {
                         '</li>' +
                         '</ol>' +
                         '<h3>Why it works</h3>' +
-                        '<p>A rubric makes clear what good work looks like by describing each criterion at several levels of quality, and analytic rubrics, with one row per criterion, suit feedback best (Brookhart, 2018). Rubrics do not help on their own, though; what matters is how they are designed and used (Panadero &amp; Jonsson, 2020). Here, that means observable descriptors, a test on two drafts before students see the rubric, and feedback that says where to go next, not only how well the work did (Hattie &amp; Timperley, 2007).</p>',
+                        '<p>A rubric makes clear what good work looks like by describing each criterion at several levels. A rubric with one row per criterion suits feedback best (Brookhart, 2018). Rubrics do not help on their own, though; what matters is how they are designed and used (Panadero &amp; Jonsson, 2020). Here, that means descriptors that name what you can see in the text, a test on two drafts before students see the rubric, and feedback that says what to do next (Hattie &amp; Timperley, 2007).</p>',
                     quiz: {
                         title: "Self-check",
                         intro: "See if you can spot a descriptor a GenAI tool cannot use, and read a test result. (Your answers are only visible to you.)",
@@ -2381,7 +2381,7 @@ window.HEGENAI_MODULES = {
                         '</figure>' +
                         '<figure class="screenshot-figure">' +
                         '<img src="assets/module-4/builder-skill-upload.jpg" width="1280" height="602" loading="lazy" alt="The Upload skill window in Copilot’s agent builder, with SKILL.md chosen and the file requirements below it.">' +
-                        '<figcaption>Adding the skill: (1) choose SKILL.md, (2) the file must be a SKILL.md, or a .zip that holds one, with a name and description at the top, as in the downloaded file, (3) select Upload.</figcaption>' +
+                        '<figcaption>Adding the skill: (1) choose SKILL.md, (2) the file rules, which the downloaded file already meets, and (3) Upload.</figcaption>' +
                         '</figure>' +
                         '<p class="figure-note">Screenshots from Microsoft Copilot, November 2026. Your tool may look a little different.</p></li>' +
                         '<li><p><strong>Test it.</strong> Open a new conversation with your agent and paste the weak draft. Do this twice, in a new conversation each time, to see whether the levels stay the same. Then paste the strong draft in a third.</p>' +
@@ -2597,7 +2597,7 @@ window.HEGENAI_MODULES = {
                 {
                     id: "see-feedback",
                     kind: "draft",
-                    label: "Feedback on the weak draft (from a test run of the agent, November 2026; its comments on length and on criteria it cannot judge are left out, as the skill now tells it not to give them)",
+                    label: "Feedback on the weak draft (from a test run of the agent, November 2026, shortened)",
                     showLines: 5,
                     moreLabel: "Show all the feedback",
                     lines: [
