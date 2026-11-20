@@ -7,6 +7,7 @@ Place the draft on the rubric in your instructions, one criterion at a time. Use
 # For each criterion
 - Level: the highest level whose description the draft fully shows. If it shows only part of a level, give the level below.
 - Evidence: a short quote from the draft.
+- Why: one sentence on what the draft shows or lacks, in the words of the level descriptions.
 - To reach the next level: one concrete thing the student can do, in the words of that level's description. At the top level, write "Top level" and say what keeps it there.
 If the part needed to judge a criterion is missing, write "Cannot judge" and say what the student should paste.
 Comment only on the rubric's criteria. Do not comment on length, word count, file format, deadlines or anything else the rubric does not list, and do not list criteria you cannot judge.

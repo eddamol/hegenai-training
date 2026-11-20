@@ -382,6 +382,7 @@ var M4_SKILL_LINES = [
     "# For each criterion",
     "- Level: the highest level whose description the draft fully shows. If it shows only part of a level, give the level below.",
     "- Evidence: a short quote from the draft.",
+    "- Why: one sentence on what the draft shows or lacks, in the words of the level descriptions.",
     "- To reach the next level: one concrete thing the student can do, in the words of that level's description. At the top level, write \"Top level\" and say what keeps it there.",
     "If the part needed to judge a criterion is missing, write \"Cannot judge\" and say what the student should paste.",
     "Comment only on the rubric's criteria. Do not comment on length, word count, file format, deadlines or anything else the rubric does not list, and do not list criteria you cannot judge.",
@@ -406,7 +407,7 @@ var M4_BUILDER_FIGURE =
     '<div class="bf-win bf-r3"><p class="bf-label">Instructions</p>' +
     '<div class="bf-field bf-field-change">' +
     '<p>You give formative feedback to a student on a draft, using the rubric below…</p>' +
-    '<p># Rubric<br>1. Problem analysis<br>- Beginning: Names a topic, not a problem…</p>' +
+    '<p># Rubric<br>1. Problem analysis (LO1)<br>- Beginning: Names an organisation but does not identify…</p>' +
     '</div></div>' +
     '<div class="bf-note bf-left bf-change bf-r3"><p class="bf-note-title">Instructions: Paste</p><p>Your assignment and your checked rubric.</p><p><strong>The only part you change for each assignment.</strong></p><span class="bf-arrow" aria-hidden="true"></span></div>' +
     '<div class="bf-win bf-r4"><p class="bf-label">Skills <span class="bf-add" aria-hidden="true">+ Add</span></p>' +
@@ -474,17 +475,18 @@ var M4_FEEDBACK_ANATOMY =
     '<p class="anatomy-title">Feedback: Problem analysis</p>' +
     '<div class="anatomy-part"><span class="anatomy-label">1 · Level</span><p>Beginning.</p></div>' +
     '<div class="anatomy-part"><span class="anatomy-label">2 · Evidence</span><p>“Café Nord has a problem with customers. Fewer people come back than before…”</p></div>' +
-    '<div class="anatomy-part anatomy-next"><span class="anatomy-label">3 · Next step</span><p>To reach the next level: State a research question and apply at least one course concept to describe the problem.</p></div>' +
+    '<div class="anatomy-part"><span class="anatomy-label">3 · Why</span><p>No research question, and no course concept is applied.</p></div>' +
+    '<div class="anatomy-part anatomy-next"><span class="anatomy-label">4 · Next step</span><p>To reach the next level: State a research question and apply at least one course concept to describe the problem.</p></div>' +
     '</div>' +
     '<div class="anatomy-rubric" aria-label="The rubric row for Problem analysis">' +
     '<p class="anatomy-title">The rubric row it comes from</p>' +
     '<div class="anatomy-cell is-here"><strong>Beginning</strong><span>The draft is here (1)</span></div>' +
-    '<div class="anatomy-cell is-next"><strong>Developing</strong><span>The next step (3) uses this descriptor’s words: “states a research question … applies at least one course concept to describe the problem”</span></div>' +
+    '<div class="anatomy-cell is-next"><strong>Developing</strong><span>The next step (4) uses this descriptor’s words: “states a research question … applies at least one course concept to describe the problem”</span></div>' +
     '<div class="anatomy-cell"><strong>Meets</strong></div>' +
     '<div class="anatomy-cell"><strong>Exceeds</strong></div>' +
     '</div>' +
     '</div>' +
-    '<figcaption>The three parts of the feedback for each criterion, from a test run of the agent on the weak draft. The level and the next step both come from the rubric, so students meet the same words in the rubric and in the feedback.</figcaption>' +
+    '<figcaption>The four parts of the feedback for each criterion, from a test run of the agent on the weak draft. The level and the next step both come from the rubric, so students meet the same words in the rubric and in the feedback.</figcaption>' +
     '</figure>';
 
 window.HEGENAI_MODULES = {
@@ -1801,9 +1803,6 @@ window.HEGENAI_MODULES = {
                         '<p><a class="pill-button" href="downloads/practice-log-module-3.docx" download>Download the practice log (Word)</a></p>' +                        '</li>' +
                         '<li><p><strong>Fill in the practice log and upload it</strong> to a survey you receive by email, within 2 weeks from the session. This is optional for participants in facilitated sessions.</p></li>' +
                         '</ol>' +
-                        '<div class="callout">' +
-                        '<p><strong>Next step: Creating Rubrics and Feedback Agents with GenAI.</strong> Your agent tells students whether their draft meets each criterion. To also tell them how well, with levels from Beginning to Exceeds, turn your criteria into a rubric in <a href="module.html?m=rubrics-with-genai">that module</a>.</p>' +
-                        '</div>' +
                         '<h3>Example: A course feedback coach at DTU</h3>' +
                         '<p>At the Technical University of Denmark (DTU), a feedback agent can look like this on the university’s own GenAI platform, CampusAI. DTU calls it a feedback coach, and students open it with their DTU login. The video is 1 min 40 s, has no sound, and uses an invented course and student draft. You do not need it for this module.</p>' +
                         '<video class="module-video" controls preload="metadata" src="assets/module-3/dtu-feedback-coach.mp4">' +
@@ -2078,7 +2077,7 @@ window.HEGENAI_MODULES = {
             title: "Creating Rubrics and Feedback Agents with GenAI",
             subtitle: "For Assessment and Feedback on Student Reports and Assignments",
             cluster: null,
-            outcome: "After this module, you can turn the criteria of a written assignment into a four-level rubric with GenAI and test that it tells a weak draft from a strong one, and you leave with a rubric and a feedback agent that tells students which level their draft is at and how to reach the next one.",
+            outcome: "After this module, you can turn the criteria of a written assignment into a four-level rubric with GenAI and test that it tells a weak draft from a strong one. You leave with a tested rubric and a feedback agent that tells students which level their draft is at and how to reach the next one.",
             outcomePreview: { resource: "finished-rubric", caption: "The rubric you make for the sample case. Select to open it." },
             audience: "Higher education educators who set written assignments. Builds on Training 2: GenAI Teaching Assistant for Formative Feedback on Assignments, but you can start here. No prior GenAI experience needed.",
             needs: "A GenAI tool your institution allows, such as Microsoft Copilot with a work or school account. To build and share an agent, an agent builder such as Copilot’s. Also, either the criteria of an assignment you set or the sample case provided.",
@@ -2088,7 +2087,7 @@ window.HEGENAI_MODULES = {
                 {
                     id: "intro",
                     minutes: 10,
-                    html: '<p>In this block you see the problem the module addresses, learn four terms, and choose the assignment you will work on.</p>' +
+                    html: '<p>In this block, you see the problem the module addresses, learn four terms, and choose the assignment you will work on.</p>' +
                         '<div class="callout">' +
                         '<p><strong>Builds on Training 2: GenAI Teaching Assistant for Formative Feedback on Assignments.</strong> In <a href="module.html?m=feedback-with-genai">Training 2</a>, a feedback agent tells students whether their draft <em>meets</em> each criterion. In this module, it tells them <em>how well</em>: which level the draft is at, and what gets it to the next one. You do not need to have done Training 2 first.</p>' +
                         '</div>' +
@@ -2112,7 +2111,7 @@ window.HEGENAI_MODULES = {
                         '<li><strong>Feedback, not grades.</strong> The agent never gives points, a score or a grade. Students tend to learn more from comments than from grades (Koenka et al., 2021).</li>' +
                         '</ul>' +
                         '<h3>One example throughout this module</h3>' +
-                        '<p>The module uses the same invented <strong>sample case</strong> as Training 2: A case study report in a second-year business course, with a weak and a strong student draft. If you have no assignment of your own, you also use it in <strong>Try it</strong> and <strong>Make it</strong>.</p>' +
+                        '<p>The module uses the same invented <strong>sample case</strong> as Training 2: A case study report in a second-year business course, with a weak and a strong student draft. If you have nothing ready now, you use it in <strong>Try it</strong> and <strong>Make it</strong> too.</p>' +
                         '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>',
                     quiz: {
                         title: "Where you stand",
@@ -2132,7 +2131,7 @@ window.HEGENAI_MODULES = {
                                         note: "Use it throughout the module. In **Try it**, check your rubric against the list there and run the test on two drafts. You may not need GenAI to write one."
                                     },
                                     {
-                                        text: "I have none coming up.",
+                                        text: "I have nothing ready now.",
                                         note: "Use the sample case throughout the module. It comes with a weak and a strong student draft to test on.",
                                         action: { label: "Open the sample case", resource: "sample-case" }
                                     }
@@ -2174,11 +2173,11 @@ window.HEGENAI_MODULES = {
                         '<div class="criteria-brief"><span class="criteria-label">First draft</span>“<s>Some</s> analysis of the problem, with <s>limited</s> use of course concepts.”</div>' +
                         '</div>' +
                         '<div class="criteria-row">' +
-                        '<div class="criteria-check"><span class="criteria-label">Fixed</span><strong>Recommendation, Meets.</strong> Recommends one solution that addresses the analysed problem, <mark>explains how it would address the problem</mark>, and supports it with <mark>at least two pieces of relevant evidence</mark>.</div>' +
+                        '<div class="criteria-check"><span class="criteria-label">Fixed</span><strong>Recommendation, Meets.</strong> Recommends one solution that addresses the analysed problem, <mark>explains how it would address the problem</mark>, and supports the recommendation with <mark>at least two pieces of relevant evidence</mark>.</div>' +
                         '<div class="criteria-brief"><span class="criteria-label">First draft</span>“An <s>excellent, convincing</s> recommendation, <s>well</s> supported by <s>strong</s> evidence.”</div>' +
                         '</div>' +
                         '<div class="criteria-row">' +
-                        '<div class="criteria-check"><span class="criteria-label">Fixed</span><strong>Writing and structure, Meets.</strong> Includes <mark>all six required sections</mark>, <mark>uses headings</mark> to distinguish them, and uses <mark>APA 7 in-text citations and reference entries</mark>.</div>' +
+                        '<div class="criteria-check"><span class="criteria-label">Fixed</span><strong>Writing and structure, Meets.</strong> Includes <mark>all six required sections</mark> … <mark>Uses headings</mark> to distinguish the sections, writes in complete sentences, and uses <mark>APA 7 in-text citations and reference entries</mark>.</div>' +
                         '<div class="criteria-brief"><span class="criteria-label">First draft</span>“The report is <s>clearly</s> written and <s>well</s> structured.”</div>' +
                         '</div>' +
                         '</div>' +
@@ -2186,7 +2185,7 @@ window.HEGENAI_MODULES = {
                         m4RubricTable('The rubric for the sample case, drafted with GenAI and checked by the teacher.') +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Test the rubric on a weak and a strong draft.</strong> In the same conversation, the teacher pastes the two sample drafts and asks GenAI to place each on the rubric, criterion by criterion. This tests the rubric, not the students: If both drafts land on the same level for a criterion, its descriptors are too vague to tell them apart.</p>' +
+                        '<p><strong>Test the rubric on a weak and a strong draft.</strong> In the same conversation, the teacher pastes the two sample drafts and asks GenAI to place each on the rubric, criterion by criterion. This tests the rubric, not the students: If both drafts land on the same level for a criterion, its descriptors are too vague to tell them apart. The levels below come from a test run of the finished agent; a test in a GenAI conversation works the same way.</p>' +
                         '<p><button type="button" class="link-button" data-open-resource="test-weak">Open the weak draft</button> · <button type="button" class="link-button" data-open-resource="test-strong">Open the strong draft</button></p>' +
                         '<div class="placement-legend" aria-hidden="true"><span><span class="marker marker-weak">W</span>Weak draft</span><span><span class="marker marker-strong">S</span>Strong draft</span></div>' +
                         m4PlacementGrid([{ weak: 0, strong: 2 }, { weak: 0, strong: 1 }, { weak: 1, strong: 2 }], 'The rubric passes: In every row, the weak and the strong draft land on different levels (from a test run of the agent, November 2026).') +
@@ -2199,9 +2198,9 @@ window.HEGENAI_MODULES = {
                         '<p><strong>Do you agree with each level?</strong> Judging that yourself is part of the test. In this run, the strong draft got only Developing for Recommendation: Its advice on staff schedules and pay has no evidence of its own, only the stamp card does. Under this rubric, that is fair. If you think the draft deserves Meets, the descriptor says something other than what you mean, so change it.</p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>See the feedback a student gets.</strong> The rubric then goes into a feedback agent, set up as in Training 2. A student pastes the weak draft. For each criterion, the feedback has three parts:</p>' +
+                        '<p><strong>See the feedback a student gets.</strong> The rubric then goes into a feedback agent, set up as in Training 2. A student pastes the weak draft. For each criterion, the feedback has four parts:</p>' +
                         M4_FEEDBACK_ANATOMY +
-                        '<p>Here is all of it, with a “Why” line the agent added for each criterion. There is no grade and no rewritten text.</p>' +
+                        '<p>Here is all of it. There is no grade and no rewritten text.</p>' +
                         '<div data-text="see-feedback"></div>' +
                         '</li>' +
                         '</ol>' +
@@ -2397,7 +2396,7 @@ window.HEGENAI_MODULES = {
                         '</li>' +
                         '<li><p><strong>Check the feedback.</strong> Compare it with the levels you agreed with in <a href="#block-try">Try it</a>. Then tick what holds:</p>' +
                         '<ol class="tick-list" data-checklist="agent">' +
-                        '<li>Every criterion gets one level from your rubric, with a quote from the draft.</li>' +
+                        '<li>Every criterion gets one level from your rubric, a quote from the draft and a reason.</li>' +
                         '<li>The levels match the ones you agreed with in the test in Try it.</li>' +
                         '<li>The two runs on the weak draft give the same levels.</li>' +
                         '<li>Each next step uses the words of the next level’s descriptor.</li>' +
@@ -2468,7 +2467,7 @@ window.HEGENAI_MODULES = {
                         '<p><strong>Download the practice log.</strong> It is optional, and you do not need to share the agent to fill it in.</p>' +
                         '<p><a class="pill-button" href="downloads/practice-log-module-4.docx" download>Download the practice log (Word)</a></p>' +
                         '</li>' +
-                        '<li><p><strong>Fill in the practice log and upload it</strong> to a survey you receive by email, within 2 weeks from the session. This is optional for participants in facilitated sessions.</p></li>' +
+                        '<li><p><strong>Fill in the practice log and upload it</strong> to the survey you receive by email, within 2 weeks of the session.</p></li>' +
                         '</ol>'
                 }
             ],
@@ -2605,7 +2604,7 @@ window.HEGENAI_MODULES = {
                 {
                     id: "see-feedback",
                     kind: "draft",
-                    label: "Feedback on the weak draft (from a test run of the agent, November 2026; its comments on length and on criteria it cannot judge are left out, and the skill now tells it not to give them)",
+                    label: "Feedback on the weak draft (from a test run of the agent, November 2026; its comments on length and on criteria it cannot judge are left out, as the skill now tells it not to give them)",
                     showLines: 5,
                     moreLabel: "Show all the feedback",
                     lines: [
@@ -2640,6 +2639,7 @@ window.HEGENAI_MODULES = {
                     label: "Prompt to draft the rubric",
                     copyLabel: "Copy prompt",
                     optionalKeys: ["levels"],
+                    missingIn: [{ label: "steps 1 to 3 of the form", block: "try" }],
                     template: [
                         "Turn the assessment criteria below into an analytic rubric for formative feedback on student drafts.",
                         "Use these levels, from lowest to highest: {{levels|Beginning, Developing, Meets, Exceeds}}.",
@@ -2662,6 +2662,7 @@ window.HEGENAI_MODULES = {
                     copyLabel: "Copy prompt",
                     lines: [
                         "Use the rubric above. Below are two drafts of the assignment. For each draft and each criterion, give the level and a short quote from the draft as evidence. Give no total and no grade.",
+                        "Judge only the rubric's criteria. The drafts are shortened, so do not comment on their length.",
                         "Then list every criterion where both drafts got the same level.",
                         "Draft A: [paste the weak draft]",
                         "Draft B: [paste the strong draft]"
@@ -2714,7 +2715,7 @@ window.HEGENAI_MODULES = {
                 '<li>Brookhart, S. M. (2018). Appropriate criteria: Key to effective rubrics. <i>Frontiers in Education, 3</i>, 22. <a href="https://doi.org/10.3389/feduc.2018.00022">https://doi.org/10.3389/feduc.2018.00022</a></li>' +
                 '<li>Hattie, J., &amp; Timperley, H. (2007). The power of feedback. <i>Review of Educational Research, 77</i>(1), 81–112. <a href="https://doi.org/10.3102/003465430298487">https://doi.org/10.3102/003465430298487</a></li>' +
                 '<li>Koenka, A. C., Linnenbrink-Garcia, L., Moshontz, H., Atkinson, K. M., Sanchez, C. E., &amp; Cooper, H. (2021). A meta-analysis on the impact of grades and comments on academic motivation and achievement: A case for written feedback. <i>Educational Psychology, 41</i>(7), 922–947. <a href="https://doi.org/10.1080/01443410.2019.1659939">https://doi.org/10.1080/01443410.2019.1659939</a></li>' +
-                '<li>Nicol, D. (2021). The power of internal feedback: Exploiting natural comparison processes. <i>Assessment &amp; Evaluation in Higher Education, 46</i>(5), 756–778.</li>' +
+                '<li>Nicol, D. (2021). The power of internal feedback: Exploiting natural comparison processes. <i>Assessment &amp; Evaluation in Higher Education, 46</i>(5), 756–778. <a href="https://doi.org/10.1080/02602938.2020.1823314">https://doi.org/10.1080/02602938.2020.1823314</a></li>' +
                 '<li>Panadero, E., &amp; Jonsson, A. (2020). A critical review of the arguments against the use of rubrics. <i>Educational Research Review, 30</i>, 100329. <a href="https://doi.org/10.1016/j.edurev.2020.100329">https://doi.org/10.1016/j.edurev.2020.100329</a></li>' +
                 '<li>Regulation (EU) 2024/1689 (Artificial Intelligence Act), Annex III, point 3, as amended by Regulation (EU) 2026/1744 (Digital Omnibus on AI).</li>' +
                 '<li>Swingler, M. V., &amp; Nicol, D. (2026). Do students generate better self-feedback by comparing their work against assessment criteria or exemplars? <i>Assessment &amp; Evaluation in Higher Education, 51</i>(6), 1136–1155. <a href="https://doi.org/10.1080/02602938.2026.2644513">https://doi.org/10.1080/02602938.2026.2644513</a></li>' +
