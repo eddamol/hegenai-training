@@ -61,6 +61,7 @@
             heading.textContent = module.title;
         }
         card.appendChild(heading);
+        if (module.subtitle) card.appendChild(create('p', 'module-subtitle', module.subtitle));
 
         var outcome = create('p', 'module-outcome');
         if (module.outcome === 'To be confirmed') {

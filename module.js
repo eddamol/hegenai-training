@@ -278,6 +278,7 @@
         var header = create('header', 'module-header');
         header.appendChild(create('p', 'module-number', 'Module'));
         header.appendChild(create('h1', 'page-title', module.title));
+        if (module.subtitle) header.appendChild(create('p', 'page-subtitle', module.subtitle));
 
         header.appendChild(renderMeta(module, isAvailable));
         return header;

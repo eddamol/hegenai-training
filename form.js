@@ -89,7 +89,12 @@
     function build(moduleId, config, scope) {
         var values = get(moduleId);
         var inputs = [];
-        var idPrefix = 'form-' + moduleId + '-';
+        // config.id names a second form in the same module: its ids stay unique, and its
+        // Clear button clears only its own fields. Without it, Clear clears the whole module.
+        var idPrefix = 'form-' + moduleId + '-' + (config.id ? config.id + '-' : '');
+        var ownKeys = config.id ? (config.fields || []).reduce(function (keys, field) {
+            return keys.concat(field.inputs.map(function (spec) { return spec.key; }));
+        }, []) : null;
         var form = create('form', 'trainee-form');
         form.noValidate = true;
         // Nothing is submitted anywhere.
@@ -136,7 +141,8 @@
         if (tools.children.length) form.appendChild(tools);
 
         // Steps
-        var steps = create('ol', 'step-list form-steps');
+        // config.unnumbered: a one-field form inside a numbered step shows no number of its own.
+        var steps = create('ol', 'step-list form-steps' + (config.unnumbered ? ' is-unnumbered' : ''));
         steps.setAttribute('role', 'list');
         (config.fields || []).forEach(function (field, fieldIndex) {
             var item = create('li');
@@ -246,7 +252,7 @@
             clearButton.textContent = CLEAR_LABEL;
         }
         function refreshClear() {
-            clearButton.hidden = !Object.keys(values).some(function (key) {
+            clearButton.hidden = !(ownKeys || Object.keys(values)).some(function (key) {
                 return values[key];
             });
         }
@@ -260,7 +266,13 @@
                 input.control.value = '';
                 if (input.refresh) input.refresh();
             });
-            save(moduleId, {});
+            if (ownKeys) {
+                var kept = get(moduleId);
+                ownKeys.forEach(function (key) { delete kept[key]; });
+                save(moduleId, kept);
+            } else {
+                save(moduleId, {});
+            }
             notify(moduleId);
             resetClear();
             status.textContent = 'All fields cleared.';

@@ -180,13 +180,19 @@
         var forms = window.HEGenAIForm;
         if (!forms) return;
 
+        // spec.missingIn: [{ label, block }] names where the missing details are filled in.
+        // Without it, the notice points to Try it.
+        var places = spec.missingIn || [{ label: 'Try it', block: 'try' }];
         var notice = create('p', 'prompt-notice');
         notice.appendChild(document.createTextNode('Some details are missing. Fill them in under '));
-        var noticeLink = create('a', '', 'Try it');
-        noticeLink.href = '#block-try';
-        var strong = create('strong');
-        strong.appendChild(noticeLink);
-        notice.appendChild(strong);
+        places.forEach(function (place, index) {
+            if (index) notice.appendChild(document.createTextNode(index === places.length - 1 ? ' and ' : ', '));
+            var noticeLink = create('a', '', place.label);
+            noticeLink.href = '#block-' + place.block;
+            var strong = create('strong');
+            strong.appendChild(noticeLink);
+            notice.appendChild(strong);
+        });
         notice.appendChild(document.createTextNode('.'));
 
         var box = create('div', 'text-box prompt-box');
@@ -309,8 +315,10 @@
         var lists = container.querySelectorAll('ol[data-checklist]');
         Array.prototype.forEach.call(lists, function (list) {
             var boxes = [];
+            // data-checklist="name" keeps a second list's ticks apart; an empty value keeps the old keys.
+            var prefix = list.getAttribute('data-checklist');
             Array.prototype.forEach.call(list.children, function (item, index) {
-                var key = 'check' + (index + 1);
+                var key = (prefix ? prefix + '-' : '') + 'check' + (index + 1);
                 var label = create('label', 'tick-item');
                 var box = create('input');
                 box.type = 'checkbox';
