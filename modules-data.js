@@ -978,11 +978,11 @@ window.HEGENAI_MODULES = {
                     minutes: 10,
                     html: '<p>In this block, you see a problem, a solution to it, and how best to go through the module.</p>' +
                         '<h3>The problem</h3>' +
-                        '<p>A GenAI declaration is a short section in an assignment where a student describes their use of GenAI tools for the work. Think of a GenAI declaration you have read. Was it clear which tool was used, what for, and where to see it?</p>' +
+                        '<p>A GenAI declaration is a short section in an assignment, specifically a project report or a final project, where a student describes their use of GenAI tools for the work. Think of a GenAI declaration you have read. Was it clear which tool was used, what for, and where to see it?</p>' +
                         '<p>Often, it is not. A DTU master’s thesis found that only about 1 in 10 thesis declarations screened named the tool, the purpose, and a record (Mahmud, 2026). Some students hold back because declaring feels like admitting misconduct (Gonsalves, 2025). Telling each student what is missing would help, but it is rarely feasible for a whole class before every deadline.</p>' +
                         '<h3>In this module</h3>' +
                         '<p>This module shows you how to make an <strong>agent</strong> in Microsoft Copilot that can give students feedback on their GenAI declarations. Once shared, a student can paste their declaration into a conversation with the agent, before hand-in, to have it rate each entry as Proper, Incomplete, or Vague, and suggest improvements.</p>' +
-                        '<p>In later blocks, you get a ready-made GenAI declaration guide and material to make the agent. This is an approach developed at DTU, which you can later adapt to your own practice.</p>',
+                        '<p>In later blocks, you get a ready-made GenAI declaration guide and material to make the agent. This is an approach developed at DTU, which you can later adapt to your own practice. It may not be relevant to require this level of declaration for all assignments, but it can be a useful tool for promoting transparency and responsible use of GenAI in academic work.</p>',
                     quiz: {
                         title: "Where you stand",
                         intro: "This question can help you determine how best to approach the module. Optional.",
@@ -1043,10 +1043,10 @@ window.HEGENAI_MODULES = {
                         '<p>For each entry, the agent says which elements are clear and gives the level. If the entry is not Proper, it asks a short question that leads to what is missing. It gives no grade and writes nothing for the student.</p>' +
                         '<hr class="section-divider">' +
                         '<h3>How the agent is built</h3>' +
-                        '<p>Here is the whole process in five steps, for an invented course. The declarations are real, from DTU master’s theses.</p>' +
+                        '<p>Here is the whole process in five steps, for an invented course. The declarations are real, collected for analysis as part of a DTU master’s theses project.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Give students the guide.</strong> The teacher adds the course name to the guide and puts it on the course page.</p>' +
+                        '<p><strong>Give students the guide.</strong> The teacher adds the course name to the guide and puts it on the course page, for a project report or final project.</p>' +
                         '<p><button type="button" class="pill-button pill-button-secondary" data-open-resource="declaration-guide">See the guide</button></p>' +
                         '</li>' +
                         '<li>' +
@@ -1189,8 +1189,8 @@ window.HEGENAI_MODULES = {
                         '</details>' +
                         '<div data-quiz></div>' +
                         '<hr class="section-divider">' +
-                        '<h3>Optional: Write one as a student would</h3>' +
-                        '<p>Write a Proper declaration with two entries for an assignment on your own course. Check each entry against the three tests. You can paste it into your agent in <a href="#block-make">Make it</a>.</p>' +
+                        '<h3>Optional: Write a declaration as a student would</h3>' +
+                        '<p>Write a Proper declaration with two entries for an assignment on your own course, such as a project report or final project. Check each entry against the three tests. You can paste it into your agent in <a href="#block-make">Make it</a>.</p>' +
                         '<div class="writing-box">' +
                         '<label class="writing-label" for="m2-own-declaration">Your declaration</label>' +
                         '<textarea class="form-control writing-input" id="m2-own-declaration" rows="6" data-writing-input></textarea>' +
@@ -1355,7 +1355,7 @@ window.HEGENAI_MODULES = {
                         '<p><strong>Try it with a colleague.</strong> Share the agent with a peer or colleague. Give them the declaration guide, and ask them to write a declaration and revise it with the agent until it is Proper. Then ask them to request a grade and to have the agent write an entry. It should decline both.</p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Choose when students get the agent.</strong> Share it with students well before a deadline, so they can still fix their declaration. Introduce it in class, then put the guide and the agent link on the course page with a text like this:</p>' +
+                        '<p><strong>Choose when students get the agent.</strong> Share it with students well before a deadline for a project report or final project, so they can still fix their declaration. Introduce it in class, then put the guide and the agent link on the course page with a text like this:</p>' +
                         '<blockquote class="declaration-quote"><p>“Before you hand in, you can paste your GenAI declaration into this agent. It will give each entry a level – Vague, Incomplete, or Proper – and guide you where something is missing. This is optional, the agent can be wrong, and it is independent of your grade.”</p></blockquote>' +
                         '</li>' +
                         '<li>' +
