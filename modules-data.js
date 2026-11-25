@@ -761,8 +761,24 @@ window.HEGENAI_MODULES = {
                         '<li><p><strong>Fill in the practice log.</strong> This is optional if you want to practise and prepare to share the policy and guide with students. The practice log guides you through three steps: Use it, Check it, Reflect on it. It should take about 10 minutes to fill out.</p>' +
                         '<p><a class="pill-button" href="downloads/practice-log-module-1.docx" download>Download the practice log (Word)</a></p>' +
                         '</li>' +
-                        '<li><p><strong>Certification?</strong> In a facilitated session, you can opt in to get a certification of completion. You then complete the practice log and submit it to a survey you receive by email, within 2 weeks from the session. This is optional for trainees in facilitated sessions.</p></li>' +
-                        '</ol>'
+                        '</ol>' +
+                        '<details class="dropdown">' +
+                        '<summary>Want a certificate of completion?</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>If you take part in a facilitated session, opt in through the short survey after the session. Hand in your practice log within 2 weeks, and you receive a certificate of completion by email. It shows that you have applied the method in your own work setting, not only completed the module.</p>' +
+                        '</div>' +
+                        '</details>' +
+                        '<details class="dropdown">' +
+                        '<summary>Practice log criteria</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>These are the criteria for the certificate of completion: each part of the practice log is met when its criterion holds. If you are not in a facilitated session with the option of a certificate, use them to check your own log.</p>' +
+                        '<ol>' +
+                        '<li><strong>Use it:</strong> Who got the guide and which rules (if any) you checked are stated, and the guide is attached.</li>' +
+                        '<li><strong>Check it:</strong> At least one declaration is described, with whether it was clear enough and why.</li>' +
+                        '<li><strong>Reflect on it:</strong> One thing is named, with a change for next time. Naming a setback does not count against you.</li>' +
+                        '</ol>' +
+                        '</div>' +
+                        '</details>'
                 }
             ],
             resources: [
@@ -969,7 +985,7 @@ window.HEGENAI_MODULES = {
                         '<p>In later blocks, you get a ready-made GenAI declaration guide and material to make the agent. This is an approach developed at DTU, which you can later adapt to your own practice.</p>',
                     quiz: {
                         title: "Where you stand",
-                        intro: "This question helps you choose your route through the module.",
+                        intro: "This question can help you determine how best to approach the module. Optional.",
                         scored: false,
                         questions: [
                             {
@@ -1002,19 +1018,19 @@ window.HEGENAI_MODULES = {
                         '<p>Students declare their GenAI use with one entry per use. Each entry should specify three elements: The tool, its purpose in the assignment, and documentation of the use.</p>' +
                         '<p><button type="button" class="pill-button pill-button-secondary" data-open-resource="declaration-guide">See the complete declaration guide</button></p>' +
                         '<ol class="step-list" role="list">' +
-                        '<li><p><strong>Each element is checked: Is it clear?</strong></p>' +
+                        '<li><p><strong>First, each element is checked: Is it clear?</strong></p>' +
                         '<ul>' +
-                        '<li><strong>Tool</strong> is clear when the tool is named. “AI” or “an AI tool” is not a name.</li>' +
-                        '<li><strong>Purpose</strong> is clear when a reader can tell what the tool did. A category such as “language editing” or “debugging code” is enough. “Help”, “assistance” or “support” alone is not.</li>' +
-                        '<li><strong>Documentation</strong> is clear when the entry points to an appendix, includes a conversation link, or says “No record available”. “On request” does not count.</li>' +
+                        '<li><strong>The tool</strong> is clear when the AI tool is named in the declaration entry. For example, "ChatGPT" is clear, “AI” or “an AI tool” is not.</li>' +
+                        '<li><strong>The purpose</strong> is clear when a reader can tell what the tool did. For example, a category such as “language editing” or “debugging code” is clear, but “help”, “assistance”, or “support” alone is not.</li>' +
+                        '<li><strong>Documentation</strong> is clear when the entry points to an appendix, includes a conversation link, or says “No record available”. For example, saying documentation is “available on request” is not enough.</li>' +
                         '</ul></li>' +
-                        '<li><p><strong>Each entry gets a level:</strong></p>' +
+                        '<li><p><strong>Second, each entry is given a level:</strong></p>' +
                         '<ul class="level-list">' +
                         '<li><strong>Vague:</strong> Tool or purpose unclear, even when documentation is clear.</li>' +
                         '<li><strong>Incomplete:</strong> Only documentation unclear.</li>' +
-                        '<li><strong>Proper:</strong> All three clear.</li>' +
+                        '<li><strong>Proper:</strong> All three parts clear.</li>' +
                         '</ul></li>' +
-                        '<li><p><strong>The declaration gets the level of its weakest entry.</strong> A statement that no GenAI was used gets no level.</p></li>' +
+                        '<li><p><strong>Finally, the declaration as a whole gets the level of its weakest entry.</strong> A statement that says no GenAI was used gets no level.</p></li>' +
                         '</ol>' +
                         '<p class="credit-line">Credit: Levels from Mahmud (2026, p. 40). Rating each entry, and the test for each element, were added for this module.</p>' +
                         '<hr class="section-divider">' +
@@ -1330,7 +1346,7 @@ window.HEGENAI_MODULES = {
                 {
                     id: "plan",
                     minutes: 5,
-                    html: '<p>In this block, you plan how students will get your agent, and optionally download the practice log.</p>' +
+                    html: '<p>In this block, you prepare to share the agent with students and optionally start the practice log.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
                         '<p><strong>Check that you can share the agent.</strong> An optional tool like this is usually easy to justify. Students choose whether to use it, and it is separate from grading. If you are unsure, ask your IT department: “Can I share an agent I built in Copilot with the students on my course?” Also check that you can keep the guide’s promise – declarations that follow it are never marked down for the AI use itself.</p>' +
@@ -1351,6 +1367,17 @@ window.HEGENAI_MODULES = {
                         '<summary>Want a certificate of completion?</summary>' +
                         '<div class="dropdown-body">' +
                         '<p>If you take part in a facilitated session, opt in through the short survey after the session. Hand in your practice log within 2 weeks, and you receive a certificate of completion by email. It shows that you have applied the method in your own work setting, not only completed the module.</p>' +
+                        '</div>' +
+                        '</details>' +
+                        '<details class="dropdown">' +
+                        '<summary>Practice log criteria</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>These are the criteria for the certificate of completion: each part of the practice log is met when its criterion holds. If you are not in a facilitated session with the option of a certificate, use them to check your own log.</p>' +
+                        '<ol>' +
+                        '<li><strong>Use it:</strong> Who tried it and for which course are stated, and one declaration with the agent’s reply is pasted in or attached.</li>' +
+                        '<li><strong>Check it:</strong> At least one entry is named, along with the agent’s feedback on a level and next step, and you say whether you agree and why. Disagreeing with the agent is fine, and can be a useful finding.</li>' +
+                        '<li><strong>Reflect on it:</strong> At least one thing is named, along with a change for next time, and you say when students get the agent or why not yet. Naming a setback does not count against you.</li>' +
+                        '</ol>' +
                         '</div>' +
                         '</details>'
                 }
@@ -1506,7 +1533,7 @@ window.HEGENAI_MODULES = {
         {
             id: "feedback-with-genai",
             number: 3,
-            title: "GenAI Teaching Assistant for Formative Feedback",
+            title: "Making a GenAI Teaching Assistant for Formative Feedback",
             cluster: null,
             outcome: "After this module, you can write assessment criteria in a way so a GenAI tool can check a drafted assignment against them, and you leave with a feedback agent your students can use to get feedback on their draft.",
             outcomePreview: { resource: "finished-agent", caption: "An example of the feedback agent you leave with. Select to open it." },
@@ -1540,7 +1567,7 @@ window.HEGENAI_MODULES = {
                             '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>',
                     quiz: {
                         title: "Where you stand",
-                        intro: "This question helps you choose your route through the module.",
+                        intro: "This question can help you determine how best to approach the module. Optional.",
                         scored: false,
                         questions: [
                             {
@@ -1838,10 +1865,27 @@ window.HEGENAI_MODULES = {
                         '<p>Also decide how you will find out whether they used it, for example, one question in the hand-in.</p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Download the practice log.</strong> It is optional, and you do not need to share the agent to fill it in.</p>' +
-                        '<p><a class="pill-button" href="downloads/practice-log-module-3.docx" download>Download the practice log (Word)</a></p>' +                        '</li>' +
-                        '<li><p><strong>Fill in the practice log and upload it</strong> to a survey you receive by email, within 2 weeks from the session. This is optional for trainees in facilitated sessions.</p></li>' +
+                        '<p><strong>Fill in the practice log.</strong> This is optional if you want to practise and prepare to share the agent with students. The practice log guides you through three steps: Use it, Check it, Reflect on it. It should take 10-20 minutes to fill out.</p>' +
+                        '<p><a class="pill-button" href="downloads/practice-log-module-3.docx" download>Download the practice log (Word)</a></p>' +
+                        '</li>' +
                         '</ol>' +
+                        '<details class="dropdown">' +
+                        '<summary>Want a certificate of completion?</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>If you take part in a facilitated session, opt in through the short survey after the session. Hand in your practice log within 2 weeks, and you receive a certificate of completion by email. It shows that you have applied the method in your own work setting, not only completed the module.</p>' +
+                        '</div>' +
+                        '</details>' +
+                        '<details class="dropdown">' +
+                        '<summary>Practice log criteria</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>These are the criteria for the certificate of completion: each part of the practice log is met when its criterion holds. If you are not in a facilitated session with the option of a certificate, use them to check your own log.</p>' +
+                        '<ol>' +
+                        '<li><strong>Use it:</strong> The assignment, who tried it and the draft are stated, and your instructions and one example of the feedback are pasted in the box or attached at the end.</li>' +
+                        '<li><strong>Check it:</strong> One criterion is named with the agent’s verdict, and you say whether you agree and why. Disagreeing with the agent is a useful finding.</li>' +
+                        '<li><strong>Reflect on it:</strong> One thing is named, with a change for next time, and you have answered yes, not yet or no, with a reason. Naming a setback does not count against you.</li>' +
+                        '</ol>' +
+                        '</div>' +
+                        '</details>' +
                         '<h3>Example: A course feedback coach at DTU</h3>' +
                         '<p>At the Technical University of Denmark (DTU), a feedback agent can look like this on the university’s own GenAI platform, CampusAI. DTU calls it a feedback coach, and students open it with their DTU login. The video is 1 min 40 s, has no sound, and uses an invented course and student draft. You do not need it for this module.</p>' +
                         '<video class="module-video" controls preload="metadata" src="assets/module-3/dtu-feedback-coach.mp4">' +
@@ -2118,7 +2162,7 @@ window.HEGENAI_MODULES = {
             cluster: null,
             outcome: "After this module, you can turn the criteria of a written assignment into a four-level rubric with GenAI and test that it tells a weak draft from a strong one. You leave with a tested rubric and a feedback agent that tells students which level their draft is at and how to reach the next one.",
             outcomePreview: { resource: "finished-rubric", caption: "The rubric you make for the sample case. Select to open it." },
-            audience: "Higher education educators who set written assignments. Builds on the module GenAI Teaching Assistant for Formative Feedback, but you can start here. No prior GenAI experience needed.",
+            audience: "Higher education educators who set written assignments. Builds on the module Making a GenAI Teaching Assistant for Formative Feedback, but you can start here. No prior GenAI experience needed.",
             needs: "A GenAI tool your institution allows, such as Microsoft Copilot with a work or school account. To build and share an agent, an agent builder such as Copilot’s. Also, either the criteria of an assignment you set or the sample case provided.",
             minutes: 60,
             status: "available",
@@ -2128,7 +2172,7 @@ window.HEGENAI_MODULES = {
                     minutes: 10,
                     html: '<p>In this block, you see the problem the module addresses, learn four terms, and choose the assignment you will work on.</p>' +
                         '<div class="callout">' +
-                        '<p><strong>Builds on the module GenAI Teaching Assistant for Formative Feedback.</strong> In <a href="module.html?m=feedback-with-genai">that module</a>, a feedback agent tells students whether their draft <em>meets</em> each criterion. In this module, it tells them <em>how well</em>: which level the draft is at, and what gets it to the next one. You do not need to have done that module first.</p>' +
+                        '<p><strong>Builds on the module Making a GenAI Teaching Assistant for Formative Feedback.</strong> In <a href="module.html?m=feedback-with-genai">that module</a>, a feedback agent tells students whether their draft <em>meets</em> each criterion. In this module, it tells them <em>how well</em>: which level the draft is at, and what gets it to the next one. You do not need to have done that module first.</p>' +
                         '</div>' +
                         '<h3>The problem</h3>' +
                         '<p>Assessment criteria tell students what to do, such as “The problem is clearly identified and analysed using relevant course concepts.” They do not show what weak, good and excellent work on that criterion looks like.</p>' +
@@ -2178,7 +2222,7 @@ window.HEGENAI_MODULES = {
                             },
                             {
                                 id: "m4-module3",
-                                prompt: "Have you built the feedback agent in the module GenAI Teaching Assistant for Formative Feedback?",
+                                prompt: "Have you built the feedback agent in the module Making a GenAI Teaching Assistant for Formative Feedback?",
                                 options: [
                                     {
                                         text: "Yes.",
@@ -2237,7 +2281,7 @@ window.HEGENAI_MODULES = {
                         '<p><strong>Do you agree with each level?</strong> Judging that yourself is part of the test. In this run, the strong draft got only Developing for Recommendation: Its advice on staff schedules and pay has no evidence of its own, only the stamp card does. Under this rubric, that is fair. If you think the draft deserves Meets, the descriptor says something other than what you mean, so change it.</p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>See the feedback a student gets.</strong> The rubric then goes into a feedback agent, set up as in the module GenAI Teaching Assistant for Formative Feedback. A student pastes the weak draft. The reply opens with a welcome and a short “How your draft is judged” section: the criteria, and what each of the four levels means. Then, for each criterion, the feedback has four parts:</p>' +
+                        '<p><strong>See the feedback a student gets.</strong> The rubric then goes into a feedback agent, set up as in the module Making a GenAI Teaching Assistant for Formative Feedback. A student pastes the weak draft. The reply opens with a welcome and a short “How your draft is judged” section: the criteria, and what each of the four levels means. Then, for each criterion, the feedback has four parts:</p>' +
                         M4_FEEDBACK_ANATOMY +
                         '<p>Here is all of it. There is no grade and no rewritten text.</p>' +
                         '<div data-text="see-feedback"></div>' +
@@ -2383,7 +2427,7 @@ window.HEGENAI_MODULES = {
                             },
                             {
                                 title: "Criteria",
-                                guidance: "Copy 3 to 5 criteria from your assignment description, one per line, as students see them. Leave out weights and points. If you made them checkable in the module GenAI Teaching Assistant for Formative Feedback, use those.",
+                                guidance: "Copy 3 to 5 criteria from your assignment description, one per line, as students see them. Leave out weights and points. If you made them checkable in the module Making a GenAI Teaching Assistant for Formative Feedback, use those.",
                                 inputs: [
                                     { key: "criteria", label: "Criteria", type: "text", rows: 5,
                                       practice: "1. Problem analysis. The problem is clearly identified and analysed using relevant course concepts.\n2. Recommendation. The recommendation is well argued and supported by evidence.\n3. Writing and structure. The report is clearly written and well structured for a professional reader." }
@@ -2403,11 +2447,11 @@ window.HEGENAI_MODULES = {
                 {
                     id: "make",
                     minutes: 20,
-                    html: '<p>In this block, you put your rubric into a feedback agent, test it on the two drafts, and get a link that can be shared. If you built the agent in the module GenAI Teaching Assistant for Formative Feedback, the steps are the same. Only the skill and the instructions change.</p>' +
+                    html: '<p>In this block, you put your rubric into a feedback agent, test it on the two drafts, and get a link that can be shared. If you built the agent in the module Making a GenAI Teaching Assistant for Formative Feedback, the steps are the same. Only the skill and the instructions change.</p>' +
                         m4Journey([4], 'You do this here') +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Download the rubric skill.</strong> It is the same for every assignment that has a rubric. It is a different file from the skill in the module GenAI Teaching Assistant for Formative Feedback: It gives levels instead of met or not met. Keep the file name SKILL.md.</p>' +
+                        '<p><strong>Download the rubric skill.</strong> It is the same for every assignment that has a rubric. It is a different file from the skill in the module Making a GenAI Teaching Assistant for Formative Feedback: It gives levels instead of met or not met. Keep the file name SKILL.md.</p>' +
                         '<div data-text="make-skill"></div>' +
                         '</li>' +
                         '<li>' +
@@ -2457,7 +2501,7 @@ window.HEGENAI_MODULES = {
                         '<div class="dropdown-body">' +
                         '<p>Most fixes are in your rubric. Edit it in step 2 above, copy the instructions again, paste them over the old ones, and rerun the same drafts. The skill stays as it is.</p>' +
                         '<ul class="fix-list" role="list">' +
-                        '<li><p class="fix-check">1. A level has no quote, or it gives met or not met instead of a level</p><p><strong>Likely cause:</strong> The agent uses the skill from the module GenAI Teaching Assistant for Formative Feedback, or no skill.</p><p><strong>Change:</strong> Check that the rubric SKILL.md from step 1 is the agent’s skill. If it is still not used, paste the skill text under the instructions.</p></li>' +
+                        '<li><p class="fix-check">1. A level has no quote, or it gives met or not met instead of a level</p><p><strong>Likely cause:</strong> The agent uses the skill from the module Making a GenAI Teaching Assistant for Formative Feedback, or no skill.</p><p><strong>Change:</strong> Check that the rubric SKILL.md from step 1 is the agent’s skill. If it is still not used, paste the skill text under the instructions.</p></li>' +
                         '<li><p class="fix-check">2. The levels differ from the ones you agreed with in Try it</p><p><strong>Likely cause:</strong> The rubric in the instructions is not the one you tested, or a descriptor can be read two ways.</p><p><strong>Change:</strong> Paste the tested rubric again. If it was the same, rewrite the descriptor that was misread.</p></li>' +
                         '<li><p class="fix-check">3. The two runs give different levels</p><p><strong>Likely cause:</strong> Two neighbouring levels differ by a vague word.</p><p><strong>Change:</strong> Make the difference something you can see or count, as in step 2 of See it.</p></li>' +
                         '<li><p class="fix-check">4. It gives a total, a grade or an overall level</p><p><strong>Likely cause:</strong> Points or weights are left in the rubric.</p><p><strong>Change:</strong> Remove them from the instructions. Keep them in your own marking guide.</p></li>' +
@@ -2493,7 +2537,7 @@ window.HEGENAI_MODULES = {
                     html: '<p>In this block, you plan how students get the rubric and the agent. You do not need to share the agent to finish this module.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Check the rules.</strong> Your course and institution rules must allow GenAI feedback on drafts, and your IT department most likely decides whether you can share an agent with students. The sharing steps are the same as in <a href="module.html?m=feedback-with-genai#block-plan">Plan it in the module GenAI Teaching Assistant for Formative Feedback</a>.</p>' +
+                        '<p><strong>Check the rules.</strong> Your course and institution rules must allow GenAI feedback on drafts, and your IT department most likely decides whether you can share an agent with students. The sharing steps are the same as in <a href="module.html?m=feedback-with-genai#block-plan">Plan it in the module Making a GenAI Teaching Assistant for Formative Feedback</a>.</p>' +
                         '<p>In the EU, the AI Act lists AI systems that evaluate learning outcomes as high-risk, with obligations that apply from 2 December 2027. Whether a feedback agent that gives no grade falls under this is not settled. Ask your institution’s AI or legal contact before you use it widely, and tell students plainly that the feedback comes from AI.</p>' +
                         '</li>' +
                         '<li>' +
@@ -2512,11 +2556,27 @@ window.HEGENAI_MODULES = {
                         '</ul>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Download the practice log.</strong> It is optional, and you do not need to share the agent to fill it in.</p>' +
+                        '<p><strong>Fill in the practice log.</strong> This is optional if you want to practise and prepare to share the rubric and the agent with students. The practice log guides you through three steps: Use it, Check it, Reflect on it. It should take 10-20 minutes to fill out.</p>' +
                         '<p><a class="pill-button" href="downloads/practice-log-module-4.docx" download>Download the practice log (Word)</a></p>' +
                         '</li>' +
-                        '<li><p><strong>Fill in the practice log and upload it</strong> to the survey you receive by email, within 2 weeks of the session.</p></li>' +
-                        '</ol>'
+                        '</ol>' +
+                        '<details class="dropdown">' +
+                        '<summary>Want a certificate of completion?</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>If you take part in a facilitated session, opt in through the short survey after the session. Hand in your practice log within 2 weeks, and you receive a certificate of completion by email. It shows that you have applied the method in your own work setting, not only completed the module.</p>' +
+                        '</div>' +
+                        '</details>' +
+                        '<details class="dropdown">' +
+                        '<summary>Practice log criteria</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>These are the criteria for the certificate of completion: each part of the practice log is met when its criterion holds. If you are not in a facilitated session with the option of a certificate, use them to check your own log.</p>' +
+                        '<ol>' +
+                        '<li><strong>Use it:</strong> The assignment and the test drafts are stated, and your rubric and one example of the feedback are pasted in the box or attached at the end.</li>' +
+                        '<li><strong>Check it:</strong> One criterion is named with the agent’s level, and you say whether you agree and why. Disagreeing with the agent is a useful finding.</li>' +
+                        '<li><strong>Reflect on it:</strong> One thing is named, with a change for next time, and you have answered yes, not yet or no, with a reason. Naming a setback does not count against you.</li>' +
+                        '</ol>' +
+                        '</div>' +
+                        '</details>'
                 }
             ],
             resources: [
