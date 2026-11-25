@@ -112,6 +112,7 @@
         function syncFromStorage() {
             values = get(moduleId);
             refreshClear();
+            refreshReadyLine();
         }
         document.addEventListener('hegenai:form-change', function (event) {
             if (event.detail.moduleId === moduleId) syncFromStorage();
@@ -241,6 +242,54 @@
             steps.appendChild(item);
         });
         form.appendChild(steps);
+
+        // Optional line under all steps that says how far the form is filled in and where the
+        // result appears. config.readyLine = {
+        //   what: "prompt",           the result; default "prompt" (plural: true gives "are" for "instructions")
+        //   block: "make", linkLabel: "Make it",   the result is in another block: shown as a link
+        //   where: "step 1 below",    or the result is in the same block: shown as plain text
+        //   optionalKeys: ["rules"]   keys that may stay empty and the form still counts as done }
+        var readyLine = null;
+        function refreshReadyLine() {
+            if (!readyLine) return;
+            var line = config.readyLine;
+            var optional = line.optionalKeys || [];
+            var keys = (config.fields || []).reduce(function (all, field) {
+                return all.concat(field.inputs.map(function (spec) { return spec.key; }));
+            }, []);
+            var anyFilled = keys.some(function (key) { return values[key]; });
+            var allDone = keys.every(function (key) {
+                return values[key] || optional.indexOf(key) !== -1;
+            });
+            var what = line.what || 'prompt';
+            var stepWords = (config.fields || []).length > 1
+                ? 'the fields in steps 1-' + config.fields.length + ' above'
+                : 'the field above';
+            var ready = [];
+            if (allDone) {
+                ready.push('Your ' + what + (line.plural ? ' are' : ' is') + ' now ready in ');
+            } else {
+                var verb = anyFilled && (config.fields || []).length > 1 ? 'Fill out the remaining ' : 'Fill in ';
+                ready.push(verb + (verb === 'Fill in ' ? stepWords : stepWords.replace('the fields', 'fields')) +
+                    '. Then your ' + what + ' will be ready in ');
+            }
+            readyLine.textContent = '';
+            if (line.block) {
+                var link = create('a', '', line.linkLabel);
+                link.href = '#block-' + line.block;
+                readyLine.appendChild(document.createTextNode(ready[0] + 'the '));
+                readyLine.appendChild(link);
+                readyLine.appendChild(document.createTextNode(allDone ? ' block below.' : '.'));
+            } else {
+                readyLine.appendChild(document.createTextNode(ready[0] + line.where + '.'));
+            }
+        }
+        if (config.readyLine) {
+            readyLine = create('p', 'form-ready-line');
+            readyLine.setAttribute('aria-live', 'polite');
+            form.appendChild(readyLine);
+            refreshReadyLine();
+        }
 
         // Clear, with its confirmation on the button itself
         // Styled like "Clear answer" in the self-checks, but needs a second click.

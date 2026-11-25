@@ -64,6 +64,12 @@
 //                         { practiceResource: "practice-case",   resource opened by "Open the practice case"
 //                           practiceLabel: "sample case",   optional; names the case on the buttons (default "practice case")
 //                           practiceStatus: "...",   optional; message shown after the case fills the form
+//                           readyLine: { block: "make", linkLabel: "Make it", optionalKeys: ["rules"] },
+//                                                 optional; a line under all steps that says whether the form is empty,
+//                                                 partly or fully filled in, and where the result appears: a link to
+//                                                 that block, or where: "step 1 below" when it is in the same block.
+//                                                 what: "prompt" names the result (what: "instructions", plural: true).
+//                                                 Keys in optionalKeys may stay empty
 //                           practiceFill: true,   optional, off unless set: adds a "Use the practice case" button that fills
 //                                                 every input that has a practice value (never a level)
 //                           fields: [ { title: "Assignment",      one numbered step per field
@@ -500,13 +506,18 @@ window.HEGENAI_MODULES = {
                 {
                     id: "intro",
                     minutes: 10,
-                    html: '<p><dfn>GenAI</dfn> (generative artificial intelligence) means tools such as ChatGPT or Microsoft Copilot that write text from your instructions, called a prompt.</p>' +
-                        '<h3>The problem</h3>' +
+                    html: '<h3>The problem</h3>' +
                         '<p>Without guidance for the assignment, students have to guess what GenAI use is acceptable. They need clear guidelines on each assignment (Heaps, 2024).</p>' +
-                        '<p>A <dfn>declaration</dfn> is a short statement in which a student says how they used GenAI. Even when use is allowed, students are often reluctant to declare it (Gonsalves, 2025).</p>',
+                        '<p>Even when use is allowed, students are often reluctant to declare it (Gonsalves, 2025).</p>' +
+                        '<div class="callout">' +
+                        '<h3 class="callout-title">Three terms</h3>' +
+                        '<p><dfn>GenAI</dfn> (generative artificial intelligence) means tools such as ChatGPT or Microsoft Copilot that write text from your instructions, called a prompt.</p>' +
+                        '<p>A <dfn>declaration</dfn> is a short statement in which a student says how they used GenAI.</p>' +
+                        '<p><dfn>Intended learning outcomes</dfn> (LOs) of an assignment are statements that describe what a student should know, understand, or be able to do after the assignment. They describe measurable student results rather than what is assigned, and can be a list of statements.</p>' +
+                        '</div>',
                     quiz: {
                         title: "Where you stand",
-                        intro: "This question how best to approach the module.",
+                        intro: "This question can help you determine how best to approach the module. Optional.",
                         scored: false,
                         questions: [
                             {
@@ -522,8 +533,8 @@ window.HEGENAI_MODULES = {
                                         note: "Use it throughout the module. **Make it** gives you a prompt that drafts the policy and declaration guide for you."
                                     },
                                     {
-                                        text: "I have none coming up.",
-                                        note: "Use the practice case throughout the module. You can keep it for the practice log.",
+                                        text: "The practice case in this module.",
+                                        note: "Use the practice case throughout the module. You can also use it for the practice log if you choose to complete that.",
                                         action: { label: "Open the practice case", resource: "practice-case" }
                                     }
                                 ]
@@ -538,7 +549,7 @@ window.HEGENAI_MODULES = {
                         '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>' +
                         '<p>The AI policy and declaration guide has three parts:</p>' +
                         '<ol>' +
-                        '<li><strong>Level of GenAI use.</strong> The first part specifies where the assignment lies on the AI Assessment Scale. The scale has five levels of GenAI use, from No AI to AI Exploration (Perkins et al., 2025). In choosing the level of AI use for an assignment, make sure that AI is only allowed for tasks that do not directly translate into the learning outcomes of the assignment.</p>' +
+                        '<li><strong>Level of GenAI use.</strong> The first part specifies where the assignment lies on the AI Assessment Scale, adapted directly from Perkins et al. (2025). The scale has five levels, ranging from No AI to AI Exploration. In choosing the level of AI use for an assignment, make sure that AI is only allowed for tasks that do not directly translate into the learning outcomes of the assignment. AI use that falls outside the level an assignment is given is not allowed for that assignment, and is further specified with a list of dos and don’ts in the policy.</p>' +
                         '<details class="dropdown">' +
                         '<summary>The five levels of AI use: Click to expand</summary>' +
                         '<div class="dropdown-body">' +
@@ -554,8 +565,8 @@ window.HEGENAI_MODULES = {
                         '</div>' +
                         '</details>' +
                         '</li>' +
-                        '<li><strong>A list of do\'s and don\'ts.</strong> List what students should and should not do with GenAI, in the assignment’s own terms: “GenAI for…” and “GenAI is not for…”. This two-list format is used in practice, for example in a master’s programme at Dundalk Institute of Technology (Bree et al., 2026) and in course policies that list acceptable and unacceptable uses (Heaps, 2024).</li>' +
-                        '<li><strong>A declaration and example.</strong> What students state about their GenAI use, and where.</li>' +
+                        '<li><strong>A list of dos and don’ts.</strong> The second part has two lists; for what students may and may not do with GenAI, in the terms of the assignment. The lists are titled “GenAI for…” and “GenAI is not for…”. This two-list format is used in practice, for example in a master’s programme at Dundalk Institute of Technology (Bree et al., 2026) and in course policies that list acceptable and unacceptable uses (Heaps, 2024).</li>' +
+                        '<li><strong>The declaration guide and an example.</strong> The third part says what students should state about their GenAI use, and where. It ends with an example declaration.</li>' +
                         '</ol>' +
                         '<p class="section-divider">Now, a four-step approach to making a policy and declaration guide for an assignment, starting with a structured prompt to an AI tool.</p>' +
                         '<ol class="step-list" role="list">' +
@@ -585,7 +596,7 @@ window.HEGENAI_MODULES = {
                         '<p>The scale gives you and your students a shared way to talk about GenAI use (Perkins et al., 2025), and the two lists make it concrete for one assignment. The prompt drafts the policy and declaration guide. Your check makes it fit your course.</p>',
                     quiz: {
                         title: "Self-check",
-                        intro: "Check if you can identify a proper AI use level for another assignment.",
+                        intro: "Check if you can identify a proper AI use level for another assignment. Optional.",
                         scored: true,
                         questions: [
                             {
@@ -668,10 +679,11 @@ window.HEGENAI_MODULES = {
                     },
                     form: {
                         practiceResource: "practice-case",
+                        readyLine: { block: "make", linkLabel: "Make it", optionalKeys: ["rules"] },
                         fields: [
                             {
                                 title: "The assignment",
-                                guidance: "Its name, and a short description.",
+                                guidance: "The name of the assignment and a short description.",
                                 inputs: [
                                     { key: "name", label: "Name", type: "line",
                                       practice: "Pendulum lab report" },
@@ -681,7 +693,7 @@ window.HEGENAI_MODULES = {
                             },
                             {
                                 title: "Learning outcomes",
-                                guidance: "Copy them as students would see them in the course/assignment description.",
+                                guidance: "Copy the learning outcomes (LOs) as students would see them in the assignment description.",
                                 inputs: [
                                     { key: "outcomes", label: "Learning outcomes", type: "text", rows: 4,
                                       practice: "LO1 Collect and present measurement data with uncertainties. LO2 Analyse the data and compare the result with the accepted value. LO3 Discuss sources of error and suggest improvements." }
@@ -742,17 +754,31 @@ window.HEGENAI_MODULES = {
                 {
                     id: "plan",
                     minutes: 5,
-                    html: '<p>In this block you plan how students get your policy and declaration guide, and start the practice log.</p>' +
+                    html: '<p>In this block, you plan how students get your policy and declaration guide, and start the practice log.</p>' +
                         '<ol class="step-list" role="list">' +
-                        '<li>' +
-                        '<p><strong>Download the practice log.</strong></p>' +
+                        '<li><p><strong>Check your policy and guide against existing rules.</strong> Before you hand out the AI policy and declaration guide, check it against your institution’s and programme’s GenAI rules, and fix anything that conflicts (Heaps, 2024).</p></li>' +
+                        '<li><p><strong>Hand out the guide.</strong> It is ideal to raise GenAI in the first week of the course, and again when you set the assignment (Heaps, 2024). No assignment coming up? Give it to a peer or colleague, and ask them to write a declaration for an imagined use. That way, you test the guide before students get it.</p></li>' +
+                        '<li><p><strong>Fill in the practice log.</strong> This is optional if you want to practise and prepare to share the policy and guide with students. The practice log guides you through three steps: Use it, Check it, Reflect on it. It should take about 10 minutes to fill out.</p>' +
                         '<p><a class="pill-button" href="downloads/practice-log-module-1.docx" download>Download the practice log (Word)</a></p>' +
                         '</li>' +
-                        '<li><p><strong>Check it against the rules.</strong> Before you hand it out, check it against your institution’s and programme’s GenAI rules, and fix anything that conflicts (Heaps, 2024). No rules found? Note that in the log, and keep the declaration part as it is.</p></li>' +
-                        '<li><p><strong>Hand out your guide.</strong> It is ideal to raise GenAI in the first week of the course, and again when you set the assignment (Heaps, 2024). No assignment coming up? Give it to a peer or colleague, and ask them to write a declaration for an imagined use.</p></li>' +
-                        '<li><p><strong>Fill in the log.</strong> You can fill in part 1 already when you hand out the guide, and parts 2 and 3 when you have received at least one declaration back.</p></li>' +
-                        '<li><p><strong>Upload the completed log</strong> to a survey you receive by email, within 2 weeks from the session. This is optional for participants in facilitated sessions.</p></li>' +
-                        '</ol>'
+                        '</ol>' +
+                        '<details class="dropdown">' +
+                        '<summary>Want a certificate of completion?</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>If you take part in a facilitated session, opt in through the short survey after the session. Hand in your practice log within 2 weeks, and you receive a certificate of completion by email. It shows that you have applied the method in your own work setting, not only completed the module.</p>' +
+                        '</div>' +
+                        '</details>' +
+                        '<details class="dropdown">' +
+                        '<summary>Practice log criteria</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>These are the criteria for the certificate of completion: each part of the practice log is met when its criterion holds. If you are not in a facilitated session with the option of a certificate, use them to check your own log.</p>' +
+                        '<ol>' +
+                        '<li><strong>Use it:</strong> Who got the guide and which rules (if any) you checked are stated, and the guide is attached.</li>' +
+                        '<li><strong>Check it:</strong> At least one declaration is described, with whether it was clear enough and why.</li>' +
+                        '<li><strong>Reflect on it:</strong> One thing is named, with a change for next time. Naming a setback does not count against you.</li>' +
+                        '</ol>' +
+                        '</div>' +
+                        '</details>'
                 }
             ],
             resources: [
@@ -760,14 +786,38 @@ window.HEGENAI_MODULES = {
                     id: "sample-case",
                     group: "Worked example",
                     title: "Sample case",
-                    html: '<p class="resource-note">(Invented for this module, used in shown examples.)</p>' +
-                        '<p>A 2,500-word individual report in a second-year bachelor’s course. Each student picks an organisation, analyses one problem it faces, and recommends a solution.</p>' +
+                    html: '<p class="resource-note">(An invented assignment description used as a worked example throughout this module.)</p>' +
+                        '<div class="guide-page">' +
+                        '<p><strong>Organisation and Management</strong> · 2nd-year BSc · 5 ECTS</p>' +
+                        '<h3>Assignment 2: Case study report</h3>' +
+                        '<p><strong>Weight:</strong> 40% of the final grade. <strong>Deadline:</strong> Friday, week 11, 23:59, on the course page.</p>' +
+                        '<h4>Task</h4>' +
+                        '<p>Choose an organisation and identify one problem it faces. Analyse the problem using at least two concepts from the course, and recommend a solution.</p>' +
+                        '<h4>Requirements</h4>' +
                         '<ul>' +
-                        '<li>Learning outcome 1 (LO1): Analyse an organisation’s problem using course concepts.</li>' +
-                        '<li>Learning outcome 2 (LO2): Recommend a solution and justify it with evidence.</li>' +
-                        '<li>Learning outcome 3 (LO3): Write clearly for a professional reader.</li>' +
+                        '<li>Individual report, 2,000–2,500 words, not counting references and appendices.</li>' +
+                        '<li>Sections: Introduction (with your research question), Background, Problem analysis, Recommendation, Conclusion, References.</li>' +
+                        '<li>APA 7 referencing. Hand in one PDF file.</li>' +
+                        '<li>GenAI use: See the GenAI guide for this assignment.</li>' +
                         '</ul>' +
-                        '<p><strong>Institution rules:</strong> GenAI may be used if the course guide says how, and all use must be declared.</p>'
+                        '<h4>Learning outcomes</h4>' +
+                        '<ul>' +
+                        '<li>LO1 Analyse an organisation’s problem using course concepts.</li>' +
+                        '<li>LO2 Recommend a solution and justify it with evidence.</li>' +
+                        '<li>LO3 Write clearly for a professional reader.</li>' +
+                        '</ul>' +
+                        '<h4>Assessment criteria</h4>' +
+                        '<ul>' +
+                        '<li><strong>Problem analysis (40%):</strong> The problem is clearly identified and analysed using relevant course concepts.</li>' +
+                        '<li><strong>Recommendation (40%):</strong> The recommendation is well argued and supported by evidence.</li>' +
+                        '<li><strong>Writing and structure (20%):</strong> The report is clearly written and well structured for a professional reader.</li>' +
+                        '</ul>' +
+                        '</div>' +
+                        '<p>Not in the description, but known to the teacher:</p>' +
+                        '<ul>' +
+                        '<li><strong>Institution rules:</strong> GenAI may be used if the course guide says how, and all use must be declared.</li>' +
+                        '<li><strong>Where students declare:</strong> in an appendix.</li>' +
+                        '</ul>'
                 },
                 {
                     id: "finished-guide",
@@ -777,6 +827,7 @@ window.HEGENAI_MODULES = {
                         '<div class="guide-page">' +
                         '<h3>GenAI in the case study report: Level 2, AI Planning</h3>' +
                         '<blockquote><p>"You may use AI for planning, idea development, and research. Your final submission should show how you have developed and refined these ideas."</p></blockquote>' +
+                        '<p>Other use of GenAI for this assignment is not allowed, see further below.</p>' +
                         '<h4>GenAI for…</h4>' +
                         '<ul>' +
                         '<li>Generating a shortlist of possible organisations and business problems that could be suitable for analysis in the report.</li>' +
@@ -811,16 +862,33 @@ window.HEGENAI_MODULES = {
                     id: "practice-case",
                     group: "Optional materials",
                     title: "Practice case",
-                    html: '<p class="resource-note">(Invented for this module, for you to use if you do not have your own case to work on.)</p>' +
-                        '<p><strong>Pendulum lab report.</strong> A 1,500-word individual lab report in a first-year bachelor’s physics course. Students measure the acceleration due to gravity with a simple pendulum, analyse their data, and discuss the result.</p>' +
+                    html: '<p class="resource-note">(An invented assignment description you can use throughout the module and after, to practise on.)</p>' +
+                        '<div class="guide-page">' +
+                        '<p><strong>Physics 1: Mechanics</strong> · 1st-year BSc · 5 ECTS</p>' +
+                        '<h3>Assignment 1: Pendulum lab report</h3>' +
+                        '<p><strong>Weight:</strong> 20% of the final grade. <strong>Deadline:</strong> Friday, week 7, 23:59, on the course page.</p>' +
+                        '<h4>Task</h4>' +
+                        '<p>In the lab session, measure the acceleration due to gravity with a simple pendulum. Analyse your data, compare your result with the accepted value, and discuss it.</p>' +
+                        '<h4>Requirements</h4>' +
                         '<ul>' +
-                        '<li>Learning outcome 1 (LO1): Collect and present measurement data with uncertainties.</li>' +
-                        '<li>Learning outcome 2 (LO2): Analyse the data and compare the result with the accepted value.</li>' +
-                        '<li>Learning outcome 3 (LO3): Discuss sources of error and suggest improvements.</li>' +
+                        '<li>Individual report, about 1,500 words, not counting references and appendices.</li>' +
+                        '<li>Sections: Introduction, Methods, Results, Discussion, References.</li>' +
+                        '<li>Hand in one PDF file.</li>' +
+                        '<li>GenAI use: See the GenAI guide for this assignment.</li>' +
                         '</ul>' +
-                        '<p><strong>What the teacher wants:</strong> GenAI may help students draft and edit the introduction and the method description, and give feedback on their draft. Students must check and change anything GenAI writes. They collect and analyse the data, and write the discussion, themselves.</p>' +
-                        '<p><strong>Institution rules:</strong> Each assignment states the level of GenAI use allowed, and students must declare all GenAI use.</p>' +
-                        '<p><strong>Where students declare:</strong> in the last section of the Methods chapter, headed “Use of GenAI”.</p>'
+                        '<h4>Learning outcomes</h4>' +
+                        '<ul>' +
+                        '<li>LO1 Collect and present measurement data with uncertainties.</li>' +
+                        '<li>LO2 Analyse the data and compare the result with the accepted value.</li>' +
+                        '<li>LO3 Discuss sources of error and suggest improvements.</li>' +
+                        '</ul>' +
+                        '</div>' +
+                        '<p>Not in the description, but known to the teacher:</p>' +
+                        '<ul>' +
+                        '<li><strong>What the teacher wants:</strong> GenAI may help students draft and edit the introduction and the method description, and give feedback on their draft. Students must check and change anything GenAI writes. They collect and analyse the data, and write the discussion, themselves.</li>' +
+                        '<li><strong>Institution rules:</strong> Each assignment states the level of GenAI use allowed, and students must declare all GenAI use.</li>' +
+                        '<li><strong>Where students declare:</strong> in the last section of the Methods chapter, headed “Use of GenAI”.</li>' +
+                        '</ul>'
                 }
             ],
             texts: [
@@ -917,7 +985,7 @@ window.HEGENAI_MODULES = {
                         '<p>In later blocks, you get a ready-made GenAI declaration guide and material to make the agent. This is an approach developed at DTU, which you can later adapt to your own practice.</p>',
                     quiz: {
                         title: "Where you stand",
-                        intro: "This question helps you choose your route through the module.",
+                        intro: "This question can help you determine how best to approach the module. Optional.",
                         scored: false,
                         questions: [
                             {
@@ -950,19 +1018,19 @@ window.HEGENAI_MODULES = {
                         '<p>Students declare their GenAI use with one entry per use. Each entry should specify three elements: The tool, its purpose in the assignment, and documentation of the use.</p>' +
                         '<p><button type="button" class="pill-button pill-button-secondary" data-open-resource="declaration-guide">See the complete declaration guide</button></p>' +
                         '<ol class="step-list" role="list">' +
-                        '<li><p><strong>Each element is checked: Is it clear?</strong></p>' +
+                        '<li><p><strong>First, each element is checked: Is it clear?</strong></p>' +
                         '<ul>' +
-                        '<li><strong>Tool</strong> is clear when the tool is named. “AI” or “an AI tool” is not a name.</li>' +
-                        '<li><strong>Purpose</strong> is clear when a reader can tell what the tool did. A category such as “language editing” or “debugging code” is enough. “Help”, “assistance” or “support” alone is not.</li>' +
-                        '<li><strong>Documentation</strong> is clear when the entry points to an appendix, includes a conversation link, or says “No record available”. “On request” does not count.</li>' +
+                        '<li><strong>The tool</strong> is clear when the AI tool is named in the declaration entry. For example, "ChatGPT" is clear, “AI” or “an AI tool” is not.</li>' +
+                        '<li><strong>The purpose</strong> is clear when a reader can tell what the tool did. For example, a category such as “language editing” or “debugging code” is clear, but “help”, “assistance”, or “support” alone is not.</li>' +
+                        '<li><strong>Documentation</strong> is clear when the entry points to an appendix, includes a conversation link, or says “No record available”. For example, saying documentation is “available on request” is not enough.</li>' +
                         '</ul></li>' +
-                        '<li><p><strong>Each entry gets a level:</strong></p>' +
+                        '<li><p><strong>Second, each entry is given a level:</strong></p>' +
                         '<ul class="level-list">' +
                         '<li><strong>Vague:</strong> Tool or purpose unclear, even when documentation is clear.</li>' +
                         '<li><strong>Incomplete:</strong> Only documentation unclear.</li>' +
-                        '<li><strong>Proper:</strong> All three clear.</li>' +
+                        '<li><strong>Proper:</strong> All three parts clear.</li>' +
                         '</ul></li>' +
-                        '<li><p><strong>The declaration gets the level of its weakest entry.</strong> A statement that no GenAI was used gets no level.</p></li>' +
+                        '<li><p><strong>Finally, the declaration as a whole gets the level of its weakest entry.</strong> A statement that says no GenAI was used gets no level.</p></li>' +
                         '</ol>' +
                         '<p class="credit-line">Credit: Levels from Mahmud (2026, p. 40). Rating each entry, and the test for each element, were added for this module.</p>' +
                         '<hr class="section-divider">' +
@@ -1278,7 +1346,7 @@ window.HEGENAI_MODULES = {
                 {
                     id: "plan",
                     minutes: 5,
-                    html: '<p>In this block, you plan how students will get your agent, and optionally download the practice log.</p>' +
+                    html: '<p>In this block, you prepare to share the agent with students and optionally start the practice log.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
                         '<p><strong>Check that you can share the agent.</strong> An optional tool like this is usually easy to justify. Students choose whether to use it, and it is separate from grading. If you are unsure, ask your IT department: “Can I share an agent I built in Copilot with the students on my course?” Also check that you can keep the guide’s promise – declarations that follow it are never marked down for the AI use itself.</p>' +
@@ -1299,6 +1367,17 @@ window.HEGENAI_MODULES = {
                         '<summary>Want a certificate of completion?</summary>' +
                         '<div class="dropdown-body">' +
                         '<p>If you take part in a facilitated session, opt in through the short survey after the session. Hand in your practice log within 2 weeks, and you receive a certificate of completion by email. It shows that you have applied the method in your own work setting, not only completed the module.</p>' +
+                        '</div>' +
+                        '</details>' +
+                        '<details class="dropdown">' +
+                        '<summary>Practice log criteria</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>These are the criteria for the certificate of completion: each part of the practice log is met when its criterion holds. If you are not in a facilitated session with the option of a certificate, use them to check your own log.</p>' +
+                        '<ol>' +
+                        '<li><strong>Use it:</strong> Who tried it and for which course are stated, and one declaration with the agent’s reply is pasted in or attached.</li>' +
+                        '<li><strong>Check it:</strong> At least one entry is named, along with the agent’s feedback on a level and next step, and you say whether you agree and why. Disagreeing with the agent is fine, and can be a useful finding.</li>' +
+                        '<li><strong>Reflect on it:</strong> At least one thing is named, along with a change for next time, and you say when students get the agent or why not yet. Naming a setback does not count against you.</li>' +
+                        '</ol>' +
                         '</div>' +
                         '</details>'
                 }
@@ -1454,7 +1533,7 @@ window.HEGENAI_MODULES = {
         {
             id: "feedback-with-genai",
             number: 3,
-            title: "GenAI Teaching Assistant for Formative Feedback",
+            title: "Making a GenAI Teaching Assistant for Formative Feedback",
             cluster: null,
             outcome: "After this module, you can write assessment criteria in a way so a GenAI tool can check a drafted assignment against them, and you leave with a feedback agent your students can use to get feedback on their draft.",
             outcomePreview: { resource: "finished-agent", caption: "An example of the feedback agent you leave with. Select to open it." },
@@ -1488,7 +1567,7 @@ window.HEGENAI_MODULES = {
                             '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>',
                     quiz: {
                         title: "Where you stand",
-                        intro: "This question helps you choose your route through the module.",
+                        intro: "This question can help you determine how best to approach the module. Optional.",
                         scored: false,
                         questions: [
                             {
@@ -1658,6 +1737,7 @@ window.HEGENAI_MODULES = {
                         practiceResource: "sample-case",
                         practiceLabel: "sample case",
                         practiceStatus: "Filled in with the sample case. Its criteria are as written for students: rewrite each one with a “Met when:”, then compare with our version below the form.",
+                        readyLine: { what: "instructions", plural: true, block: "make", linkLabel: "Make it" },
                         // practiceFill: true,   switched off: would add a "Use the sample case" button that fills the form from the `practice` values below
                         fields: [
                             {
@@ -1785,10 +1865,27 @@ window.HEGENAI_MODULES = {
                         '<p>Also decide how you will find out whether they used it, for example, one question in the hand-in.</p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Download the practice log.</strong> It is optional, and you do not need to share the agent to fill it in.</p>' +
-                        '<p><a class="pill-button" href="downloads/practice-log-module-3.docx" download>Download the practice log (Word)</a></p>' +                        '</li>' +
-                        '<li><p><strong>Fill in the practice log and upload it</strong> to a survey you receive by email, within 2 weeks from the session. This is optional for participants in facilitated sessions.</p></li>' +
+                        '<p><strong>Fill in the practice log.</strong> This is optional if you want to practise and prepare to share the agent with students. The practice log guides you through three steps: Use it, Check it, Reflect on it. It should take 10-20 minutes to fill out.</p>' +
+                        '<p><a class="pill-button" href="downloads/practice-log-module-3.docx" download>Download the practice log (Word)</a></p>' +
+                        '</li>' +
                         '</ol>' +
+                        '<details class="dropdown">' +
+                        '<summary>Want a certificate of completion?</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>If you take part in a facilitated session, opt in through the short survey after the session. Hand in your practice log within 2 weeks, and you receive a certificate of completion by email. It shows that you have applied the method in your own work setting, not only completed the module.</p>' +
+                        '</div>' +
+                        '</details>' +
+                        '<details class="dropdown">' +
+                        '<summary>Practice log criteria</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>These are the criteria for the certificate of completion: each part of the practice log is met when its criterion holds. If you are not in a facilitated session with the option of a certificate, use them to check your own log.</p>' +
+                        '<ol>' +
+                        '<li><strong>Use it:</strong> The assignment, who tried it and the draft are stated, and your instructions and one example of the feedback are pasted in the box or attached at the end.</li>' +
+                        '<li><strong>Check it:</strong> One criterion is named with the agent’s verdict, and you say whether you agree and why. Disagreeing with the agent is a useful finding.</li>' +
+                        '<li><strong>Reflect on it:</strong> One thing is named, with a change for next time, and you have answered yes, not yet or no, with a reason. Naming a setback does not count against you.</li>' +
+                        '</ol>' +
+                        '</div>' +
+                        '</details>' +
                         '<h3>Example: A course feedback coach at DTU</h3>' +
                         '<p>At the Technical University of Denmark (DTU), a feedback agent can look like this on the university’s own GenAI platform, CampusAI. DTU calls it a feedback coach, and students open it with their DTU login. The video is 1 min 40 s, has no sound, and uses an invented course and student draft. You do not need it for this module.</p>' +
                         '<video class="module-video" controls preload="metadata" src="assets/module-3/dtu-feedback-coach.mp4">' +
@@ -1815,7 +1912,7 @@ window.HEGENAI_MODULES = {
                     id: "sample-case",
                     group: "Worked example",
                     title: "Sample case",
-                    html: '<p class="resource-note">(Invented for this module and used in every block. Written as a typical assignment description. In Try it, you make its criteria, as written here, checkable.)</p>' +
+                    html: '<p class="resource-note">(An invented assignment description used as a worked example throughout this module. In Try it, you make its criteria, as written here, checkable.)</p>' +
                         '<div class="guide-page">' +
                         '<p><strong>Organisation and Management</strong> · 2nd-year BSc · 5 ECTS</p>' +
                         '<h3>Assignment 2: Case study report</h3>' +
@@ -1848,7 +1945,7 @@ window.HEGENAI_MODULES = {
                     id: "test-weak",
                     group: "Worked example",
                     title: "Weak draft",
-                    html: '<p class="resource-note">(Invented for this module: a weak draft for the sample case, with all the sections the assignment asks for, shortened to about 250 words. Paste it into your agent in Make it.)</p>' +
+                    html: '<p class="resource-note">(An invented draft of a student case study report, based on the sample case. The citations are also made up. Used in Make it, as a weak draft to test on.)</p>' +
                         '<div class="guide-page">' +
                         '<h4>Introduction</h4>' +
                         '<p>Café Nord is a small café in Aarhus. This report is about Café Nord and the problems it has.</p>' +
@@ -1868,7 +1965,7 @@ window.HEGENAI_MODULES = {
                     id: "test-strong",
                     group: "Worked example",
                     title: "Strong draft",
-                    html: '<p class="resource-note">(Invented for this module: a strong draft for the sample case, with all the sections the assignment asks for, shortened to about 450 words. The organisation, data and the Jensen &amp; Holm source are made up. Paste it into your agent in Make it.)</p>' +
+                    html: '<p class="resource-note">(An invented draft of a student case study report, based on the sample case. The citations are also made up. Used in Make it, as a strong draft to test on.)</p>' +
                         '<div class="guide-page">' +
                         '<h4>Introduction</h4>' +
                         '<p>This report asks: why do fewer customers return to Café Nord, a 40-seat café in central Aarhus, and what should it do about it? Its sales fell 18% from 2024 to 2025. The report gives background on the café, analyses the problem and recommends a solution.</p>' +
@@ -2065,7 +2162,7 @@ window.HEGENAI_MODULES = {
             cluster: null,
             outcome: "After this module, you can turn the criteria of a written assignment into a four-level rubric with GenAI and test that it tells a weak draft from a strong one. You leave with a tested rubric and a feedback agent that tells students which level their draft is at and how to reach the next one.",
             outcomePreview: { resource: "finished-rubric", caption: "The rubric you make for the sample case. Select to open it." },
-            audience: "Higher education educators who set written assignments. Builds on Training 2: GenAI Teaching Assistant for Formative Feedback on Assignments, but you can start here. No prior GenAI experience needed.",
+            audience: "Higher education educators who set written assignments. Builds on the module Making a GenAI Teaching Assistant for Formative Feedback, but you can start here. No prior GenAI experience needed.",
             needs: "A GenAI tool your institution allows, such as Microsoft Copilot with a work or school account. To build and share an agent, an agent builder such as Copilot’s. Also, either the criteria of an assignment you set or the sample case provided.",
             minutes: 60,
             status: "available",
@@ -2075,7 +2172,7 @@ window.HEGENAI_MODULES = {
                     minutes: 10,
                     html: '<p>In this block, you see the problem the module addresses, learn four terms, and choose the assignment you will work on.</p>' +
                         '<div class="callout">' +
-                        '<p><strong>Builds on Training 2: GenAI Teaching Assistant for Formative Feedback on Assignments.</strong> In <a href="module.html?m=feedback-with-genai">Training 2</a>, a feedback agent tells students whether their draft <em>meets</em> each criterion. In this module, it tells them <em>how well</em>: which level the draft is at, and what gets it to the next one. You do not need to have done Training 2 first.</p>' +
+                        '<p><strong>Builds on the module Making a GenAI Teaching Assistant for Formative Feedback.</strong> In <a href="module.html?m=feedback-with-genai">that module</a>, a feedback agent tells students whether their draft <em>meets</em> each criterion. In this module, it tells them <em>how well</em>: which level the draft is at, and what gets it to the next one. You do not need to have done that module first.</p>' +
                         '</div>' +
                         '<h3>The problem</h3>' +
                         '<p>Assessment criteria tell students what to do, such as “The problem is clearly identified and analysed using relevant course concepts.” They do not show what weak, good and excellent work on that criterion looks like.</p>' +
@@ -2097,7 +2194,7 @@ window.HEGENAI_MODULES = {
                         '<li><strong>Feedback, not grades.</strong> The agent never gives points, a score or a grade. Students tend to learn more from comments than from grades (Koenka et al., 2021).</li>' +
                         '</ul>' +
                         '<h3>One example throughout this module</h3>' +
-                        '<p>The module uses the same invented <strong>sample case</strong> as Training 2: A case study report in a second-year business course, with a weak and a strong student draft. If you have nothing ready now, you use it in <strong>Try it</strong> and <strong>Make it</strong> too.</p>' +
+                        '<p>The module uses an invented <strong>sample case</strong>: A case study report in a second-year business course, with a weak and a strong student draft. If you have nothing ready now, you use it in <strong>Try it</strong> and <strong>Make it</strong> too.</p>' +
                         '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>',
                     quiz: {
                         title: "Where you stand",
@@ -2125,7 +2222,7 @@ window.HEGENAI_MODULES = {
                             },
                             {
                                 id: "m4-module3",
-                                prompt: "Have you built the feedback agent in Training 2?",
+                                prompt: "Have you built the feedback agent in the module Making a GenAI Teaching Assistant for Formative Feedback?",
                                 options: [
                                     {
                                         text: "Yes.",
@@ -2184,7 +2281,7 @@ window.HEGENAI_MODULES = {
                         '<p><strong>Do you agree with each level?</strong> Judging that yourself is part of the test. In this run, the strong draft got only Developing for Recommendation: Its advice on staff schedules and pay has no evidence of its own, only the stamp card does. Under this rubric, that is fair. If you think the draft deserves Meets, the descriptor says something other than what you mean, so change it.</p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>See the feedback a student gets.</strong> The rubric then goes into a feedback agent, set up as in Training 2. A student pastes the weak draft. The reply opens with a welcome and a short “How your draft is judged” section: the criteria, and what each of the four levels means. Then, for each criterion, the feedback has four parts:</p>' +
+                        '<p><strong>See the feedback a student gets.</strong> The rubric then goes into a feedback agent, set up as in the module Making a GenAI Teaching Assistant for Formative Feedback. A student pastes the weak draft. The reply opens with a welcome and a short “How your draft is judged” section: the criteria, and what each of the four levels means. Then, for each criterion, the feedback has four parts:</p>' +
                         M4_FEEDBACK_ANATOMY +
                         '<p>Here is all of it. There is no grade and no rewritten text.</p>' +
                         '<div data-text="see-feedback"></div>' +
@@ -2316,6 +2413,7 @@ window.HEGENAI_MODULES = {
                     form: {
                         practiceResource: "sample-case",
                         practiceLabel: "sample case",
+                        readyLine: { where: "step 1 below", optionalKeys: ["levels"] },
                         fields: [
                             {
                                 title: "The assignment",
@@ -2329,7 +2427,7 @@ window.HEGENAI_MODULES = {
                             },
                             {
                                 title: "Criteria",
-                                guidance: "Copy 3 to 5 criteria from your assignment description, one per line, as students see them. Leave out weights and points. If you made them checkable in Training 2, use those.",
+                                guidance: "Copy 3 to 5 criteria from your assignment description, one per line, as students see them. Leave out weights and points. If you made them checkable in the module Making a GenAI Teaching Assistant for Formative Feedback, use those.",
                                 inputs: [
                                     { key: "criteria", label: "Criteria", type: "text", rows: 5,
                                       practice: "1. Problem analysis. The problem is clearly identified and analysed using relevant course concepts.\n2. Recommendation. The recommendation is well argued and supported by evidence.\n3. Writing and structure. The report is clearly written and well structured for a professional reader." }
@@ -2349,11 +2447,11 @@ window.HEGENAI_MODULES = {
                 {
                     id: "make",
                     minutes: 20,
-                    html: '<p>In this block, you put your rubric into a feedback agent, test it on the two drafts, and get a link that can be shared. If you built the agent in Training 2, the steps are the same. Only the skill and the instructions change.</p>' +
+                    html: '<p>In this block, you put your rubric into a feedback agent, test it on the two drafts, and get a link that can be shared. If you built the agent in the module Making a GenAI Teaching Assistant for Formative Feedback, the steps are the same. Only the skill and the instructions change.</p>' +
                         m4Journey([4], 'You do this here') +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Download the rubric skill.</strong> It is the same for every assignment that has a rubric. It is a different file from the Training 2 skill: It gives levels instead of met or not met. Keep the file name SKILL.md.</p>' +
+                        '<p><strong>Download the rubric skill.</strong> It is the same for every assignment that has a rubric. It is a different file from the skill in the module Making a GenAI Teaching Assistant for Formative Feedback: It gives levels instead of met or not met. Keep the file name SKILL.md.</p>' +
                         '<div data-text="make-skill"></div>' +
                         '</li>' +
                         '<li>' +
@@ -2403,7 +2501,7 @@ window.HEGENAI_MODULES = {
                         '<div class="dropdown-body">' +
                         '<p>Most fixes are in your rubric. Edit it in step 2 above, copy the instructions again, paste them over the old ones, and rerun the same drafts. The skill stays as it is.</p>' +
                         '<ul class="fix-list" role="list">' +
-                        '<li><p class="fix-check">1. A level has no quote, or it gives met or not met instead of a level</p><p><strong>Likely cause:</strong> The agent uses the Training 2 skill, or no skill.</p><p><strong>Change:</strong> Check that the rubric SKILL.md from step 1 is the agent’s skill. If it is still not used, paste the skill text under the instructions.</p></li>' +
+                        '<li><p class="fix-check">1. A level has no quote, or it gives met or not met instead of a level</p><p><strong>Likely cause:</strong> The agent uses the skill from the module Making a GenAI Teaching Assistant for Formative Feedback, or no skill.</p><p><strong>Change:</strong> Check that the rubric SKILL.md from step 1 is the agent’s skill. If it is still not used, paste the skill text under the instructions.</p></li>' +
                         '<li><p class="fix-check">2. The levels differ from the ones you agreed with in Try it</p><p><strong>Likely cause:</strong> The rubric in the instructions is not the one you tested, or a descriptor can be read two ways.</p><p><strong>Change:</strong> Paste the tested rubric again. If it was the same, rewrite the descriptor that was misread.</p></li>' +
                         '<li><p class="fix-check">3. The two runs give different levels</p><p><strong>Likely cause:</strong> Two neighbouring levels differ by a vague word.</p><p><strong>Change:</strong> Make the difference something you can see or count, as in step 2 of See it.</p></li>' +
                         '<li><p class="fix-check">4. It gives a total, a grade or an overall level</p><p><strong>Likely cause:</strong> Points or weights are left in the rubric.</p><p><strong>Change:</strong> Remove them from the instructions. Keep them in your own marking guide.</p></li>' +
@@ -2421,6 +2519,7 @@ window.HEGENAI_MODULES = {
                     form: {
                         id: "make",
                         unnumbered: true,
+                        readyLine: { what: "instructions", plural: true, where: "step 3 below" },
                         fields: [
                             {
                                 title: "Your checked rubric",
@@ -2438,7 +2537,7 @@ window.HEGENAI_MODULES = {
                     html: '<p>In this block, you plan how students get the rubric and the agent. You do not need to share the agent to finish this module.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Check the rules.</strong> Your course and institution rules must allow GenAI feedback on drafts, and your IT department most likely decides whether you can share an agent with students. The sharing steps are the same as in <a href="module.html?m=feedback-with-genai#block-plan">Training 2, Plan it</a>.</p>' +
+                        '<p><strong>Check the rules.</strong> Your course and institution rules must allow GenAI feedback on drafts, and your IT department most likely decides whether you can share an agent with students. The sharing steps are the same as in <a href="module.html?m=feedback-with-genai#block-plan">Plan it in the module Making a GenAI Teaching Assistant for Formative Feedback</a>.</p>' +
                         '<p>In the EU, the AI Act lists AI systems that evaluate learning outcomes as high-risk, with obligations that apply from 2 December 2027. Whether a feedback agent that gives no grade falls under this is not settled. Ask your institution’s AI or legal contact before you use it widely, and tell students plainly that the feedback comes from AI.</p>' +
                         '</li>' +
                         '<li>' +
@@ -2457,11 +2556,27 @@ window.HEGENAI_MODULES = {
                         '</ul>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Download the practice log.</strong> It is optional, and you do not need to share the agent to fill it in.</p>' +
+                        '<p><strong>Fill in the practice log.</strong> This is optional if you want to practise and prepare to share the rubric and the agent with students. The practice log guides you through three steps: Use it, Check it, Reflect on it. It should take 10-20 minutes to fill out.</p>' +
                         '<p><a class="pill-button" href="downloads/practice-log-module-4.docx" download>Download the practice log (Word)</a></p>' +
                         '</li>' +
-                        '<li><p><strong>Fill in the practice log and upload it</strong> to the survey you receive by email, within 2 weeks of the session.</p></li>' +
-                        '</ol>'
+                        '</ol>' +
+                        '<details class="dropdown">' +
+                        '<summary>Want a certificate of completion?</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>If you take part in a facilitated session, opt in through the short survey after the session. Hand in your practice log within 2 weeks, and you receive a certificate of completion by email. It shows that you have applied the method in your own work setting, not only completed the module.</p>' +
+                        '</div>' +
+                        '</details>' +
+                        '<details class="dropdown">' +
+                        '<summary>Practice log criteria</summary>' +
+                        '<div class="dropdown-body">' +
+                        '<p>These are the criteria for the certificate of completion: each part of the practice log is met when its criterion holds. If you are not in a facilitated session with the option of a certificate, use them to check your own log.</p>' +
+                        '<ol>' +
+                        '<li><strong>Use it:</strong> The assignment and the test drafts are stated, and your rubric and one example of the feedback are pasted in the box or attached at the end.</li>' +
+                        '<li><strong>Check it:</strong> One criterion is named with the agent’s level, and you say whether you agree and why. Disagreeing with the agent is a useful finding.</li>' +
+                        '<li><strong>Reflect on it:</strong> One thing is named, with a change for next time, and you have answered yes, not yet or no, with a reason. Naming a setback does not count against you.</li>' +
+                        '</ol>' +
+                        '</div>' +
+                        '</details>'
                 }
             ],
             resources: [
@@ -2469,7 +2584,7 @@ window.HEGENAI_MODULES = {
                     id: "sample-case",
                     group: "Worked example",
                     title: "Sample case",
-                    html: '<p class="resource-note">(Invented, and the same as in Training 2. Written as a typical assignment description. In Try it, you turn its criteria, as written here, into a rubric.)</p>' +
+                    html: '<p class="resource-note">(An invented assignment description used as a worked example throughout this module. In Try it, you turn its criteria, as written here, into a rubric.)</p>' +
                         '<div class="guide-page">' +
                         '<p><strong>Organisation and Management</strong> · 2nd-year BSc · 5 ECTS</p>' +
                         '<h3>Assignment 2: Case study report</h3>' +
@@ -2502,7 +2617,7 @@ window.HEGENAI_MODULES = {
                     id: "test-weak",
                     group: "Worked example",
                     title: "Weak draft",
-                    html: '<p class="resource-note">(Invented, and the same as in Training 2: a weak draft for the sample case, shortened to about 250 words. Use it in the test in Try it and in Make it.)</p>' +
+                    html: '<p class="resource-note">(An invented draft of a student case study report, based on the sample case. The citations are also made up. Used as a weak draft to test on, in Try it and in Make it.)</p>' +
                         '<div class="guide-page">' +
                         '<h4>Introduction</h4>' +
                         '<p>Café Nord is a small café in Aarhus. This report is about Café Nord and the problems it has.</p>' +
@@ -2522,7 +2637,7 @@ window.HEGENAI_MODULES = {
                     id: "test-strong",
                     group: "Worked example",
                     title: "Strong draft",
-                    html: '<p class="resource-note">(Invented, and the same as in Training 2: a strong draft for the sample case, shortened to about 450 words. The organisation, data and the Jensen &amp; Holm source are made up. Use it in the test in Try it and in Make it.)</p>' +
+                    html: '<p class="resource-note">(An invented draft of a student case study report, based on the sample case. The citations are also made up. Used as a strong draft to test on, in Try it and in Make it.)</p>' +
                         '<div class="guide-page">' +
                         '<h4>Introduction</h4>' +
                         '<p>This report asks: why do fewer customers return to Café Nord, a 40-seat café in central Aarhus, and what should it do about it? Its sales fell 18% from 2024 to 2025. The report gives background on the café, analyses the problem and recommends a solution.</p>' +
