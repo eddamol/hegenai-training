@@ -64,6 +64,12 @@
 //                         { practiceResource: "practice-case",   resource opened by "Open the practice case"
 //                           practiceLabel: "sample case",   optional; names the case on the buttons (default "practice case")
 //                           practiceStatus: "...",   optional; message shown after the case fills the form
+//                           readyLine: { block: "make", linkLabel: "Make it", optionalKeys: ["rules"] },
+//                                                 optional; a line under all steps that says whether the form is empty,
+//                                                 partly or fully filled in, and where the result appears: a link to
+//                                                 that block, or where: "step 1 below" when it is in the same block.
+//                                                 what: "prompt" names the result (what: "instructions", plural: true).
+//                                                 Keys in optionalKeys may stay empty
 //                           practiceFill: true,   optional, off unless set: adds a "Use the practice case" button that fills
 //                                                 every input that has a practice value (never a level)
 //                           fields: [ { title: "Assignment",      one numbered step per field
@@ -500,13 +506,18 @@ window.HEGENAI_MODULES = {
                 {
                     id: "intro",
                     minutes: 10,
-                    html: '<p><dfn>GenAI</dfn> (generative artificial intelligence) means tools such as ChatGPT or Microsoft Copilot that write text from your instructions, called a prompt.</p>' +
-                        '<h3>The problem</h3>' +
+                    html: '<h3>The problem</h3>' +
                         '<p>Without guidance for the assignment, students have to guess what GenAI use is acceptable. They need clear guidelines on each assignment (Heaps, 2024).</p>' +
-                        '<p>A <dfn>declaration</dfn> is a short statement in which a student says how they used GenAI. Even when use is allowed, students are often reluctant to declare it (Gonsalves, 2025).</p>',
+                        '<p>Even when use is allowed, students are often reluctant to declare it (Gonsalves, 2025).</p>' +
+                        '<div class="callout">' +
+                        '<h3 class="callout-title">Three terms</h3>' +
+                        '<p><dfn>GenAI</dfn> (generative artificial intelligence) means tools such as ChatGPT or Microsoft Copilot that write text from your instructions, called a prompt.</p>' +
+                        '<p>A <dfn>declaration</dfn> is a short statement in which a student says how they used GenAI.</p>' +
+                        '<p><dfn>Intended learning outcomes</dfn> (LOs) of an assignment are statements that describe what a student should know, understand, or be able to do after the assignment. They describe measurable student results rather than what is assigned, and can be a list of statements.</p>' +
+                        '</div>',
                     quiz: {
                         title: "Where you stand",
-                        intro: "This question how best to approach the module.",
+                        intro: "This question can help you determine how best to approach the module. Optional.",
                         scored: false,
                         questions: [
                             {
@@ -522,8 +533,8 @@ window.HEGENAI_MODULES = {
                                         note: "Use it throughout the module. **Make it** gives you a prompt that drafts the policy and declaration guide for you."
                                     },
                                     {
-                                        text: "I have none coming up.",
-                                        note: "Use the practice case throughout the module. You can keep it for the practice log.",
+                                        text: "The practice case in this module.",
+                                        note: "Use the practice case throughout the module. You can also use it for the practice log if you choose to complete that.",
                                         action: { label: "Open the practice case", resource: "practice-case" }
                                     }
                                 ]
@@ -538,7 +549,7 @@ window.HEGENAI_MODULES = {
                         '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>' +
                         '<p>The AI policy and declaration guide has three parts:</p>' +
                         '<ol>' +
-                        '<li><strong>Level of GenAI use.</strong> The first part specifies where the assignment lies on the AI Assessment Scale. The scale has five levels of GenAI use, from No AI to AI Exploration (Perkins et al., 2025). In choosing the level of AI use for an assignment, make sure that AI is only allowed for tasks that do not directly translate into the learning outcomes of the assignment.</p>' +
+                        '<li><strong>Level of GenAI use.</strong> The first part specifies where the assignment lies on the AI Assessment Scale, adapted directly from Perkins et al. (2025). The scale has five levels, ranging from No AI to AI Exploration. In choosing the level of AI use for an assignment, make sure that AI is only allowed for tasks that do not directly translate into the learning outcomes of the assignment. AI use that falls outside the level an assignment is given is not allowed for that assignment, and is further specified with a list of dos and don’ts in the policy.</p>' +
                         '<details class="dropdown">' +
                         '<summary>The five levels of AI use: Click to expand</summary>' +
                         '<div class="dropdown-body">' +
@@ -554,8 +565,8 @@ window.HEGENAI_MODULES = {
                         '</div>' +
                         '</details>' +
                         '</li>' +
-                        '<li><strong>A list of do\'s and don\'ts.</strong> List what students should and should not do with GenAI, in the assignment’s own terms: “GenAI for…” and “GenAI is not for…”. This two-list format is used in practice, for example in a master’s programme at Dundalk Institute of Technology (Bree et al., 2026) and in course policies that list acceptable and unacceptable uses (Heaps, 2024).</li>' +
-                        '<li><strong>A declaration and example.</strong> What students state about their GenAI use, and where.</li>' +
+                        '<li><strong>A list of dos and don’ts.</strong> The second part has two lists; for what students may and may not do with GenAI, in the terms of the assignment. The lists are titled “GenAI for…” and “GenAI is not for…”. This two-list format is used in practice, for example in a master’s programme at Dundalk Institute of Technology (Bree et al., 2026) and in course policies that list acceptable and unacceptable uses (Heaps, 2024).</li>' +
+                        '<li><strong>The declaration guide and an example.</strong> The third part says what students should state about their GenAI use, and where. It ends with an example declaration.</li>' +
                         '</ol>' +
                         '<p class="section-divider">Now, a four-step approach to making a policy and declaration guide for an assignment, starting with a structured prompt to an AI tool.</p>' +
                         '<ol class="step-list" role="list">' +
@@ -585,7 +596,7 @@ window.HEGENAI_MODULES = {
                         '<p>The scale gives you and your students a shared way to talk about GenAI use (Perkins et al., 2025), and the two lists make it concrete for one assignment. The prompt drafts the policy and declaration guide. Your check makes it fit your course.</p>',
                     quiz: {
                         title: "Self-check",
-                        intro: "Check if you can identify a proper AI use level for another assignment.",
+                        intro: "Check if you can identify a proper AI use level for another assignment. Optional.",
                         scored: true,
                         questions: [
                             {
@@ -668,10 +679,11 @@ window.HEGENAI_MODULES = {
                     },
                     form: {
                         practiceResource: "practice-case",
+                        readyLine: { block: "make", linkLabel: "Make it", optionalKeys: ["rules"] },
                         fields: [
                             {
                                 title: "The assignment",
-                                guidance: "Its name, and a short description.",
+                                guidance: "The name of the assignment and a short description.",
                                 inputs: [
                                     { key: "name", label: "Name", type: "line",
                                       practice: "Pendulum lab report" },
@@ -681,7 +693,7 @@ window.HEGENAI_MODULES = {
                             },
                             {
                                 title: "Learning outcomes",
-                                guidance: "Copy them as students would see them in the course/assignment description.",
+                                guidance: "Copy the learning outcomes (LOs) as students would see them in the assignment description.",
                                 inputs: [
                                     { key: "outcomes", label: "Learning outcomes", type: "text", rows: 4,
                                       practice: "LO1 Collect and present measurement data with uncertainties. LO2 Analyse the data and compare the result with the accepted value. LO3 Discuss sources of error and suggest improvements." }
@@ -742,16 +754,14 @@ window.HEGENAI_MODULES = {
                 {
                     id: "plan",
                     minutes: 5,
-                    html: '<p>In this block you plan how students get your policy and declaration guide, and start the practice log.</p>' +
+                    html: '<p>In this block, you plan how students get your policy and declaration guide, and start the practice log.</p>' +
                         '<ol class="step-list" role="list">' +
-                        '<li>' +
-                        '<p><strong>Download the practice log.</strong></p>' +
+                        '<li><p><strong>Check your policy and guide against existing rules.</strong> Before you hand out the AI policy and declaration guide, check it against your institution’s and programme’s GenAI rules, and fix anything that conflicts (Heaps, 2024).</p></li>' +
+                        '<li><p><strong>Hand out the guide.</strong> It is ideal to raise GenAI in the first week of the course, and again when you set the assignment (Heaps, 2024). No assignment coming up? Give it to a peer or colleague, and ask them to write a declaration for an imagined use. That way, you test the guide before students get it.</p></li>' +
+                        '<li><p><strong>Fill in the practice log.</strong> This is optional if you want to practise and prepare to share the policy and guide with students. The practice log guides you through three steps: Use it, Check it, Reflect on it. It should take about 10 minutes to fill out.</p>' +
                         '<p><a class="pill-button" href="downloads/practice-log-module-1.docx" download>Download the practice log (Word)</a></p>' +
                         '</li>' +
-                        '<li><p><strong>Check it against the rules.</strong> Before you hand it out, check it against your institution’s and programme’s GenAI rules, and fix anything that conflicts (Heaps, 2024). No rules found? Note that in the log, and keep the declaration part as it is.</p></li>' +
-                        '<li><p><strong>Hand out your guide.</strong> It is ideal to raise GenAI in the first week of the course, and again when you set the assignment (Heaps, 2024). No assignment coming up? Give it to a peer or colleague, and ask them to write a declaration for an imagined use.</p></li>' +
-                        '<li><p><strong>Fill in the log.</strong> You can fill in part 1 already when you hand out the guide, and parts 2 and 3 when you have received at least one declaration back.</p></li>' +
-                        '<li><p><strong>Upload the completed log</strong> to a survey you receive by email, within 2 weeks from the session. This is optional for participants in facilitated sessions.</p></li>' +
+                        '<li><p><strong>Certification?</strong> In a facilitated session, you can opt in to get a certification of completion. You then complete the practice log and submit it to a survey you receive by email, within 2 weeks from the session. This is optional for trainees in facilitated sessions.</p></li>' +
                         '</ol>'
                 }
             ],
@@ -777,6 +787,7 @@ window.HEGENAI_MODULES = {
                         '<div class="guide-page">' +
                         '<h3>GenAI in the case study report: Level 2, AI Planning</h3>' +
                         '<blockquote><p>"You may use AI for planning, idea development, and research. Your final submission should show how you have developed and refined these ideas."</p></blockquote>' +
+                        '<p>Other use of GenAI for this assignment is not allowed, see further below.</p>' +
                         '<h4>GenAI for…</h4>' +
                         '<ul>' +
                         '<li>Generating a shortlist of possible organisations and business problems that could be suitable for analysis in the report.</li>' +
@@ -1658,6 +1669,7 @@ window.HEGENAI_MODULES = {
                         practiceResource: "sample-case",
                         practiceLabel: "sample case",
                         practiceStatus: "Filled in with the sample case. Its criteria are as written for students: rewrite each one with a “Met when:”, then compare with our version below the form.",
+                        readyLine: { what: "instructions", plural: true, block: "make", linkLabel: "Make it" },
                         // practiceFill: true,   switched off: would add a "Use the sample case" button that fills the form from the `practice` values below
                         fields: [
                             {
@@ -1787,7 +1799,7 @@ window.HEGENAI_MODULES = {
                         '<li>' +
                         '<p><strong>Download the practice log.</strong> It is optional, and you do not need to share the agent to fill it in.</p>' +
                         '<p><a class="pill-button" href="downloads/practice-log-module-3.docx" download>Download the practice log (Word)</a></p>' +                        '</li>' +
-                        '<li><p><strong>Fill in the practice log and upload it</strong> to a survey you receive by email, within 2 weeks from the session. This is optional for participants in facilitated sessions.</p></li>' +
+                        '<li><p><strong>Fill in the practice log and upload it</strong> to a survey you receive by email, within 2 weeks from the session. This is optional for trainees in facilitated sessions.</p></li>' +
                         '</ol>' +
                         '<h3>Example: A course feedback coach at DTU</h3>' +
                         '<p>At the Technical University of Denmark (DTU), a feedback agent can look like this on the university’s own GenAI platform, CampusAI. DTU calls it a feedback coach, and students open it with their DTU login. The video is 1 min 40 s, has no sound, and uses an invented course and student draft. You do not need it for this module.</p>' +
@@ -2316,6 +2328,7 @@ window.HEGENAI_MODULES = {
                     form: {
                         practiceResource: "sample-case",
                         practiceLabel: "sample case",
+                        readyLine: { where: "step 1 below", optionalKeys: ["levels"] },
                         fields: [
                             {
                                 title: "The assignment",
@@ -2421,6 +2434,7 @@ window.HEGENAI_MODULES = {
                     form: {
                         id: "make",
                         unnumbered: true,
+                        readyLine: { what: "instructions", plural: true, where: "step 3 below" },
                         fields: [
                             {
                                 title: "Your checked rubric",

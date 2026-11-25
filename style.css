@@ -1507,6 +1507,11 @@ textarea.form-control {
     max-width: 640px;
 }
 
+.form-ready-line {
+    margin: 20px 0 0;
+    font-weight: 400;
+}
+
 .form-status {
     min-height: 1.6em;
     margin: 8px 0 0;
