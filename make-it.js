@@ -93,6 +93,7 @@
         if (levelNumber !== '1') {
             lines.push(lineOf('Every item must name a concrete use in the terms of this assignment, and a student must be able to read it only one way.'));
         }
+        lines.push(lineOf('Do not make the text longer than what fits comfortably on a single A4 page.'));
         return { lines: lines, missing: missing };
     }
 

@@ -770,14 +770,38 @@ window.HEGENAI_MODULES = {
                     id: "sample-case",
                     group: "Worked example",
                     title: "Sample case",
-                    html: '<p class="resource-note">(Invented for this module, used in shown examples.)</p>' +
-                        '<p>A 2,500-word individual report in a second-year bachelor’s course. Each student picks an organisation, analyses one problem it faces, and recommends a solution.</p>' +
+                    html: '<p class="resource-note">(An invented assignment description used as a worked example throughout this module.)</p>' +
+                        '<div class="guide-page">' +
+                        '<p><strong>Organisation and Management</strong> · 2nd-year BSc · 5 ECTS</p>' +
+                        '<h3>Assignment 2: Case study report</h3>' +
+                        '<p><strong>Weight:</strong> 40% of the final grade. <strong>Deadline:</strong> Friday, week 11, 23:59, on the course page.</p>' +
+                        '<h4>Task</h4>' +
+                        '<p>Choose an organisation and identify one problem it faces. Analyse the problem using at least two concepts from the course, and recommend a solution.</p>' +
+                        '<h4>Requirements</h4>' +
                         '<ul>' +
-                        '<li>Learning outcome 1 (LO1): Analyse an organisation’s problem using course concepts.</li>' +
-                        '<li>Learning outcome 2 (LO2): Recommend a solution and justify it with evidence.</li>' +
-                        '<li>Learning outcome 3 (LO3): Write clearly for a professional reader.</li>' +
+                        '<li>Individual report, 2,000–2,500 words, not counting references and appendices.</li>' +
+                        '<li>Sections: Introduction (with your research question), Background, Problem analysis, Recommendation, Conclusion, References.</li>' +
+                        '<li>APA 7 referencing. Hand in one PDF file.</li>' +
+                        '<li>GenAI use: See the GenAI guide for this assignment.</li>' +
                         '</ul>' +
-                        '<p><strong>Institution rules:</strong> GenAI may be used if the course guide says how, and all use must be declared.</p>'
+                        '<h4>Learning outcomes</h4>' +
+                        '<ul>' +
+                        '<li>LO1 Analyse an organisation’s problem using course concepts.</li>' +
+                        '<li>LO2 Recommend a solution and justify it with evidence.</li>' +
+                        '<li>LO3 Write clearly for a professional reader.</li>' +
+                        '</ul>' +
+                        '<h4>Assessment criteria</h4>' +
+                        '<ul>' +
+                        '<li><strong>Problem analysis (40%):</strong> The problem is clearly identified and analysed using relevant course concepts.</li>' +
+                        '<li><strong>Recommendation (40%):</strong> The recommendation is well argued and supported by evidence.</li>' +
+                        '<li><strong>Writing and structure (20%):</strong> The report is clearly written and well structured for a professional reader.</li>' +
+                        '</ul>' +
+                        '</div>' +
+                        '<p>Not in the description, but known to the teacher:</p>' +
+                        '<ul>' +
+                        '<li><strong>Institution rules:</strong> GenAI may be used if the course guide says how, and all use must be declared.</li>' +
+                        '<li><strong>Where students declare:</strong> in an appendix.</li>' +
+                        '</ul>'
                 },
                 {
                     id: "finished-guide",
@@ -822,16 +846,33 @@ window.HEGENAI_MODULES = {
                     id: "practice-case",
                     group: "Optional materials",
                     title: "Practice case",
-                    html: '<p class="resource-note">(Invented for this module, for you to use if you do not have your own case to work on.)</p>' +
-                        '<p><strong>Pendulum lab report.</strong> A 1,500-word individual lab report in a first-year bachelor’s physics course. Students measure the acceleration due to gravity with a simple pendulum, analyse their data, and discuss the result.</p>' +
+                    html: '<p class="resource-note">(An invented assignment description you can use throughout the module and after, to practise on.)</p>' +
+                        '<div class="guide-page">' +
+                        '<p><strong>Physics 1: Mechanics</strong> · 1st-year BSc · 5 ECTS</p>' +
+                        '<h3>Assignment 1: Pendulum lab report</h3>' +
+                        '<p><strong>Weight:</strong> 20% of the final grade. <strong>Deadline:</strong> Friday, week 7, 23:59, on the course page.</p>' +
+                        '<h4>Task</h4>' +
+                        '<p>In the lab session, measure the acceleration due to gravity with a simple pendulum. Analyse your data, compare your result with the accepted value, and discuss it.</p>' +
+                        '<h4>Requirements</h4>' +
                         '<ul>' +
-                        '<li>Learning outcome 1 (LO1): Collect and present measurement data with uncertainties.</li>' +
-                        '<li>Learning outcome 2 (LO2): Analyse the data and compare the result with the accepted value.</li>' +
-                        '<li>Learning outcome 3 (LO3): Discuss sources of error and suggest improvements.</li>' +
+                        '<li>Individual report, about 1,500 words, not counting references and appendices.</li>' +
+                        '<li>Sections: Introduction, Methods, Results, Discussion, References.</li>' +
+                        '<li>Hand in one PDF file.</li>' +
+                        '<li>GenAI use: See the GenAI guide for this assignment.</li>' +
                         '</ul>' +
-                        '<p><strong>What the teacher wants:</strong> GenAI may help students draft and edit the introduction and the method description, and give feedback on their draft. Students must check and change anything GenAI writes. They collect and analyse the data, and write the discussion, themselves.</p>' +
-                        '<p><strong>Institution rules:</strong> Each assignment states the level of GenAI use allowed, and students must declare all GenAI use.</p>' +
-                        '<p><strong>Where students declare:</strong> in the last section of the Methods chapter, headed “Use of GenAI”.</p>'
+                        '<h4>Learning outcomes</h4>' +
+                        '<ul>' +
+                        '<li>LO1 Collect and present measurement data with uncertainties.</li>' +
+                        '<li>LO2 Analyse the data and compare the result with the accepted value.</li>' +
+                        '<li>LO3 Discuss sources of error and suggest improvements.</li>' +
+                        '</ul>' +
+                        '</div>' +
+                        '<p>Not in the description, but known to the teacher:</p>' +
+                        '<ul>' +
+                        '<li><strong>What the teacher wants:</strong> GenAI may help students draft and edit the introduction and the method description, and give feedback on their draft. Students must check and change anything GenAI writes. They collect and analyse the data, and write the discussion, themselves.</li>' +
+                        '<li><strong>Institution rules:</strong> Each assignment states the level of GenAI use allowed, and students must declare all GenAI use.</li>' +
+                        '<li><strong>Where students declare:</strong> in the last section of the Methods chapter, headed “Use of GenAI”.</li>' +
+                        '</ul>'
                 }
             ],
             texts: [
@@ -1827,7 +1868,7 @@ window.HEGENAI_MODULES = {
                     id: "sample-case",
                     group: "Worked example",
                     title: "Sample case",
-                    html: '<p class="resource-note">(Invented for this module and used in every block. Written as a typical assignment description. In Try it, you make its criteria, as written here, checkable.)</p>' +
+                    html: '<p class="resource-note">(An invented assignment description used as a worked example throughout this module. In Try it, you make its criteria, as written here, checkable.)</p>' +
                         '<div class="guide-page">' +
                         '<p><strong>Organisation and Management</strong> · 2nd-year BSc · 5 ECTS</p>' +
                         '<h3>Assignment 2: Case study report</h3>' +
@@ -1860,7 +1901,7 @@ window.HEGENAI_MODULES = {
                     id: "test-weak",
                     group: "Worked example",
                     title: "Weak draft",
-                    html: '<p class="resource-note">(Invented for this module: a weak draft for the sample case, with all the sections the assignment asks for, shortened to about 250 words. Paste it into your agent in Make it.)</p>' +
+                    html: '<p class="resource-note">(An invented draft of a student case study report, based on the sample case. The citations are also made up. Used in Make it, as a weak draft to test on.)</p>' +
                         '<div class="guide-page">' +
                         '<h4>Introduction</h4>' +
                         '<p>Café Nord is a small café in Aarhus. This report is about Café Nord and the problems it has.</p>' +
@@ -1880,7 +1921,7 @@ window.HEGENAI_MODULES = {
                     id: "test-strong",
                     group: "Worked example",
                     title: "Strong draft",
-                    html: '<p class="resource-note">(Invented for this module: a strong draft for the sample case, with all the sections the assignment asks for, shortened to about 450 words. The organisation, data and the Jensen &amp; Holm source are made up. Paste it into your agent in Make it.)</p>' +
+                    html: '<p class="resource-note">(An invented draft of a student case study report, based on the sample case. The citations are also made up. Used in Make it, as a strong draft to test on.)</p>' +
                         '<div class="guide-page">' +
                         '<h4>Introduction</h4>' +
                         '<p>This report asks: why do fewer customers return to Café Nord, a 40-seat café in central Aarhus, and what should it do about it? Its sales fell 18% from 2024 to 2025. The report gives background on the café, analyses the problem and recommends a solution.</p>' +
@@ -2077,7 +2118,7 @@ window.HEGENAI_MODULES = {
             cluster: null,
             outcome: "After this module, you can turn the criteria of a written assignment into a four-level rubric with GenAI and test that it tells a weak draft from a strong one. You leave with a tested rubric and a feedback agent that tells students which level their draft is at and how to reach the next one.",
             outcomePreview: { resource: "finished-rubric", caption: "The rubric you make for the sample case. Select to open it." },
-            audience: "Higher education educators who set written assignments. Builds on Training 2: GenAI Teaching Assistant for Formative Feedback on Assignments, but you can start here. No prior GenAI experience needed.",
+            audience: "Higher education educators who set written assignments. Builds on the module GenAI Teaching Assistant for Formative Feedback, but you can start here. No prior GenAI experience needed.",
             needs: "A GenAI tool your institution allows, such as Microsoft Copilot with a work or school account. To build and share an agent, an agent builder such as Copilot’s. Also, either the criteria of an assignment you set or the sample case provided.",
             minutes: 60,
             status: "available",
@@ -2087,7 +2128,7 @@ window.HEGENAI_MODULES = {
                     minutes: 10,
                     html: '<p>In this block, you see the problem the module addresses, learn four terms, and choose the assignment you will work on.</p>' +
                         '<div class="callout">' +
-                        '<p><strong>Builds on Training 2: GenAI Teaching Assistant for Formative Feedback on Assignments.</strong> In <a href="module.html?m=feedback-with-genai">Training 2</a>, a feedback agent tells students whether their draft <em>meets</em> each criterion. In this module, it tells them <em>how well</em>: which level the draft is at, and what gets it to the next one. You do not need to have done Training 2 first.</p>' +
+                        '<p><strong>Builds on the module GenAI Teaching Assistant for Formative Feedback.</strong> In <a href="module.html?m=feedback-with-genai">that module</a>, a feedback agent tells students whether their draft <em>meets</em> each criterion. In this module, it tells them <em>how well</em>: which level the draft is at, and what gets it to the next one. You do not need to have done that module first.</p>' +
                         '</div>' +
                         '<h3>The problem</h3>' +
                         '<p>Assessment criteria tell students what to do, such as “The problem is clearly identified and analysed using relevant course concepts.” They do not show what weak, good and excellent work on that criterion looks like.</p>' +
@@ -2109,7 +2150,7 @@ window.HEGENAI_MODULES = {
                         '<li><strong>Feedback, not grades.</strong> The agent never gives points, a score or a grade. Students tend to learn more from comments than from grades (Koenka et al., 2021).</li>' +
                         '</ul>' +
                         '<h3>One example throughout this module</h3>' +
-                        '<p>The module uses the same invented <strong>sample case</strong> as Training 2: A case study report in a second-year business course, with a weak and a strong student draft. If you have nothing ready now, you use it in <strong>Try it</strong> and <strong>Make it</strong> too.</p>' +
+                        '<p>The module uses an invented <strong>sample case</strong>: A case study report in a second-year business course, with a weak and a strong student draft. If you have nothing ready now, you use it in <strong>Try it</strong> and <strong>Make it</strong> too.</p>' +
                         '<p><button type="button" class="link-button" data-open-resource="sample-case">Open the sample case</button></p>',
                     quiz: {
                         title: "Where you stand",
@@ -2137,7 +2178,7 @@ window.HEGENAI_MODULES = {
                             },
                             {
                                 id: "m4-module3",
-                                prompt: "Have you built the feedback agent in Training 2?",
+                                prompt: "Have you built the feedback agent in the module GenAI Teaching Assistant for Formative Feedback?",
                                 options: [
                                     {
                                         text: "Yes.",
@@ -2196,7 +2237,7 @@ window.HEGENAI_MODULES = {
                         '<p><strong>Do you agree with each level?</strong> Judging that yourself is part of the test. In this run, the strong draft got only Developing for Recommendation: Its advice on staff schedules and pay has no evidence of its own, only the stamp card does. Under this rubric, that is fair. If you think the draft deserves Meets, the descriptor says something other than what you mean, so change it.</p>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>See the feedback a student gets.</strong> The rubric then goes into a feedback agent, set up as in Training 2. A student pastes the weak draft. The reply opens with a welcome and a short “How your draft is judged” section: the criteria, and what each of the four levels means. Then, for each criterion, the feedback has four parts:</p>' +
+                        '<p><strong>See the feedback a student gets.</strong> The rubric then goes into a feedback agent, set up as in the module GenAI Teaching Assistant for Formative Feedback. A student pastes the weak draft. The reply opens with a welcome and a short “How your draft is judged” section: the criteria, and what each of the four levels means. Then, for each criterion, the feedback has four parts:</p>' +
                         M4_FEEDBACK_ANATOMY +
                         '<p>Here is all of it. There is no grade and no rewritten text.</p>' +
                         '<div data-text="see-feedback"></div>' +
@@ -2342,7 +2383,7 @@ window.HEGENAI_MODULES = {
                             },
                             {
                                 title: "Criteria",
-                                guidance: "Copy 3 to 5 criteria from your assignment description, one per line, as students see them. Leave out weights and points. If you made them checkable in Training 2, use those.",
+                                guidance: "Copy 3 to 5 criteria from your assignment description, one per line, as students see them. Leave out weights and points. If you made them checkable in the module GenAI Teaching Assistant for Formative Feedback, use those.",
                                 inputs: [
                                     { key: "criteria", label: "Criteria", type: "text", rows: 5,
                                       practice: "1. Problem analysis. The problem is clearly identified and analysed using relevant course concepts.\n2. Recommendation. The recommendation is well argued and supported by evidence.\n3. Writing and structure. The report is clearly written and well structured for a professional reader." }
@@ -2362,11 +2403,11 @@ window.HEGENAI_MODULES = {
                 {
                     id: "make",
                     minutes: 20,
-                    html: '<p>In this block, you put your rubric into a feedback agent, test it on the two drafts, and get a link that can be shared. If you built the agent in Training 2, the steps are the same. Only the skill and the instructions change.</p>' +
+                    html: '<p>In this block, you put your rubric into a feedback agent, test it on the two drafts, and get a link that can be shared. If you built the agent in the module GenAI Teaching Assistant for Formative Feedback, the steps are the same. Only the skill and the instructions change.</p>' +
                         m4Journey([4], 'You do this here') +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Download the rubric skill.</strong> It is the same for every assignment that has a rubric. It is a different file from the Training 2 skill: It gives levels instead of met or not met. Keep the file name SKILL.md.</p>' +
+                        '<p><strong>Download the rubric skill.</strong> It is the same for every assignment that has a rubric. It is a different file from the skill in the module GenAI Teaching Assistant for Formative Feedback: It gives levels instead of met or not met. Keep the file name SKILL.md.</p>' +
                         '<div data-text="make-skill"></div>' +
                         '</li>' +
                         '<li>' +
@@ -2416,7 +2457,7 @@ window.HEGENAI_MODULES = {
                         '<div class="dropdown-body">' +
                         '<p>Most fixes are in your rubric. Edit it in step 2 above, copy the instructions again, paste them over the old ones, and rerun the same drafts. The skill stays as it is.</p>' +
                         '<ul class="fix-list" role="list">' +
-                        '<li><p class="fix-check">1. A level has no quote, or it gives met or not met instead of a level</p><p><strong>Likely cause:</strong> The agent uses the Training 2 skill, or no skill.</p><p><strong>Change:</strong> Check that the rubric SKILL.md from step 1 is the agent’s skill. If it is still not used, paste the skill text under the instructions.</p></li>' +
+                        '<li><p class="fix-check">1. A level has no quote, or it gives met or not met instead of a level</p><p><strong>Likely cause:</strong> The agent uses the skill from the module GenAI Teaching Assistant for Formative Feedback, or no skill.</p><p><strong>Change:</strong> Check that the rubric SKILL.md from step 1 is the agent’s skill. If it is still not used, paste the skill text under the instructions.</p></li>' +
                         '<li><p class="fix-check">2. The levels differ from the ones you agreed with in Try it</p><p><strong>Likely cause:</strong> The rubric in the instructions is not the one you tested, or a descriptor can be read two ways.</p><p><strong>Change:</strong> Paste the tested rubric again. If it was the same, rewrite the descriptor that was misread.</p></li>' +
                         '<li><p class="fix-check">3. The two runs give different levels</p><p><strong>Likely cause:</strong> Two neighbouring levels differ by a vague word.</p><p><strong>Change:</strong> Make the difference something you can see or count, as in step 2 of See it.</p></li>' +
                         '<li><p class="fix-check">4. It gives a total, a grade or an overall level</p><p><strong>Likely cause:</strong> Points or weights are left in the rubric.</p><p><strong>Change:</strong> Remove them from the instructions. Keep them in your own marking guide.</p></li>' +
@@ -2452,7 +2493,7 @@ window.HEGENAI_MODULES = {
                     html: '<p>In this block, you plan how students get the rubric and the agent. You do not need to share the agent to finish this module.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Check the rules.</strong> Your course and institution rules must allow GenAI feedback on drafts, and your IT department most likely decides whether you can share an agent with students. The sharing steps are the same as in <a href="module.html?m=feedback-with-genai#block-plan">Training 2, Plan it</a>.</p>' +
+                        '<p><strong>Check the rules.</strong> Your course and institution rules must allow GenAI feedback on drafts, and your IT department most likely decides whether you can share an agent with students. The sharing steps are the same as in <a href="module.html?m=feedback-with-genai#block-plan">Plan it in the module GenAI Teaching Assistant for Formative Feedback</a>.</p>' +
                         '<p>In the EU, the AI Act lists AI systems that evaluate learning outcomes as high-risk, with obligations that apply from 2 December 2027. Whether a feedback agent that gives no grade falls under this is not settled. Ask your institution’s AI or legal contact before you use it widely, and tell students plainly that the feedback comes from AI.</p>' +
                         '</li>' +
                         '<li>' +
@@ -2483,7 +2524,7 @@ window.HEGENAI_MODULES = {
                     id: "sample-case",
                     group: "Worked example",
                     title: "Sample case",
-                    html: '<p class="resource-note">(Invented, and the same as in Training 2. Written as a typical assignment description. In Try it, you turn its criteria, as written here, into a rubric.)</p>' +
+                    html: '<p class="resource-note">(An invented assignment description used as a worked example throughout this module. In Try it, you turn its criteria, as written here, into a rubric.)</p>' +
                         '<div class="guide-page">' +
                         '<p><strong>Organisation and Management</strong> · 2nd-year BSc · 5 ECTS</p>' +
                         '<h3>Assignment 2: Case study report</h3>' +
@@ -2516,7 +2557,7 @@ window.HEGENAI_MODULES = {
                     id: "test-weak",
                     group: "Worked example",
                     title: "Weak draft",
-                    html: '<p class="resource-note">(Invented, and the same as in Training 2: a weak draft for the sample case, shortened to about 250 words. Use it in the test in Try it and in Make it.)</p>' +
+                    html: '<p class="resource-note">(An invented draft of a student case study report, based on the sample case. The citations are also made up. Used as a weak draft to test on, in Try it and in Make it.)</p>' +
                         '<div class="guide-page">' +
                         '<h4>Introduction</h4>' +
                         '<p>Café Nord is a small café in Aarhus. This report is about Café Nord and the problems it has.</p>' +
@@ -2536,7 +2577,7 @@ window.HEGENAI_MODULES = {
                     id: "test-strong",
                     group: "Worked example",
                     title: "Strong draft",
-                    html: '<p class="resource-note">(Invented, and the same as in Training 2: a strong draft for the sample case, shortened to about 450 words. The organisation, data and the Jensen &amp; Holm source are made up. Use it in the test in Try it and in Make it.)</p>' +
+                    html: '<p class="resource-note">(An invented draft of a student case study report, based on the sample case. The citations are also made up. Used as a strong draft to test on, in Try it and in Make it.)</p>' +
                         '<div class="guide-page">' +
                         '<h4>Introduction</h4>' +
                         '<p>This report asks: why do fewer customers return to Café Nord, a 40-seat café in central Aarhus, and what should it do about it? Its sales fell 18% from 2024 to 2025. The report gives background on the café, analyses the problem and recommends a solution.</p>' +
