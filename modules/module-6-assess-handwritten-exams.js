@@ -2,7 +2,7 @@
     window.HEGENAI_MODULES.modules.push({
         id: "assess-handwritten-exams",
         number: 6,
-        title: "GenAI-Supported Assessment of Handwritten exams",
+        title: "GenAI-Supported Assessment of Handwritten Exams",
         cluster: null,
         outcome: "To be confirmed",
         minutes: 60,

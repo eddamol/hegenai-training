@@ -409,8 +409,8 @@ html {
 
 /* Landing page: main holds full-width bands, so it takes over the sticky-footer
    role of .site-container, and the containers inside it set the spacing. The
-   gaps grow with the weight of the break: most room around the ribbon and
-   before the study, less inside sections. */
+   gaps grow with the weight of the break: most room around the ribbon,
+   less inside sections. */
 .home {
     flex: 1 0 auto;
     width: 100%;
@@ -484,7 +484,7 @@ html {
     transition: box-shadow 0.15s ease;
 }
 
-/* Hover draws a thicker line just inside the edge: red on white, white on red. */
+/* Hover draws a thicker red line just inside the edge. */
 .start-tile:hover {
     box-shadow: inset 0 0 0 2px var(--primary), 0 2px 8px rgba(0, 0, 0, 0.08);
     text-decoration: none;
@@ -505,20 +505,6 @@ html {
 
 .start-tile-text {
     display: block;
-}
-
-.start-tile-accent {
-    border-color: var(--primary);
-    background-color: var(--primary);
-    color: white;
-}
-
-.start-tile-accent .start-tile-title {
-    color: white;
-}
-
-.start-tile-accent:hover {
-    box-shadow: inset 0 0 0 2px white, 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 @media (min-width: 800px) {
@@ -870,166 +856,6 @@ html {
 }
 
 
-.faq {
-    max-width: 720px;
-    margin-top: 24px;
-    border-top: 1px solid var(--line);
-}
-
-.faq-item {
-    border-bottom: 1px solid var(--line);
-}
-
-.faq-item summary {
-    position: relative;
-    padding: 16px 40px 16px 0;
-    font-family: Georgia, serif;
-    font-size: 1.15rem;
-    cursor: pointer;
-    list-style: none;
-}
-
-.faq-item summary::-webkit-details-marker {
-    display: none;
-}
-
-.faq-item summary::after {
-    content: "+";
-    position: absolute;
-    top: 50%;
-    right: 8px;
-    transform: translateY(-50%);
-    font-family: Arial, sans-serif;
-    font-size: 1.5rem;
-    color: var(--primary);
-}
-
-.faq-item[open] summary::after {
-    content: "−";
-}
-
-.faq-item summary:hover {
-    color: var(--primary);
-}
-
-.faq-item summary:focus-visible {
-    outline: 3px solid var(--primary);
-    outline-offset: 2px;
-}
-
-.faq-item p {
-    margin: 0 0 16px;
-}
-
-
-/* The white card holds the invitation and the sign-up button; the FAQs follow below it. */
-.study-card {
-    padding: 40px;
-    border: 1px solid var(--primary-dark);
-    border-radius: 12px;
-    background-color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-.study-card > :last-child {
-    margin-bottom: 0;
-}
-
-/* Inside the card the text may use the card's full width. */
-.study-card p {
-    max-width: none;
-}
-
-#study .faq {
-    margin-top: 40px;
-}
-
-/* The two events side by side, each with a calendar-style date;
-   stacked on narrow screens. */
-.section .study-events {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 36px 40px;
-    margin: 32px 0 20px;
-    padding: 0;
-    list-style: none;
-}
-
-.section .study-event {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    max-width: none;
-}
-
-.event-date {
-    flex: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 64px;
-    overflow: hidden;
-    border: 1px solid var(--primary-dark);
-    border-radius: 8px;
-    text-align: center;
-}
-
-.event-month {
-    align-self: stretch;
-    padding: 2px 0;
-    background-color: var(--primary);
-    font-size: 0.8rem;
-    font-weight: 400;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: white;
-}
-
-.event-day {
-    order: 1; /* under the month, as on a calendar page */
-    padding: 4px 0 6px;
-    font-family: Georgia, serif;
-    font-size: 1.7rem;
-    line-height: 1.1;
-    color: var(--primary-dark);
-}
-
-.study-event h3 {
-    margin: 2px 0 4px;
-    font-size: 1.3rem;
-}
-
-.study-event p {
-    margin: 0;
-}
-
-.study-event .event-time {
-    margin-bottom: 6px;
-    font-weight: 400;
-    color: var(--primary-dark);
-}
-
-.study-event .event-topic {
-    margin-bottom: 8px;
-    font-style: italic;
-    color: var(--primary-dark);
-}
-
-@media (max-width: 720px) {
-
-    .section .study-events {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 550px) {
-
-    .study-card {
-        padding: 24px 16px;
-    }
-}
-
-
 .notice {
     max-width: 720px;
     margin: 0 auto;
@@ -1066,6 +892,66 @@ html {
 
 .notice section {
     margin: 0 0 8px;
+}
+
+/* Past training sessions on the About page: a calendar-style date beside
+   the linked module title; two columns, stacked on narrow screens. */
+ul.session-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px 32px;
+    margin: 24px 0 8px;
+    padding: 0;
+    list-style: none;
+}
+
+.session-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.session-date {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 64px;
+    overflow: hidden;
+    border: 1px solid var(--primary-dark);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.session-month {
+    align-self: stretch;
+    padding: 2px 0;
+    background-color: var(--primary);
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: white;
+}
+
+.session-day {
+    order: 1; /* under the month, as on a calendar page */
+    padding: 4px 0 6px;
+    font-family: Georgia, serif;
+    font-size: 1.7rem;
+    line-height: 1.1;
+    color: var(--primary-dark);
+}
+
+.session-title {
+    margin: 0;
+}
+
+@media (max-width: 720px) {
+
+    ul.session-list {
+        grid-template-columns: 1fr;
+    }
 }
 
 #module-list {
@@ -2952,12 +2838,6 @@ mark.fill-in {
     color: var(--text-muted);
 }
 
-.reply-source {
-    margin: 12px 0 0;
-    font-size: 0.9rem;
-    color: var(--text-muted);
-}
-
 /* Two-way slider (see buildSlider in modules/module-2-feedback-genai-declarations.js). A banner holds a track with two
    options; the thumb slides to the chosen one and the matching panel shows below. No script:
    radio buttons and :has(). By default the first option is green and the second red;
@@ -3224,18 +3104,6 @@ mark.fill-in {
     color: var(--text-muted);
     font-size: 0.85rem;
     text-align: left;
-}
-
-/* Module 4: where each test draft lands on the rubric. */
-.rubric-place {
-    display: inline-block;
-    min-width: 5.5em;
-    padding: 1px 7px;
-    border-radius: 999px;
-    background-color: var(--primary-tint);
-    font-size: 0.85rem;
-    font-weight: 700;
-    text-align: center;
 }
 
 /* Module 4: the five steps of the module as a strip. */

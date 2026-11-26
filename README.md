@@ -330,8 +330,3 @@ Keep the brackets so the parts do not depend on the highlight alone.
 - `.fix-list` lists what to change when a check fails.
 - A `<video class="module-video" controls>` plays a file from `assets/`, with a text version in a drop-down under it. Module 3's Plan it block plays `assets/module-3/dtu-feedback-coach.mp4`. The captions are in the picture.
 - Module 2's Make it block, step 3, has the same kind of video in a drop-down, with a "View larger" button. `video-popup.js` opens any element with `data-open-video="<path>"` in a larger modal pop-up (Esc, the Close button or a click outside closes it).
-
-## Still to do
-
-- Sign-up: when the survey URL exists, replace the "Sign-up opens soon" pill in `index.html` with a link to it.
-- Replace every "To be confirmed" on the pages once decided.
