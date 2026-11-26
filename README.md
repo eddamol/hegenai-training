@@ -25,7 +25,6 @@ never sent anywhere. Hosted on GitHub Pages; all links are relative.
 - `quiz.js`: draws the self-check questions in a block and saves the answers
 - `form.js`: draws a module's numbered form and keeps its values in the browser under `hegenai:form:<module-id>:v1`
 - `make-it.js`: draws the live prompt in a module's Make it block (built from the form's saved values, or from a template, with a copy button and optional file download) and adds tick boxes to a checklist
-- `certificate.js`: **not in use yet.** A certificate of completion that was built and kept for possible later use (see "Certificate (not implemented yet)" below)
 - `downloads/`: files trainees download, such as `practice-log-module-1.docx` (one practice log per module). The Word file is edited in Word from now on; it is no longer generated from a script
 - `downloads/module-2/`: Module 2's `SKILL.md` (the same lines as `M2_SKILL_LINES` in `modules-data.js`; change both together) and `declaration-guide.docx`
 - `downloads/module-4/`: Module 4's rubric `SKILL.md` (the same lines as `M4_SKILL_LINES` in `modules-data.js`; change both together)
@@ -33,7 +32,6 @@ never sent anywhere. Hosted on GitHub Pages; all links are relative.
 - `assets/module-1/`: pictures used in Module 1 (`aias-figure-1.png`)
 - `assets/module-2/`: the video in Module 2's Make it block, step 3 (`agent-setup.mp4`)
 - `assets/module-3/`: the video used in Module 3's Plan it block (`dtu-feedback-coach.mp4`; see the README in that folder)
-- `assets/vendor/`: jsPDF and its licence, kept for the certificate feature that is not in use yet
 - `assets/`: `logo-w.svg`, `logo-b.svg`, `favicon.svg` (placeholders; replace with the real files under the same names)
 - `.nojekyll`: switches off Jekyll on GitHub Pages
 
@@ -334,23 +332,4 @@ Keep the brackets so the parts do not depend on the highlight alone.
 ## Still to do
 
 - Sign-up: when the survey URL exists, replace the "Sign-up opens soon" pill in `index.html` with a link to it.
-- Add the official EU emblem as `assets/eu-emblem.svg` (or `.png`) and uncomment the image in the footer of all pages.
 - Replace every "To be confirmed" on the pages once decided.
-- Decide whether to bring back the certificate feature (see the last section).
-
-## Certificate (not implemented yet)
-
-**This feature is not implemented yet.** It was built and then switched off because the right time and way to offer it has not been decided. The code is kept so it can be brought back, probably in an updated form. With the feature off, no visitor sees anything about it and `jspdf.umd.min.js` is never requested.
-
-What is kept:
-
-- `certificate.js`: adds a "Certificate" section after a module's blocks. Once every block is marked as done, the trainee types their name and downloads a PDF made in the browser with jsPDF. The name is not saved or sent anywhere. An optional tick box adds a self-declared line about the practice log. The standard PDF fonts only cover Latin letters.
-- `assets/vendor/jspdf.umd.min.js` (jsPDF 2.5.1) and `assets/vendor/jspdf-LICENSE.txt` (MIT licence). The library is loaded only when the download button is pressed.
-- The hooks in `module.js` (they do nothing unless `certificate.js` is loaded and a module sets `certificate: true`) and the `.certificate-form` rules in `style.css`.
-
-To bring it back:
-
-1. In `module.html`, uncomment the `<script src="certificate.js">` line.
-2. Add `certificate: true,` to the module in `modules-data.js`.
-3. In `about.html`, uncomment the jsPDF credit under "Credits".
-4. Check that the wording on `index.html` and `privacy.html` about certificates matches what is offered (the privacy text comes from `docs/privacy-notice.md` and is not edited here).

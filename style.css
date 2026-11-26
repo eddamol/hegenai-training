@@ -2524,19 +2524,6 @@ mark.fill-in {
     }
 }
 
-/* Certificate section (certificate.js). */
-.certificate-form .tick-item {
-    margin: 16px 0;
-}
-
-.certificate-form .tick-item::before {
-    content: none;
-}
-
-.certificate-form .form-group {
-    max-width: 28rem;
-}
-
 .module-video {
     display: block;
     width: 100%;
