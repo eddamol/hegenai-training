@@ -2447,12 +2447,20 @@ mark.fill-in {
     margin: 0 auto 8px;
 }
 
-/* Same height as the site logo, with clear space around it. */
-.footer-emblem {
+/* Project logo and EU emblem side by side, same height. */
+.footer-logos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px 40px;
+    margin: 16px auto;
+}
+
+.footer-logo {
     display: block;
-    height: 60px;
+    height: 56px;
     width: auto;
-    margin: 8px auto 16px;
 }
 
 .site-footer .funding-disclaimer {
@@ -2485,8 +2493,8 @@ mark.fill-in {
         font-size: 1.7rem;
     }
 
-    .footer-emblem {
-        height: 44px;
+    .footer-logos {
+        flex-direction: column;
     }
 
     .section h2 {
