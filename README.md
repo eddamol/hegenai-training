@@ -18,7 +18,9 @@ never sent anywhere. Hosted on GitHub Pages; all links are relative.
 - `style.css`: shared styling
 - `site-header.js`: on narrow screens, folds the main navigation behind a menu button and hides the header while scrolling down
 - `home.js`: opens one block card at a time on the landing page
-- `modules-data.js`: the list of blocks and modules (see the comment at the top for how to add a module)
+- `modules/`: the module content, loaded by `modules.html` and `module.html` in this order:
+  - `shared.js`: the five blocks, shared by every module, and the comment that explains every field of a module
+  - `module-1-declaring-genai-use.js` … `module-6-assess-handwritten-exams.js`: one file per module, named by number and id, each with its own constants and helpers
 - `progress.js`: saves progress in the browser's localStorage under `hegenai:progress:v1`
 - `modules.js`: draws the module cards on `modules.html`
 - `module.js`: draws a module page from the data and handles "Mark as done"
@@ -26,8 +28,8 @@ never sent anywhere. Hosted on GitHub Pages; all links are relative.
 - `form.js`: draws a module's numbered form and keeps its values in the browser under `hegenai:form:<module-id>:v1`
 - `make-it.js`: draws the live prompt in a module's Make it block (built from the form's saved values, or from a template, with a copy button and optional file download) and adds tick boxes to a checklist
 - `downloads/`: files trainees download, such as `practice-log-module-1.docx` (one practice log per module). The Word file is edited in Word from now on; it is no longer generated from a script
-- `downloads/module-2/`: Module 2's `SKILL.md` (the same lines as `M2_SKILL_LINES` in `modules-data.js`; change both together) and `declaration-guide.docx`
-- `downloads/module-4/`: Module 4's rubric `SKILL.md` (the same lines as `M4_SKILL_LINES` in `modules-data.js`; change both together)
+- `downloads/module-2/`: Module 2's `SKILL.md` (the same lines as `M2_SKILL_LINES` in `modules/module-2-feedback-genai-declarations.js`; change both together) and `declaration-guide.docx`
+- `downloads/module-4/`: Module 4's rubric `SKILL.md` (the same lines as `M4_SKILL_LINES` in `modules/module-4-rubrics-with-genai.js`; change both together)
 - `resources.js`: opens a module's materials (for example a sample case) in a panel beside the blocks, or full screen on narrow screens
 - `assets/module-1/`: pictures used in Module 1 (`aias-figure-1.png`)
 - `assets/module-2/`: the video in Module 2's Make it block, step 3 (`agent-setup.mp4`)
@@ -43,7 +45,7 @@ module pages need JavaScript; the other pages do not.
 
 ## Module data
 
-All module content lives in `modules-data.js`, as `window.HEGENAI_MODULES`:
+All module content lives in `modules/`. `shared.js` creates `window.HEGENAI_MODULES` with the blocks and an empty module list, and each module file adds its module with `window.HEGENAI_MODULES.modules.push({...})`. To add a module, copy a module file, change it, and add a script tag for it to `modules.html` and `module.html` after the others. Together they make:
 
 ```js
 {
@@ -316,7 +318,7 @@ Keep the brackets so the parts do not depend on the highlight alone.
 
 ### Layouts used in Module 4
 
-- `M4_RUBRIC` and `M4_LEVELS` in `modules-data.js` hold the sample-case rubric; `m4RubricTable()` draws it as a `.rubric-table` (styles at the end of `style.css`), with the "Meets" column tinted.
+- `M4_RUBRIC` and `M4_LEVELS` in `modules/module-4-rubrics-with-genai.js` hold the sample-case rubric; `m4RubricTable()` draws it as a `.rubric-table` (styles at the end of `style.css`), with the "Meets" column tinted.
 - Make it shows two real screenshots from `assets/module-4/` in a `.screenshot-figure`, with the numbered markers drawn into the pictures.
 - A module can have an optional `subtitle`, shown under the title on the module page and the module card. A form can be `unnumbered` (a one-field form inside a numbered step), and a live prompt can say where its missing details are filled in with `missingIn: [{ label, block }]` (default: Try it).
 - A checklist can be named, `<ol class="tick-list" data-checklist="rubric">`, so two checklists in one module keep their ticks apart. An unnamed `data-checklist` keeps the old keys.
@@ -324,7 +326,7 @@ Keep the brackets so the parts do not depend on the highlight alone.
 ### Layouts and video used in Module 3
 
 - `.criteria-compare` shows each criterion's checkable version beside the faded brief wording. Both stack on narrow screens.
-- `.builder-figure` is a simplified picture of an agent builder, with notes on where the two parts of the agent go. It is written once as `M3_BUILDER_FIGURE` in `modules-data.js` and used in both See it and Make it.
+- `.builder-figure` is a simplified picture of an agent builder, with notes on where the two parts of the agent go. It is written once as `M3_BUILDER_FIGURE` in `modules/module-3-feedback-with-genai.js` and used in both See it and Make it.
 - `.fix-list` lists what to change when a check fails.
 - A `<video class="module-video" controls>` plays a file from `assets/`, with a text version in a drop-down under it. Module 3's Plan it block plays `assets/module-3/dtu-feedback-coach.mp4`. The captions are in the picture.
 - Module 2's Make it block, step 3, has the same kind of video in a drop-down, with a "View larger" button. `video-popup.js` opens any element with `data-open-video="<path>"` in a larger modal pop-up (Esc, the Close button or a click outside closes it).

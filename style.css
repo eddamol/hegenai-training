@@ -2655,7 +2655,7 @@ mark.fill-in {
     }
 }
 
-/* Module 3: a simplified agent builder with notes (M3_BUILDER_FIGURE in modules-data.js).
+/* Module 3: a simplified agent builder with notes (M3_BUILDER_FIGURE in modules/module-3-feedback-with-genai.js).
    Wide screens: notes beside the window with arrows. Narrow screens: each note under its field. */
 .builder-figure {
     --bf-change: #b4461a;
@@ -2958,7 +2958,7 @@ mark.fill-in {
     color: var(--text-muted);
 }
 
-/* Two-way slider (see buildSlider in modules-data.js). A banner holds a track with two
+/* Two-way slider (see buildSlider in modules/module-2-feedback-genai-declarations.js). A banner holds a track with two
    options; the thumb slides to the chosen one and the matching panel shows below. No script:
    radio buttons and :has(). By default the first option is green and the second red;
    add slider-reversed to swap them. Colours match the .check-label-ok and .check-label-miss tags. */
