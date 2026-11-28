@@ -1775,18 +1775,18 @@ window.HEGENAI_MODULES = {
                     html: '<p>In this block, you set up your feedback agent, test it on a weak and a strong draft, fix it if needed, and get a link that can be shared.</p>' +
                         '<ol class="step-list" role="list">' +
                         '<li>' +
-                        '<p><strong>Download the skill.</strong> It is the same for every assignment, so you download it once and upload it to every feedback agent you make. Keep the file name SKILL.md.</p>' +
-                        '<div data-text="make-skill"></div>' +
-                        '</li>' +
-                        '<li>' +
                         '<p><strong>Copy the instructions.</strong> They hold your information from <a href="#block-try">Try it</a>. This is the only part you would change for another assignment.</p>' +
                         '<div data-text="make-instructions"></div>' +
+                        '</li>' +
+                        '<li>' +
+                        '<p><strong>Download the skill.</strong> It is the same for every assignment, so you download it once and upload it to every feedback agent you make. Keep the file name SKILL.md.</p>' +
+                        '<div data-text="make-skill"></div>' +
                         '</li>' +
                         '<li><p><strong>Create the agent</strong> in your approved GenAI tool. At the time of writing, in Microsoft Copilot (not available for personal free accounts), you find Agents in the left sidebar and choose New agent. If it offers to build one for you, skip that. You then see where to enter the name and instructions and where to upload a skill file.</p>' +
                         '<ul>' +
                         '<li><strong>Name:</strong> Give it a name students will recognise, for example “Feedback on the case study report”.</li>' +
-                        '<li><strong>Instructions:</strong> Paste the text from step 2.</li>' +
-                        '<li><strong>Skill:</strong> Upload SKILL.md. If your tool has no place for a skill file, paste the skill text under the instructions instead.</li>' +
+                        '<li><strong>Instructions:</strong> Paste the text from step 1.</li>' +
+                        '<li><strong>Skill:</strong> Upload the SKILL.md from step 2. If your tool has no place for a skill file, paste the skill text under the instructions instead.</li>' +
                         '</ul>' +
                         '<p><strong>No agent builder?</strong> Start a new conversation in any GenAI tool you are allowed to use. Paste the instructions and then the skill text into your first message, and paste a draft as your second message. You can test the feedback this way, but you cannot share it.</p>' +
                         M3_BUILDER_FIGURE + '</li>' +
