@@ -2447,13 +2447,9 @@ window.HEGENAI_MODULES = {
                 {
                     id: "make",
                     minutes: 20,
-                    html: '<p>In this block, you put your rubric into a feedback agent, test it on the two drafts, and get a link that can be shared. If you built the agent in the module Making a GenAI Teaching Assistant for Formative Feedback, the steps are the same. Only the skill and the instructions change.</p>' +
+                    html: '<p>In this block, you put your rubric into a feedback agent, test it on the two drafts, and get a link that can be shared. If you built the agent in the module Making a GenAI Teaching Assistant for Formative Feedback, the steps are the same. Only the instructions and the skill change.</p>' +
                         m4Journey([4], 'You do this here') +
                         '<ol class="step-list" role="list">' +
-                        '<li>' +
-                        '<p><strong>Download the rubric skill.</strong> It is the same for every assignment that has a rubric. It is a different file from the skill in the module Making a GenAI Teaching Assistant for Formative Feedback: It gives levels instead of met or not met. Keep the file name SKILL.md.</p>' +
-                        '<div data-text="make-skill"></div>' +
-                        '</li>' +
                         '<li>' +
                         '<p><strong>Paste your checked rubric.</strong> Copy it from your GenAI conversation in <a href="#block-try">Try it</a>, as GenAI gave it: each criterion, then one line per level. Leave out the part under “Not for the agent”: The agent cannot judge those criteria, so you check them yourself.</p>' +
                         '<div data-form></div>' +
@@ -2463,14 +2459,18 @@ window.HEGENAI_MODULES = {
                         '</details>' +
                         '</li>' +
                         '<li>' +
-                        '<p><strong>Copy the instructions.</strong> They hold your assignment from <a href="#block-try">Try it</a> and the rubric from step 2. This is the only part you would change for another assignment.</p>' +
+                        '<p><strong>Copy the instructions.</strong> They hold your assignment from <a href="#block-try">Try it</a> and the rubric from step 1. This is the only part you would change for another assignment.</p>' +
                         '<div data-text="make-instructions"></div>' +
+                        '</li>' +
+                        '<li>' +
+                        '<p><strong>Download the rubric skill.</strong> It is the same for every assignment that has a rubric. It is a different file from the skill in the module Making a GenAI Teaching Assistant for Formative Feedback: It gives levels instead of met or not met. Keep the file name SKILL.md.</p>' +
+                        '<div data-text="make-skill"></div>' +
                         '</li>' +
                         '<li><p><strong>Create the agent</strong> in your approved GenAI tool. At the time of writing, in Microsoft Copilot (not available for personal free accounts), you find Agents in the left sidebar and choose New agent. If it offers to build one for you, skip that.</p>' +
                         '<ul>' +
                         '<li><strong>Name:</strong> One students will recognise, for example “Rubric feedback: case study report”.</li>' +
-                        '<li><strong>Instructions:</strong> Paste the text from step 3.</li>' +
-                        '<li><strong>Skill:</strong> Upload the SKILL.md from step 1. If your tool has no place for a skill file, paste the skill text under the instructions instead.</li>' +
+                        '<li><strong>Instructions:</strong> Paste the text from step 2.</li>' +
+                        '<li><strong>Skill:</strong> Upload the SKILL.md from step 3. If your tool has no place for a skill file, paste the skill text under the instructions instead.</li>' +
                         '<li><strong>Knowledge (optional):</strong> If you have a good example report on a public web page, add its link. Leave out anything already in the instructions or the skill: The agent works well without knowledge.</li>' +
                         '</ul>' +
                         '<figure class="screenshot-figure">' +
@@ -2499,13 +2499,13 @@ window.HEGENAI_MODULES = {
                         '<details class="dropdown">' +
                         '<summary>If a tick is missing: What to change</summary>' +
                         '<div class="dropdown-body">' +
-                        '<p>Most fixes are in your rubric. Edit it in step 2 above, copy the instructions again, paste them over the old ones, and rerun the same drafts. The skill stays as it is.</p>' +
+                        '<p>Most fixes are in your rubric. Edit it in step 1 above, copy the instructions again, paste them over the old ones, and rerun the same drafts. The skill stays as it is.</p>' +
                         '<ul class="fix-list" role="list">' +
-                        '<li><p class="fix-check">1. A level has no quote, or it gives met or not met instead of a level</p><p><strong>Likely cause:</strong> The agent uses the skill from the module Making a GenAI Teaching Assistant for Formative Feedback, or no skill.</p><p><strong>Change:</strong> Check that the rubric SKILL.md from step 1 is the agent’s skill. If it is still not used, paste the skill text under the instructions.</p></li>' +
+                        '<li><p class="fix-check">1. A level has no quote, or it gives met or not met instead of a level</p><p><strong>Likely cause:</strong> The agent uses the skill from the module Making a GenAI Teaching Assistant for Formative Feedback, or no skill.</p><p><strong>Change:</strong> Check that the rubric SKILL.md from step 3 is the agent’s skill. If it is still not used, paste the skill text under the instructions.</p></li>' +
                         '<li><p class="fix-check">2. The levels differ from the ones you agreed with in Try it</p><p><strong>Likely cause:</strong> The rubric in the instructions is not the one you tested, or a descriptor can be read two ways.</p><p><strong>Change:</strong> Paste the tested rubric again. If it was the same, rewrite the descriptor that was misread.</p></li>' +
                         '<li><p class="fix-check">3. The two runs give different levels</p><p><strong>Likely cause:</strong> Two neighbouring levels differ by a vague word.</p><p><strong>Change:</strong> Make the difference something you can see or count, as in step 2 of See it.</p></li>' +
                         '<li><p class="fix-check">4. It gives a total, a grade or an overall level</p><p><strong>Likely cause:</strong> Points or weights are left in the rubric.</p><p><strong>Change:</strong> Remove them from the instructions. Keep them in your own marking guide.</p></li>' +
-                        '<li><p class="fix-check">5. It comments on length, format or criteria it cannot judge</p><p><strong>Likely cause:</strong> The agent uses an older copy of the rubric skill, or the “Not for the agent” list was pasted with the rubric.</p><p><strong>Change:</strong> Upload the rubric SKILL.md from step 1 again, and remove that list from the rubric in step 2.</p></li>' +
+                        '<li><p class="fix-check">5. It comments on length, format or criteria it cannot judge</p><p><strong>Likely cause:</strong> The agent uses an older copy of the rubric skill, or the “Not for the agent” list was pasted with the rubric.</p><p><strong>Change:</strong> Upload the rubric SKILL.md from step 3 again, and remove that list from the rubric in step 1.</p></li>' +
                         '</ul>' +
                         '<div class="callout">' +
                         '<h3 class="callout-title">Still failing after two rounds?</h3>' +
@@ -2523,7 +2523,7 @@ window.HEGENAI_MODULES = {
                         fields: [
                             {
                                 title: "Your checked rubric",
-                                guidance: "Paste the rubric you checked and tested in Try it. It fills in the instructions in step 3.",
+                                guidance: "Paste the rubric you checked and tested in Try it. It fills in the instructions in step 2.",
                                 inputs: [
                                     { key: "rubric", label: "Your checked rubric", type: "text", rows: 8 }
                                 ]
@@ -2806,7 +2806,7 @@ window.HEGENAI_MODULES = {
                     showLabel: true,
                     copyLabel: "Copy instructions",
                     optionalKeys: ["levels"],
-                    missingIn: [{ label: "Try it", block: "try" }, { label: "step 2 of Make it", block: "make" }],
+                    missingIn: [{ label: "Try it", block: "try" }, { label: "step 1 of Make it", block: "make" }],
                     template: [
                         "You give formative feedback to a student on a draft of one written assignment, using the rubric below. You do not grade it, and you never rewrite the student's text. Use your skill rubric-feedback for how to give the feedback.",
                         "# Assignment",
